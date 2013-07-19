@@ -10,6 +10,6 @@ Out of order execution core for mist32 arcitecture.
 
 License
 ---
-BSD 3-Clause License
+BSD 2-Clause License
 
 See ./LICENSE
