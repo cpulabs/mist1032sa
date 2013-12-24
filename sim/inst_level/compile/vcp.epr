@@ -1,0 +1,5 @@
+"../../../src/core/pipeline_control/core_interrupt_manager.v"	2
+"../../../src/core/include/core.h"	1
+"../../../src/include/processor.h"	1
+"../../../src/core/pipeline_control/core_paging_support.v"	1
+"../../../src/core/pipeline_control/exception_manager.v"	1
