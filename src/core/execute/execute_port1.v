@@ -1,57 +1,57 @@
 /****************************************
-	ALU1 Unit
-	- Comprex Integer
-	- Adder / Logic / Shift / Mul / Div
-	
-	
-	Make	:	2012/01/17
-	Update	:	
+MIST1032SA
+OoO Processor
+
+for Open Design Computer Project
+
+Takahiro Ito @cpu_labs
 ****************************************/
+
 `include "core.h"
 `default_nettype none
 
-module ex_port1(
-				//System
-				input					iCLOCK,
-				input					inRESET,
-				//Free
-				input					iFREE_EX,
-				//Previous
-				input					iPREVIOUS_EX_ALU1_VALID,
-				input					iPREVIOUS_EX_ALU1_WRITEBACK,
-				input	[5:0]			iPREVIOUS_EX_ALU1_COMMIT_TAG,
-				input	[4:0]			iPREVIOUS_EX_ALU1_CMD,
-				input	[3:0]			iPREVIOUS_EX_ALU1_AFE,
-				input					iPREVIOUS_EX_ALU1_SYS_REG,		
-				input					iPREVIOUS_EX_ALU1_LOGIC,
-				input					iPREVIOUS_EX_ALU1_SHIFT,
-				input					iPREVIOUS_EX_ALU1_ADDER,
-				input					iPREVIOUS_EX_ALU1_MUL,
-				input					iPREVIOUS_EX_ALU1_SDIV,
-				input					iPREVIOUS_EX_ALU1_UDIV,
-				input	[31:0]			iPREVIOUS_EX_ALU1_SOURCE0,
-				input	[31:0]			iPREVIOUS_EX_ALU1_SOURCE1,
-				input					iPREVIOUS_EX_ALU1_DESTINATION_SYSREG,
-				input	[5:0]			iPREVIOUS_EX_ALU1_DESTINATION_REGNAME,
-				input					iPREVIOUS_EX_ALU1_FLAGS_WRITEBACK,
-				input	[3:0]			iPREVIOUS_EX_ALU1_FLAGS_REGNAME,
-				output					oPREVIOUS_EX_ALU1_LOCK,
-				//Interrupt
-				output					oINTERRUPT_ACTIVE,
-				output	[10:0]			oINTERRUPT_NUM,
-				//NEXTUNIT - SCHEDULER1
-				output					oSCHE1_EX_ALU1_VALID,
-				output	[5:0]			oSCHE1_EX_ALU1_COMMIT_TAG,
-				//NEXTUNIT - SCHEDULER2
-				output					oSCHE2_EX_ALU1_VALID,
-				output	[5:0]			oSCHE2_EX_ALU1_COMMIT_TAG,
-				output					oSCHE2_EX_ALU1_SYSREG,
-				output	[5:0]			oSCHE2_EX_ALU1_DESTINATION_REGNAME,
-				output					oSCHE2_EX_ALU1_WRITEBACK,
-				output	[31:0]			oSCHE2_EX_ALU1_DATA,
-				output	[4:0]			oSCHE2_EX_ALU1_FLAG,
-				output					oSCHE2_EX_ALU1_FLAGS_WRITEBACK,
-				output	[3:0]			oSCHE2_EX_ALU1_FLAGS_REGNAME
+module execute_port1(
+		//System
+		input wire iCLOCK,
+		input wire inRESET,
+		//Free
+		input wire iFREE_EX,
+		//Previous
+		input wire iPREVIOUS_EX_ALU1_VALID,
+		input wire iPREVIOUS_EX_ALU1_WRITEBACK,
+		input wire [5:0] iPREVIOUS_EX_ALU1_COMMIT_TAG,
+		input wire [4:0] iPREVIOUS_EX_ALU1_CMD,
+		input wire [3:0] iPREVIOUS_EX_ALU1_AFE,
+		input wire iPREVIOUS_EX_ALU1_SYS_REG,		
+		input wire iPREVIOUS_EX_ALU1_LOGIC,
+		input wire iPREVIOUS_EX_ALU1_SHIFT,
+		input wire iPREVIOUS_EX_ALU1_ADDER,
+		input wire iPREVIOUS_EX_ALU1_MUL,
+		input wire iPREVIOUS_EX_ALU1_SDIV,
+		input wire iPREVIOUS_EX_ALU1_UDIV,
+		input wire [31:0] iPREVIOUS_EX_ALU1_SOURCE0,
+		input wire [31:0] iPREVIOUS_EX_ALU1_SOURCE1,
+		input wire iPREVIOUS_EX_ALU1_DESTINATION_SYSREG,
+		input wire [5:0] iPREVIOUS_EX_ALU1_DESTINATION_REGNAME,
+		input wire iPREVIOUS_EX_ALU1_FLAGS_WRITEBACK,
+		input wire [3:0] iPREVIOUS_EX_ALU1_FLAGS_REGNAME,
+		output wire oPREVIOUS_EX_ALU1_LOCK,
+		//Interrupt
+		output wire oINTERRUPT_ACTIVE,
+		output wire [10:0] oINTERRUPT_NUM,
+		//NEXTUNIT - SCHEDULER1
+		output wire oSCHE1_EX_ALU1_VALID,
+		output wire [5:0] oSCHE1_EX_ALU1_COMMIT_TAG,
+		//NEXTUNIT - SCHEDULER2
+		output wire oSCHE2_EX_ALU1_VALID,
+		output wire [5:0] oSCHE2_EX_ALU1_COMMIT_TAG,
+		output wire oSCHE2_EX_ALU1_SYSREG,
+		output wire [5:0] oSCHE2_EX_ALU1_DESTINATION_REGNAME,
+		output wire oSCHE2_EX_ALU1_WRITEBACK,
+		output wire [31:0] oSCHE2_EX_ALU1_DATA,
+		output wire [4:0] oSCHE2_EX_ALU1_FLAG,
+		output wire oSCHE2_EX_ALU1_FLAGS_WRITEBACK,
+		output wire [3:0] oSCHE2_EX_ALU1_FLAGS_REGNAME
 	);
 				
 	
@@ -162,7 +162,7 @@ module ex_port1(
 	
 	
 	function [4:0] func_logic_select;
-		input	[4:0]	func_logic_select_cmd;
+		input wire [4:0]	func_logic_select_cmd;
 		
 		begin
 			case(func_logic_select_cmd)
@@ -352,8 +352,8 @@ module ex_port1(
 	
 	function [11:0] func_ecxeption_check;
 		input				func_mul;
-		input	[31:0]		func_source0;
-		input	[31:0]		func_source1;
+		input wire [31:0]		func_source0;
+		input wire [31:0]		func_source1;
 		begin
 			if(func_mul)begin
 				if(func_source0 == 32'h0 || func_source1 == 32'h0)begin

@@ -1,59 +1,65 @@
 /****************************************
-Execute Port3 Load/Store Unit
+MIST1032SA
+OoO Processor
+
+for Open Design Computer Project
+
+Takahiro Ito @cpu_labs
 ****************************************/
+
 `include "core.h"
 `default_nettype none
 
 
 
-module ex_port3(
-				//System
-				input wire iCLOCK,
-				input wire inRESET,
-				//Free
-				input wire iFREE_EX,
-				input wire iFREE_SYSREG_NEW_SPR_VALID,
-				input wire [31:0] iFREE_SYSREG_NEW_SPR,	
-				//Sysreg
-				input wire [31:0] iSYSREG_TIDR,
-				input wire [31:0] iSYSREG_PSR,
-				input wire [31:0] iSYSREG_PDTR,
-				output wire [31:0] oSYSREG_SPR,
-				//Data Port
-				output wire oDATAIO_REQ,
-				input wire iDATAIO_BUSY,
-				output wire [1:0] oDATAIO_ORDER,	//00=Byte Order 01=2Byte Order 10= Word Order 11= None
-				output wire oDATAIO_RW,		//0=Read 1=Write
-				output wire [13:0] oDATAIO_TID,
-				output wire [1:0] oDATAIO_MMUMOD,
-				output wire [31:0] oDATAIO_PDT,
-				output wire [31:0] oDATAIO_ADDR,
-				output wire [31:0] oDATAIO_DATA,
-				input wire iDATAIO_REQ,
-				input wire [31:0] iDATAIO_DATA,
-				//output wire oOUT_PORT_DATA_VALID, 2011/10/05		
-				//Scheduler2-Input
-				input wire iPREVIOUS_EX_ALU3_VALID,
-				input wire iPREVIOUS_EX_ALU3_DESTINATION_SYSREG,	//NEW
-				input wire [5:0] iPREVIOUS_EX_ALU3_COMMIT_TAG,
-				input wire [4:0] iPREVIOUS_EX_ALU3_CMD,
-				input wire [31:0] iPREVIOUS_EX_ALU3_SOURCE0,			
-				input wire [31:0] iPREVIOUS_EX_ALU3_SOURCE1,			
-				input wire [5:0] iPREVIOUS_EX_ALU3_DESTINATION_REGNAME,		
-				input wire [31:0] iPREVIOUS_EX_ALU3_PC,	
-				input wire iPREVIOUS_EX_ALU3_SYS_LDST,		
-				input wire iPREVIOUS_EX_ALU3_LDST,			
-				output wire oPREVIOUS_EX_ALU3_LOCK,
-				//Scheduler1-Output
-				output wire oSCHE1_ALU3_VALID,
-				output wire [5:0] oSCHE1_ALU3_COMMIT_TAG,
-				//Scheduler2-Output
-				output wire oSCHE2_ALU3_VALID,
-				output wire [5:0] oSCHE2_ALU3_COMMIT_TAG,
-				output wire [5:0] oSCHE2_ALU3_DESTINATION_REGNAME,
-				output wire oSCHE2_ALU3_DESTINATION_SYSREG,		//NEW
-				output wire oSCHE2_ALU3_WRITEBACK,
-				output wire [31:0] oSCHE2_ALU3_DATA
+module execute_port3(
+		//System
+		input wire iCLOCK,
+		input wire inRESET,
+		//Free
+		input wire iFREE_EX,
+		input wire iFREE_SYSREG_NEW_SPR_VALID,
+		input wire [31:0] iFREE_SYSREG_NEW_SPR,	
+		//Sysreg
+		input wire [31:0] iSYSREG_TIDR,
+		input wire [31:0] iSYSREG_PSR,
+		input wire [31:0] iSYSREG_PDTR,
+		output wire [31:0] oSYSREG_SPR,
+		//Data Port
+		output wire oDATAIO_REQ,
+		input wire iDATAIO_BUSY,
+		output wire [1:0] oDATAIO_ORDER,	//00=Byte Order 01=2Byte Order 10= Word Order 11= None
+		output wire oDATAIO_RW,		//0=Read 1=Write
+		output wire [13:0] oDATAIO_TID,
+		output wire [1:0] oDATAIO_MMUMOD,
+		output wire [31:0] oDATAIO_PDT,
+		output wire [31:0] oDATAIO_ADDR,
+		output wire [31:0] oDATAIO_DATA,
+		input wire iDATAIO_REQ,
+		input wire [31:0] iDATAIO_DATA,
+		//output wire oOUT_PORT_DATA_VALID, 2011/10/05		
+		//Scheduler2-Input
+		input wire iPREVIOUS_EX_ALU3_VALID,
+		input wire iPREVIOUS_EX_ALU3_DESTINATION_SYSREG,	//NEW
+		input wire [5:0] iPREVIOUS_EX_ALU3_COMMIT_TAG,
+		input wire [4:0] iPREVIOUS_EX_ALU3_CMD,
+		input wire [31:0] iPREVIOUS_EX_ALU3_SOURCE0,			
+		input wire [31:0] iPREVIOUS_EX_ALU3_SOURCE1,			
+		input wire [5:0] iPREVIOUS_EX_ALU3_DESTINATION_REGNAME,		
+		input wire [31:0] iPREVIOUS_EX_ALU3_PC,	
+		input wire iPREVIOUS_EX_ALU3_SYS_LDST,		
+		input wire iPREVIOUS_EX_ALU3_LDST,			
+		output wire oPREVIOUS_EX_ALU3_LOCK,
+		//Scheduler1-Output
+		output wire oSCHE1_ALU3_VALID,
+		output wire [5:0] oSCHE1_ALU3_COMMIT_TAG,
+		//Scheduler2-Output
+		output wire oSCHE2_ALU3_VALID,
+		output wire [5:0] oSCHE2_ALU3_COMMIT_TAG,
+		output wire [5:0] oSCHE2_ALU3_DESTINATION_REGNAME,
+		output wire oSCHE2_ALU3_DESTINATION_SYSREG,		//NEW
+		output wire oSCHE2_ALU3_WRITEBACK,
+		output wire [31:0] oSCHE2_ALU3_DATA
 	);
 				
 

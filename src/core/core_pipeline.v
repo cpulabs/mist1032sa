@@ -1658,7 +1658,7 @@ module core_pipeline #(
 	Execution Unit
 	****************************************/
 	//Branch(alu0)
-	ex_port0 SATGE7_EX_PORT0(
+	execute_port0 SATGE7_EX_PORT0(
 		.iCLOCK(iCLOCK), .inRESET(inRESET),
 		.iFREE_RESTART(exception_restart),
 		.iPREVIOUS_EX_BRANCH_VALID(scheduler22ex_alu0_valid), .iPREVIOUS_EX_BRANCH_COMMIT_TAG(scheduler22ex_alu0_commit_tag),
@@ -1688,7 +1688,7 @@ module core_pipeline #(
 	);	
 					
 	//Complex Adder(alu1)
-	ex_port1 SATGE7_EX_PORT1(
+	execute_port1 SATGE7_EX_PORT1(
 		.iCLOCK(iCLOCK), .inRESET(inRESET),
 		.iFREE_EX(exception_restart),
 		.iPREVIOUS_EX_ALU1_VALID(scheduler22ex_alu1_valid),
@@ -1726,7 +1726,7 @@ module core_pipeline #(
 
 	
 	//Simple Adder(alu2)
-	ex_port2 SATGE7_EX_PORT2(
+	execute_port2 SATGE7_EX_PORT2(
 		.iCLOCK(iCLOCK), .inRESET(inRESET),
 		.iFREE_EX(exception_restart),
 		.iPREVIOUS_EX_ALU2_VALID(scheduler22ex_alu2_valid), 
@@ -1761,7 +1761,7 @@ module core_pipeline #(
 
 	
 	//Load/Store(alu3)
-	ex_port3 SATGE7_EX_PORT3(
+	execute_port3 SATGE7_EX_PORT3(
 		.iCLOCK(iCLOCK), 
 		.inRESET(inRESET),
 		//Free

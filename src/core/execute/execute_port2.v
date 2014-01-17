@@ -1,51 +1,51 @@
 /****************************************
-	ALU2 Unit
-	- Simple Integer
-	- Adder / Logic / Shift
-	
-	
-	Make	:	2010/12/07
-	Update	:		
+MIST1032SA
+OoO Processor
+
+for Open Design Computer Project
+
+Takahiro Ito @cpu_labs
 ****************************************/
+
 `include "core.h"
 `default_nettype none
 
-module ex_port2(
-				//System
-				input					iCLOCK,
-				input					inRESET,
-				//Free
-				input					iFREE_EX,
-				//Previous
-				input					iPREVIOUS_EX_ALU2_VALID,
-				input					iPREVIOUS_EX_ALU2_WRITEBACK,
-				input	[5:0]			iPREVIOUS_EX_ALU2_COMMIT_TAG,
-				input	[4:0]			iPREVIOUS_EX_ALU2_CMD,
-				input	[3:0]			iPREVIOUS_EX_ALU2_AFE,
-				input					iPREVIOUS_EX_ALU2_SYS_REG,
-				input					iPREVIOUS_EX_ALU2_LOGIC,
-				input					iPREVIOUS_EX_ALU2_SHIFT,
-				input					iPREVIOUS_EX_ALU2_ADDER,
-				input	[31:0]			iPREVIOUS_EX_ALU2_SOURCE0,
-				input	[31:0]			iPREVIOUS_EX_ALU2_SOURCE1,
-				input					iPREVIOUS_EX_ALU2_DESTINATION_SYSREG,
-				input	[5:0]			iPREVIOUS_EX_ALU2_DESTINATION_REGNAME,
-				input					iPREVIOUS_EX_ALU2_FLAGS_WRITEBACK,
-				input	[3:0]			iPREVIOUS_EX_ALU2_FLAGS_REGNAME,
-				output					oPREVIOUS_EX_ALU2_LOCK,
-				//NEXTUNIT - SCHEDULER1
-				output					oSCHE1_EX_ALU2_VALID,
-				output	[5:0]			oSCHE1_EX_ALU2_COMMIT_TAG,
-				//NEXTUNIT - SCHEDULER2
-				output					oSCHE2_EX_ALU2_VALID,
-				output	[5:0]			oSCHE2_EX_ALU2_COMMIT_TAG,
-				output					oSCHE2_EX_ALU2_SYSREG,
-				output	[5:0]			oSCHE2_EX_ALU2_DESTINATION_REGNAME,
-				output					oSCHE2_EX_ALU2_WRITEBACK,
-				output	[31:0]			oSCHE2_EX_ALU2_DATA,
-				output	[4:0]			oSCHE2_EX_ALU2_FLAG,
-				output					oSCHE2_EX_ALU2_FLAGS_WRITEBACK,
-				output	[3:0]			oSCHE2_EX_ALU2_FLAGS_REGNAME
+module execute_port2(
+		//System
+		input wire iCLOCK,
+		input wire inRESET,
+		//Free
+		input wire iFREE_EX,
+		//Previous
+		input wire iPREVIOUS_EX_ALU2_VALID,
+		input wire iPREVIOUS_EX_ALU2_WRITEBACK,
+		input wire [5:0] iPREVIOUS_EX_ALU2_COMMIT_TAG,
+		input wire [4:0] iPREVIOUS_EX_ALU2_CMD,
+		input wire [3:0] iPREVIOUS_EX_ALU2_AFE,
+		input wire iPREVIOUS_EX_ALU2_SYS_REG,
+		input wire iPREVIOUS_EX_ALU2_LOGIC,
+		input wire iPREVIOUS_EX_ALU2_SHIFT,
+		input wire iPREVIOUS_EX_ALU2_ADDER,
+		input wire [31:0] iPREVIOUS_EX_ALU2_SOURCE0,
+		input wire [31:0] iPREVIOUS_EX_ALU2_SOURCE1,
+		input wire iPREVIOUS_EX_ALU2_DESTINATION_SYSREG,
+		input wire [5:0] iPREVIOUS_EX_ALU2_DESTINATION_REGNAME,
+		input wire iPREVIOUS_EX_ALU2_FLAGS_WRITEBACK,
+		input wire [3:0] iPREVIOUS_EX_ALU2_FLAGS_REGNAME,
+		output wire oPREVIOUS_EX_ALU2_LOCK,
+		//NEXTUNIT - SCHEDULER1
+		output wire oSCHE1_EX_ALU2_VALID,
+		output wire [5:0] oSCHE1_EX_ALU2_COMMIT_TAG,
+		//NEXTUNIT - SCHEDULER2
+		output wire oSCHE2_EX_ALU2_VALID,
+		output wire [5:0] oSCHE2_EX_ALU2_COMMIT_TAG,
+		output wire oSCHE2_EX_ALU2_SYSREG,
+		output wire [5:0] oSCHE2_EX_ALU2_DESTINATION_REGNAME,
+		output wire oSCHE2_EX_ALU2_WRITEBACK,
+		output wire [31:0] oSCHE2_EX_ALU2_DATA,
+		output wire [4:0] oSCHE2_EX_ALU2_FLAG,
+		output wire oSCHE2_EX_ALU2_FLAGS_WRITEBACK,
+		output wire [3:0] oSCHE2_EX_ALU2_FLAGS_REGNAME
 	);
 		
 
@@ -125,7 +125,7 @@ module ex_port2(
 	
 	
 	function [4:0] func_logic_select;
-		input	[4:0]	func_logic_select_cmd;
+		input wire [4:0]	func_logic_select_cmd;
 		
 		begin
 			case(func_logic_select_cmd)
