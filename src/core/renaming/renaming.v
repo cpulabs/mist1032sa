@@ -706,8 +706,6 @@ module renaming(
 			b_pc <= {32{1'b0}};		
 		end
 		else begin
-			//if(!iFLAG_REGISTER_0_EMPTY & !iOTHER_REGISTER_0_EMPTY & !iOTHER_REGISTER_1_EMPTY & !iNEXT_LOCK)begin
-			//if(!iFLAG_REGISTER_0_EMPTY || !iOTHER_REGISTER_0_EMPTY || !iOTHER_REGISTER_1_EMPTY || !iNEXT_LOCK)begin
 			if(!this_lock)begin
 				//***Instruction0***//
 				b0_valid <= iPREVIOUS_0_VALID;			
