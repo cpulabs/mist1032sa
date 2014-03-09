@@ -10,8 +10,6 @@ Takahiro Ito @cpu_labs
 `include "core.h"
 `default_nettype none
 
-
-
 module execute_port3(
 		//System
 		input wire iCLOCK,
@@ -61,45 +59,25 @@ module execute_port3(
 		output wire oSCHE2_ALU3_WRITEBACK,
 		output wire [31:0] oSCHE2_ALU3_DATA
 	);
-				
 
-	reg		[1:0]	b_mode;
-	reg				b_this_reset;
-	reg		[1:0]	b_read_shift;
-	reg		[1:0]	b_read_mask;
-	reg				b_writeback;
-	reg		[5:0]	b_commit_tag;
-	reg		[31:0]	b_addr;
-	reg		[31:0]	b_data;
-	reg		[5:0]	b_r_addr;
-	reg		[1:0]	b_order;
-	reg				b_dataio_req;
-	reg		[31:0]	b_pc;
-	//reg				b_dataio_req_end;
-	
+
 	/****************************************
 	Lock
 	****************************************/
-	wire		this_lock;
-	assign		this_lock			=		(b_mode == 2'h0)? iDATAIO_BUSY : 1'b1;
-	
-	
-	
+	wire this_lock = b_ldst_state == !PL_LDST_STT_IDLE ||  iDATAIO_BUSY;
+
 	/****************************************
 	SPR Register
 	****************************************/	
-	wire			push_condition;
-	wire			pop_condition;
-	wire			sysreg_write_condition;
+	wire push_condition;
+	wire pop_condition;
+	wire sysreg_write_condition;
 
-	wire			spr_write_condition;
-	wire	[31:0]	spr_data_info;
-		
-	assign			push_condition			=		iPREVIOUS_EX_ALU3_LDST && (iPREVIOUS_EX_ALU3_CMD == `EXE_LDSW_PUSH || iPREVIOUS_EX_ALU3_CMD == `EXE_LDSW_PPUSH);
-	assign			pop_condition			=		iPREVIOUS_EX_ALU3_LDST && iPREVIOUS_EX_ALU3_CMD == `EXE_LDSW_POP;		
-	assign			sysreg_write_condition	=		iPREVIOUS_EX_ALU3_SYS_LDST && iPREVIOUS_EX_ALU3_DESTINATION_SYSREG && iPREVIOUS_EX_ALU3_CMD == `EXE_SYS_LDST_WRITE_SPR;
+	wire spr_write_condition;
+	wire [31:0] spr_data_info;
 
-	assign			spr_write_condition		=		iFREE_SYSREG_NEW_SPR_VALID || (!this_lock && iPREVIOUS_EX_ALU3_VALID && (sysreg_write_condition || push_condition || pop_condition));
+	assign sysreg_write_condition = iPREVIOUS_EX_ALU3_SYS_LDST && iPREVIOUS_EX_ALU3_DESTINATION_SYSREG && iPREVIOUS_EX_ALU3_CMD == `EXE_SYS_LDST_WRITE_SPR;
+	assign spr_write_condition = iFREE_SYSREG_NEW_SPR_VALID || (!this_lock && iPREVIOUS_EX_ALU3_VALID && (sysreg_write_condition || push_condition || pop_condition));
 	
 	
 	sysreg_spr_register	SPR_REGISTER(
@@ -108,271 +86,206 @@ module execute_port3(
 		.inRESET(inRESET),
 		//Register
 		.iREGIST_REQ(spr_write_condition),
-		.iREGIST_DATA((iFREE_SYSREG_NEW_SPR_VALID)? iFREE_SYSREG_NEW_SPR : (pop_condition)? spr_data_info + 32'h4 : ((push_condition)? spr_data_info - 32'h4 : iPREVIOUS_EX_ALU3_SOURCE0)),
+		.iREGIST_DATA((iFREE_SYSREG_NEW_SPR_VALID)? iFREE_SYSREG_NEW_SPR : (ldst_spr_out_valid)? ldst_spr_out_data : iPREVIOUS_EX_ALU3_SOURCE0),
 		//Info
 		.oINFO_DATA(spr_data_info)
 	);
 	
-	
-	
-	/*****************************************************
-	b_read_shift and b_read_mask comment
-	*****************************************************/
-	/*
-	Memory--->---Shifter---Mask--->---Register
-	
-	Shifter(b_read_shift)
-		0	:	None Shift
-		1	:	>>1
-		2	:	>>2
-		3	:	>>3
-		
-	Mask(b_read_mask)
-		0	:	Data & 0x000000FF
-		1	:	Data & 0x0000FFFF
-		2	:	Data & 0x00FFFFFF
-		3	:	Data & 0xFFFFFFFF
-	*/
-	/****************************************************/
-	
-	function [31:0] func_load_mask;	
-		input wire [1:0]		func_mask;
-		input wire [31:0]		func_data;
-		begin
-			//Altera Worning Option
-			case(func_mask)//synthesis parallel_case full_case
-				2'h0:	func_load_mask	=	func_data & 32'h000000FF;
-				2'h1:	func_load_mask	=	func_data & 32'h0000FFFF;
-				2'h2:	func_load_mask	=	func_data & 32'h00FFFFFF;
-				2'h3:	func_load_mask	=	func_data & 32'hFFFFFFFF;
-			endcase
-		end
-	endfunction
-	
-	
+
+	//SPR
+	wire ldst_spr_out_valid;
+	wire [31:0] ldst_spr_out_data;
+	//Data
+	wire [31:0] ldst_data;
+	//Load Store Pipe
+	wire ldst_pipe_rw;
+	wire [31:0] ldst_pipe_addr;
+	wire [31:0] ldst_pipe_data;
+	wire [1:0] ldst_pipe_order;
+	wire [1:0] ldst_pipe_shift;
+	wire [3:0] ldst_pipe_mask;
+
+
 	/****************************************
-	Load / Store
-	****************************************/
-	
+	Load Store Combination
+	****************************************/	
+	execute_load_store EXEC_LOAD_STORE(
+		//Prev
+		.iCMD(iPREVIOUS_EX_ALU3_CMD),
+		.iLOADSTORE_MODE(iPREVIOUS_EX_ALU3_VALID),		//0:SYS_LDST | 1:LDST
+		.iSOURCE0(iPREVIOUS_EX_ALU3_SOURCE0),
+		.iSOURCE1(iPREVIOUS_EX_ALU3_SOURCE1),
+		.iADV_ACTIVE(1'b0),
+		.iADV_DATA(32'h0),
+		.iSPR(spr_data_info),
+		.iPC(iPREVIOUS_EX_ALU3_PC - 32'h00000004),
+		//Output - Writeback
+		.oOUT_SPR_VALID(ldst_spr_out_valid),
+		.oOUT_SPR(ldst_spr_out_data),
+		.oOUT_DATA(ldst_data),
+		//Output - LDST Pipe
+		.oLDST_RW(ldst_pipe_rw),
+		.oLDST_ADDR(ldst_pipe_addr),
+		.oLDST_DATA(ldst_pipe_data),
+		.oLDST_ORDER(ldst_pipe_order),
+		.oLOAD_SHIFT(ldst_pipe_shift),		
+		.oLOAD_MASK(ldst_pipe_mask)		//2bit -> 4bit
+	);
+
+
+	reg b_ldst_pipe_valid;
+	reg b_ldst_pipe_rw;
+	reg [31:0] b_ldst_pipe_addr;
+	reg [31:0] b_ldst_pipe_data;
+	reg [1:0] b_ldst_pipe_order;
+	reg [1:0] b_ldst_pipe_shift;
+	reg [3:0] b_ldst_pipe_mask;
+
 	always@(posedge iCLOCK or negedge inRESET)begin
 		if(!inRESET)begin
-			b_mode				<=			2'h0;
-			b_this_reset		<=			1'b0;
-			b_read_shift		<=			2'h0;
-			b_read_mask			<=			2'h0;
-			b_writeback			<=			1'b0;
-			b_commit_tag		<=			6'h00;
-			b_addr				<=			{32{1'b0}};
-			b_order				<=			2'h0;
-			b_data				<=			{32{1'b0}};
-			b_r_addr			<=			6'h00;
-			b_dataio_req		<=			1'b0;
-			b_pc				<=			32'h0;
-			//b_dataio_req_end	<=			1'b0;
+			b_ldst_pipe_valid <= 1'b0;
+			b_ldst_pipe_rw <= 1'b0;
+			b_ldst_pipe_addr <= 32'h0;
+			b_ldst_pipe_data <= 32'h0;
+			b_ldst_pipe_order <= 2'h0;
+			b_ldst_pipe_shift <= 2'h0;
+			b_ldst_pipe_mask <= 4'h0;
 		end
-		else if(b_this_reset | iFREE_EX)begin
-			b_mode				<=			2'h0;
-			b_this_reset		<=			1'b0;
-			b_read_shift		<=			2'h0;
-			b_read_mask			<=			2'h0;
-			b_writeback			<=			1'b0;
-			b_commit_tag		<=			6'h00;
-			b_addr				<=			{32{1'b0}};
-			b_order				<=			2'h0;
-			b_data				<=			{32{1'b0}};
-			b_r_addr			<=			6'h00;
-			b_dataio_req		<=			1'b0;
-			b_pc				<=			32'h0;
-			//b_dataio_req_end	<=			1'b0;
+		else if(inRESET)begin
+			b_ldst_pipe_valid <= 1'b0;
+			b_ldst_pipe_rw <= 1'b0;
+			b_ldst_pipe_addr <= 32'h0;
+			b_ldst_pipe_data <= 32'h0;
+			b_ldst_pipe_order <= 2'h0;
+			b_ldst_pipe_shift <= 2'h0;
+			b_ldst_pipe_mask <= 4'h0;
 		end
 		else begin
-			case(b_mode)
-				2'h0 :		//Wait State
+			if(!this_lock)begin
+				b_ldst_pipe_valid <= iPREVIOUS_EX_ALU3_VALID;
+				b_ldst_pipe_rw <= ldst_pipe_rw;
+				b_ldst_pipe_addr <= ldst_pipe_addr; 
+				b_ldst_pipe_data <= ldst_pipe_data;
+				b_ldst_pipe_order <= ldst_pipe_order;
+				b_ldst_pipe_shift <= b_ldst_pipe_shift;
+				b_ldst_pipe_mask <= ldst_pipe_mask;
+			end
+		end
+	end
+
+
+	/****************************************
+	Load State
+	****************************************/
+	localparam PL_LDST_STT_IDLE = 1'h0;
+	localparam PL_LDST_STT_LDWAIT = 1'h1;
+
+	reg b_ldst_state;
+	always@(posedge iCLOCK or negedge inRESET)begin
+		if(!inRESET)begin
+			b_ldst_state <= PL_LDST_STT_IDLE;
+		end
+		else if(iRESET_SYNC)begin
+			b_ldst_state <= PL_LDST_STT_IDLE;
+		end
+		else begin
+			case(b_ldst_state)
+				PL_LDST_STT_IDLE:
 					begin
-						if(iPREVIOUS_EX_ALU3_VALID && !iDATAIO_BUSY)begin
-							b_commit_tag		<=			iPREVIOUS_EX_ALU3_COMMIT_TAG;
-							if(iPREVIOUS_EX_ALU3_LDST)begin
-								if(iPREVIOUS_EX_ALU3_CMD == `EXE_LDSW_LD8 || iPREVIOUS_EX_ALU3_CMD == `EXE_LDSW_LD16 || iPREVIOUS_EX_ALU3_CMD == `EXE_LDSW_LD32)begin
-									b_mode				<=			2'h1;
-									b_this_reset		<=			1'b0;
-									b_writeback			<=			1'b1;
-									if(iPREVIOUS_EX_ALU3_CMD == `EXE_LDSW_LD8)begin
-										b_order				<=			2'h0;
-										b_addr				<=			iPREVIOUS_EX_ALU3_SOURCE1;
-										b_read_shift		<=			iPREVIOUS_EX_ALU3_SOURCE1[1:0];
-										b_read_mask			<=			2'h0;
-									end
-									else if(iPREVIOUS_EX_ALU3_CMD == `EXE_LDSW_LD16)begin
-										b_order				<=			2'h1;
-										b_addr				<=			iPREVIOUS_EX_ALU3_SOURCE1;
-										b_read_shift		<=			iPREVIOUS_EX_ALU3_SOURCE1[1:0];
-										b_read_mask			<=			2'h1;
-									end
-									else begin
-										b_order				<=			2'h2;
-										b_addr				<=			iPREVIOUS_EX_ALU3_SOURCE1;
-										b_read_shift		<=			2'h0;
-										b_read_mask			<=			2'h3;
-									end
-									b_data				<=			{32{1'b0}};
-									b_r_addr			<=			iPREVIOUS_EX_ALU3_DESTINATION_REGNAME;
-									b_dataio_req		<=			1'b1;							
-									b_pc				<=			iPREVIOUS_EX_ALU3_PC;
-									//b_dataio_req_end	<=			1'b0;
-								end
-								else if(iPREVIOUS_EX_ALU3_CMD == `EXE_LDSW_ST8 || iPREVIOUS_EX_ALU3_CMD == `EXE_LDSW_ST16 || iPREVIOUS_EX_ALU3_CMD == `EXE_LDSW_ST32)begin
-									b_mode				<=			2'h2;
-									b_this_reset		<=			1'b0;
-									b_writeback			<=			1'b0;
-									if(iPREVIOUS_EX_ALU3_CMD == `EXE_LDSW_ST8)begin
-										b_order				<=			2'h0;
-										b_addr				<=			iPREVIOUS_EX_ALU3_SOURCE1;
-									end
-									else if(iPREVIOUS_EX_ALU3_CMD == `EXE_LDSW_ST16)begin
-										b_order				<=			2'h1;
-										b_addr				<=			iPREVIOUS_EX_ALU3_SOURCE1;
-									end
-									else begin
-										b_order				<=			2'h2;
-										b_addr				<=			iPREVIOUS_EX_ALU3_SOURCE1;
-									end
-									b_data				<=			iPREVIOUS_EX_ALU3_SOURCE0;
-									b_r_addr			<=			{6{1'b0}};
-									b_dataio_req		<=			1'b1;			
-									b_pc				<=			iPREVIOUS_EX_ALU3_PC;
-									//b_dataio_req_end	<=			1'b0;
-								end	
-								else if(iPREVIOUS_EX_ALU3_CMD == `EXE_LDSW_PUSH)begin
-									b_mode				<=			2'h2;
-									b_this_reset		<=			1'b0;
-									b_writeback			<=			1'b0;
-									b_addr				<=			spr_data_info - 32'h4;
-									b_order				<=			2'h2;
-									b_data				<=			iPREVIOUS_EX_ALU3_SOURCE0;
-									b_r_addr			<=			{6{1'b0}};
-									b_dataio_req		<=			1'b1;			
-									b_pc				<=			iPREVIOUS_EX_ALU3_PC;
-									//b_dataio_req_end	<=			1'b0;
-								end
-								else if(iPREVIOUS_EX_ALU3_CMD == `EXE_LDSW_PPUSH)begin
-									b_mode				<=			2'h2;
-									b_this_reset		<=			1'b0;
-									b_writeback			<=			1'b0;
-									b_addr				<=			spr_data_info - 32'h4;
-									b_order				<=			2'h2;
-									b_data				<=			iPREVIOUS_EX_ALU3_PC;
-									b_r_addr			<=			{6{1'b0}};
-									b_dataio_req		<=			1'b1;			
-									b_pc				<=			iPREVIOUS_EX_ALU3_PC;
-									//b_dataio_req_end	<=			1'b0;
-								end
-								else if(iPREVIOUS_EX_ALU3_CMD == `EXE_LDSW_POP)begin
-									b_mode				<=			2'h1;
-									b_this_reset		<=			1'b0;
-									b_read_shift		<=			2'h0;
-									b_read_mask			<=			2'h3;
-									b_writeback			<=			1'b1;
-									b_addr				<=			spr_data_info;// + 32'h4;
-									b_order				<=			2'h2;
-									b_data				<=			{32{1'b0}};
-									b_r_addr			<=			iPREVIOUS_EX_ALU3_DESTINATION_REGNAME;
-									b_dataio_req		<=			1'b1;			
-									b_pc				<=			iPREVIOUS_EX_ALU3_PC;
-									//b_dataio_req_end	<=			1'b0;
-								end
-							end
-							//SPR
-							else if(iPREVIOUS_EX_ALU3_SYS_LDST)begin	
-								if(iPREVIOUS_EX_ALU3_CMD == `EXE_SYS_LDST_READ_SPR)begin
-									b_this_reset		<=			1'b1;
-									b_read_shift		<=			2'h0;
-									b_read_mask			<=			2'h3;
-									b_data				<=			spr_data_info;
-									b_r_addr			<=			iPREVIOUS_EX_ALU3_DESTINATION_REGNAME;
-									b_writeback			<=			1'b1;			
-									b_pc				<=			iPREVIOUS_EX_ALU3_PC;
-								end	
-								else if(iPREVIOUS_EX_ALU3_CMD == `EXE_SYS_LDST_WRITE_SPR)begin
-									b_this_reset		<=			1'b1;
-									b_writeback			<=			1'b0;			
-									b_pc				<=			iPREVIOUS_EX_ALU3_PC;
-								end
-							end
-							else begin
-								//Error
-								b_this_reset		<=			1'b1;
-								b_writeback			<=			1'b0;
-							end
+						if(ldst_pipe_rw && iPREVIOUS_EX_ALU3_VALID && !this_lock)begin
+							b_ldst_state <= PL_LDST_STT_LDWAIT;
 						end
 					end
-				2'h1 : 		//Load / Push / Ppush
+				PL_LDST_STT_LDWAIT:
 					begin
-						if(b_dataio_req)begin
-							if(iDATAIO_BUSY)begin
-								b_dataio_req		<=			1'b1;
-							end
-							else begin
-								b_dataio_req		<=			1'b0;
-							end
-						end
-						//b_dataio_req		<=			1'b0;
-						//Get Wait
 						if(iDATAIO_REQ)begin
-							b_data				<=			iDATAIO_DATA;
-							b_this_reset		<=			1'b1;	//Exeend out
-						end	
-					end
-				default :	//Store / Pop
-					begin							
-						if(b_dataio_req)begin
-							if(iDATAIO_BUSY)begin
-								b_dataio_req		<=			1'b1;
-								b_this_reset		<=			1'b0;	//Exeend
-							end
-							else begin
-								b_dataio_req		<=			1'b0;
-								b_this_reset		<=			1'b1;	//Exeend
-							end
+							b_ldst_state <= PL_LDST_STT_IDLE;
 						end
-						/*
-						b_dataio_req		<=			1'b0;
-						b_this_reset		<=			1'b1;	//Exeend
-						*/
 					end
 			endcase
 		end
 	end
-	
+
+	/****************************************
+	Request Buffer
+	****************************************/
+	reg [5:0] b_latch_commit_tag;
+	reg [5:0] b_latch_phisical_dest_addr;
+
+	always@(posedge iCLOCK or negedge inRESET)begin
+		if(!inRESET)begin
+			b_latch_commit_tag <= 6'h0;
+			b_latch_phisical_dest_addr <= 6'h0;
+		end
+		else if(iRESET_SYNC)begin
+			b_latch_commit_tag <= 6'h0;
+			b_latch_phisical_dest_addr <= 6'h0;
+		end
+		else begin
+			if(!this_lock)begin
+				b_latch_commit_tag <= iPREVIOUS_EX_ALU3_COMMIT_TAG;
+				b_latch_phisical_dest_addr <= iPREVIOUS_EX_ALU3_DESTINATION_REGNAME;
+			end
+		end
+	end
+
+	/****************************************
+	Load Data
+	****************************************/
+	wire [31:0] ldst_pipe_load_data;
+	execute_load_data EXEC_LOAD_DATA(
+		.iMASK(b_ldst_pipe_mask),
+		.iSHIFT(b_ldst_pipe_shift),
+		.iDATA(iDATAIO_DATA),
+		.oDATA(ldst_pipe_load_data)
+	);
+
+	/****************************************
+	AFE
+	****************************************/
+	wire [31:0] ldst_pipe_with_afe_data;
+	execute_afe_load_store EXEC_AFE_LDST(
+		//AFE-Conrtol
+		.iAFE_CODE(),
+		//Data-In/Out
+		.iDATA(ldst_pipe_load_data),
+		.oDATA(ldst_pipe_with_afe_data)
+	);
+
+
+
 	/****************************************
 	Data & IO Port
 	****************************************/
-	assign	oPREVIOUS_EX_ALU3_LOCK				=		this_lock;
+	assign oPREVIOUS_EX_ALU3_LOCK = this_lock;
 		
-	assign	oSCHE2_ALU3_DESTINATION_SYSREG		=		1'b0;
+	assign oSCHE2_ALU3_DESTINATION_SYSREG = 1'b0;
 	
-	assign	oDATAIO_TID							=		iSYSREG_TIDR[13:0];
-	assign	oDATAIO_MMUMOD						=		iSYSREG_PSR[1:0];
-	assign	oDATAIO_PDT							=		iSYSREG_PDTR;
+	assign oDATAIO_TID = iSYSREG_TIDR[13:0];
+	assign oDATAIO_MMUMOD = iSYSREG_PSR[1:0];
+	assign oDATAIO_PDT = iSYSREG_PDTR;
 	
-	assign	oSYSREG_SPR							=		spr_data_info;
+	assign oSYSREG_SPR = spr_data_info;
 	
-	assign	oDATAIO_REQ							=	b_dataio_req;	//20120525//(!iDATAIO_BUSY && (b_mode == 2'h1 | b_mode == 2'h2))? 1'b1 : 1'b0;
-	assign	oDATAIO_ORDER						=	b_order;
-	assign	oDATAIO_RW							=	(b_mode == 2'h2)? 1'b1 : 1'b0;
-	assign	oDATAIO_ADDR						=	b_addr;
-	assign	oDATAIO_DATA						=	b_data;
+	assign oDATAIO_REQ = b_ldst_pipe_valid;
+	assign oDATAIO_ORDER = b_ldst_pipe_order;
+	assign oDATAIO_RW = b_ldst_pipe_rw;
+	assign oDATAIO_ADDR = b_ldst_pipe_addr;
+	assign oDATAIO_DATA = b_ldst_pipe_data;
 	
 	/****************************************
 	Scheduler1 and 2 Output
-	Select
 	****************************************/
-	assign	oSCHE1_ALU3_VALID						=		b_this_reset;
-	assign	oSCHE1_ALU3_COMMIT_TAG					=		b_commit_tag;
-	assign	oSCHE2_ALU3_VALID						=		b_this_reset;
-	assign	oSCHE2_ALU3_DESTINATION_REGNAME			=		b_r_addr;
-	assign	oSCHE2_ALU3_COMMIT_TAG					=		b_commit_tag;
-	assign	oSCHE2_ALU3_WRITEBACK					=		b_writeback;
-	assign	oSCHE2_ALU3_DATA						=		func_load_mask(b_read_mask, b_data >> (b_read_shift*8));
+	wire execute_done = (b_ldst_pipe_valid && b_ldst_pipe_rw) || (b_ldst_pipe_valid && !b_ldst_pipe_rw && iDATAIO_REQ);
+
+	assign oSCHE1_ALU3_VALID = execute_done;
+	assign oSCHE1_ALU3_COMMIT_TAG = b_latch_commit_tag;
+	assign oSCHE2_ALU3_VALID = execute_done;
+	assign oSCHE2_ALU3_DESTINATION_REGNAME = b_latch_phisical_dest_addr;
+	assign oSCHE2_ALU3_COMMIT_TAG = b_latch_commit_tag;
+	assign oSCHE2_ALU3_WRITEBACK = !b_ldst_pipe_rw;
+	assign oSCHE2_ALU3_DATA = ldst_pipe_with_afe_data;
+
 
 endmodule
 

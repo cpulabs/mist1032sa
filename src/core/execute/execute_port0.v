@@ -45,8 +45,16 @@ module execute_port0(
 		output wire oSCHE2_EX_BRANCH_VALID,
 		output wire [5:0] oSCHE2_EX_BRANCH_COMMIT_TAG
 	);
+
+	wire iRESET_SYNC = 1'b0;
 	
-	
+	wire [31:0] branch_addr;
+	wire jump_valid;
+	wire not_jump_valid;
+	wire ib_valid;
+	wire idts_valid;
+	wire halt_valid;
+
 	execute_branch EXECUTE_BRANCH(
 		.iDATA_0(32'h0),	//non use
 		.iDATA_1(iPREVIOUS_EX_BRANCH_SOURCE),		
@@ -54,30 +62,110 @@ module execute_port0(
 		.iFLAG(iPREVIOUS_EX_BRANCH_FLAG),
 		.iCC(iPREVIOUS_EX_BRANCH_CC),
 		.iCMD(iPREVIOUS_EX_BRANCH_CMD),
-		.oBRANCH_ADDR(),
-		.oJUMP_VALID(),
-		.oNOT_JUMP_VALID(),
-		.oIB_VALID(),
-		.oIDTS_VALID(),
-		.oHALT_VALID()
+		.oBRANCH_ADDR(branch_addr),
+		.oJUMP_VALID(jump_valid),
+		.oNOT_JUMP_VALID(not_jump_valid),
+		.oIB_VALID(ib_valid),
+		.oIDTS_VALID(idts_valid),
+		.oHALT_VALID(halt_valid)
 	);
 
+
+	reg b_busy;
+	always@(posedge iCLOCK or negedge inRESET)begin
+		if(!inRESET)begin
+			b_busy <= 1'b0;
+		end
+		else if(iRESET_SYNC || iFREE_RESTART)begin
+			b_busy <= 1'b0;
+		end
+		else begin
+			if(!b_busy)begin
+				b_busy <= iPREVIOUS_EX_BRANCH_VALID && (jump_valid || ib_valid || idts_valid || halt_valid);
+			end
+		end
+	end
+
+
+	reg b_stage_valid;
+	reg [31:0] b_branch_addr;
+	reg b_jump_valid;
+	reg b_not_jump_valid;
+	reg b_ib_valid;
+	reg b_idts_valid;
+	reg b_halt_valid;
+	reg [5:0] b_commit_tag;
+	always@(posedge iCLOCK or negedge inRESET)begin
+		if(!inRESET)begin
+			b_stage_valid <= 1'b0;
+			b_branch_addr <= 32'h0;
+			b_jump_valid <= 1'b0;
+			b_not_jump_valid <= 1'b0;
+			b_ib_valid <= 1'b0;
+			b_idts_valid <= 1'b0;
+			b_halt_valid <= 1'b0;
+			b_commit_tag <= 6'h0;
+		end
+		else if(iRESET_SYNC || iFREE_RESTART)begin
+			b_stage_valid <= 1'b0;
+			b_branch_addr <= 32'h0;
+			b_jump_valid <= 1'b0;
+			b_not_jump_valid <= 1'b0;
+			b_ib_valid <= 1'b0;
+			b_idts_valid <= 1'b0;
+			b_halt_valid <= 1'b0;
+			b_commit_tag <= 6'h0;
+		end
+		else begin
+			b_stage_valid <= !b_lock && iPREVIOUS_EX_BRANCH_VALID;
+			b_branch_addr <= branch_addr;
+			b_jump_valid <= jump_valid;
+			b_not_jump_valid <= not_jump_valid;
+			b_ib_valid <= ib_valid;
+			b_idts_valid <= idts_valid;
+			b_halt_valid <= halt_valid;
+			b_commit_tag <= iPREVIOUS_EX_BRANCH_COMMIT_TAG;
+		end
+	end
+
+		//Output Assign
+	assign oPREVIOUS_EX_BRANCH_LOCK = b_lock;	
+	
+	assign oJUMP_ACTIVE = b_stage_valid && !b_idts_valid && !b_ib_valid && !b_halt_valid;
+	assign oJUMP_ADDR = b_branch_addr;
+	
+	assign oINTR_ACTIVE = b_ib_valid;
+	assign oINTR_ADDR = b_branch_addr;
+	
+	assign oIDTS_ACTIVE = b_idts_valid;
+	assign oIDTS_R_ADDR = b_branch_addr;
+	assign oIDTR_COMMIT_TAG = b_commit_tag;
+	
+	assign oSWI_ACTIVE = b_halt_valid;
+	assign oSWI_NUMBER = iPREVIOUS_EX_BRANCH_SOURCE[9:0];
+	
+	assign oSCHE1_EX_BRANCH_VALID = b_stage_valid;
+	assign oSCHE1_EX_BRANCH_COMMIT_TAG = b_commit_tag;
+	
+	assign oSCHE2_EX_BRANCH_VALID = b_stage_valid;
+	assign oSCHE2_EX_BRANCH_COMMIT_TAG = b_commit_tag;
 
 				
 	/****************************************
 	Register and Wire
 	****************************************/
 	//State Register
-	reg				b0_lock;
-	reg				b0_entry_valid;
-	reg				b0_branch_valid;
-	reg				b0_swi_valid;
-	reg		[10:0]	b0_swi_number;
-	reg				b0_intr_valid;
-	reg		[5:0]	b0_commit_tag;
-	reg		[31:0]	b0_addr;
-	reg				b0_idts_valid;
-	reg		[31:0]	b0_idts_addr;
+	/*
+	reg b0_lock;
+	reg b0_entry_valid;
+	reg b0_branch_valid;
+	reg b0_swi_valid;
+	reg [10:0] b0_swi_number;
+	reg b0_intr_valid;
+	reg [5:0] b0_commit_tag;
+	reg [31:0] b0_addr;
+	reg b0_idts_valid;
+	reg [31:0] b0_idts_addr;
 		
 	
 	always@(posedge iCLOCK or negedge inRESET)begin
@@ -107,135 +195,42 @@ module execute_port0(
 		end
 		else begin
 			b0_entry_valid <= (b0_lock)? 1'b0 : iPREVIOUS_EX_BRANCH_VALID;
-			b0_branch_valid <= (b0_lock)? 1'b0 : iPREVIOUS_EX_BRANCH_VALID && func_ex_branch_check(iPREVIOUS_EX_BRANCH_CC, iPREVIOUS_EX_BRANCH_FLAG);
+			b0_branch_valid <= (b0_lock)? 1'b0 : jump_valid;//iPREVIOUS_EX_BRANCH_VALID && func_ex_branch_check(iPREVIOUS_EX_BRANCH_CC, iPREVIOUS_EX_BRANCH_FLAG);
 			b0_swi_valid <= (iPREVIOUS_EX_BRANCH_CMD == `EXE_BRANCH_SWI)? iPREVIOUS_EX_BRANCH_VALID : 1'b0;
 			b0_swi_number <= iPREVIOUS_EX_BRANCH_SOURCE[10:0];
 			b0_intr_valid <= (iPREVIOUS_EX_BRANCH_CMD == `EXE_BRANCH_INTB)? iPREVIOUS_EX_BRANCH_VALID : 1'b0;
 			b0_commit_tag <= iPREVIOUS_EX_BRANCH_COMMIT_TAG;
-			b0_addr <= (iPREVIOUS_EX_BRANCH_CMD == `EXE_BRANCH_INTB)? iPREVIOUS_EX_BRANCH_SOURCE : ((iPREVIOUS_EX_BRANCH_CMD == `EXE_BRANCH_BUR)? iPREVIOUS_EX_BRANCH_SOURCE + iPREVIOUS_EX_BRANCH_PC : ((iPREVIOUS_EX_BRANCH_CMD == `EXE_BRANCH_BR)? /*(~iPREVIOUS_EX_BRANCH_SOURCE + 32'b1)*/iPREVIOUS_EX_BRANCH_SOURCE + iPREVIOUS_EX_BRANCH_PC : iPREVIOUS_EX_BRANCH_SOURCE));
+			b0_addr <= branch_addr;//(iPREVIOUS_EX_BRANCH_CMD == `EXE_BRANCH_INTB)? iPREVIOUS_EX_BRANCH_SOURCE : ((iPREVIOUS_EX_BRANCH_CMD == `EXE_BRANCH_BUR)? iPREVIOUS_EX_BRANCH_SOURCE + iPREVIOUS_EX_BRANCH_PC : ((iPREVIOUS_EX_BRANCH_CMD == `EXE_BRANCH_BR)? iPREVIOUS_EX_BRANCH_SOURCE + iPREVIOUS_EX_BRANCH_PC : iPREVIOUS_EX_BRANCH_SOURCE));
 			b0_idts_valid <= (iPREVIOUS_EX_BRANCH_CMD == `EXE_BRANCH_IDTS)? iPREVIOUS_EX_BRANCH_VALID : 1'b0;
 			b0_lock <= (b0_lock)? 1'b1 :  iPREVIOUS_EX_BRANCH_VALID & (func_ex_branch_check(iPREVIOUS_EX_BRANCH_CC, iPREVIOUS_EX_BRANCH_FLAG) || iPREVIOUS_EX_BRANCH_CMD == `EXE_BRANCH_SWI || iPREVIOUS_EX_BRANCH_CMD == `EXE_BRANCH_INTB || iPREVIOUS_EX_BRANCH_CMD == `EXE_BRANCH_IDTS);
 			b0_idts_addr <= iPREVIOUS_EX_BRANCH_PC + 32'h4;
 		end
 	end
 	
-	function func_ex_branch_check;
-		input wire [3:0]	func_ex_branch_check_cc;
-		input wire [4:0]	func_ex_branch_check_flag;
-		begin
-			case(func_ex_branch_check_cc)
-				`CC_AL : func_ex_branch_check	=	1'b1;
-				`CC_EQ : 
-					begin
-						if(func_ex_branch_check_flag[`FLAGS_ZF])begin
-							func_ex_branch_check	=	1'b1;
-						end
-						else begin
-							func_ex_branch_check	=	1'b0;
-						end
-					end
-				`CC_NEQ : 
-					begin
-						if(!func_ex_branch_check_flag[`FLAGS_ZF])begin
-							func_ex_branch_check	=	1'b1;
-						end
-						else begin
-							func_ex_branch_check	=	1'b0;
-						end
-					end
-				`CC_MI : 
-					begin
-						func_ex_branch_check	=	func_ex_branch_check_flag[`FLAGS_SF];
-					end
-				`CC_PL : 
-					begin
-						func_ex_branch_check	=	!func_ex_branch_check_flag[`FLAGS_SF];
-					end
-				`CC_EN : 
-					begin
-						if(!func_ex_branch_check_flag[`FLAGS_PF])begin
-							func_ex_branch_check	=	1'b1;
-						end
-						else begin
-							func_ex_branch_check	=	1'b0;
-						end
-					end
-				`CC_ON : 
-					begin
-						if(func_ex_branch_check_flag[`FLAGS_PF])begin
-							func_ex_branch_check	=	1'b1;
-						end
-						else begin
-							func_ex_branch_check	=	1'b0;
-						end
-					end
-				`CC_OVF : 
-					begin
-						if(func_ex_branch_check_flag[`FLAGS_OF])begin
-							func_ex_branch_check	=	1'b1;
-						end
-						else begin
-							func_ex_branch_check	=	1'b0;
-						end
-					end
-				`CC_UEO : 
-					begin
-						func_ex_branch_check	=	func_ex_branch_check_flag[`FLAGS_CF];
-					end
-				`CC_UU : 
-					begin
-						func_ex_branch_check	=	!func_ex_branch_check_flag[`FLAGS_CF];
-					end
-				`CC_UO : 
-					begin
-						func_ex_branch_check	=	func_ex_branch_check_flag[`FLAGS_CF] && !func_ex_branch_check_flag[`FLAGS_ZF];
-					end
-				`CC_UEU : 
-					begin
-						func_ex_branch_check	=	!func_ex_branch_check_flag[`FLAGS_CF] || func_ex_branch_check_flag[`FLAGS_ZF];
-					end
-				`CC_SEO : 
-					begin
-						func_ex_branch_check	=	(func_ex_branch_check_flag[`FLAGS_SF] && func_ex_branch_check_flag[`FLAGS_OF]) || (!func_ex_branch_check_flag[`FLAGS_SF] && !func_ex_branch_check_flag[`FLAGS_OF]);
-					end
-				`CC_SU : 
-					begin
-						func_ex_branch_check	=	(func_ex_branch_check_flag[`FLAGS_SF] && !func_ex_branch_check_flag[`FLAGS_OF]) || (!func_ex_branch_check_flag[`FLAGS_SF] && func_ex_branch_check_flag[`FLAGS_OF]);
-					end
-				`CC_SO : 
-					begin
-						func_ex_branch_check	=	!((func_ex_branch_check_flag[`FLAGS_SF] ^ func_ex_branch_check_flag[`FLAGS_OF]) || func_ex_branch_check_flag[`FLAGS_ZF]);//!func_ex_branch_check_flag[`FLAGS_ZF] || (func_ex_branch_check_flag[`FLAGS_SF] == func_ex_branch_check_flag[`FLAGS_OF]);
-					end
-				`CC_SEU : 
-					begin
-						func_ex_branch_check	=	(func_ex_branch_check_flag[`FLAGS_SF] ^ func_ex_branch_check_flag[`FLAGS_OF]) || func_ex_branch_check_flag[`FLAGS_ZF];//func_ex_branch_check_flag[`FLAGS_ZF] || (func_ex_branch_check_flag[`FLAGS_SF] != func_ex_branch_check_flag[`FLAGS_OF]);
-					end
-				default : func_ex_branch_check	=	1'b1;
-			endcase
-		end
-	endfunction
+	
 		
 	//Output Assign
-	assign oPREVIOUS_EX_BRANCH_LOCK		=	b0_lock;	
+	assign oPREVIOUS_EX_BRANCH_LOCK = b0_lock;	
 	
-	assign oJUMP_ACTIVE					=	b0_branch_valid && !b0_idts_valid && !b0_intr_valid && !b0_swi_valid;
-	assign oJUMP_ADDR						=	b0_addr;
+	assign oJUMP_ACTIVE = b0_branch_valid && !b0_idts_valid && !b0_intr_valid && !b0_swi_valid;
+	assign oJUMP_ADDR = b0_addr;
 	
-	assign oINTR_ACTIVE					=	b0_intr_valid;
-	assign oINTR_ADDR						=	b0_addr;
+	assign oINTR_ACTIVE = b0_intr_valid;
+	assign oINTR_ADDR = b0_addr;
 	
-	assign oIDTS_ACTIVE					=	b0_idts_valid;
-	assign oIDTS_R_ADDR					=	b0_idts_addr;
-	assign oIDTR_COMMIT_TAG				=	b0_commit_tag;
+	assign oIDTS_ACTIVE = b0_idts_valid;
+	assign oIDTS_R_ADDR = b0_addr;
+	assign oIDTR_COMMIT_TAG = b0_commit_tag;
 	
-	assign oSWI_ACTIVE						=	b0_swi_valid;
-	assign oSWI_NUMBER						=	b0_swi_number;
+	assign oSWI_ACTIVE = b0_swi_valid;
+	assign oSWI_NUMBER = b0_swi_number;
 	
-	assign oSCHE1_EX_BRANCH_VALID			=	b0_entry_valid;
-	assign oSCHE1_EX_BRANCH_COMMIT_TAG		=	b0_commit_tag;
+	assign oSCHE1_EX_BRANCH_VALID = b0_entry_valid;
+	assign oSCHE1_EX_BRANCH_COMMIT_TAG = b0_commit_tag;
 	
-	assign oSCHE2_EX_BRANCH_VALID			=	b0_entry_valid;
-	assign oSCHE2_EX_BRANCH_COMMIT_TAG		=	b0_commit_tag;
+	assign oSCHE2_EX_BRANCH_VALID = b0_entry_valid;
+	assign oSCHE2_EX_BRANCH_COMMIT_TAG = b0_commit_tag;
+	*/
 		
 endmodule
 

@@ -8,7 +8,7 @@ Takahiro Ito @cpu_labs
 `default_nettype none
 
 module execute_shift #(
-		parameter P_N	= 32
+		parameter P_N = 32
 	)(
 		//Control
 		input wire [2:0] iCONTROL_MODE,			
