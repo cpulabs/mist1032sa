@@ -49,6 +49,7 @@ module scheduler2 #(
 		input wire iPREVIOUS_0_SOURCE1_SYSREG,				
 		input wire iPREVIOUS_0_SOURCE0_SYSREG_RENAME,		
 		input wire iPREVIOUS_0_SOURCE1_SYSREG_RENAME,
+		input wire iPREVIOUS_0_ADV_ACTIVE,	
 		input wire iPREVIOUS_0_DESTINATION_SYSREG,			
 		input wire iPREVIOUS_0_WRITEBACK,	
 		input wire iPREVIOUS_0_FLAGS_WRITEBACK,	
@@ -60,7 +61,8 @@ module scheduler2 #(
 		input wire [4:0] iPREVIOUS_0_LOGIC_DESTINATION,
 		input wire [5:0] iPREVIOUS_0_SOURCE0,
 		input wire [31:0] iPREVIOUS_0_SOURCE1,
-		input wire iPREVIOUS_0_SOURCE0_FLAGS,		////	
+		input wire [5:0] iPREVIOUS_0_ADV_DATA,
+		input wire iPREVIOUS_0_SOURCE0_FLAGS,	
 		input wire iPREVIOUS_0_SOURCE1_IMM,	
 		input wire iPREVIOUS_0_EX_SYS_REG,		
 		input wire iPREVIOUS_0_EX_SYS_LDST,		
@@ -79,7 +81,8 @@ module scheduler2 #(
 		input wire iPREVIOUS_1_SOURCE0_SYSREG,	
 		input wire iPREVIOUS_1_SOURCE1_SYSREG,		
 		input wire iPREVIOUS_1_SOURCE0_SYSREG_RENAME,		
-		input wire iPREVIOUS_1_SOURCE1_SYSREG_RENAME,				
+		input wire iPREVIOUS_1_SOURCE1_SYSREG_RENAME,
+		input wire iPREVIOUS_1_ADV_ACTIVE,				
 		input wire iPREVIOUS_1_DESTINATION_SYSREG,	
 		input wire iPREVIOUS_1_WRITEBACK,	
 		input wire iPREVIOUS_1_FLAGS_WRITEBACK,	
@@ -91,7 +94,8 @@ module scheduler2 #(
 		input wire [4:0] iPREVIOUS_1_LOGIC_DESTINATION,
 		input wire [5:0] iPREVIOUS_1_SOURCE0,
 		input wire [31:0] iPREVIOUS_1_SOURCE1,
-		input wire iPREVIOUS_1_SOURCE0_FLAGS,				///
+		input wire [5:0] iPREVIOUS_1_ADV_DATA,
+		input wire iPREVIOUS_1_SOURCE0_FLAGS,		
 		input wire iPREVIOUS_1_SOURCE1_IMM,	
 		input wire iPREVIOUS_1_EX_SYS_REG,		
 		input wire iPREVIOUS_1_EX_SYS_LDST,		
@@ -193,21 +197,23 @@ module scheduler2 #(
 		input wire [3:0] iSCHE2_EX_ALU2_FLAGS_REGNAME,			
 		//Load/Store Unit - Output
 		output wire oNEXT_EX_ALU3_VALID,
-		output wire oNEXT_EX_ALU3_DESTINATION_SYSREG,			//NEW	
+		output wire oNEXT_EX_ALU3_DESTINATION_SYSREG,		
 		output wire [5:0] oNEXT_EX_ALU3_COMMIT_TAG,
 		output wire [4:0] oNEXT_EX_ALU3_CMD,		
-		output wire oNEXT_EX_ALU3_SYS_LDST,					//NEW
+		output wire oNEXT_EX_ALU3_SYS_LDST,				
 		output wire oNEXT_EX_ALU3_LDST,
 		output wire [31:0] oNEXT_EX_ALU3_SOURCE0,
 		output wire [31:0] oNEXT_EX_ALU3_SOURCE1,
+		output wire oNEXT_EX_ALU3_ADV_ACTIVE,
+		output wire [5:0] oNEXT_EX_ALU3_ADV_DATA,
 		output wire [5:0] oNEXT_EX_ALU3_DESTINATION_REGNAME,
-		output wire [31:0] oNEXT_EX_ALU3_PC,						//2012/01/28
+		output wire [31:0] oNEXT_EX_ALU3_PC,					
 		input wire iNEXT_EX_ALU3_LOCK,
 		//Load/Store Unit - Input
 		input wire iSCHE2_ALU3_VALID,
 		input wire [5:0] iSCHE2_ALU3_COMMIT_TAG,
 		input wire [5:0] iSCHE2_ALU3_DESTINATION_REGNAME,
-		input wire iSCHE2_ALU3_DESTINATION_SYSREG,			//NEW
+		input wire iSCHE2_ALU3_DESTINATION_SYSREG,			
 		input wire iSCHE2_ALU3_WRITEBACK,
 		input wire [31:0] iSCHE2_ALU3_DATA
 	);
@@ -433,21 +439,6 @@ module scheduler2 #(
 	wire [2:0] w_rs_alu3_reg_pointer;
 	reg [3:0] b0_rs_alu3_exe_pointer;
 	reg [3:0] b0_rs_alu3_reg_pointer;
-	wire rs_alu3_regist_valid[0:7];
-	wire [4:0] rs_alu3_regist_cmd[0:7];
-	wire rs_alu3_regist_sys_ldst[0:7];
-	wire rs_alu3_regist_ldst[0:7];
-	wire rs_alu3_regist_source0_valid[0:7];
-	wire rs_alu3_regist_source0_sysreg[0:7];
-	wire [31:0] rs_alu3_regist_source0[0:7];
-	wire rs_alu3_regist_source1_valid[0:7];
-	wire rs_alu3_regist_source1_sysreg[0:7];
-	wire [31:0] rs_alu3_regist_source1[0:7];
-	wire [5:0] rs_alu3_regist_destination_regname[0:7];
-	wire rs_alu3_regist_destination_sysreg[0:7];
-	wire [5:0] rs_alu3_regist_commit_tag[0:7];
-	wire [31:0] rs_alu3_regist_pc[0:7];
-	wire [3:0] rs_alu3_regist_ex_inorder_regist_pointer[0:7];
 	wire rs_alu3_exout_valid[0:7];
 	wire rs_alu3_info_entry_valid[0:7];
 	wire rs_alu3_info_matching[0:7];
@@ -460,6 +451,8 @@ module scheduler2 #(
 	wire rs_alu3_info_source1_valid[0:7];
 	wire rs_alu3_info_source1_sysreg[0:7];
 	wire [31:0] rs_alu3_info_source1[0:7];
+	wire rs_alu3_info_adv_active[0:7];
+	wire [5:0] rs_alu3_info_adv_data[0:7];
 	wire [5:0] rs_alu3_info_destination_regname[0:7];
 	wire rs_alu3_info_destination_sysreg[0:7];
 	wire [5:0] rs_alu3_info_commit_tag[0:7];
@@ -1294,7 +1287,7 @@ module scheduler2 #(
 	
 
 	/********************************************************************************
-	ALU0 Branch Reservation Station
+	Exe-Port0 Branch Reservation Station
 	********************************************************************************/	
 	//Regist Enable wire
 	wire rs_alu0_0_reg_valid;
@@ -1467,7 +1460,7 @@ module scheduler2 #(
 	
 	
 	/********************************************************************************
-	ALU-1 Comprex Integer Reservation Station  
+	Exe-Port1 Comprex Integer Reservation Station  
 	********************************************************************************/	
 	//Lock Condition
 	assign rs_alu1_lock = ~rs_alu1_regist_0_valid | ~rs_alu1_regist_1_valid;
@@ -1643,7 +1636,7 @@ module scheduler2 #(
 	
 	
 	/********************************************************************************
-	ALU-2 Simple Integer Reservation Station  
+	Exe-Port2 Simple Integer Reservation Station  
 	********************************************************************************/	
 	//Lock Condition
 	assign rs_alu2_lock = !rs_alu2_regist_0_valid || !rs_alu2_regist_1_valid;
@@ -1810,8 +1803,26 @@ module scheduler2 #(
 	
 	
 	/****************************************
-	Load/Store Reservation Station
+	Exe-Port3 Load/Store Reservation Station
 	****************************************/
+	wire rs_alu3_regist_valid[0:7];
+	wire [4:0] rs_alu3_regist_cmd[0:7];
+	wire rs_alu3_regist_sys_ldst[0:7];
+	wire rs_alu3_regist_ldst[0:7];
+	wire rs_alu3_regist_source0_valid[0:7];
+	wire rs_alu3_regist_source0_sysreg[0:7];
+	wire [31:0] rs_alu3_regist_source0[0:7];
+	wire rs_alu3_regist_source1_valid[0:7];
+	wire rs_alu3_regist_source1_sysreg[0:7];
+	wire [31:0] rs_alu3_regist_source1[0:7];
+	wire rs_alu3_regist_adv_active[0:7];
+	wire [5:0] rs_alu3_regist_adv_data[0:7];
+	wire [5:0] rs_alu3_regist_destination_regname[0:7];
+	wire rs_alu3_regist_destination_sysreg[0:7];
+	wire [5:0] rs_alu3_regist_commit_tag[0:7];
+	wire [31:0] rs_alu3_regist_pc[0:7];
+	wire [3:0] rs_alu3_regist_ex_inorder_regist_pointer[0:7];
+
 	//Regist Enable wire
 	assign rs_alu3_0_reg_valid = rs3_0_regist_valid && !rs_alu3_lock;//!rs_alu3_lock & iPREVIOUS_0_VALID & (iPREVIOUS_0_EX_LDST | iPREVIOUS_0_EX_SYS_LDST | iPREVIOUS_0_EX_SYS_REG);
 	assign rs_alu3_1_reg_valid = rs3_1_regist_valid && !rs_alu3_lock;//!rs_alu3_lock & iPREVIOUS_1_VALID & (iPREVIOUS_1_EX_LDST | iPREVIOUS_1_EX_SYS_LDST | iPREVIOUS_1_EX_SYS_REG);
@@ -1822,8 +1833,6 @@ module scheduler2 #(
 	assign rs_alu3_validentry_count = 	(b0_rs_alu3_reg_pointer - b0_rs_alu3_exe_pointer) + 4'h2;
 	assign rs_alu3_lock = rs_alu3_validentry_count[3];
 	
-	
-
 	//Counter				
 	wire [1:0] w_rs_alu3_reg_offset;
 	assign 	w_rs_alu3_reg_offset = (rs_alu3_0_reg_valid && rs_alu3_1_reg_valid)? 2'h2 : (rs_alu3_0_reg_valid || rs_alu3_1_reg_valid)? 2'h1 : 2'h0;
@@ -1905,12 +1914,14 @@ module scheduler2 #(
 			assign rs_alu3_regist_source1_valid[i] = (func_alu3_rs_regist_select(rs_alu3_0_reg_valid, rs_alu3_1_reg_valid, i[2:0], gen_alu3_reg_pointer_0))? w_register_mix_prev0_source1_valid : w_register_mix_prev1_source1_valid;
 			assign rs_alu3_regist_source1_sysreg[i] = (func_alu3_rs_regist_select(rs_alu3_0_reg_valid, rs_alu3_1_reg_valid, i[2:0], gen_alu3_reg_pointer_0))? iPREVIOUS_0_SOURCE1_SYSREG : iPREVIOUS_1_SOURCE1_SYSREG;
 			assign rs_alu3_regist_source1[i] = (func_alu3_rs_regist_select(rs_alu3_0_reg_valid, rs_alu3_1_reg_valid, i[2:0], gen_alu3_reg_pointer_0))? w_register_mix_prev0_source1 : w_register_mix_prev1_source1;
+			assign rs_alu3_regist_adv_active[i] = (func_alu3_rs_regist_select(rs_alu3_0_reg_valid, rs_alu3_1_reg_valid, i[2:0], gen_alu3_reg_pointer_0))? iPREVIOUS_0_ADV_ACTIVE : iPREVIOUS_1_ADV_ACTIVE;
+			assign rs_alu3_regist_adv_data[i] = (func_alu3_rs_regist_select(rs_alu3_0_reg_valid, rs_alu3_1_reg_valid, i[2:0], gen_alu3_reg_pointer_0))? iPREVIOUS_0_ADV_DATA : iPREVIOUS_1_ADV_DATA;
 			assign rs_alu3_regist_destination_regname[i] = (func_alu3_rs_regist_select(rs_alu3_0_reg_valid, rs_alu3_1_reg_valid, i[2:0], gen_alu3_reg_pointer_0))? iPREVIOUS_0_DESTINATION_REGNAME : iPREVIOUS_1_DESTINATION_REGNAME;
 			assign rs_alu3_regist_destination_sysreg[i] = (func_alu3_rs_regist_select(rs_alu3_0_reg_valid, rs_alu3_1_reg_valid, i[2:0], gen_alu3_reg_pointer_0))? iPREVIOUS_0_DESTINATION_SYSREG : iPREVIOUS_1_DESTINATION_SYSREG;
 			assign rs_alu3_regist_commit_tag[i] = (func_alu3_rs_regist_select(rs_alu3_0_reg_valid, rs_alu3_1_reg_valid, i[2:0], gen_alu3_reg_pointer_0))? iPREVIOUS_0_COMMIT_TAG : iPREVIOUS_1_COMMIT_TAG;
 			assign rs_alu3_regist_pc[i] = (func_alu3_rs_regist_select(rs_alu3_0_reg_valid, rs_alu3_1_reg_valid, i[2:0], gen_alu3_reg_pointer_0))? iPREVIOUS_PC : iPREVIOUS_PC + 32'h4;
 			assign rs_alu3_regist_ex_inorder_regist_pointer[i] = (func_alu3_rs_regist_select(rs_alu3_0_reg_valid, rs_alu3_1_reg_valid, i[2:0], gen_alu3_reg_pointer_0))? w_ex_0_inorder_regist_pointer : w_ex_1_inorder_regist_pointer;
-			//Ex Out
+			//Exe Out
 			assign rs_alu3_exout_valid[i] = (w_rs_alu3_exe_pointer == i[2:0] && rs_alu3_info_matching[i[2:0]] == 1'b1)? 1'b1 : 1'b0;	
 		end
 	endgenerate
@@ -1922,21 +1933,23 @@ module scheduler2 #(
 				.iCLOCK(iCLOCK), 
 				.inRESET(inRESET), 
 				.iREMOVE_VALID(iFREE_RESERVATIONSTATION),
-				.iREGIST_VALID(rs_alu3_regist_valid[i[2:0]]), 
-				.iREGIST_CMD(rs_alu3_regist_cmd[i[2:0]]), 
-				.iREGIST_SYS_LDST(rs_alu3_regist_sys_ldst[i[2:0]]), 
-				.iREGIST_LDST(rs_alu3_regist_ldst[i[2:0]]),
-				.iREGIST_SOURCE0_VALID(rs_alu3_regist_source0_valid[i[2:0]]), 
-				.iREGIST_SOURCE0_SYSREG(rs_alu3_regist_source0_sysreg[i[2:0]]), 
-				.iREGIST_SOURCE0(rs_alu3_regist_source0[i[2:0]]), 
-				.iREGIST_SOURCE1_VALID(rs_alu3_regist_source1_valid[i[2:0]]), 
-				.iREGIST_SOURCE1_SYSREG(rs_alu3_regist_source1_sysreg[i[2:0]]), 
-				.iREGIST_SOURCE1(rs_alu3_regist_source1[i[2:0]]), 
-				.iREGIST_DESTINATION_REGNAME(rs_alu3_regist_destination_regname[i[2:0]]), 
-				.iREGIST_DESTINATION_SYSREG(rs_alu3_regist_destination_sysreg[i[2:0]]),
-				.iREGIST_COMMIT_TAG(rs_alu3_regist_commit_tag[i[2:0]]),
-				.iREGIST_PC(rs_alu3_regist_pc[i[2:0]]), 
-				.iREGIST_EX_REGIST_POINTER(rs_alu3_regist_ex_inorder_regist_pointer[i[2:0]]),
+				.iREGISTER_VALID(rs_alu3_regist_valid[i[2:0]]), 
+				.iREGISTER_CMD(rs_alu3_regist_cmd[i[2:0]]), 
+				.iREGISTER_SYS_LDST(rs_alu3_regist_sys_ldst[i[2:0]]), 
+				.iREGISTER_LDST(rs_alu3_regist_ldst[i[2:0]]),
+				.iREGISTER_SOURCE0_VALID(rs_alu3_regist_source0_valid[i[2:0]]), 
+				.iREGISTER_SOURCE0_SYSREG(rs_alu3_regist_source0_sysreg[i[2:0]]), 
+				.iREGISTER_SOURCE0(rs_alu3_regist_source0[i[2:0]]), 
+				.iREGISTER_SOURCE1_VALID(rs_alu3_regist_source1_valid[i[2:0]]), 
+				.iREGISTER_SOURCE1_SYSREG(rs_alu3_regist_source1_sysreg[i[2:0]]), 
+				.iREGISTER_SOURCE1(rs_alu3_regist_source1[i[2:0]]), 
+				.iREGISTER_ADV_ACTIVE(rs_alu3_regist_adv_active[i[2:0]]), 
+				.iREGISTER_ADV_DATA(rs_alu3_regist_adv_data[i[2:0]]), 
+				.iREGISTER_DESTINATION_REGNAME(rs_alu3_regist_destination_regname[i[2:0]]), 
+				.iREGISTER_DESTINATION_SYSREG(rs_alu3_regist_destination_sysreg[i[2:0]]),
+				.iREGISTER_COMMIT_TAG(rs_alu3_regist_commit_tag[i[2:0]]),
+				.iREGISTER_PC(rs_alu3_regist_pc[i[2:0]]), 
+				.iREGISTER_EX_REGIST_POINTER(rs_alu3_regist_ex_inorder_regist_pointer[i[2:0]]),
 				.iADDER_VALID(iSCHE2_EX_ALU1_VALID && !iSCHE2_EX_ALU1_DESTINATION_SYSREG), 
 				.iADDER_DESTINATION_REGNAME(iSCHE2_EX_ALU1_DESTINATION_REGNAME), 
 				.iADDER_WRITEBACK(iSCHE2_EX_ALU1_WRITEBACK), 
@@ -1961,6 +1974,8 @@ module scheduler2 #(
 				.oINFO_SOURCE1_VALID(rs_alu3_info_source1_valid[i[2:0]]), 
 				.oINFO_SOURCE1_SYSREG(rs_alu3_info_source1_sysreg[i[2:0]]), 
 				.oINFO_SOURCE1(rs_alu3_info_source1[i[2:0]]), 
+				.oINFO_ADV_ACTIVE(rs_alu3_info_adv_active[i[2:0]]),
+				.oINFO_ADV_DATA(rs_alu3_info_adv_data[i[2:0]]),
 				.oINFO_DESTINATION_REGNAME(rs_alu3_info_destination_regname[i[2:0]]), 
 				.oINFO_DESTINATION_SYSREG(rs_alu3_info_destination_sysreg[i[2:0]]),
 				.oINFO_COMMIT_TAG(rs_alu3_info_commit_tag[i[2:0]]),
@@ -2286,6 +2301,8 @@ module scheduler2 #(
 	assign oNEXT_EX_ALU3_LDST = rs_alu3_info_ldst[w_rs_alu3_exe_pointer];
 	assign oNEXT_EX_ALU3_SOURCE0 = rs_alu3_info_source0[w_rs_alu3_exe_pointer];
 	assign oNEXT_EX_ALU3_SOURCE1 = rs_alu3_info_source1[w_rs_alu3_exe_pointer];
+	assign oNEXT_EX_ALU3_ADV_ACTIVE = rs_alu3_info_adv_active[w_rs_alu3_exe_pointer];
+	assign oNEXT_EX_ALU3_ADV_DATA = rs_alu3_info_adv_data[w_rs_alu3_exe_pointer];
 	assign oNEXT_EX_ALU3_DESTINATION_REGNAME = rs_alu3_info_destination_regname[w_rs_alu3_exe_pointer];
 	assign oNEXT_EX_ALU3_PC = rs_alu3_info_pc[w_rs_alu3_exe_pointer];
 	//Register Free List

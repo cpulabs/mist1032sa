@@ -78,7 +78,8 @@ module scheduler1(
 		input wire iPREVIOUS_0_SOURCE0_SYSREG,		
 		input wire iPREVIOUS_0_SOURCE1_SYSREG,		
 		input wire iPREVIOUS_0_SOURCE0_SYSREG_RENAME,		
-		input wire iPREVIOUS_0_SOURCE1_SYSREG_RENAME,		
+		input wire iPREVIOUS_0_SOURCE1_SYSREG_RENAME,
+		input wire iPREVIOUS_0_ADV_ACTIVE,	
 		input wire iPREVIOUS_0_DESTINATION_SYSREG,
 		input wire iPREVIOUS_0_WRITEBACK,
 		input wire iPREVIOUS_0_FLAGS_WRITEBACK,		
@@ -89,6 +90,7 @@ module scheduler1(
 		input wire [4:0] iPREVIOUS_0_LOGIC_DESTINATION,
 		input wire [5:0] iPREVIOUS_0_SOURCE0,
 		input wire [31:0] iPREVIOUS_0_SOURCE1,
+		input wire [5:0] iPREVIOUS_0_ADV_DATA,
 		input wire iPREVIOUS_0_SOURCE0_FLAGS,	
 		input wire iPREVIOUS_0_SOURCE1_IMM,	
 		input wire iPREVIOUS_0_EX_SYS_ADDER,		
@@ -108,7 +110,8 @@ module scheduler1(
 		input wire iPREVIOUS_1_SOURCE0_SYSREG,		
 		input wire iPREVIOUS_1_SOURCE1_SYSREG,
 		input wire iPREVIOUS_1_SOURCE0_SYSREG_RENAME,		
-		input wire iPREVIOUS_1_SOURCE1_SYSREG_RENAME,		
+		input wire iPREVIOUS_1_SOURCE1_SYSREG_RENAME,	
+		input wire iPREVIOUS_1_ADV_ACTIVE,		
 		input wire iPREVIOUS_1_DESTINATION_SYSREG,
 		input wire iPREVIOUS_1_WRITEBACK,
 		input wire iPREVIOUS_1_FLAGS_WRITEBACK,	
@@ -119,6 +122,7 @@ module scheduler1(
 		input wire [4:0] iPREVIOUS_1_LOGIC_DESTINATION,
 		input wire [5:0] iPREVIOUS_1_SOURCE0,
 		input wire [31:0] iPREVIOUS_1_SOURCE1,
+		input wire [5:0] iPREVIOUS_1_ADV_DATA,
 		input wire iPREVIOUS_1_SOURCE0_FLAGS,
 		input wire iPREVIOUS_1_SOURCE1_IMM,
 		input wire iPREVIOUS_1_EX_SYS_ADDER,	
@@ -169,8 +173,9 @@ module scheduler1(
 		output wire oNEXT_0_SOURCE1_ACTIVE,		
 		output wire oNEXT_0_SOURCE0_SYSREG,		
 		output wire oNEXT_0_SOURCE1_SYSREG,		
-		output wire oNEXT_0_SOURCE0_SYSREG_RENAME,		//2012/01/26		
-		output wire oNEXT_0_SOURCE1_SYSREG_RENAME,		//2012/01/26
+		output wire oNEXT_0_SOURCE0_SYSREG_RENAME,			
+		output wire oNEXT_0_SOURCE1_SYSREG_RENAME,	
+		output wire oNEXT_0_ADV_ACTIVE,	
 		output wire oNEXT_0_DESTINATION_SYSREG,			
 		output wire oNEXT_0_WRITEBACK,	
 		output wire oNEXT_0_FLAGS_WRITEBACK,			
@@ -182,6 +187,7 @@ module scheduler1(
 		output wire [4:0] oNEXT_0_LOGIC_DESTINATION,
 		output wire [5:0] oNEXT_0_SOURCE0,
 		output wire [31:0] oNEXT_0_SOURCE1,
+		output wire [5:0] oNEXT_0_ADV_DATA,
 		output wire oNEXT_0_SOURCE0_FLAGS,
 		output wire oNEXT_0_SOURCE1_IMM,	
 		output wire oNEXT_0_EX_SYS_ADDER,	
@@ -201,10 +207,11 @@ module scheduler1(
 		output wire oNEXT_1_SOURCE0_SYSREG,		
 		output wire oNEXT_1_SOURCE1_SYSREG,		
 		output wire oNEXT_1_SOURCE0_SYSREG_RENAME,			
-		output wire oNEXT_1_SOURCE1_SYSREG_RENAME,					
+		output wire oNEXT_1_SOURCE1_SYSREG_RENAME,	
+		output wire oNEXT_1_ADV_ACTIVE,				
 		output wire oNEXT_1_DESTINATION_SYSREG,			
 		output wire oNEXT_1_WRITEBACK,	
-		output wire oNEXT_1_FLAGS_WRITEBACK,			//kokosika yatenai
+		output wire oNEXT_1_FLAGS_WRITEBACK,
 		output wire [4:0] oNEXT_1_CMD,
 		output wire [5:0] oNEXT_1_COMMIT_TAG,
 		output wire [3:0] oNEXT_1_CC_AFE,		
@@ -213,6 +220,7 @@ module scheduler1(
 		output wire [4:0] oNEXT_1_LOGIC_DESTINATION,
 		output wire [5:0] oNEXT_1_SOURCE0,
 		output wire [31:0] oNEXT_1_SOURCE1,
+		output wire [5:0] oNEXT_1_ADV_DATA,
 		output wire oNEXT_1_SOURCE0_FLAGS,
 		output wire oNEXT_1_SOURCE1_IMM,
 		output wire oNEXT_1_EX_SYS_ADDER,		
@@ -323,6 +331,7 @@ module scheduler1(
 	reg b0_source1_sysreg;	
 	reg b0_source0_sysreg_rename;
 	reg b0_source1_sysreg_rename;		
+	reg b0_adv_active;
 	reg b0_destination_sysreg;					
 	reg b0_data_writeback;	
 	reg b0_flags_writeback;
@@ -334,6 +343,7 @@ module scheduler1(
 	reg [4:0] b0_logic_destination;
 	reg [5:0] b0_source0;
 	reg [31:0] b0_source1;
+	reg [5:0] b0_adv_data;
 	reg b0_source0_flags;	
 	reg b0_source1_imm;		
 	reg b0_ex_sys_adder;
@@ -354,6 +364,7 @@ module scheduler1(
 	reg b1_source1_sysreg;	
 	reg b1_source0_sysreg_rename;
 	reg b1_source1_sysreg_rename;
+	reg b1_adv_active;
 	reg b1_destination_sysreg;					
 	reg b1_data_writeback;	
 	reg b1_flags_writeback;
@@ -365,6 +376,7 @@ module scheduler1(
 	reg [4:0] b1_logic_destination;
 	reg [5:0] b1_source0;
 	reg [31:0] b1_source1;
+	reg [5:0] b1_adv_data;
 	reg b1_source0_flags;
 	reg b1_source1_imm;			
 	reg b1_ex_sys_adder;
@@ -397,7 +409,7 @@ module scheduler1(
 	Next <-> Previous	(Register Free List)
 	****************************************/
 	//parameter is N, DEPTH, DEPTH_N
-	sync_fifo #(4, 4, 2) FRAG_REG_FREELIST0(
+	mist1032sa_sync_fifo #(4, 4, 2) FRAG_REG_FREELIST0(
 		.iCLOCK(iCLOCK), 
 		.inRESET(inRESET), 
 		.iREMOVE(iEXCEPTION_RESTART), 
@@ -411,7 +423,7 @@ module scheduler1(
 	);
 	
 	//parameter is N, DEPTH, DEPTH_N
-	sync_fifo #(4, 4, 2) FRAG_REG_FREELIST1(
+	mist1032sa_sync_fifo #(4, 4, 2) FRAG_REG_FREELIST1(
 		.iCLOCK(iCLOCK), 
 		.inRESET(inRESET), 
 		.iREMOVE(iEXCEPTION_RESTART), 
@@ -425,7 +437,7 @@ module scheduler1(
 	);
 	
 	
-	sync_fifo #(6, 8, 3) GR_REG_FREELIST0(
+	mist1032sa_sync_fifo #(6, 8, 3) GR_REG_FREELIST0(
 		.iCLOCK(iCLOCK), 
 		.inRESET(inRESET), 
 		.iREMOVE(iEXCEPTION_RESTART/*restart*/), 
@@ -437,7 +449,7 @@ module scheduler1(
 		.oRD_DATA(oOTHER_REGISTER_0_NUM), 
 		.oRD_EMPTY(oOTHER_REGISTER_0_EMPTY)
 	);
-	sync_fifo #(6, 8, 3) GR_REG_FREELIST1(
+	mist1032sa_sync_fifo #(6, 8, 3) GR_REG_FREELIST1(
 		.iCLOCK(iCLOCK), .inRESET(inRESET), 
 		.iREMOVE(iEXCEPTION_RESTART/*restart*/), 
 		.oCOUNT(oOTHER_REGISTER_1_COUNT), 	
@@ -551,17 +563,19 @@ module scheduler1(
 			b0_source1_sysreg <= 1'b0;
 			b0_source0_sysreg_rename <= 1'b0;
 			b0_source1_sysreg_rename <= 1'b0;
+			b0_adv_active <= 1'b0;
 			b0_destination_sysreg <= 1'b0;		
 			b0_data_writeback <= 1'b0;	
 			b0_flags_writeback <= 1'b0;
-			b0_cmd <= {4{1'b0}};
+			b0_cmd <= {5{1'b0}};
 			b0_commit_tag <= {6{1'b0}};
 			b0_cc_afe <= {4{1'b0}};
 			b0_flags_regname <= 4'h0;
 			b0_destination_regname <= {6{1'b0}};
 			b0_logic_destination <= {5{1'b0}};
-			b0_source0 <= {5{1'b0}};
+			b0_source0 <= {6{1'b0}};
 			b0_source1 <= {32{1'b0}};
+			b0_adv_data <= 6'h0;
 			b0_source0_flags <= 1'b0;
 			b0_source1_imm <= 1'b0;
 			b0_ex_sys_adder <= 1'b0;
@@ -581,18 +595,20 @@ module scheduler1(
 			b1_source0_sysreg <= 1'b0;			
 			b1_source1_sysreg <= 1'b0;	
 			b1_source0_sysreg_rename <= 1'b0;
-			b1_source1_sysreg_rename <= 1'b0;		
+			b1_source1_sysreg_rename <= 1'b0;	
+			b1_adv_active <= 1'b0;	
 			b1_destination_sysreg <= 1'b0;		
 			b1_data_writeback <= 1'b0;	
 			b1_flags_writeback <= 1'b0;			
 			b1_cmd <= {5{1'b0}};
-			b1_commit_tag <= {4{1'b0}};
+			b1_commit_tag <= {6{1'b0}};
 			b1_cc_afe <= {4{1'b0}};
 			b1_flags_regname <= 4'h0;
 			b1_destination_regname <= {6{1'b0}};
 			b1_logic_destination <= {5{1'b0}};
-			b1_source0 <= {5{1'b0}};
+			b1_source0 <= {6{1'b0}};
 			b1_source1 <= {32{1'b0}};
+			b1_adv_data <= 6'h0;
 			b1_source0_flags <= 1'b0;
 			b1_source1_imm <= 1'b0;
 			b1_ex_sys_adder <= 1'b0;
@@ -616,17 +632,19 @@ module scheduler1(
 			b0_source1_sysreg <= 1'b0;
 			b0_source0_sysreg_rename <= 1'b0;
 			b0_source1_sysreg_rename <= 1'b0;
+			b0_adv_active <= 1'b0;
 			b0_destination_sysreg <= 1'b0;		
 			b0_data_writeback <= 1'b0;	
 			b0_flags_writeback <= 1'b0;
-			b0_cmd <= {4{1'b0}};
+			b0_cmd <= {5{1'b0}};
 			b0_commit_tag <= {6{1'b0}};
 			b0_cc_afe <= {4{1'b0}};
 			b0_flags_regname <= 4'h0;
 			b0_destination_regname <= {6{1'b0}};
 			b0_logic_destination <= {5{1'b0}};
-			b0_source0 <= {5{1'b0}};
+			b0_source0 <= {6{1'b0}};
 			b0_source1 <= {32{1'b0}};
+			b0_adv_data <= 6'h0;
 			b0_source0_flags <= 1'b0;
 			b0_source1_imm <= 1'b0;
 			b0_ex_sys_adder <= 1'b0;
@@ -646,18 +664,20 @@ module scheduler1(
 			b1_source0_sysreg <= 1'b0;			
 			b1_source1_sysreg <= 1'b0;	
 			b1_source0_sysreg_rename <= 1'b0;
-			b1_source1_sysreg_rename <= 1'b0;		
+			b1_source1_sysreg_rename <= 1'b0;	
+			b1_adv_active <= 1'b0;		
 			b1_destination_sysreg <= 1'b0;		
 			b1_data_writeback <= 1'b0;	
 			b1_flags_writeback <= 1'b0;			
 			b1_cmd <= {5{1'b0}};
-			b1_commit_tag <= {4{1'b0}};
+			b1_commit_tag <= {6{1'b0}};
 			b1_cc_afe <= {4{1'b0}};
 			b1_flags_regname <= 4'h0;
 			b1_destination_regname <= {6{1'b0}};
 			b1_logic_destination <= {5{1'b0}};
-			b1_source0 <= {5{1'b0}};
+			b1_source0 <= {6{1'b0}};
 			b1_source1 <= {32{1'b0}};
+			b1_adv_data <= 6'h0;
 			b1_source0_flags <= 1'b0;
 			b1_source1_imm <= 1'b0;
 			b1_ex_sys_adder <= 1'b0;
@@ -681,18 +701,20 @@ module scheduler1(
 				b0_source0_sysreg <= iPREVIOUS_0_SOURCE0_SYSREG;
 				b0_source1_sysreg <= iPREVIOUS_0_SOURCE1_SYSREG;	
 				b0_source0_sysreg_rename <= iPREVIOUS_0_SOURCE0_SYSREG_RENAME;
-				b0_source1_sysreg_rename <= iPREVIOUS_0_SOURCE1_SYSREG_RENAME;		
+				b0_source1_sysreg_rename <= iPREVIOUS_0_SOURCE1_SYSREG_RENAME;	
+				b0_adv_active <= iPREVIOUS_0_ADV_ACTIVE;	
 				b0_destination_sysreg <= iPREVIOUS_0_DESTINATION_SYSREG;		
 				b0_data_writeback <= iPREVIOUS_0_WRITEBACK;	
 				b0_flags_writeback <= iPREVIOUS_0_FLAGS_WRITEBACK;
 				b0_cmd <= iPREVIOUS_0_CMD;
-				b0_commit_tag <= {4{1'b0}};
+				b0_commit_tag <= {6{1'b0}};
 				b0_cc_afe <= iPREVIOUS_0_CC_AFE;
 				b0_flags_regname <= iPREVIOUS_0_FLAGS_REGNAME;
 				b0_destination_regname <= iPREVIOUS_0_DESTINATION_REGNAME;
 				b0_logic_destination <= iPREVIOUS_0_LOGIC_DESTINATION;
 				b0_source0 <= iPREVIOUS_0_SOURCE0; 	
 				b0_source1 <= iPREVIOUS_0_SOURCE1; 	
+				b0_adv_data <= iPREVIOUS_0_ADV_DATA;
 				b0_source0_flags <= iPREVIOUS_0_SOURCE0_FLAGS;
 				b0_source1_imm <= iPREVIOUS_0_SOURCE1_IMM;
 				b0_ex_sys_adder <= iPREVIOUS_0_EX_SYS_ADDER;
@@ -712,18 +734,20 @@ module scheduler1(
 				b1_source0_sysreg <= iPREVIOUS_1_SOURCE0_SYSREG;
 				b1_source1_sysreg <= iPREVIOUS_1_SOURCE1_SYSREG;	
 				b1_source0_sysreg_rename <= iPREVIOUS_1_SOURCE0_SYSREG_RENAME;
-				b1_source1_sysreg_rename <= iPREVIOUS_1_SOURCE1_SYSREG_RENAME;			
+				b1_source1_sysreg_rename <= iPREVIOUS_1_SOURCE1_SYSREG_RENAME;	
+				b1_adv_active <= iPREVIOUS_1_ADV_ACTIVE;			
 				b1_destination_sysreg <= iPREVIOUS_1_DESTINATION_SYSREG;	
 				b1_data_writeback <= iPREVIOUS_1_WRITEBACK;
 				b1_flags_writeback <= iPREVIOUS_1_FLAGS_WRITEBACK;
 				b1_cmd <= iPREVIOUS_1_CMD;
-				b1_commit_tag <= {4{1'b0}};
+				b1_commit_tag <= {6{1'b0}};
 				b1_cc_afe <= iPREVIOUS_1_CC_AFE;
 				b1_flags_regname <= iPREVIOUS_1_FLAGS_REGNAME;
 				b1_destination_regname <= iPREVIOUS_1_DESTINATION_REGNAME;		
 				b1_logic_destination <= iPREVIOUS_1_LOGIC_DESTINATION;
 				b1_source0 <= iPREVIOUS_1_SOURCE0; 	
 				b1_source1 <= iPREVIOUS_1_SOURCE1; 
+				b1_adv_data <= iPREVIOUS_1_ADV_DATA;
 				b1_source0_flags <= iPREVIOUS_1_SOURCE0_FLAGS;	
 				b1_source1_imm <= iPREVIOUS_1_SOURCE1_IMM;
 				b1_ex_sys_adder <= iPREVIOUS_1_EX_SYS_ADDER;
@@ -1247,6 +1271,7 @@ module scheduler1(
 	assign oNEXT_0_SOURCE1_SYSREG = b0_source1_sysreg;
 	assign oNEXT_0_SOURCE0_SYSREG_RENAME = b0_source0_sysreg_rename;
 	assign oNEXT_0_SOURCE1_SYSREG_RENAME = b0_source1_sysreg_rename;
+	assign oNEXT_0_ADV_ACTIVE = b0_adv_active;
 	assign oNEXT_0_DESTINATION_SYSREG = b0_destination_sysreg;
 	assign oNEXT_0_WRITEBACK = b0_data_writeback;
 	assign oNEXT_0_FLAGS_WRITEBACK = b0_flags_writeback;
@@ -1258,6 +1283,7 @@ module scheduler1(
 	assign oNEXT_0_LOGIC_DESTINATION = b0_logic_destination;	
 	assign oNEXT_0_SOURCE0 = b0_source0;
 	assign oNEXT_0_SOURCE1 = b0_source1;
+	assign oNEXT_0_ADV_DATA = b0_adv_data;
 	assign oNEXT_0_SOURCE0_FLAGS = b0_source0_flags;
 	assign oNEXT_0_SOURCE1_IMM = b0_source1_imm;
 	assign oNEXT_0_EX_SYS_ADDER = b0_ex_sys_adder;
@@ -1278,6 +1304,7 @@ module scheduler1(
 	assign oNEXT_1_SOURCE1_SYSREG = b1_source1_sysreg;
 	assign oNEXT_1_SOURCE0_SYSREG_RENAME = b1_source0_sysreg_rename;
 	assign oNEXT_1_SOURCE1_SYSREG_RENAME = b1_source1_sysreg_rename;
+	assign oNEXT_1_ADV_ACTIVE = b1_adv_active;
 	assign oNEXT_1_DESTINATION_SYSREG = b1_destination_sysreg;
 	assign oNEXT_1_WRITEBACK = b1_data_writeback;
 	assign oNEXT_1_FLAGS_WRITEBACK = b1_flags_writeback;
@@ -1289,6 +1316,7 @@ module scheduler1(
 	assign oNEXT_1_LOGIC_DESTINATION = b1_logic_destination;	
 	assign oNEXT_1_SOURCE0 = b1_source0;
 	assign oNEXT_1_SOURCE1 = b1_source1;
+	assign oNEXT_1_ADV_DATA = b1_adv_data;
 	assign oNEXT_1_SOURCE0_FLAGS = b1_source0_flags;
 	assign oNEXT_1_SOURCE1_IMM = b1_source1_imm;
 	assign oNEXT_1_EX_SYS_ADDER = b1_ex_sys_adder;

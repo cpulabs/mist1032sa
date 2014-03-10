@@ -43,24 +43,26 @@ module renaming(
 		input wire iFLAGR_RENAME_ROLLBACK_UPDATE_INFO3_VALID,
 		input wire [3:0] iFLAGR_RENAME_ROLLBACK_UPDATE_INFO3_PREGNAME,			
 		//StageInfo
-		output wire oSTAGE_INFO_0_VALID,	//New
-		output wire oSTAGE_INFO_1_VALID,	//New
+		output wire oSTAGE_INFO_0_VALID,	
+		output wire oSTAGE_INFO_1_VALID,
 		//Previous - 0			
 		input wire iPREVIOUS_0_VALID,
 		input wire iPREVIOUS_0_SOURCE0_ACTIVE,		
 		input wire iPREVIOUS_0_SOURCE1_ACTIVE,		
 		input wire iPREVIOUS_0_SOURCE0_SYSREG,		
 		input wire iPREVIOUS_0_SOURCE1_SYSREG,			
-		input wire iPREVIOUS_0_SOURCE0_SYSREG_RENAME,		//2012/01/26
-		input wire iPREVIOUS_0_SOURCE1_SYSREG_RENAME,		//2012/01/26			
+		input wire iPREVIOUS_0_SOURCE0_SYSREG_RENAME,	
+		input wire iPREVIOUS_0_SOURCE1_SYSREG_RENAME,
+		input wire iPREVIOUS_0_ADV_ACTIVE,			
 		input wire iPREVIOUS_0_DESTINATION_SYSREG,		
-		input wire iPREVIOUS_0_DEST_RENAME,		//2012/01/24
+		input wire iPREVIOUS_0_DEST_RENAME,		
 		input wire iPREVIOUS_0_WRITEBACK,	
 		input wire iPREVIOUS_0_FLAGS_WRITEBACK,	
 		input wire [4:0] iPREVIOUS_0_CMD,
 		input wire [3:0] iPREVIOUS_0_CC_AFE,
 		input wire [4:0] iPREVIOUS_0_SOURCE0,
 		input wire [31:0] iPREVIOUS_0_SOURCE1,
+		input wire [5:0] iPREVIOUS_0_ADV_DATA,
 		input wire iPREVIOUS_0_SOURCE0_FLAGS,
 		input wire iPREVIOUS_0_SOURCE1_IMM,
 		input wire [4:0] iPREVIOUS_0_DESTINATION,				
@@ -80,16 +82,18 @@ module renaming(
 		input wire iPREVIOUS_1_SOURCE1_ACTIVE,		
 		input wire iPREVIOUS_1_SOURCE0_SYSREG,		
 		input wire iPREVIOUS_1_SOURCE1_SYSREG,		
-		input wire iPREVIOUS_1_SOURCE0_SYSREG_RENAME,		//2012/01/26
-		input wire iPREVIOUS_1_SOURCE1_SYSREG_RENAME,		//2012/01/26					
+		input wire iPREVIOUS_1_SOURCE0_SYSREG_RENAME,	
+		input wire iPREVIOUS_1_SOURCE1_SYSREG_RENAME,	
+		input wire iPREVIOUS_1_ADV_ACTIVE,					
 		input wire iPREVIOUS_1_DESTINATION_SYSREG,	
-		input wire iPREVIOUS_1_DEST_RENAME,		//2012/01/24			
+		input wire iPREVIOUS_1_DEST_RENAME,			
 		input wire iPREVIOUS_1_WRITEBACK,	
 		input wire iPREVIOUS_1_FLAGS_WRITEBACK,
 		input wire [4:0] iPREVIOUS_1_CMD,
 		input wire [3:0] iPREVIOUS_1_CC_AFE,
 		input wire [4:0] iPREVIOUS_1_SOURCE0,
 		input wire [31:0] iPREVIOUS_1_SOURCE1,
+		input wire [5:0] iPREVIOUS_1_ADV_DATA,
 		input wire iPREVIOUS_1_SOURCE0_FLAGS,
 		input wire iPREVIOUS_1_SOURCE1_IMM,
 		input wire [4:0] iPREVIOUS_1_DESTINATION,
@@ -125,8 +129,9 @@ module renaming(
 		output wire oNEXT_0_SOURCE1_ACTIVE,	
 		output wire oNEXT_0_SOURCE0_SYSREG,		
 		output wire oNEXT_0_SOURCE1_SYSREG,			
-		output wire oNEXT_0_SOURCE0_SYSREG_RENAME,		//2012/01/26
-		output wire oNEXT_0_SOURCE1_SYSREG_RENAME,		//2012/01/26			
+		output wire oNEXT_0_SOURCE0_SYSREG_RENAME,	
+		output wire oNEXT_0_SOURCE1_SYSREG_RENAME,	
+		output wire oNEXT_0_ADV_ACTIVE,		
 		output wire oNEXT_0_DESTINATION_SYSREG,			
 		output wire oNEXT_0_WRITEBACK,	
 		output wire oNEXT_0_FLAGS_WRITEBACK,			
@@ -137,6 +142,7 @@ module renaming(
 		output wire [4:0] oNEXT_0_LOGIC_DESTINATION,
 		output wire [5:0] oNEXT_0_SOURCE0,		
 		output wire [31:0] oNEXT_0_SOURCE1,
+		output wire [5:0] oNEXT_0_ADV_DATA,
 		output wire oNEXT_0_SOURCE0_FLAGS,	
 		output wire oNEXT_0_SOURCE1_IMM,	
 		output wire oNEXT_0_EX_SYS_ADDER,		
@@ -155,8 +161,9 @@ module renaming(
 		output wire oNEXT_1_SOURCE1_ACTIVE,	
 		output wire oNEXT_1_SOURCE0_SYSREG,			
 		output wire oNEXT_1_SOURCE1_SYSREG,			
-		output wire oNEXT_1_SOURCE0_SYSREG_RENAME,		//2012/01/26
-		output wire oNEXT_1_SOURCE1_SYSREG_RENAME,		//2012/01/26			
+		output wire oNEXT_1_SOURCE0_SYSREG_RENAME,	
+		output wire oNEXT_1_SOURCE1_SYSREG_RENAME,	
+		output wire oNEXT_1_ADV_ACTIVE,		
 		output wire oNEXT_1_DESTINATION_SYSREG,			
 		output wire oNEXT_1_WRITEBACK,	
 		output wire oNEXT_1_FLAGS_WRITEBACK,		
@@ -167,6 +174,7 @@ module renaming(
 		output wire [4:0] oNEXT_1_LOGIC_DESTINATION,
 		output wire [5:0] oNEXT_1_SOURCE0,			
 		output wire [31:0] oNEXT_1_SOURCE1,
+		output wire [5:0] oNEXT_1_ADV_DATA,
 		output wire oNEXT_1_SOURCE0_FLAGS,
 		output wire oNEXT_1_SOURCE1_IMM,	
 		output wire oNEXT_1_EX_SYS_ADDER,	
@@ -226,6 +234,7 @@ module renaming(
 	reg b0_source1_sysreg;		
 	reg b0_source0_sysreg_rename;					
 	reg b0_source1_sysreg_rename;	
+	reg b0_adv_active;
 	reg b0_destination_sysreg;	
 	reg b0_dest_rename;				
 	reg b0_writeback;	
@@ -236,6 +245,7 @@ module renaming(
 	reg [4:0] b0_logic_destination;
 	reg [5:0] b0_source0;
 	reg [31:0] b0_source1;
+	reg [5:0] b0_adv_data;
 	reg b0_source0_flags;	
 	reg b0_source1_imm;	
 	reg b0_ex_sys_adder;
@@ -255,7 +265,8 @@ module renaming(
 	reg b1_source0_sysreg;					
 	reg b1_source1_sysreg;		
 	reg b1_source0_sysreg_rename;					
-	reg b1_source1_sysreg_rename;		
+	reg b1_source1_sysreg_rename;			
+	reg b1_adv_active;
 	reg b1_destination_sysreg;	
 	reg b1_dest_rename;
 	reg b1_writeback;
@@ -266,6 +277,7 @@ module renaming(
 	reg [4:0] b1_logic_destination;
 	reg [5:0] b1_source0;
 	reg [31:0] b1_source1;
+	reg [5:0] b1_adv_data;
 	reg b1_source0_flags;
 	reg b1_source1_imm;		
 	reg b1_ex_sys_adder;
@@ -588,6 +600,7 @@ module renaming(
 			b0_source1_sysreg <= 1'b0;	
 			b0_source0_sysreg_rename <= 1'b0;	
 			b0_source1_sysreg_rename <= 1'b0;		
+			b0_adv_active <= 1'b0;
 			b0_destination_sysreg <= 1'b0;		
 			b0_dest_rename <= 1'b0;	
 			b0_writeback <= 1'b0;
@@ -598,6 +611,7 @@ module renaming(
 			b0_logic_destination <= {5{1'b0}};
 			b0_source0 <= {6{1'b0}};
 			b0_source1 <= {32{1'b0}};
+			b0_adv_data <= 6'h0;
 			b0_source0_flags <= 1'b0;
 			b0_source1_imm <= 1'b0;
 			b0_ex_sys_adder <= 1'b0;
@@ -618,6 +632,7 @@ module renaming(
 			b1_source1_sysreg <= 1'b0;	
 			b1_source0_sysreg_rename <= 1'b0;	
 			b1_source1_sysreg_rename <= 1'b0;
+			b1_adv_active <= 1'b0;
 			b1_destination_sysreg <= 1'b0;	
 			b1_dest_rename <= 1'b0;
 			b1_writeback <= 1'b0;	
@@ -628,6 +643,7 @@ module renaming(
 			b1_logic_destination <= {5{1'b0}};
 			b1_source0 <= {6{1'b0}};
 			b1_source1 <= {32{1'b0}};
+			b1_adv_data <= 6'h0;
 			b1_source0_flags <= 1'b0;
 			b1_source1_imm <= 1'b0;
 			b1_ex_sys_adder <= 1'b0;
@@ -650,7 +666,8 @@ module renaming(
 			b0_source0_sysreg <= 1'b0;	
 			b0_source1_sysreg <= 1'b0;	
 			b0_source0_sysreg_rename <= 1'b0;	
-			b0_source1_sysreg_rename <= 1'b0;		
+			b0_source1_sysreg_rename <= 1'b0;	
+			b0_adv_active <= 1'b0;		
 			b0_destination_sysreg <= 1'b0;		
 			b0_dest_rename <= 1'b0;	
 			b0_writeback <= 1'b0;
@@ -661,6 +678,7 @@ module renaming(
 			b0_logic_destination <= {5{1'b0}};
 			b0_source0 <= {6{1'b0}};
 			b0_source1 <= {32{1'b0}};
+			b0_adv_data <= 6'h0;
 			b0_source0_flags <= 1'b0;
 			b0_source1_imm <= 1'b0;
 			b0_ex_sys_adder <= 1'b0;
@@ -681,6 +699,7 @@ module renaming(
 			b1_source1_sysreg <= 1'b0;	
 			b1_source0_sysreg_rename <= 1'b0;	
 			b1_source1_sysreg_rename <= 1'b0;
+			b1_adv_active <= 1'b0;
 			b1_destination_sysreg <= 1'b0;	
 			b1_dest_rename <= 1'b0;
 			b1_writeback <= 1'b0;	
@@ -691,6 +710,7 @@ module renaming(
 			b1_logic_destination <= {5{1'b0}};
 			b1_source0 <= {6{1'b0}};
 			b1_source1 <= {32{1'b0}};
+			b1_adv_data <= 6'h0;
 			b1_source0_flags <= 1'b0;
 			b1_source1_imm <= 1'b0;
 			b1_ex_sys_adder <= 1'b0;
@@ -715,6 +735,7 @@ module renaming(
 				b0_source1_sysreg <= iPREVIOUS_0_SOURCE1_SYSREG;	
 				b0_source0_sysreg_rename <= iPREVIOUS_0_SOURCE0_SYSREG_RENAME;
 				b0_source1_sysreg_rename <= iPREVIOUS_0_SOURCE1_SYSREG_RENAME;		
+				b0_adv_active <= iPREVIOUS_0_ADV_ACTIVE;	
 				b0_destination_sysreg <= iPREVIOUS_0_DESTINATION_SYSREG;	
 				b0_dest_rename <= iPREVIOUS_0_DEST_RENAME;
 				b0_writeback <= iPREVIOUS_0_WRITEBACK;	
@@ -725,6 +746,7 @@ module renaming(
 				b0_logic_destination <= iPREVIOUS_0_DESTINATION;
 				b0_source0 <= {1'b0, iPREVIOUS_0_SOURCE0};
 				b0_source1 <= iPREVIOUS_0_SOURCE1; 	
+				b0_adv_data <= iPREVIOUS_0_ADV_DATA;
 				b0_source0_flags <= iPREVIOUS_0_SOURCE0_FLAGS;		
 				b0_source1_imm <= iPREVIOUS_0_SOURCE1_IMM;
 				b0_ex_sys_adder <= iPREVIOUS_0_EX_SYS_ADDER;
@@ -745,6 +767,7 @@ module renaming(
 				b1_source1_sysreg <= iPREVIOUS_1_SOURCE1_SYSREG;	
 				b1_source0_sysreg_rename <= iPREVIOUS_1_SOURCE0_SYSREG_RENAME;
 				b1_source1_sysreg_rename <= iPREVIOUS_1_SOURCE1_SYSREG_RENAME;
+				b1_adv_active <= iPREVIOUS_1_ADV_ACTIVE;
 				b1_destination_sysreg <= iPREVIOUS_1_DESTINATION_SYSREG;		
 				b1_dest_rename <= iPREVIOUS_1_DEST_RENAME;	
 				b1_writeback <= iPREVIOUS_1_WRITEBACK;	
@@ -755,6 +778,7 @@ module renaming(
 				b1_logic_destination <= iPREVIOUS_1_DESTINATION;
 				b1_source0 <= {1'b0, iPREVIOUS_1_SOURCE0}; 	//or Renaming Address
 				b1_source1 <= iPREVIOUS_1_SOURCE1; 		//or no source
+				b1_adv_data <= iPREVIOUS_1_ADV_DATA;
 				b1_source0_flags <= iPREVIOUS_1_SOURCE0_FLAGS;
 				b1_source1_imm <= iPREVIOUS_1_SOURCE1_IMM;
 				b1_ex_sys_adder <= iPREVIOUS_1_EX_SYS_ADDER;
@@ -788,6 +812,7 @@ module renaming(
 	assign oNEXT_0_SOURCE1_SYSREG = b0_source1_sysreg;
 	assign oNEXT_0_SOURCE0_SYSREG_RENAME = b0_source0_sysreg_rename;
 	assign oNEXT_0_SOURCE1_SYSREG_RENAME = b0_source1_sysreg_rename;
+	assign oNEXT_0_ADV_ACTIVE = b0_adv_active;
 	assign oNEXT_0_DESTINATION_SYSREG = b0_destination_sysreg;
 	assign oNEXT_0_WRITEBACK = b0_writeback;
 	assign oNEXT_0_FLAGS_WRITEBACK = b0_flags_writeback;//20120723 || bb_old_last_instruction_flags_writeback && b0_ex_branch;
@@ -798,6 +823,7 @@ module renaming(
 	assign oNEXT_0_LOGIC_DESTINATION = b0_logic_destination;
 	assign oNEXT_0_SOURCE0 = pipeline0_source0;	
 	assign oNEXT_0_SOURCE1 = pipeline0_source1;
+	assign oNEXT_0_ADV_DATA = b0_adv_data;
 	assign oNEXT_0_SOURCE0_FLAGS = b0_source0_flags;
 	assign oNEXT_0_SOURCE1_IMM = b0_source1_imm;
 	assign oNEXT_0_EX_SYS_ADDER = b0_ex_sys_adder;
@@ -818,6 +844,7 @@ module renaming(
 	assign oNEXT_1_SOURCE1_SYSREG = b1_source1_sysreg;
 	assign oNEXT_1_SOURCE0_SYSREG_RENAME = b1_source0_sysreg_rename;
 	assign oNEXT_1_SOURCE1_SYSREG_RENAME = b1_source1_sysreg_rename;
+	assign oNEXT_1_ADV_ACTIVE = b1_adv_active;
 	assign oNEXT_1_DESTINATION_SYSREG = b1_destination_sysreg;
 	assign oNEXT_1_WRITEBACK = b1_writeback;
 	assign oNEXT_1_FLAGS_WRITEBACK = b1_flags_writeback;//20120723|| b0_flags_writeback && b1_ex_branch;
@@ -828,6 +855,7 @@ module renaming(
 	assign oNEXT_1_LOGIC_DESTINATION = b1_logic_destination;		
 	assign oNEXT_1_SOURCE0 = pipeline1_source0; 
 	assign oNEXT_1_SOURCE1 = pipeline1_source1;
+	assign oNEXT_1_ADV_DATA = b1_adv_data;
 	assign oNEXT_1_SOURCE0_FLAGS = b1_source0_flags;
 	assign oNEXT_1_SOURCE1_IMM = b1_source1_imm;
 	assign oNEXT_1_EX_SYS_ADDER = b1_ex_sys_adder;

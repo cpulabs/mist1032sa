@@ -222,6 +222,8 @@ module core_pipeline #(
 	wire decoder2matching_0_source1_sysreg;
 	wire decoder2matching_0_source0_sysreg_rename;
 	wire decoder2matching_0_source1_sysreg_rename;
+	wire decoder2matching_0_adv_active;
+	wire [5:0] decoder2matching_0_adv_data;
 	wire decoder2matching_0_destination_sysreg;
 	wire decoder2matching_0_dest_rename;
 	wire decoder2matching_0_writeback;
@@ -252,6 +254,8 @@ module core_pipeline #(
 	wire decoder2matching_1_source1_sysreg;
 	wire decoder2matching_1_source0_sysreg_rename;
 	wire decoder2matching_1_source1_sysreg_rename;
+	wire decoder2matching_1_adv_active;
+	wire [5:0] decoder2matching_1_adv_data;
 	wire decoder2matching_1_destination_sysreg;
 	wire decoder2matching_1_dest_rename;
 	wire decoder2matching_1_writeback;
@@ -286,6 +290,7 @@ module core_pipeline #(
 	wire matching2renaming_0_source1_sysreg;
 	wire matching2renaming_0_source0_sysreg_rename;
 	wire matching2renaming_0_source1_sysreg_rename;
+	wire matching2renaming_0_adv_active;
 	wire matching2renaming_0_destination_sysreg;
 	wire matching2renaming_0_dest_rename;
 	wire matching2renaming_0_writeback;
@@ -294,6 +299,7 @@ module core_pipeline #(
 	wire [3:0] matching2renaming_0_cc_afe;
 	wire [4:0] matching2renaming_0_source0;
 	wire [31:0] matching2renaming_0_source1;
+	wire [5:0] matching2renaming_0_adv_data;
 	wire matching2renaming_0_source0_flags;
 	wire matching2renaming_0_source1_imm;
 	wire [4:0] matching2renaming_0_destination;
@@ -314,6 +320,7 @@ module core_pipeline #(
 	wire matching2renaming_1_source1_sysreg;
 	wire matching2renaming_1_source0_sysreg_rename;
 	wire matching2renaming_1_source1_sysreg_rename;
+	wire matching2renaming_1_adv_active;
 	wire matching2renaming_1_destination_sysreg;
 	wire matching2renaming_1_dest_rename;
 	wire matching2renaming_1_writeback;
@@ -323,6 +330,7 @@ module core_pipeline #(
 	wire [3:0] matching2renaming_1_cc_afe;
 	wire [4:0] matching2renaming_1_source0;
 	wire [31:0] matching2renaming_1_source1;
+	wire [5:0] matching2renaming_1_adv_data;
 	wire matching2renaming_1_source0_flags;
 	wire matching2renaming_1_source1_imm;
 	wire [4:0] matching2renaming_1_destination;
@@ -346,6 +354,7 @@ module core_pipeline #(
 	wire renaming2scheduler1_0_source1_sysreg;
 	wire renaming2scheduler1_0_source0_sysreg_rename;
 	wire renaming2scheduler1_0_source1_sysreg_rename;
+	wire renaming2scheduler1_0_adv_active;
 	wire renaming2scheduler1_0_destination_sysreg;
 	wire renaming2scheduler1_0_data_writeback;
 	wire renaming2scheduler1_0_flags_writeback;
@@ -356,6 +365,7 @@ module core_pipeline #(
 	wire [4:0] renaming2scheduler1_0_logic_destination;
 	wire [5:0] renaming2scheduler1_0_source0;
 	wire [31:0] renaming2scheduler1_0_source1;
+	wire [5:0] renaming2scheduler1_0_adv_data;
 	wire renaming2scheduler1_0_source0_flags;
 	wire renaming2scheduler1_0_source1_imm;
 	wire renaming2scheduler1_0_sys_adder;
@@ -375,6 +385,7 @@ module core_pipeline #(
 	wire renaming2scheduler1_1_source1_sysreg;
 	wire renaming2scheduler1_1_source0_sysreg_rename;
 	wire renaming2scheduler1_1_source1_sysreg_rename;
+	wire renaming2scheduler1_1_adv_active;
 	wire renaming2scheduler1_1_destination_sysreg;
 	wire renaming2scheduler1_1_data_writeback;
 	wire renaming2scheduler1_1_flags_writeback;
@@ -385,6 +396,7 @@ module core_pipeline #(
 	wire [4:0] renaming2scheduler1_1_logic_destination;
 	wire [5:0] renaming2scheduler1_1_source0;
 	wire [31:0] renaming2scheduler1_1_source1;
+	wire [5:0] renaming2scheduler1_1_adv_data;
 	wire renaming2scheduler1_1_source0_flags;
 	wire renaming2scheduler1_1_source_imm;
 	wire renaming2scheduler1_1_sys_adder;
@@ -407,6 +419,7 @@ module core_pipeline #(
 	wire scheduler12scheduler2_0_source1_sysreg;
 	wire scheduler12scheduler2_0_source0_sysreg_rename;
 	wire scheduler12scheduler2_0_source1_sysreg_rename;
+	wire scheduler12scheduler2_0_adv_active;
 	wire scheduler12scheduler2_0_destination_sysreg;
 	wire scheduler12scheduler2_0_writeback;
 	wire scheduler12scheduler2_0_flags_writeback;
@@ -418,6 +431,7 @@ module core_pipeline #(
 	wire [4:0] scheduler12scheduler2_0_logic_destination;
 	wire [5:0] scheduler12scheduler2_0_source0;
 	wire [31:0] scheduler12scheduler2_0_source1;
+	wire [5:0] scheduler12scheduler2_0_adv_data;
 	wire scheduler12scheduler2_0_source0_flags;
 	wire scheduler12scheduler2_0_source1_imm;
 	wire scheduler12scheduler2_0_sys_reg;
@@ -437,6 +451,7 @@ module core_pipeline #(
 	wire scheduler12scheduler2_1_source1_sysreg;
 	wire scheduler12scheduler2_1_source0_sysreg_rename;
 	wire scheduler12scheduler2_1_source1_sysreg_rename;
+	wire scheduler12scheduler2_1_adv_active;
 	wire scheduler12scheduler2_1_destination_sysreg;
 	wire scheduler12scheduler2_1_writeback;
 	wire scheduler12scheduler2_1_flags_writeback;
@@ -448,6 +463,7 @@ module core_pipeline #(
 	wire [4:0] scheduler12scheduler2_1_logic_destination;
 	wire [5:0] scheduler12scheduler2_1_source0;
 	wire [31:0] scheduler12scheduler2_1_source1;
+	wire [5:0] scheduler12scheduler2_1_adv_data;
 	wire scheduler12scheduler2_1_source0_flags;
 	wire scheduler12scheduler2_1_source1_imm;
 	wire scheduler12scheduler2_1_sys_reg;
@@ -537,6 +553,8 @@ module core_pipeline #(
 	wire scheduler22ex_alu3_ldst;
 	wire [31:0] scheduler22ex_alu3_source0;
 	wire [31:0] scheduler22ex_alu3_source1;
+	wire scheduler22ex_alu3_adv_active;
+	wire [5:0] scheduler22ex_alu3_adv_data;
 	wire [5:0] scheduler22ex_alu3_destination_regname;
 	wire [31:0] scheduler22ex_alu3_pc;
 	wire ex_alu32scheduler2_ldst_lock;
@@ -881,6 +899,9 @@ module core_pipeline #(
 		.iPREVIOUS_PC(fetch2decoder_pc),
 		.oPREVIOUS_LOCK(decoder2fetch_lock),
 
+
+	wire decoder2matching_0_adv_active;
+	wire [5:0] decoder2matching_0_adv_data;
 		//Next
 		.oNEXT_COMMON_VALID(decoder2matching_0_valid),
 		.oNEXT_0_VALID(),//(decoder2matching_0_valid), 
@@ -891,6 +912,7 @@ module core_pipeline #(
 		.oNEXT_0_SOURCE1_SYSREG(decoder2matching_0_source1_sysreg), 
 		.oNEXT_0_SOURCE0_SYSREG_RENAME(decoder2matching_0_source0_sysreg_rename), 
 		.oNEXT_0_SOURCE1_SYSREG_RENAME(decoder2matching_0_source1_sysreg_rename),
+		.oNEXT_0_ADV_ACTIVE(decoder2matching_0_adv_active),	//++
 		.oNEXT_0_DESTINATION_SYSREG(decoder2matching_0_destination_sysreg), 
 		.oNEXT_0_DEST_RENAME(decoder2matching_0_dest_rename),
 		.oNEXT_0_WRITEBACK(decoder2matching_0_writeback), 
@@ -900,6 +922,7 @@ module core_pipeline #(
 		.oNEXT_0_CC_AFE(decoder2matching_0_cc_afe),
 		.oNEXT_0_SOURCE0(decoder2matching_0_source0),
 		.oNEXT_0_SOURCE1(decoder2matching_0_source1), 
+		.oNEXT_0_ADV_DATA(decoder2matching_0_adv_data),	//++
 		.oNEXT_0_SOURCE0_FLAGS(decoder2matching_0_source0_flags),
 		.oNEXT_0_SOURCE1_IMM(decoder2matching_0_source1_imm),
 		.oNEXT_0_DESTINATION(decoder2matching_0_destination), 
@@ -916,20 +939,22 @@ module core_pipeline #(
 		.oNEXT_1_VALID(decoder2matching_1_valid), 
 		.oNEXT_1_MMU_FLAGS(decoder2matching_1_mmu_flags),
 		.oNEXT_1_SOURCE0_ACTIVE(decoder2matching_1_source0_active), 
-		.oNEXT_1_SOURCE0(decoder2matching_1_source0),
 		.oNEXT_1_SOURCE1_ACTIVE(decoder2matching_1_source1_active), 
 		.oNEXT_1_SOURCE0_SYSREG(decoder2matching_1_source0_sysreg), 
 		.oNEXT_1_SOURCE1_SYSREG(decoder2matching_1_source1_sysreg), 
 		.oNEXT_1_SOURCE0_SYSREG_RENAME(decoder2matching_1_source0_sysreg_rename), 
 		.oNEXT_1_SOURCE1_SYSREG_RENAME(decoder2matching_1_source1_sysreg_rename),
+		.oNEXT_1_ADV_ACTIVE(decoder2matching_1_adv_active),	//++
 		.oNEXT_1_DESTINATION_SYSREG(decoder2matching_1_destination_sysreg),
 		.oNEXT_1_DEST_RENAME(decoder2matching_1_dest_rename), 
 		.oNEXT_1_WRITEBACK(decoder2matching_1_writeback), 
 		.oNEXT_1_FLAGS_WRITEBACK(decoder2mathsing_1_flags_writeback),
 		.oNEXT_1_FRONT_COMMIT_WAIT(decoder2matching_1_front_commit_wait),
 		.oNEXT_1_CMD(decoder2matching_1_cmd), 
-		.oNEXT_1_CC_AFE(decoder2matching_1_cc_afe), 
+		.oNEXT_1_CC_AFE(decoder2matching_1_cc_afe),
+		.oNEXT_1_SOURCE0(decoder2matching_1_source0), 
 		.oNEXT_1_SOURCE1(decoder2matching_1_source1), 
+		.oNEXT_1_ADV_DATA(decoder2matching_1_adv_data),	//++
 		.oNEXT_1_SOURCE0_FLAGS(decoder2matching_1_source0_flags),
 		.oNEXT_1_SOURCE1_IMM(decoder2matching_1_source1_imm),
 		.oNEXT_1_DESTINATION(decoder2matching_1_destination), 
@@ -961,7 +986,7 @@ module core_pipeline #(
 		.iFREE_RESTART(exception_restart),
 		//Commit OFFSET
 		.iCOMMIT_OFFSET(commit_offset),
-		//Instruction Rettch Stop
+		//Instruction Fetch Stop
 		.oLOOPBUFFER_LIMIT(matching2fetch_loopbuffer_limit),
 		.iOTHER_INFO_RENAME_0_VALID(stage_info_renaming_0_valid), 
 		.iOTHER_INFO_RENAME_1_VALID(stage_info_renaming_1_valid),
@@ -978,6 +1003,7 @@ module core_pipeline #(
 		.iPREVIOUS_0_SOURCE1_SYSREG(decoder2matching_0_source1_sysreg), 
 		.iPREVIOUS_0_SOURCE0_SYSREG_RENAME(decoder2matching_0_source0_sysreg_rename), 
 		.iPREVIOUS_0_SOURCE1_SYSREG_RENAME(decoder2matching_0_source1_sysreg_rename), 
+		.iPREVIOUS_0_ADV_ACTIVE(decoder2matching_0_adv_active),	//++
 		.iPREVIOUS_0_DESTINATION_SYSREG(decoder2matching_0_destination_sysreg), 
 		.iPREVIOUS_0_DEST_RENAME(decoder2matching_0_dest_rename),
 		.iPREVIOUS_0_WRITEBACK(decoder2matching_0_writeback), 
@@ -987,6 +1013,7 @@ module core_pipeline #(
 		.iPREVIOUS_0_CC_AFE(decoder2matching_0_cc_afe), 
 		.iPREVIOUS_0_SOURCE0(decoder2matching_0_source0),
 		.iPREVIOUS_0_SOURCE1(decoder2matching_0_source1), 
+		.iPREVIOUS_0_ADV_DATA(decoder2matching_0_adv_data),	//++
 		.iPREVIOUS_0_SOURCE0_FLAGS(decoder2matching_0_source0_flags),
 		.iPREVIOUS_0_SOURCE1_IMM(decoder2matching_0_source1_imm),
 		.iPREVIOUS_0_DESTINATION(decoder2matching_0_destination), 
@@ -1008,6 +1035,7 @@ module core_pipeline #(
 		.iPREVIOUS_1_SOURCE1_SYSREG(decoder2matching_1_source1_sysreg), 
 		.iPREVIOUS_1_SOURCE0_SYSREG_RENAME(decoder2matching_1_source0_sysreg_rename), 
 		.iPREVIOUS_1_SOURCE1_SYSREG_RENAME(decoder2matching_1_source1_sysreg_rename), 
+		.iPREVIOUS_1_ADV_ACTIVE(decoder2matching_1_adv_active),	//++
 		.iPREVIOUS_1_DESTINATION_SYSREG(decoder2matching_1_destination_sysreg), 
 		.iPREVIOUS_1_DEST_RENAME(decoder2matching_1_dest_rename),
 		.iPREVIOUS_1_WRITEBACK(decoder2matching_1_writeback), 
@@ -1017,6 +1045,7 @@ module core_pipeline #(
 		.iPREVIOUS_1_CC_AFE(decoder2matching_1_cc_afe), 
 		.iPREVIOUS_1_SOURCE0(decoder2matching_1_source0),
 		.iPREVIOUS_1_SOURCE1(decoder2matching_1_source1), 
+		.iPREVIOUS_1_ADV_DATA(decoder2matching_1_adv_data),	//++
 		.iPREVIOUS_1_SOURCE0_FLAGS(decoder2matching_1_source0_flags),
 		.iPREVIOUS_1_SOURCE1_IMM(decoder2matching_1_source1_imm),
 		.iPREVIOUS_1_DESTINATION(decoder2matching_1_destination), 
@@ -1040,6 +1069,7 @@ module core_pipeline #(
 		.oNEXT_0_SOURCE1_SYSREG(matching2renaming_0_source1_sysreg), 
 		.oNEXT_0_SOURCE0_SYSREG_RENAME(matching2renaming_0_source0_sysreg_rename), 
 		.oNEXT_0_SOURCE1_SYSREG_RENAME(matching2renaming_0_source1_sysreg_rename), 
+		.oNEXT_0_ADV_ACTIVE(matching2renaming_0_adv_active),		//++
 		.oNEXT_0_DESTINATION_SYSREG(matching2renaming_0_destination_sysreg), 
 		.oNEXT_0_DEST_RENAME(matching2renaming_0_dest_rename),
 		.oNEXT_0_WRITEBACK(matching2renaming_0_writeback), 
@@ -1048,6 +1078,7 @@ module core_pipeline #(
 		.oNEXT_0_CC_AFE(matching2renaming_0_cc_afe), 
 		.oNEXT_0_SOURCE0(matching2renaming_0_source0),
 		.oNEXT_0_SOURCE1(matching2renaming_0_source1), 
+		.oNEXT_0_ADV_DATA(matching2renaming_0_adv_data),		//++
 		.oNEXT_0_SOURCE0_FLAGS(matching2renaming_0_source0_flags),
 		.oNEXT_0_SOURCE1_IMM(matching2renaming_0_source1_imm),
 		.oNEXT_0_DESTINATION(matching2renaming_0_destination), 
@@ -1068,6 +1099,7 @@ module core_pipeline #(
 		.oNEXT_1_SOURCE1_SYSREG(matching2renaming_1_source1_sysreg), 
 		.oNEXT_1_SOURCE0_SYSREG_RENAME(matching2renaming_1_source0_sysreg_rename), 
 		.oNEXT_1_SOURCE1_SYSREG_RENAME(matching2renaming_1_source1_sysreg_rename), 
+		.oNEXT_1_ADV_ACTIVE(matching2renaming_1_adv_active),		//++
 		.oNEXT_1_DESTINATION_SYSREG(matching2renaming_1_destination_sysreg), 
 		.oNEXT_1_DEST_RENAME(matching2renaming_1_dest_rename),
 		.oNEXT_1_WRITEBACK(matching2renaming_1_writeback), 
@@ -1076,6 +1108,7 @@ module core_pipeline #(
 		.oNEXT_1_CC_AFE(matching2renaming_1_cc_afe), 
 		.oNEXT_1_SOURCE0(matching2renaming_1_source0),
 		.oNEXT_1_SOURCE1(matching2renaming_1_source1), 
+		.oNEXT_1_ADV_DATA(matching2renaming_1_adv_data),		//++
 		.oNEXT_1_SOURCE0_FLAGS(matching2renaming_1_source0_flags),
 		.oNEXT_1_SOURCE1_IMM(matching2renaming_1_source1_imm),
 		.oNEXT_1_DESTINATION(matching2renaming_1_destination), 
@@ -1133,6 +1166,7 @@ module core_pipeline #(
 		.iPREVIOUS_0_SOURCE1_SYSREG(matching2renaming_0_source1_sysreg), 
 		.iPREVIOUS_0_SOURCE0_SYSREG_RENAME(matching2renaming_0_source0_sysreg_rename), 
 		.iPREVIOUS_0_SOURCE1_SYSREG_RENAME(matching2renaming_0_source1_sysreg_rename), 
+		.iPREVIOUS_0_ADV_ACTIVE(matching2renaming_0_adv_active),
 		.iPREVIOUS_0_DESTINATION_SYSREG(matching2renaming_0_destination_sysreg), 
 		.iPREVIOUS_0_DEST_RENAME(matching2renaming_0_dest_rename),
 		.iPREVIOUS_0_WRITEBACK(matching2renaming_0_writeback), 
@@ -1141,6 +1175,7 @@ module core_pipeline #(
 		.iPREVIOUS_0_CC_AFE(matching2renaming_0_cc_afe), 
 		.iPREVIOUS_0_SOURCE1(matching2renaming_0_source1), 
 		.iPREVIOUS_0_SOURCE0(matching2renaming_0_source0),
+		.iPREVIOUS_0_ADV_DATA(matching2renaming_0_adv_data),
 		.iPREVIOUS_0_SOURCE0_FLAGS(matching2renaming_0_source0_flags),
 		.iPREVIOUS_0_SOURCE1_IMM(matching2renaming_0_source1_imm), 
 		.iPREVIOUS_0_DESTINATION(matching2renaming_0_destination), 
@@ -1161,14 +1196,16 @@ module core_pipeline #(
 		.iPREVIOUS_1_SOURCE1_SYSREG(matching2renaming_1_source1_sysreg), 
 		.iPREVIOUS_1_SOURCE0_SYSREG_RENAME(matching2renaming_1_source0_sysreg_rename), 
 		.iPREVIOUS_1_SOURCE1_SYSREG_RENAME(matching2renaming_1_source1_sysreg_rename), 
+		.iPREVIOUS_1_ADV_ACTIVE(matching2renaming_1_adv_active),
 		.iPREVIOUS_1_DESTINATION_SYSREG(matching2renaming_1_destination_sysreg), 
 		.iPREVIOUS_1_DEST_RENAME(matching2renaming_1_dest_rename),
 		.iPREVIOUS_1_WRITEBACK(matching2renaming_1_writeback), 
 		.iPREVIOUS_1_FLAGS_WRITEBACK(matching2renaming_1_flags_writeback),
 		.iPREVIOUS_1_CMD(matching2renaming_1_cmd), 
 		.iPREVIOUS_1_CC_AFE(matching2renaming_1_cc_afe), 
-		.iPREVIOUS_1_SOURCE1(matching2renaming_1_source1), 
 		.iPREVIOUS_1_SOURCE0(matching2renaming_1_source0),
+		.iPREVIOUS_1_SOURCE1(matching2renaming_1_source1), 
+		.iPREVIOUS_1_ADV_DATA(matching2renaming_1_adv_data),
 		.iPREVIOUS_1_SOURCE0_FLAGS(matching2renaming_1_source0_flags),
 		.iPREVIOUS_1_SOURCE1_IMM(matching2renaming_1_source1_imm), 
 		.iPREVIOUS_1_DESTINATION(matching2renaming_1_destination),
@@ -1204,6 +1241,7 @@ module core_pipeline #(
 		.oNEXT_0_SOURCE1_SYSREG(renaming2scheduler1_0_source1_sysreg), 
 		.oNEXT_0_SOURCE0_SYSREG_RENAME(renaming2scheduler1_0_source0_sysreg_rename), 
 		.oNEXT_0_SOURCE1_SYSREG_RENAME(renaming2scheduler1_0_source1_sysreg_rename),
+		.oNEXT_0_ADV_ACTIVE(renaming2scheduler1_0_adv_active),		//++
 		.oNEXT_0_DESTINATION_SYSREG(renaming2scheduler1_0_destination_sysreg), 
 		.oNEXT_0_WRITEBACK(renaming2scheduler1_0_data_writeback), 
 		.oNEXT_0_FLAGS_WRITEBACK(renaming2scheduler1_0_flags_writeback), 
@@ -1214,6 +1252,7 @@ module core_pipeline #(
 		.oNEXT_0_LOGIC_DESTINATION(renaming2scheduler1_0_logic_destination),
 		.oNEXT_0_SOURCE0(renaming2scheduler1_0_source0), 
 		.oNEXT_0_SOURCE1(renaming2scheduler1_0_source1), 
+		.oNEXT_0_ADV_DATA(renaming2scheduler1_0_adv_data),		//++
 		.oNEXT_0_SOURCE0_FLAGS(renaming2scheduler1_0_source0_flags),
 		.oNEXT_0_SOURCE1_IMM(renaming2scheduler1_0_source1_imm), 
 		.oNEXT_0_EX_SYS_ADDER(renaming2scheduler1_0_sys_adder),
@@ -1233,6 +1272,7 @@ module core_pipeline #(
 		.oNEXT_1_SOURCE1_SYSREG(renaming2scheduler1_1_source1_sysreg), 
 		.oNEXT_1_SOURCE0_SYSREG_RENAME(renaming2scheduler1_1_source0_sysreg_rename), 
 		.oNEXT_1_SOURCE1_SYSREG_RENAME(renaming2scheduler1_1_source1_sysreg_rename),
+		.oNEXT_1_ADV_ACTIVE(renaming2scheduler1_1_adv_active),		//++
 		.oNEXT_1_DESTINATION_SYSREG(renaming2scheduler1_1_destination_sysreg), 
 		.oNEXT_1_WRITEBACK(renaming2scheduler1_1_data_writeback), 
 		.oNEXT_1_FLAGS_WRITEBACK(renaming2scheduler1_1_flags_writeback), 
@@ -1243,6 +1283,7 @@ module core_pipeline #(
 		.oNEXT_1_LOGIC_DESTINATION(renaming2scheduler1_1_logic_destination), 
 		.oNEXT_1_SOURCE0(renaming2scheduler1_1_source0), 
 		.oNEXT_1_SOURCE1(renaming2scheduler1_1_source1), 
+		.oNEXT_1_ADV_DATA(renaming2scheduler1_1_adv_data),		//++
 		.oNEXT_1_SOURCE0_FLAGS(renaming2scheduler1_1_source0_flags),
 		.oNEXT_1_SOURCE1_IMM(renaming2scheduler1_1_source_imm), 
 		.oNEXT_1_EX_SYS_ADDER(renaming2scheduler1_1_sys_adder),
@@ -1319,6 +1360,7 @@ module core_pipeline #(
 		.iPREVIOUS_0_SOURCE1_SYSREG(renaming2scheduler1_0_source1_sysreg), 
 		.iPREVIOUS_0_SOURCE0_SYSREG_RENAME(renaming2scheduler1_0_source0_sysreg_rename), 
 		.iPREVIOUS_0_SOURCE1_SYSREG_RENAME(renaming2scheduler1_0_source1_sysreg_rename), 
+		.iPREVIOUS_0_ADV_ACTIVE(renaming2scheduler1_0_adv_active),
 		.iPREVIOUS_0_DESTINATION_SYSREG(renaming2scheduler1_0_destination_sysreg), 
 		.iPREVIOUS_0_WRITEBACK(renaming2scheduler1_0_data_writeback), 
 		.iPREVIOUS_0_FLAGS_WRITEBACK(renaming2scheduler1_0_flags_writeback), 
@@ -1329,6 +1371,7 @@ module core_pipeline #(
 		.iPREVIOUS_0_LOGIC_DESTINATION(renaming2scheduler1_0_logic_destination), 
 		.iPREVIOUS_0_SOURCE0(renaming2scheduler1_0_source0), 
 		.iPREVIOUS_0_SOURCE1(renaming2scheduler1_0_source1), 
+		.iPREVIOUS_0_ADV_DATA(renaming2scheduler1_0_adv_data),
 		.iPREVIOUS_0_SOURCE0_FLAGS(renaming2scheduler1_0_source0_flags),
 		.iPREVIOUS_0_SOURCE1_IMM(renaming2scheduler1_0_source1_imm), 
 		.iPREVIOUS_0_EX_SYS_ADDER(renaming2scheduler1_0_sys_adder),
@@ -1348,6 +1391,7 @@ module core_pipeline #(
 		.iPREVIOUS_1_SOURCE1_SYSREG(renaming2scheduler1_1_source1_sysreg), 
 		.iPREVIOUS_1_SOURCE0_SYSREG_RENAME(renaming2scheduler1_1_source0_sysreg_rename), 
 		.iPREVIOUS_1_SOURCE1_SYSREG_RENAME(renaming2scheduler1_1_source1_sysreg_rename), 
+		.iPREVIOUS_1_ADV_ACTIVE(renaming2scheduler1_1_adv_active),
 		.iPREVIOUS_1_DESTINATION_SYSREG(renaming2scheduler1_1_destination_sysreg), 
 		.iPREVIOUS_1_WRITEBACK(renaming2scheduler1_1_data_writeback), 
 		.iPREVIOUS_1_FLAGS_WRITEBACK(renaming2scheduler1_1_flags_writeback), 
@@ -1358,6 +1402,7 @@ module core_pipeline #(
 		.iPREVIOUS_1_LOGIC_DESTINATION(renaming2scheduler1_1_logic_destination),
 		.iPREVIOUS_1_SOURCE0(renaming2scheduler1_1_source0), 
 		.iPREVIOUS_1_SOURCE1(renaming2scheduler1_1_source1), 
+		.iPREVIOUS_1_ADV_DATA(renaming2scheduler1_1_adv_data),
 		.iPREVIOUS_1_SOURCE0_FLAGS(renaming2scheduler1_1_source0_flags),
 		.iPREVIOUS_1_SOURCE1_IMM(renaming2scheduler1_1_source_imm), 
 		.iPREVIOUS_1_EX_SYS_ADDER(renaming2scheduler1_1_sys_adder),
@@ -1409,6 +1454,7 @@ module core_pipeline #(
 		.oNEXT_0_SOURCE1_SYSREG(scheduler12scheduler2_0_source1_sysreg), 
 		.oNEXT_0_SOURCE0_SYSREG_RENAME(scheduler12scheduler2_0_source0_sysreg_rename), 
 		.oNEXT_0_SOURCE1_SYSREG_RENAME(scheduler12scheduler2_0_source1_sysreg_rename), 
+		.oNEXT_0_ADV_ACTIVE(scheduler12scheduler2_0_adv_active), 
 		.oNEXT_0_DESTINATION_SYSREG(scheduler12scheduler2_0_destination_sysreg), 
 		.oNEXT_0_WRITEBACK(scheduler12scheduler2_0_writeback), 
 		.oNEXT_0_FLAGS_WRITEBACK(scheduler12scheduler2_0_flags_writeback), 
@@ -1420,6 +1466,7 @@ module core_pipeline #(
 		.oNEXT_0_LOGIC_DESTINATION(scheduler12scheduler2_0_logic_destination), 
 		.oNEXT_0_SOURCE0(scheduler12scheduler2_0_source0), 
 		.oNEXT_0_SOURCE1(scheduler12scheduler2_0_source1), 
+		.oNEXT_0_ADV_DATA(scheduler12scheduler2_0_adv_data), 
 		.oNEXT_0_SOURCE0_FLAGS(scheduler12scheduler2_0_source0_flags),
 		.oNEXT_0_SOURCE1_IMM(scheduler12scheduler2_0_source1_imm), 
 		.oNEXT_0_EX_SYS_ADDER(scheduler12scheduler2_0_sys_reg), 
@@ -1439,6 +1486,7 @@ module core_pipeline #(
 		.oNEXT_1_SOURCE1_SYSREG(scheduler12scheduler2_1_source1_sysreg), 
 		.oNEXT_1_SOURCE0_SYSREG_RENAME(scheduler12scheduler2_1_source0_sysreg_rename), 
 		.oNEXT_1_SOURCE1_SYSREG_RENAME(scheduler12scheduler2_1_source1_sysreg_rename), 
+		.oNEXT_1_ADV_ACTIVE(scheduler12scheduler2_1_adv_active), 
 		.oNEXT_1_DESTINATION_SYSREG(scheduler12scheduler2_1_destination_sysreg), 
 		.oNEXT_1_WRITEBACK(scheduler12scheduler2_1_writeback), 
 		.oNEXT_1_FLAGS_WRITEBACK(scheduler12scheduler2_1_flags_writeback), 
@@ -1450,6 +1498,7 @@ module core_pipeline #(
 		.oNEXT_1_LOGIC_DESTINATION(scheduler12scheduler2_1_logic_destination), 
 		.oNEXT_1_SOURCE0(scheduler12scheduler2_1_source0), 
 		.oNEXT_1_SOURCE1(scheduler12scheduler2_1_source1), 
+		.oNEXT_1_ADV_DATA(scheduler12scheduler2_1_adv_data), 
 		.oNEXT_1_SOURCE0_FLAGS(scheduler12scheduler2_1_source0_flags),
 		.oNEXT_1_SOURCE1_IMM(scheduler12scheduler2_1_source1_imm), 
 		.oNEXT_1_EX_SYS_ADDER(scheduler12scheduler2_1_sys_reg), 
@@ -1501,6 +1550,7 @@ module core_pipeline #(
 		.iPREVIOUS_0_SOURCE1_SYSREG(scheduler12scheduler2_0_source1_sysreg), 
 		.iPREVIOUS_0_SOURCE0_SYSREG_RENAME(scheduler12scheduler2_0_source0_sysreg_rename), 
 		.iPREVIOUS_0_SOURCE1_SYSREG_RENAME(scheduler12scheduler2_0_source1_sysreg_rename), 
+		.iPREVIOUS_0_ADV_ACTIVE(scheduler12scheduler2_0_adv_active),
 		.iPREVIOUS_0_DESTINATION_SYSREG(scheduler12scheduler2_0_destination_sysreg), 
 		.iPREVIOUS_0_WRITEBACK(scheduler12scheduler2_0_writeback), 
 		.iPREVIOUS_0_FLAGS_WRITEBACK(scheduler12scheduler2_0_flags_writeback), 
@@ -1512,6 +1562,7 @@ module core_pipeline #(
 		.iPREVIOUS_0_LOGIC_DESTINATION(scheduler12scheduler2_0_logic_destination), 
 		.iPREVIOUS_0_SOURCE0(scheduler12scheduler2_0_source0), 
 		.iPREVIOUS_0_SOURCE1(scheduler12scheduler2_0_source1), 
+		.iPREVIOUS_0_ADV_DATA(scheduler12scheduler2_0_adv_data),
 		.iPREVIOUS_0_SOURCE0_FLAGS(scheduler12scheduler2_0_source0_flags),
 		.iPREVIOUS_0_SOURCE1_IMM(scheduler12scheduler2_0_source1_imm),
 		.iPREVIOUS_0_EX_SYS_REG(scheduler12scheduler2_0_sys_reg), 
@@ -1531,6 +1582,7 @@ module core_pipeline #(
 		.iPREVIOUS_1_SOURCE1_SYSREG(scheduler12scheduler2_1_source1_sysreg), 
 		.iPREVIOUS_1_SOURCE0_SYSREG_RENAME(scheduler12scheduler2_1_source0_sysreg_rename), 
 		.iPREVIOUS_1_SOURCE1_SYSREG_RENAME(scheduler12scheduler2_1_source1_sysreg_rename), 
+		.iPREVIOUS_1_ADV_ACTIVE(scheduler12scheduler2_1_adv_active),
 		.iPREVIOUS_1_DESTINATION_SYSREG(scheduler12scheduler2_1_destination_sysreg), 
 		.iPREVIOUS_1_WRITEBACK(scheduler12scheduler2_1_writeback), 
 		.iPREVIOUS_1_FLAGS_WRITEBACK(scheduler12scheduler2_1_flags_writeback), 
@@ -1542,6 +1594,7 @@ module core_pipeline #(
 		.iPREVIOUS_1_LOGIC_DESTINATION(scheduler12scheduler2_1_logic_destination), 
 		.iPREVIOUS_1_SOURCE0(scheduler12scheduler2_1_source0), 
 		.iPREVIOUS_1_SOURCE1(scheduler12scheduler2_1_source1), 
+		.iPREVIOUS_1_ADV_DATA(scheduler12scheduler2_1_adv_data),
 		.iPREVIOUS_1_SOURCE0_FLAGS(scheduler12scheduler2_1_source0_flags),
 		.iPREVIOUS_1_SOURCE1_IMM(scheduler12scheduler2_1_source1_imm), 
 		.iPREVIOUS_1_EX_SYS_REG(scheduler12scheduler2_1_sys_reg), 
@@ -1643,6 +1696,8 @@ module core_pipeline #(
 		.oNEXT_EX_ALU3_LDST(scheduler22ex_alu3_ldst),
 		.oNEXT_EX_ALU3_SOURCE0(scheduler22ex_alu3_source0),
 		.oNEXT_EX_ALU3_SOURCE1(scheduler22ex_alu3_source1),
+		.oNEXT_EX_ALU3_ADV_ACTIVE(scheduler22ex_alu3_adv_active),
+		.oNEXT_EX_ALU3_ADV_DATA(scheduler22ex_alu3_adv_data),
 		.oNEXT_EX_ALU3_DESTINATION_REGNAME(scheduler22ex_alu3_destination_regname), 
 		.oNEXT_EX_ALU3_PC(scheduler22ex_alu3_pc),
 		.iNEXT_EX_ALU3_LOCK(ex_alu32scheduler2_ldst_lock),
@@ -1764,6 +1819,7 @@ module core_pipeline #(
 	execute_port3 SATGE7_EX_PORT3(
 		.iCLOCK(iCLOCK), 
 		.inRESET(inRESET),
+		.iRESET_SYNC(1'b0),
 		//Free
 		.iFREE_EX(exception_restart),
 		.iFREE_SYSREG_NEW_SPR_VALID(exception2alu0_new_spr_valid),	
@@ -1792,6 +1848,8 @@ module core_pipeline #(
 		.iPREVIOUS_EX_ALU3_CMD(scheduler22ex_alu3_cmd), 
 		.iPREVIOUS_EX_ALU3_SOURCE0(scheduler22ex_alu3_source0), 
 		.iPREVIOUS_EX_ALU3_SOURCE1(scheduler22ex_alu3_source1), 
+		.iPREVIOUS_EX_ALU3_ADV_ACTIVE(scheduler22ex_alu3_adv_active),
+		.iPREVIOUS_EX_ALU3_ADV_DATA(scheduler22ex_alu3_adv_data),
 		.iPREVIOUS_EX_ALU3_DESTINATION_REGNAME(scheduler22ex_alu3_destination_regname), .iPREVIOUS_EX_ALU3_PC(scheduler22ex_alu3_pc),
 		.iPREVIOUS_EX_ALU3_SYS_LDST(scheduler22ex_alu3_sys_ldst), 
 		.iPREVIOUS_EX_ALU3_LDST(scheduler22ex_alu3_ldst),

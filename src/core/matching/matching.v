@@ -36,7 +36,8 @@ module matching(
 		input wire iPREVIOUS_0_SOURCE0_SYSREG,		
 		input wire iPREVIOUS_0_SOURCE1_SYSREG,		
 		input wire iPREVIOUS_0_SOURCE0_SYSREG_RENAME,	
-		input wire iPREVIOUS_0_SOURCE1_SYSREG_RENAME,			
+		input wire iPREVIOUS_0_SOURCE1_SYSREG_RENAME,	
+		input wire iPREVIOUS_0_ADV_ACTIVE,		//++		
 		input wire iPREVIOUS_0_DESTINATION_SYSREG,		
 		input wire iPREVIOUS_0_DEST_RENAME,		
 		input wire iPREVIOUS_0_WRITEBACK,	
@@ -46,6 +47,7 @@ module matching(
 		input wire [3:0] iPREVIOUS_0_CC_AFE,
 		input wire [4:0] iPREVIOUS_0_SOURCE0,
 		input wire [31:0] iPREVIOUS_0_SOURCE1,
+		input wire [5:0] iPREVIOUS_0_ADV_DATA,		//++	
 		input wire iPREVIOUS_0_SOURCE0_FLAGS,
 		input wire iPREVIOUS_0_SOURCE1_IMM,
 		input wire [4:0] iPREVIOUS_0_DESTINATION,
@@ -67,7 +69,8 @@ module matching(
 		input wire iPREVIOUS_1_SOURCE0_SYSREG,		
 		input wire iPREVIOUS_1_SOURCE1_SYSREG,		
 		input wire iPREVIOUS_1_SOURCE0_SYSREG_RENAME,	
-		input wire iPREVIOUS_1_SOURCE1_SYSREG_RENAME,				
+		input wire iPREVIOUS_1_SOURCE1_SYSREG_RENAME,	
+		input wire iPREVIOUS_1_ADV_ACTIVE,		//++				
 		input wire iPREVIOUS_1_DESTINATION_SYSREG,	
 		input wire iPREVIOUS_1_DEST_RENAME,	
 		input wire iPREVIOUS_1_WRITEBACK,
@@ -77,6 +80,7 @@ module matching(
 		input wire [3:0] iPREVIOUS_1_CC_AFE,
 		input wire [4:0] iPREVIOUS_1_SOURCE0,
 		input wire [31:0] iPREVIOUS_1_SOURCE1,
+		input wire [5:0] iPREVIOUS_1_ADV_DATA,		//++
 		input wire iPREVIOUS_1_SOURCE0_FLAGS,
 		input wire iPREVIOUS_1_SOURCE1_IMM,
 		input wire [4:0] iPREVIOUS_1_DESTINATION,
@@ -100,6 +104,7 @@ module matching(
 		output wire oNEXT_0_SOURCE1_SYSREG,			
 		output wire oNEXT_0_SOURCE0_SYSREG_RENAME,		
 		output wire oNEXT_0_SOURCE1_SYSREG_RENAME,	
+		output wire oNEXT_0_ADV_ACTIVE,
 		output wire oNEXT_0_DESTINATION_SYSREG,	
 		output wire oNEXT_0_DEST_RENAME,	
 		output wire oNEXT_0_WRITEBACK,
@@ -108,6 +113,7 @@ module matching(
 		output wire [3:0] oNEXT_0_CC_AFE,
 		output wire [4:0] oNEXT_0_SOURCE0,
 		output wire [31:0] oNEXT_0_SOURCE1,
+		output wire [5:0] oNEXT_0_ADV_DATA,
 		output wire oNEXT_0_SOURCE0_FLAGS,
 		output wire oNEXT_0_SOURCE1_IMM,
 		output wire [4:0] oNEXT_0_DESTINATION,
@@ -128,7 +134,8 @@ module matching(
 		output wire oNEXT_1_SOURCE0_SYSREG,		
 		output wire oNEXT_1_SOURCE1_SYSREG,		
 		output wire oNEXT_1_SOURCE0_SYSREG_RENAME,		
-		output wire oNEXT_1_SOURCE1_SYSREG_RENAME,	
+		output wire oNEXT_1_SOURCE1_SYSREG_RENAME,
+		output wire oNEXT_1_ADV_ACTIVE,	
 		output wire oNEXT_1_DESTINATION_SYSREG,	
 		output wire oNEXT_1_DEST_RENAME,			
 		output wire oNEXT_1_WRITEBACK,
@@ -137,6 +144,7 @@ module matching(
 		output wire [3:0] oNEXT_1_CC_AFE,
 		output wire [4:0] oNEXT_1_SOURCE0,
 		output wire [31:0] oNEXT_1_SOURCE1,
+		output wire [5:0] oNEXT_1_ADV_DATA,
 		output wire oNEXT_1_SOURCE0_FLAGS,
 		output wire oNEXT_1_SOURCE1_IMM,
 		output wire [4:0] oNEXT_1_DESTINATION,
@@ -167,12 +175,12 @@ module matching(
 	wire prev_lock;
 	wire next_lock;	
 	//Instruction Loop Buffer
-	wire [(107*2)-1:0] wr_loop_buffer_data;	
+	wire [(114*2)-1:0] wr_loop_buffer_data;	
 	//Loop Buffer Output
 	wire [3:0] loop_buffer_count;
 	wire loop_buffer_wr_full;
-	wire [107-1:0]	loop_buffer_rd_inst0;
-	wire [107-1:0]	loop_buffer_rd_inst1;
+	wire [114-1:0]	loop_buffer_rd_inst0;
+	wire [114-1:0]	loop_buffer_rd_inst1;
 	wire loop_buffer_rd_empty;
 	//Loop Buffer Request
 	reg b_fifo_req;
@@ -195,6 +203,8 @@ module matching(
 	wire inst_0_source1_sysreg;	
 	wire inst_0_source0_sysreg_rename;
 	wire inst_0_source1_sysreg_rename;
+	wire inst_0_adv_active;
+	wire [5:0] inst_0_adv_data;
 	wire [4:0] inst_0_destination;	
 	wire inst_0_ex_sys_adder;
 	wire inst_0_ex_sys_ldst;
@@ -225,6 +235,8 @@ module matching(
 	wire inst_1_source1_sysreg;	
 	wire inst_1_source0_sysreg_rename;
 	wire inst_1_source1_sysreg_rename;
+	wire inst_1_adv_active;
+	wire [5:0] inst_1_adv_data;
 	wire [4:0] inst_1_destination;	
 	wire inst_1_ex_sys_adder;
 	wire inst_1_ex_sys_ldst;
@@ -278,6 +290,8 @@ module matching(
 			iPREVIOUS_0_SOURCE1_SYSREG,		
 			iPREVIOUS_0_SOURCE0_SYSREG_RENAME,	
 			iPREVIOUS_0_SOURCE1_SYSREG_RENAME,	
+			iPREVIOUS_0_ADV_ACTIVE,
+			iPREVIOUS_0_ADV_DATA,
 			iPREVIOUS_0_DESTINATION,
 			iPREVIOUS_0_EX_SYS_ADDER,	
 			iPREVIOUS_0_EX_SYS_LDST,
@@ -309,6 +323,8 @@ module matching(
 			iPREVIOUS_1_SOURCE1_SYSREG,		
 			iPREVIOUS_1_SOURCE0_SYSREG_RENAME,	
 			iPREVIOUS_1_SOURCE1_SYSREG_RENAME,	
+			iPREVIOUS_1_ADV_ACTIVE,
+			iPREVIOUS_1_ADV_DATA,
 			iPREVIOUS_1_DESTINATION,
 			iPREVIOUS_1_EX_SYS_ADDER,	
 			iPREVIOUS_1_EX_SYS_LDST,
@@ -325,7 +341,7 @@ module matching(
 	
 	
 	//parameter is N, DEPTH, DEPTH_N
-	mist1032sa_sync_fifo #((75 + 32)*2, 16, 4) INST_LOOP_BUFFER(
+	mist1032sa_sync_fifo #(114*2, 16, 4) INST_LOOP_BUFFER(
 		.iCLOCK(iCLOCK),
 		.inRESET(inRESET),
 		.iREMOVE(iFREE_RESTART),
@@ -381,6 +397,8 @@ module matching(
 		inst_0_source1_sysreg,	
 		inst_0_source0_sysreg_rename,
 		inst_0_source1_sysreg_rename,
+		inst_0_adv_active,
+		inst_0_adv_data,
 		inst_0_destination,	
 		inst_0_ex_sys_adder,
 		inst_0_ex_sys_ldst,
@@ -413,6 +431,8 @@ module matching(
 		inst_1_source1_sysreg,	
 		inst_1_source0_sysreg_rename,
 		inst_1_source1_sysreg_rename,
+		inst_1_adv_active,
+		inst_1_adv_data,
 		inst_1_destination,	
 		inst_1_ex_sys_adder,
 		inst_1_ex_sys_ldst,
@@ -644,7 +664,9 @@ module matching(
 		oNEXT_0_SOURCE0_SYSREG,	
 		oNEXT_0_SOURCE1_SYSREG,	
 		oNEXT_0_SOURCE0_SYSREG_RENAME,
-		oNEXT_0_SOURCE1_SYSREG_RENAME,	
+		oNEXT_0_SOURCE1_SYSREG_RENAME,
+		oNEXT_0_ADV_ACTIVE,
+		oNEXT_0_ADV_DATA,	
 		oNEXT_0_DESTINATION,	
 		oNEXT_0_EX_SYS_ADDER,	
 		oNEXT_0_EX_SYS_LDST,	
@@ -673,6 +695,8 @@ module matching(
 																		inst_0_source1_sysreg,	
 																		inst_0_source0_sysreg_rename,
 																		inst_0_source1_sysreg_rename,
+																		inst_0_adv_active,
+																		inst_0_adv_data,
 																		inst_0_destination,	
 																		inst_0_ex_sys_adder,
 																		inst_0_ex_sys_ldst,
@@ -701,6 +725,8 @@ module matching(
 																					inst_1_source1_sysreg,	
 																					inst_1_source0_sysreg_rename,
 																					inst_1_source1_sysreg_rename,
+																					inst_1_adv_active,
+																					inst_1_adv_data,
 																					inst_1_destination,	
 																					inst_1_ex_sys_adder,
 																					inst_1_ex_sys_ldst,
@@ -715,61 +741,65 @@ module matching(
 			
 	assign oNEXT_1_VALID = next_1_valid;										
 	assign {
-			oNEXT_1_DESTINATION_SYSREG,
-			oNEXT_1_DEST_RENAME,		
-			oNEXT_1_WRITEBACK,	
-			oNEXT_1_FLAGS_WRITEBACK,	
-			oNEXT_1_CMD,
-			oNEXT_1_CC_AFE,			
-			oNEXT_1_SOURCE0,			
-			oNEXT_1_SOURCE1,		
-			oNEXT_1_SOURCE0_FLAGS,
-			oNEXT_1_SOURCE1_IMM,	
-			oNEXT_1_SOURCE0_ACTIVE,		
-			oNEXT_1_SOURCE1_ACTIVE,	
-			oNEXT_1_SOURCE0_SYSREG,	
-			oNEXT_1_SOURCE1_SYSREG,	
-			oNEXT_1_SOURCE0_SYSREG_RENAME,
-			oNEXT_1_SOURCE1_SYSREG_RENAME,	
-			oNEXT_1_DESTINATION,	
-			oNEXT_1_EX_SYS_ADDER,	
-			oNEXT_1_EX_SYS_LDST,	
-			oNEXT_1_EX_LOGIC,	
-			oNEXT_1_EX_SHIFT,		
-			oNEXT_1_EX_ADDER,		
-			oNEXT_1_EX_MUL,		
-			oNEXT_1_EX_SDIV,			
-			oNEXT_1_EX_UDIV,		
-			oNEXT_1_EX_LDST,	
-			oNEXT_1_EX_BRANCH} = {
-									inst_1_destination_sysreg,	
-									inst_1_dest_rename,
-									inst_1_writeback,	
-									inst_1_flags_writeback,
-									//inst_1_commit_wait_inst,					
-									inst_1_cmd,
-									inst_1_cc_afe,
-									inst_1_source0,
-									inst_1_source1,
-									inst_1_source0_flags,
-									inst_1_source1_imm,
-									inst_1_source0_active,	
-									inst_1_source1_active,	
-									inst_1_source0_sysreg,				
-									inst_1_source1_sysreg,	
-									inst_1_source0_sysreg_rename,
-									inst_1_source1_sysreg_rename,
-									inst_1_destination,	
-									inst_1_ex_sys_adder,
-									inst_1_ex_sys_ldst,
-									inst_1_ex_logic,
-									inst_1_ex_shift,
-									inst_1_ex_adder,
-									inst_1_ex_mul,
-									inst_1_ex_sdiv,
-									inst_1_ex_udiv,
-									inst_1_ex_ldst,
-									inst_1_ex_branch};
+		oNEXT_1_DESTINATION_SYSREG,
+		oNEXT_1_DEST_RENAME,		
+		oNEXT_1_WRITEBACK,	
+		oNEXT_1_FLAGS_WRITEBACK,	
+		oNEXT_1_CMD,
+		oNEXT_1_CC_AFE,			
+		oNEXT_1_SOURCE0,			
+		oNEXT_1_SOURCE1,		
+		oNEXT_1_SOURCE0_FLAGS,
+		oNEXT_1_SOURCE1_IMM,	
+		oNEXT_1_SOURCE0_ACTIVE,		
+		oNEXT_1_SOURCE1_ACTIVE,	
+		oNEXT_1_SOURCE0_SYSREG,	
+		oNEXT_1_SOURCE1_SYSREG,	
+		oNEXT_1_SOURCE0_SYSREG_RENAME,
+		oNEXT_1_SOURCE1_SYSREG_RENAME,	
+		oNEXT_1_ADV_ACTIVE,
+		oNEXT_1_ADV_DATA,	
+		oNEXT_1_DESTINATION,	
+		oNEXT_1_EX_SYS_ADDER,	
+		oNEXT_1_EX_SYS_LDST,	
+		oNEXT_1_EX_LOGIC,	
+		oNEXT_1_EX_SHIFT,		
+		oNEXT_1_EX_ADDER,		
+		oNEXT_1_EX_MUL,		
+		oNEXT_1_EX_SDIV,			
+		oNEXT_1_EX_UDIV,		
+		oNEXT_1_EX_LDST,	
+		oNEXT_1_EX_BRANCH} = {
+								inst_1_destination_sysreg,	
+								inst_1_dest_rename,
+								inst_1_writeback,	
+								inst_1_flags_writeback,
+								//inst_1_commit_wait_inst,					
+								inst_1_cmd,
+								inst_1_cc_afe,
+								inst_1_source0,
+								inst_1_source1,
+								inst_1_source0_flags,
+								inst_1_source1_imm,
+								inst_1_source0_active,	
+								inst_1_source1_active,	
+								inst_1_source0_sysreg,				
+								inst_1_source1_sysreg,	
+								inst_1_source0_sysreg_rename,
+								inst_1_source1_sysreg_rename,
+								inst_1_adv_active,
+								inst_1_adv_data,
+								inst_1_destination,	
+								inst_1_ex_sys_adder,
+								inst_1_ex_sys_ldst,
+								inst_1_ex_logic,
+								inst_1_ex_shift,
+								inst_1_ex_adder,
+								inst_1_ex_mul,
+								inst_1_ex_sdiv,
+								inst_1_ex_udiv,
+								inst_1_ex_ldst,
+								inst_1_ex_branch};
 
 	assign oNEXT_PC = (!(b_state == STT_BUFFER_COMMIT_WAIT))? inst_0_pc : inst_1_pc;
 	assign oPREVIOUS_LOCK = prev_lock;

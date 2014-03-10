@@ -14,6 +14,7 @@ module execute_port3(
 		//System
 		input wire iCLOCK,
 		input wire inRESET,
+		input wire iRESET_SYNC,
 		//Free
 		input wire iFREE_EX,
 		input wire iFREE_SYSREG_NEW_SPR_VALID,
@@ -38,11 +39,13 @@ module execute_port3(
 		//output wire oOUT_PORT_DATA_VALID, 2011/10/05		
 		//Scheduler2-Input
 		input wire iPREVIOUS_EX_ALU3_VALID,
-		input wire iPREVIOUS_EX_ALU3_DESTINATION_SYSREG,	//NEW
+		input wire iPREVIOUS_EX_ALU3_DESTINATION_SYSREG,
 		input wire [5:0] iPREVIOUS_EX_ALU3_COMMIT_TAG,
 		input wire [4:0] iPREVIOUS_EX_ALU3_CMD,
 		input wire [31:0] iPREVIOUS_EX_ALU3_SOURCE0,			
-		input wire [31:0] iPREVIOUS_EX_ALU3_SOURCE1,			
+		input wire [31:0] iPREVIOUS_EX_ALU3_SOURCE1,
+		input wire iPREVIOUS_EX_ALU3_ADV_ACTIVE,
+		input wire [5:0] iPREVIOUS_EX_ALU3_ADV_DATA,
 		input wire [5:0] iPREVIOUS_EX_ALU3_DESTINATION_REGNAME,		
 		input wire [31:0] iPREVIOUS_EX_ALU3_PC,	
 		input wire iPREVIOUS_EX_ALU3_SYS_LDST,		
@@ -55,7 +58,7 @@ module execute_port3(
 		output wire oSCHE2_ALU3_VALID,
 		output wire [5:0] oSCHE2_ALU3_COMMIT_TAG,
 		output wire [5:0] oSCHE2_ALU3_DESTINATION_REGNAME,
-		output wire oSCHE2_ALU3_DESTINATION_SYSREG,		//NEW
+		output wire oSCHE2_ALU3_DESTINATION_SYSREG,	
 		output wire oSCHE2_ALU3_WRITEBACK,
 		output wire [31:0] oSCHE2_ALU3_DATA
 	);
@@ -151,7 +154,7 @@ module execute_port3(
 			b_ldst_pipe_shift <= 2'h0;
 			b_ldst_pipe_mask <= 4'h0;
 		end
-		else if(inRESET)begin
+		else if(iRESET_SYNC)begin
 			b_ldst_pipe_valid <= 1'b0;
 			b_ldst_pipe_rw <= 1'b0;
 			b_ldst_pipe_addr <= 32'h0;
@@ -211,20 +214,28 @@ module execute_port3(
 	****************************************/
 	reg [5:0] b_latch_commit_tag;
 	reg [5:0] b_latch_phisical_dest_addr;
+	reg b_latch_adv_active;
+	reg [5:0] b_latch_adv_data;
 
 	always@(posedge iCLOCK or negedge inRESET)begin
 		if(!inRESET)begin
 			b_latch_commit_tag <= 6'h0;
 			b_latch_phisical_dest_addr <= 6'h0;
+			b_latch_adv_active <= 1'b0;
+			b_latch_adv_data <= 6'h0;
 		end
 		else if(iRESET_SYNC)begin
 			b_latch_commit_tag <= 6'h0;
 			b_latch_phisical_dest_addr <= 6'h0;
+			b_latch_adv_active <= 1'b0;
+			b_latch_adv_data <= 6'h0;
 		end
 		else begin
 			if(!this_lock)begin
 				b_latch_commit_tag <= iPREVIOUS_EX_ALU3_COMMIT_TAG;
 				b_latch_phisical_dest_addr <= iPREVIOUS_EX_ALU3_DESTINATION_REGNAME;
+				b_latch_adv_active <= iPREVIOUS_EX_ALU3_ADV_ACTIVE;
+				b_latch_adv_data <= iPREVIOUS_EX_ALU3_ADV_DATA;
 			end
 		end
 	end
@@ -246,7 +257,7 @@ module execute_port3(
 	wire [31:0] ldst_pipe_with_afe_data;
 	execute_afe_load_store EXEC_AFE_LDST(
 		//AFE-Conrtol
-		.iAFE_CODE(),
+		.iAFE_CODE(b_latch_adv_data),
 		//Data-In/Out
 		.iDATA(ldst_pipe_load_data),
 		.oDATA(ldst_pipe_with_afe_data)
@@ -284,7 +295,7 @@ module execute_port3(
 	assign oSCHE2_ALU3_DESTINATION_REGNAME = b_latch_phisical_dest_addr;
 	assign oSCHE2_ALU3_COMMIT_TAG = b_latch_commit_tag;
 	assign oSCHE2_ALU3_WRITEBACK = !b_ldst_pipe_rw;
-	assign oSCHE2_ALU3_DATA = ldst_pipe_with_afe_data;
+	assign oSCHE2_ALU3_DATA = (b_latch_adv_active)? ldst_pipe_with_afe_data : ldst_pipe_load_data;
 
 
 endmodule
