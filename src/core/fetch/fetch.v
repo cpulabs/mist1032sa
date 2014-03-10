@@ -9,61 +9,62 @@
 `default_nettype none
 
 module fetch(
-				//System
-				input					iCLOCK,
-				input					inRESET,
-				//Exception
-				input					iEXCEPTION_INST_DISCARD,
-				input					iEXCEPTION_EVENT,
-				input					iEXCEPTION_ADDR_SET,
-				input	[31:0]			iEXCEPTION_ADDR,
-				input					iEXCEPTION_RESTART,
-				//Fetch Stop
-				input					iFETCH_STOP_LOOPBUFFER_LIMIT,
-				//Previous
-				input					iPREVIOUS_0_INST_VALID,
-				input	[5:0]			iPREVIOUS_0_MMU_FLAGS,
-				input	[31:0]			iPREVIOUS_0_INST,
-				input					iPREVIOUS_1_INST_VALID,
-				input	[5:0]			iPREVIOUS_1_MMU_FLAGS,
-				input	[31:0]			iPREVIOUS_1_INST,
-				output					oPREVIOUS_LOCK,
-				//Fetch
-				output					oPREVIOUS_FETCH_REQ,
-				output	[31:0]			oPREVIOUS_FETCH_ADDR,
-				input					iPREVIOUS_FETCH_LOCK,
-				//Next
-				output					oNEXT_0_INST_VALID,
-				output	[5:0]			oNEXT_0_MMU_FLAGS,
-				output	[31:0]			oNEXT_0_INST,
-				output					oNEXT_1_INST_VALID,
-				output	[5:0]			oNEXT_1_MMU_FLAGS,
-				output	[31:0]			oNEXT_1_INST,
-				output	[31:0]			oNEXT_PC,
-				input					iNEXT_LOCK);
+		//System
+		input wire iCLOCK,
+		input wire inRESET,
+		//Exception
+		input wire iEXCEPTION_INST_DISCARD,
+		input wire iEXCEPTION_EVENT,
+		input wire iEXCEPTION_ADDR_SET,
+		input wire [31:0] iEXCEPTION_ADDR,
+		input wire iEXCEPTION_RESTART,
+		//Fetch Stop
+		input wire iFETCH_STOP_LOOPBUFFER_LIMIT,
+		//Previous
+		input wire iPREVIOUS_0_INST_VALID,
+		input wire [5:0] iPREVIOUS_0_MMU_FLAGS,
+		input wire [31:0] iPREVIOUS_0_INST,
+		input wire iPREVIOUS_1_INST_VALID,
+		input wire [5:0] iPREVIOUS_1_MMU_FLAGS,
+		input wire [31:0] iPREVIOUS_1_INST,
+		output wire oPREVIOUS_LOCK,
+		//Fetch
+		output wire oPREVIOUS_FETCH_REQ,
+		output wire [31:0] oPREVIOUS_FETCH_ADDR,
+		input wire iPREVIOUS_FETCH_LOCK,
+		//Next
+		output wire oNEXT_0_INST_VALID,
+		output wire [5:0] oNEXT_0_MMU_FLAGS,
+		output wire [31:0] oNEXT_0_INST,
+		output wire oNEXT_1_INST_VALID,
+		output wire [5:0] oNEXT_1_MMU_FLAGS,
+		output wire [31:0] oNEXT_1_INST,
+		output wire [31:0] oNEXT_PC,
+		input wire iNEXT_LOCK
+	);
 				
 
 	/****************************************
 	Register and Wire
 	****************************************/
 	//Fetch Address Queue
-	wire				fetch_addr_queue_full;
-	wire	[31:0]		fetch_addr_queue_addr;
+	wire fetch_addr_queue_full;
+	wire [31:0] fetch_addr_queue_addr;
 	//Lock
-	wire				this_lock;
+	wire this_lock;
 	//PC Request
-	reg		[31:0]		b_pc;
-	reg					b_fetch_valid;
-	reg		[1:0]		b_fetch_state;
+	reg [31:0] b_pc;
+	reg b_fetch_valid;
+	reg [1:0] b_fetch_state;
 	//Next Output Buffer
-	reg		[31:0]		b0_next_inst;
-	reg					b0_next_inst_valid;
-	reg		[5:0]		b0_next_mmu_flags;
-	reg		[31:0]		b1_next_inst;
-	reg					b1_next_inst_valid;
-	reg		[5:0]		b1_next_mmu_flags;
-	reg		[31:0]		b_pc_out;
-	reg					b_jump_after_change_flag;
+	reg [31:0] b0_next_inst;
+	reg b0_next_inst_valid;
+	reg [5:0] b0_next_mmu_flags;
+	reg [31:0] b1_next_inst;
+	reg b1_next_inst_valid;
+	reg [5:0] b1_next_mmu_flags;
+	reg [31:0] b_pc_out;
+	reg b_jump_after_change_flag;
 	
 	
 	/****************************************

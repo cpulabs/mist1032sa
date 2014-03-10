@@ -110,7 +110,7 @@ module execute_port2(
 	assign sys_reg_zf = 1'b0;
 	assign sys_reg_flags = {sys_reg_sf, sys_reg_of, sys_reg_cf, sys_reg_pf, sys_reg_zf};
 	
-	sys_reg ALU2_SYS_REG(
+	execute_sys_reg ALU2_SYS_REG(
 		.iCMD(iPREVIOUS_EX_ALU2_CMD),
 		.iSOURCE0(iPREVIOUS_EX_ALU2_SOURCE0),
 		.iSOURCE1(iPREVIOUS_EX_ALU2_SOURCE1),

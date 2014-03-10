@@ -64,7 +64,7 @@ module utim64(
 	wire [3:0] req_fifo_addr;
 	wire req_fifo_read_condition;
 
-	mist1032isa_async_fifo #(37, 4, 2) FIFO_REQ(
+	mist1032sa_async_fifo #(37, 4, 2) FIFO_REQ(
 		//System
 		.inRESET(inRESET),
 		//Remove
@@ -215,7 +215,7 @@ module utim64(
 	wire [31:0] out_fifo_data;
 	wire out_fifo_read_condition;
 	assign out_fifo_read_condition = !out_fifo_empty;
-	mist1032isa_async_fifo #(32, 4, 2) FIFO_OUT(
+	mist1032sa_async_fifo #(32, 4, 2) FIFO_OUT(
 		//System
 		.inRESET(inRESET),
 		//Remove

@@ -1,7 +1,7 @@
 
 `default_nettype none
 
-module core_if　#(
+module core_if #(
 		parameter CORE_ID = 32'h0
 	)(
 		/****************************************

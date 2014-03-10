@@ -28,6 +28,7 @@ module execute_port3(
 		output wire oDATAIO_REQ,
 		input wire iDATAIO_BUSY,
 		output wire [1:0] oDATAIO_ORDER,	//00=Byte Order 01=2Byte Order 10= Word Order 11= None
+		output wire [3:0] oDATAIO_MASK,
 		output wire oDATAIO_RW,		//0=Read 1=Write
 		output wire [13:0] oDATAIO_TID,
 		output wire [1:0] oDATAIO_MMUMOD,
@@ -64,10 +65,15 @@ module execute_port3(
 	);
 
 
+	localparam PL_LDST_STT_IDLE = 1'h0;
+	localparam PL_LDST_STT_LDWAIT = 1'h1;
+
+	reg b_ldst_state;
+
 	/****************************************
 	Lock
 	****************************************/
-	wire this_lock = b_ldst_state == !PL_LDST_STT_IDLE ||  iDATAIO_BUSY;
+	wire this_lock = b_ldst_state != PL_LDST_STT_IDLE ||  iDATAIO_BUSY;
 
 	/****************************************
 	SPR Register
@@ -79,6 +85,10 @@ module execute_port3(
 	wire spr_write_condition;
 	wire [31:0] spr_data_info;
 
+	//SPR
+	wire ldst_spr_out_valid;
+	wire [31:0] ldst_spr_out_data;
+	
 	assign sysreg_write_condition = iPREVIOUS_EX_ALU3_SYS_LDST && iPREVIOUS_EX_ALU3_DESTINATION_SYSREG && iPREVIOUS_EX_ALU3_CMD == `EXE_SYS_LDST_WRITE_SPR;
 	assign spr_write_condition = iFREE_SYSREG_NEW_SPR_VALID || (!this_lock && iPREVIOUS_EX_ALU3_VALID && (sysreg_write_condition || push_condition || pop_condition));
 	
@@ -94,10 +104,6 @@ module execute_port3(
 		.oINFO_DATA(spr_data_info)
 	);
 	
-
-	//SPR
-	wire ldst_spr_out_valid;
-	wire [31:0] ldst_spr_out_data;
 	//Data
 	wire [31:0] ldst_data;
 	//Load Store Pipe
@@ -180,10 +186,6 @@ module execute_port3(
 	/****************************************
 	Load State
 	****************************************/
-	localparam PL_LDST_STT_IDLE = 1'h0;
-	localparam PL_LDST_STT_LDWAIT = 1'h1;
-
-	reg b_ldst_state;
 	always@(posedge iCLOCK or negedge inRESET)begin
 		if(!inRESET)begin
 			b_ldst_state <= PL_LDST_STT_IDLE;
@@ -280,6 +282,7 @@ module execute_port3(
 	
 	assign oDATAIO_REQ = b_ldst_pipe_valid;
 	assign oDATAIO_ORDER = b_ldst_pipe_order;
+	assign oDATAIO_MASK = b_ldst_pipe_mask;
 	assign oDATAIO_RW = b_ldst_pipe_rw;
 	assign oDATAIO_ADDR = b_ldst_pipe_addr;
 	assign oDATAIO_DATA = b_ldst_pipe_data;

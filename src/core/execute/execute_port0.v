@@ -117,7 +117,7 @@ module execute_port0(
 			b_commit_tag <= 6'h0;
 		end
 		else begin
-			b_stage_valid <= !b_lock && iPREVIOUS_EX_BRANCH_VALID;
+			b_stage_valid <= !b_busy && iPREVIOUS_EX_BRANCH_VALID;
 			b_branch_addr <= branch_addr;
 			b_jump_valid <= jump_valid;
 			b_not_jump_valid <= not_jump_valid;
@@ -129,7 +129,7 @@ module execute_port0(
 	end
 
 		//Output Assign
-	assign oPREVIOUS_EX_BRANCH_LOCK = b_lock;	
+	assign oPREVIOUS_EX_BRANCH_LOCK = b_busy;	
 	
 	assign oJUMP_ACTIVE = b_stage_valid && !b_idts_valid && !b_ib_valid && !b_halt_valid;
 	assign oJUMP_ADDR = b_branch_addr;
@@ -150,88 +150,6 @@ module execute_port0(
 	assign oSCHE2_EX_BRANCH_VALID = b_stage_valid;
 	assign oSCHE2_EX_BRANCH_COMMIT_TAG = b_commit_tag;
 
-				
-	/****************************************
-	Register and Wire
-	****************************************/
-	//State Register
-	/*
-	reg b0_lock;
-	reg b0_entry_valid;
-	reg b0_branch_valid;
-	reg b0_swi_valid;
-	reg [10:0] b0_swi_number;
-	reg b0_intr_valid;
-	reg [5:0] b0_commit_tag;
-	reg [31:0] b0_addr;
-	reg b0_idts_valid;
-	reg [31:0] b0_idts_addr;
-		
-	
-	always@(posedge iCLOCK or negedge inRESET)begin
-		if(!inRESET)begin
-			b0_lock <= 1'b0;
-			b0_entry_valid <= 1'b0;
-			b0_branch_valid <= 1'b0;
-			b0_swi_valid <= 1'b0;
-			b0_swi_number <= 11'h0;
-			b0_intr_valid <= 1'b0;
-			b0_commit_tag <= {6{1'b0}};
-			b0_addr <= {32{1'b0}};
-			b0_idts_valid <= 1'b0;
-			b0_idts_addr <= 32'h0;
-		end
-		else if(iFREE_RESTART)begin
-			b0_lock <= 1'b0;
-			b0_entry_valid <= 1'b0;
-			b0_branch_valid <= 1'b0;
-			b0_swi_valid <= 1'b0;
-			b0_swi_number <= 11'h0;
-			b0_intr_valid <= 1'b0;
-			b0_commit_tag <= {6{1'b0}};
-			b0_addr <= {32{1'b0}};
-			b0_idts_valid <= 1'b0;
-			b0_idts_addr <= 32'h0;
-		end
-		else begin
-			b0_entry_valid <= (b0_lock)? 1'b0 : iPREVIOUS_EX_BRANCH_VALID;
-			b0_branch_valid <= (b0_lock)? 1'b0 : jump_valid;//iPREVIOUS_EX_BRANCH_VALID && func_ex_branch_check(iPREVIOUS_EX_BRANCH_CC, iPREVIOUS_EX_BRANCH_FLAG);
-			b0_swi_valid <= (iPREVIOUS_EX_BRANCH_CMD == `EXE_BRANCH_SWI)? iPREVIOUS_EX_BRANCH_VALID : 1'b0;
-			b0_swi_number <= iPREVIOUS_EX_BRANCH_SOURCE[10:0];
-			b0_intr_valid <= (iPREVIOUS_EX_BRANCH_CMD == `EXE_BRANCH_INTB)? iPREVIOUS_EX_BRANCH_VALID : 1'b0;
-			b0_commit_tag <= iPREVIOUS_EX_BRANCH_COMMIT_TAG;
-			b0_addr <= branch_addr;//(iPREVIOUS_EX_BRANCH_CMD == `EXE_BRANCH_INTB)? iPREVIOUS_EX_BRANCH_SOURCE : ((iPREVIOUS_EX_BRANCH_CMD == `EXE_BRANCH_BUR)? iPREVIOUS_EX_BRANCH_SOURCE + iPREVIOUS_EX_BRANCH_PC : ((iPREVIOUS_EX_BRANCH_CMD == `EXE_BRANCH_BR)? iPREVIOUS_EX_BRANCH_SOURCE + iPREVIOUS_EX_BRANCH_PC : iPREVIOUS_EX_BRANCH_SOURCE));
-			b0_idts_valid <= (iPREVIOUS_EX_BRANCH_CMD == `EXE_BRANCH_IDTS)? iPREVIOUS_EX_BRANCH_VALID : 1'b0;
-			b0_lock <= (b0_lock)? 1'b1 :  iPREVIOUS_EX_BRANCH_VALID & (func_ex_branch_check(iPREVIOUS_EX_BRANCH_CC, iPREVIOUS_EX_BRANCH_FLAG) || iPREVIOUS_EX_BRANCH_CMD == `EXE_BRANCH_SWI || iPREVIOUS_EX_BRANCH_CMD == `EXE_BRANCH_INTB || iPREVIOUS_EX_BRANCH_CMD == `EXE_BRANCH_IDTS);
-			b0_idts_addr <= iPREVIOUS_EX_BRANCH_PC + 32'h4;
-		end
-	end
-	
-	
-		
-	//Output Assign
-	assign oPREVIOUS_EX_BRANCH_LOCK = b0_lock;	
-	
-	assign oJUMP_ACTIVE = b0_branch_valid && !b0_idts_valid && !b0_intr_valid && !b0_swi_valid;
-	assign oJUMP_ADDR = b0_addr;
-	
-	assign oINTR_ACTIVE = b0_intr_valid;
-	assign oINTR_ADDR = b0_addr;
-	
-	assign oIDTS_ACTIVE = b0_idts_valid;
-	assign oIDTS_R_ADDR = b0_addr;
-	assign oIDTR_COMMIT_TAG = b0_commit_tag;
-	
-	assign oSWI_ACTIVE = b0_swi_valid;
-	assign oSWI_NUMBER = b0_swi_number;
-	
-	assign oSCHE1_EX_BRANCH_VALID = b0_entry_valid;
-	assign oSCHE1_EX_BRANCH_COMMIT_TAG = b0_commit_tag;
-	
-	assign oSCHE2_EX_BRANCH_VALID = b0_entry_valid;
-	assign oSCHE2_EX_BRANCH_COMMIT_TAG = b0_commit_tag;
-	*/
-		
 endmodule
 
 

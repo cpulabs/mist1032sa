@@ -5,6 +5,7 @@
 ../../src/dps/device/utim64/*.v
 ../../src/mmu/*.v
 ../../src/lib/*.v
+../../src/pic/*.v
 ../../src/core/*.v
 ../../src/core/decode/*.v
 ../../src/core/execute/*.v
@@ -13,5 +14,6 @@
 ../../src/core/l1_instruction/*.v
 ../../src/core/matching/*.v
 ../../src/core/rename/*.v
-../../src/core/scheduling1/*.v
-../../src/core/scheduling2/*.v
+../../src/core/scheduler1/*.v
+../../src/core/scheduler2/*.v
+../../src/core/pipeline_control/*.v

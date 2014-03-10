@@ -3,9 +3,7 @@ MIST1032SA - Core
 ****************************************/
 `default_nettype none
 
-
-
-module core　#(
+module core #(
 		parameter CORE_ID = 32'h0
 	)(
 		/****************************************

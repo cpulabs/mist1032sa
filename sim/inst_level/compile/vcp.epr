@@ -1,4 +1,1 @@
-"../../../src/dps/dps_irq.v"	0
-"../../../src/include/processor.h"	1
-"../../../src/dps/dps.v"	0
-"../../../src/dps/dps_lsflags.v"	1
+"../../model/altera/altera_mf.v"	1

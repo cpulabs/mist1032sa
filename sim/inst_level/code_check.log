@@ -1,101 +1,300 @@
-# ALIB: Library `work' attached.
-# work = C:/dev/home/takahiro/projects/mist1032sa/sim/inst_level/work/work.lib
-# work
-# ALOG: Pass 1. Scanning modules hierarchy.
-# ALOG: Warning: VCP2515 C:/dev/home/takahiro/projects/mist1032sa/sim/inst_level/tb/tb_inst_level.v : (150, 7): Undefined module: mist1032isa was used. Port connection rules will not be checked at such instantiations.
-# ALOG: Warning: VCP2515 C:/dev/home/takahiro/projects/mist1032sa/sim/inst_level/tb/tb_inst_level.v : (229, 7): Undefined module: sim_memory_model was used. Port connection rules will not be checked at such instantiations.
-# ALOG: Pass 2. Processing instantiations.
-# ALOG: Pass 3. Processing behavioral statements.
-# ALOG: ELB/DAG code generating.
-# ALOG: Unit top modules: tb_inst_level.
-# ALOG: $root top modules: tb_inst_level.
-# ALOG: Compile success 0 Errors 2 Warnings  Analysis time: 1[s].
-# ALOG: done
-# ALOG: Pass 1. Scanning modules hierarchy.
-# ALOG: Info: VCP2113 Module \$root found in current working library.
-# ALOG: Warning: VCP2515 C:/dev/home/takahiro/projects/mist1032sa/sim/model/sim_memory_model/sim_memory_model.v : (140, 7): Undefined module: mist1032isa_sync_fifo was used. Port connection rules will not be checked at such instantiations.
-# ALOG: Pass 2. Processing instantiations.
-# ALOG: Pass 3. Processing behavioral statements.
-# ALOG: ELB/DAG code generating.
-# ALOG: Info: VCP2113 Module \$root found in current working library.
-# ALOG: Info: VCP2113 Module tb_inst_level found in current working library.
-# ALOG: $root top modules: tb_inst_level.
-# ALOG: Compile success 0 Errors 1 Warnings  Analysis time: 0[s].
-# ALOG: done
-# ALOG: Pass 1. Scanning modules hierarchy.
-# ALOG: Info: VCP2113 Module \$root found in current working library.
-# ALOG: Info: VCP2876 C:/dev/home/takahiro/projects/mist1032sa/sim/model/altera/altera_mf.v : (36614, 36): Implicit net declaration, symbol systolic1_reg_wire_clk has not been declared in module altmult_add.
-# ALOG: Info: VCP2876 C:/dev/home/takahiro/projects/mist1032sa/sim/model/altera/altera_mf.v : (36619, 36): Implicit net declaration, symbol systolic3_reg_wire_clk has not been declared in module altmult_add.
-# ALOG: Info: VCP2876 C:/dev/home/takahiro/projects/mist1032sa/sim/model/altera/altera_mf.v : (37027, 35): Implicit net declaration, symbol systolic1_reg_wire_en has not been declared in module altmult_add.
-# ALOG: Info: VCP2876 C:/dev/home/takahiro/projects/mist1032sa/sim/model/altera/altera_mf.v : (37032, 35): Implicit net declaration, symbol systolic3_reg_wire_en has not been declared in module altmult_add.
-# ALOG: Info: VCP2876 C:/dev/home/takahiro/projects/mist1032sa/sim/model/altera/altera_mf.v : (37449, 36): Implicit net declaration, symbol systolic1_reg_wire_clr has not been declared in module altmult_add.
-# ALOG: Info: VCP2876 C:/dev/home/takahiro/projects/mist1032sa/sim/model/altera/altera_mf.v : (37453, 36): Implicit net declaration, symbol systolic3_reg_wire_clr has not been declared in module altmult_add.
-# ALOG: Pass 2. Processing instantiations.
-# ALOG: Pass 3. Processing behavioral statements.
-# ALOG: Parameters in case labels, will not check for overlapping labels (../model/altera/altera_mf.v, ln 49926).
-# ALOG: Parameters in case labels, will not check for overlapping labels (../model/altera/altera_mf.v, ln 50205).
-# ALOG: ELB/DAG code generating.
-# ALOG: Info: VCP2113 Module \$root found in current working library.
-# ALOG: Info: VCP2113 Module tb_inst_level found in current working library.
-# ALOG: Unit top modules: lcell altpll altlvds_rx altlvds_tx dcfifo altaccumulate altmult_accum altmult_add altfp_mult altsqrt altclklock altddio_bidir altdpram alt3pram parallel_add scfifo altshift_taps a_graycounter altsquare altera_std_synchronizer_bundle alt_cal alt_cal_mm alt_cal_c3gxb alt_cal_sv alt_aeq_s4 alt_eyemon alt_dfe sld_virtual_jtag sld_signaltap altstratixii_oct altparallel_flash_loader altserial_flash_loader sld_virtual_jtag_basic altsource_probe.
-# ALOG: $root top modules: tb_inst_level lcell altpll altlvds_rx altlvds_tx dcfifo altaccumulate altmult_accum altmult_add altfp_mult altsqrt altclklock altddio_bidir altdpram alt3pram parallel_add scfifo altshift_taps a_graycounter altsquare altera_std_synchronizer_bundle alt_cal alt_cal_mm alt_cal_c3gxb alt_cal_sv alt_aeq_s4 alt_eyemon alt_dfe sld_virtual_jtag sld_signaltap altstratixii_oct altparallel_flash_loader altserial_flash_loader sld_virtual_jtag_basic altsource_probe.
-# ALOG: Compile success 0 Errors 0 Warnings  Analysis time: 8[s].
-# ALOG: done
-# ALOG: Pass 1. Scanning modules hierarchy.
-# ALOG: Info: VCP2113 Module \$root found in current working library.
-# ALOG: Warning: VCP2515 C:/dev/home/takahiro/projects/mist1032sa/src/default_peripheral_system.v : (127, 7): Undefined module: dps_utim64 was used. Port connection rules will not be checked at such instantiations.
-# ALOG: Warning: VCP2515 C:/dev/home/takahiro/projects/mist1032sa/src/default_peripheral_system.v : (153, 7): Undefined module: dps_sci was used. Port connection rules will not be checked at such instantiations.
-# ALOG: Warning: VCP2515 C:/dev/home/takahiro/projects/mist1032sa/src/mist1032sa.v : (171, 7): Undefined module: core_if was used. Port connection rules will not be checked at such instantiations.
-# ALOG: Pass 2. Processing instantiations.
-# ALOG: Pass 3. Processing behavioral statements.
-# ALOG: Warning: VCP2900 C:/dev/home/takahiro/projects/mist1032sa/src/dps_irq.v : (43, 1): Conditional expression 1'b0 at 'if' statement is constant.
-# ALOG: ELB/DAG code generating.
-# ALOG: Info: VCP2113 Module \$root found in current working library.
-# ALOG: Info: VCP2113 Module tb_inst_level found in current working library.
-# ALOG: Info: VCP2113 Module lcell found in current working library.
-# ALOG: Info: VCP2113 Module altpll found in current working library.
-# ALOG: Info: VCP2113 Module altlvds_rx found in current working library.
-# ALOG: Info: VCP2113 Module altlvds_tx found in current working library.
-# ALOG: Info: VCP2113 Module dcfifo found in current working library.
-# ALOG: Info: VCP2113 Module altaccumulate found in current working library.
-# ALOG: Info: VCP2113 Module altmult_accum found in current working library.
-# ALOG: Info: VCP2113 Module altmult_add found in current working library.
-# ALOG: Info: VCP2113 Module altfp_mult found in current working library.
-# ALOG: Info: VCP2113 Module altsqrt found in current working library.
-# ALOG: Info: VCP2113 Module altclklock found in current working library.
-# ALOG: Info: VCP2113 Module altddio_bidir found in current working library.
-# ALOG: Info: VCP2113 Module altdpram found in current working library.
-# ALOG: Info: VCP2113 Module alt3pram found in current working library.
-# ALOG: Info: VCP2113 Module parallel_add found in current working library.
-# ALOG: Info: VCP2113 Module scfifo found in current working library.
-# ALOG: Info: VCP2113 Module altshift_taps found in current working library.
-# ALOG: Info: VCP2113 Module a_graycounter found in current working library.
-# ALOG: Info: VCP2113 Module altsquare found in current working library.
-# ALOG: Info: VCP2113 Module altera_std_synchronizer_bundle found in current working library.
-# ALOG: Info: VCP2113 Module alt_cal found in current working library.
-# ALOG: Info: VCP2113 Module alt_cal_mm found in current working library.
-# ALOG: Info: VCP2113 Module alt_cal_c3gxb found in current working library.
-# ALOG: Info: VCP2113 Module alt_cal_sv found in current working library.
-# ALOG: Info: VCP2113 Module alt_aeq_s4 found in current working library.
-# ALOG: Info: VCP2113 Module alt_eyemon found in current working library.
-# ALOG: Info: VCP2113 Module alt_dfe found in current working library.
-# ALOG: Info: VCP2113 Module sld_virtual_jtag found in current working library.
-# ALOG: Info: VCP2113 Module sld_signaltap found in current working library.
-# ALOG: Info: VCP2113 Module altstratixii_oct found in current working library.
-# ALOG: Info: VCP2113 Module altparallel_flash_loader found in current working library.
-# ALOG: Info: VCP2113 Module altserial_flash_loader found in current working library.
-# ALOG: Info: VCP2113 Module sld_virtual_jtag_basic found in current working library.
-# ALOG: Info: VCP2113 Module altsource_probe found in current working library.
-# ALOG: Unit top modules: default_peripheral_system mist1032sa peripheral_interface_controller.
-# ALOG: $root top modules: tb_inst_level lcell altpll altlvds_rx altlvds_tx dcfifo altaccumulate altmult_accum altmult_add altfp_mult altsqrt altclklock altddio_bidir altdpram alt3pram parallel_add scfifo altshift_taps a_graycounter altsquare altera_std_synchronizer_bundle alt_cal alt_cal_mm alt_cal_c3gxb alt_cal_sv alt_aeq_s4 alt_eyemon alt_dfe sld_virtual_jtag sld_signaltap altstratixii_oct altparallel_flash_loader altserial_flash_loader sld_virtual_jtag_basic altsource_probe default_peripheral_system mist1032sa peripheral_interface_controller.
-# ALOG: Compile success 0 Errors 4 Warnings  Analysis time: 1[s].
-# ALOG: done
-# ALOG: Pass 1. Scanning modules hierarchy.
-# ALOG: Info: VCP2113 Module \$root found in current working library.
-# ALOG: Error: VCP5018 C:/dev/home/takahiro/projects/mist1032sa/src/dps/dps_irq.v : (43, 32): Macro PROCESSOR_DATA_RESET_EN is not defined.
-# ALOG: Error: VCP2000 C:/dev/home/takahiro/projects/mist1032sa/src/dps/dps_irq.v : (43, 45): Syntax error. Unexpected token: ). Expected tokens: ''' , '(' , '{' , 'integer'' , 'real'' ... .
-# ALOG: Warning: VCP2515 C:/dev/home/takahiro/projects/mist1032sa/src/dps/dps.v : (151, 7): Undefined module: dps_utim64 was used. Port connection rules will not be checked at such instantiations.
-# ALOG: Warning: VCP2515 C:/dev/home/takahiro/projects/mist1032sa/src/dps/dps.v : (176, 7): Undefined module: dps_sci was used. Port connection rules will not be checked at such instantiations.
-# ALOG: Warning: VCP2515 C:/dev/home/takahiro/projects/mist1032sa/src/dps/dps.v : (187, 7): Undefined module: dps_mimsr was used. Port connection rules will not be checked at such instantiations.
-# ALOG: Compile failure 2 Errors 3 Warnings  Analysis time: 0[s].
-# SCRIPTER: Error: C:/dev/home/takahiro/projects/mist1032sa/sim/inst_level/code_check.tcl : (11, 1): Script execution terminated due to error(s).
+# ** Warning: (vlib-34) Library already exists at "work".
+# QuestaSim-64 vlog 10.0c Compiler 2011.07 Jul 21 2011
+# -- Compiling module tb_inst_level
+# 
+# Top level modules:
+# 	tb_inst_level
+# QuestaSim-64 vlog 10.0c Compiler 2011.07 Jul 21 2011
+# -- Compiling module sim_memory_model
+# 
+# Top level modules:
+# 	sim_memory_model
+# QuestaSim-64 vlog 10.0c Compiler 2011.07 Jul 21 2011
+# -- Compiling module lcell
+# -- Compiling module ALTERA_MF_MEMORY_INITIALIZATION
+# -- Compiling module ALTERA_MF_HINT_EVALUATION
+# -- Compiling module ALTERA_DEVICE_FAMILIES
+# -- Compiling module dffp
+# -- Compiling module pll_iobuf
+# -- Compiling module stx_m_cntr
+# -- Compiling module stx_n_cntr
+# -- Compiling module stx_scale_cntr
+# -- Compiling module MF_pll_reg
+# -- Compiling module MF_stratix_pll
+# -- Compiling module arm_m_cntr
+# -- Compiling module arm_n_cntr
+# -- Compiling module arm_scale_cntr
+# -- Compiling module MF_stratixii_pll
+# -- Compiling module ttn_m_cntr
+# -- Compiling module ttn_n_cntr
+# -- Compiling module ttn_scale_cntr
+# -- Compiling module MF_stratixiii_pll
+# -- Compiling module cda_m_cntr
+# -- Compiling module cda_n_cntr
+# -- Compiling module cda_scale_cntr
+# -- Compiling module MF_cycloneiii_pll
+# -- Compiling module MF_cycloneiiigl_m_cntr
+# -- Compiling module MF_cycloneiiigl_n_cntr
+# -- Compiling module MF_cycloneiiigl_scale_cntr
+# -- Compiling module cycloneiiigl_post_divider
+# -- Compiling module MF_cycloneiiigl_pll
+# -- Compiling module altpll
+# -- Compiling module altlvds_rx
+# -- Compiling module stratix_lvds_rx
+# -- Compiling module stratixgx_dpa_lvds_rx
+# -- Compiling module stratixii_lvds_rx
+# -- Compiling module flexible_lvds_rx
+# -- Compiling module stratixiii_lvds_rx
+# -- Compiling module stratixiii_lvds_rx_channel
+# -- Compiling module stratixiii_lvds_rx_dpa
+# -- Compiling module altlvds_tx
+# -- Compiling module stratixv_local_clk_divider
+# -- Compiling module stratix_tx_outclk
+# -- Compiling module stratixii_tx_outclk
+# -- Compiling module flexible_lvds_tx
+# -- Compiling module dcfifo_dffpipe
+# -- Compiling module dcfifo_fefifo
+# -- Compiling module dcfifo_async
+# -- Compiling module dcfifo_sync
+# -- Compiling module dcfifo_low_latency
+# -- Compiling module dcfifo_mixed_widths
+# -- Compiling module dcfifo
+# -- Compiling module altaccumulate
+# -- Compiling module altmult_accum
+# -- Compiling module altmult_add
+# -- Compiling module altfp_mult
+# -- Compiling module altsqrt
+# -- Compiling module altclklock
+# -- Compiling module altddio_in
+# -- Compiling module altddio_out
+# -- Compiling module altddio_bidir
+# -- Compiling module altdpram
+# -- Compiling module altsyncram
+# -- Compiling module alt3pram
+# -- Compiling module parallel_add
+# -- Compiling module scfifo
+# -- Compiling module altshift_taps
+# -- Compiling module a_graycounter
+# -- Compiling module altsquare
+# -- Compiling module altera_std_synchronizer
+# -- Compiling module altera_std_synchronizer_bundle
+# -- Compiling module alt_cal
+# -- Compiling module alt_cal_mm
+# -- Compiling module alt_cal_c3gxb
+# -- Compiling module alt_cal_sv
+# -- Compiling module alt_aeq_s4
+# -- Compiling module alt_eyemon
+# -- Compiling module alt_dfe
+# -- Compiling module signal_gen
+# -- Compiling module jtag_tap_controller
+# -- Compiling module dummy_hub
+# -- Compiling module sld_virtual_jtag
+# -- Compiling module sld_signaltap
+# -- Compiling module altstratixii_oct
+# -- Compiling module altparallel_flash_loader
+# -- Compiling module altserial_flash_loader
+# -- Compiling module sld_virtual_jtag_basic
+# -- Compiling module altsource_probe
+# 
+# Top level modules:
+# 	lcell
+# 	altpll
+# 	altlvds_rx
+# 	altlvds_tx
+# 	dcfifo
+# 	altaccumulate
+# 	altmult_accum
+# 	altmult_add
+# 	altfp_mult
+# 	altsqrt
+# 	altclklock
+# 	altddio_bidir
+# 	altdpram
+# 	alt3pram
+# 	parallel_add
+# 	scfifo
+# 	altshift_taps
+# 	a_graycounter
+# 	altsquare
+# 	altera_std_synchronizer_bundle
+# 	alt_cal
+# 	alt_cal_mm
+# 	alt_cal_c3gxb
+# 	alt_cal_sv
+# 	alt_aeq_s4
+# 	alt_eyemon
+# 	alt_dfe
+# 	sld_virtual_jtag
+# 	sld_signaltap
+# 	altstratixii_oct
+# 	altparallel_flash_loader
+# 	altserial_flash_loader
+# 	sld_virtual_jtag_basic
+# 	altsource_probe
+# QuestaSim-64 vlog 10.0c Compiler 2011.07 Jul 21 2011
+# -- Compiling module endian_controller
+# -- Compiling module memory_pipe_arbiter
+# ** Warning: ../../src/memory_pipe_arbiter.v(167): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
+# -- Compiling module mist1032sa
+# 
+# Top level modules:
+# 	mist1032sa
+# QuestaSim-64 vlog 10.0c Compiler 2011.07 Jul 21 2011
+# -- Compiling module dps
+# -- Compiling module dps_irq
+# -- Compiling module dps_lsflags
+# 
+# Top level modules:
+# 	dps
+# QuestaSim-64 vlog 10.0c Compiler 2011.07 Jul 21 2011
+# -- Compiling module dps_mimsr
+# 
+# Top level modules:
+# 	dps_mimsr
+# QuestaSim-64 vlog 10.0c Compiler 2011.07 Jul 21 2011
+# -- Compiling module dps_sci
+# -- Compiling module dps_uart
+# 
+# Top level modules:
+# 	dps_sci
+# QuestaSim-64 vlog 10.0c Compiler 2011.07 Jul 21 2011
+# -- Compiling module comparator_counter
+# -- Compiling module dps_utim64
+# -- Compiling module main_counter
+# -- Compiling module utim64
+# 
+# Top level modules:
+# 	dps_utim64
+# QuestaSim-64 vlog 10.0c Compiler 2011.07 Jul 21 2011
+# -- Compiling module mmu
+# -- Compiling module mmu_if
+# -- Compiling module tlb
+# 
+# Top level modules:
+# 	mmu_if
+# QuestaSim-64 vlog 10.0c Compiler 2011.07 Jul 21 2011
+# -- Compiling module mist1032sa_arbiter_matching_queue
+# -- Compiling module mist1032sa_async_fifo
+# -- Compiling module mist1032sa_async_fifo_double_flipflop
+# -- Compiling module mist1032sa_sync_fifo
+# -- Compiling module mist1032sa_uart_receiver
+# -- Compiling module mist1032sa_uart_receiver_async2sync
+# -- Compiling module mist1032sa_uart_receiver_double_flipflop
+# -- Compiling module mist1032sa_uart_transmitter
+# -- Compiling module mist1032sa_uart_transmitter_async2sync
+# -- Compiling module mist1032sa_uart_transmitter_double_flipflop
+# 
+# Top level modules:
+# 	mist1032sa_arbiter_matching_queue
+# 	mist1032sa_async_fifo
+# 	mist1032sa_sync_fifo
+# 	mist1032sa_uart_receiver
+# 	mist1032sa_uart_transmitter
+# QuestaSim-64 vlog 10.0c Compiler 2011.07 Jul 21 2011
+# -- Compiling module pic
+# 
+# Top level modules:
+# 	pic
+# QuestaSim-64 vlog 10.0c Compiler 2011.07 Jul 21 2011
+# -- Compiling module core
+# -- Compiling module core_if
+# -- Compiling module core_pipeline
+# -- Compiling module losd_store_pipe_arbiter
+# -- Compiling module pipeline_register
+# 
+# Top level modules:
+# 	core
+# 	core_if
+# 	pipeline_register
+# QuestaSim-64 vlog 10.0c Compiler 2011.07 Jul 21 2011
+# -- Compiling module decode_authcheck
+# -- Compiling module decode_function
+# -- Compiling module decode_mmucheck
+# -- Compiling module decoder
+# 
+# Top level modules:
+# 	decode_authcheck
+# 	decode_mmucheck
+# 	decoder
+# QuestaSim-64 vlog 10.0c Compiler 2011.07 Jul 21 2011
+# -- Compiling module execute_adder
+# -- Compiling module execute_afe_load_store
+# -- Compiling module execute_branch
+# -- Compiling module execute_load_data
+# -- Compiling module execute_load_store
+# -- Compiling module execute_logic
+# -- Compiling module execute_port0
+# -- Compiling module execute_port1
+# -- Compiling module execute_port2
+# -- Compiling module execute_port3
+# -- Compiling module execute_shift
+# -- Compiling module execute_sys_reg
+# -- Compiling module sysreg_spr_register
+# 
+# Top level modules:
+# 	execute_port0
+# 	execute_port1
+# 	execute_port2
+# 	execute_port3
+# QuestaSim-64 vlog 10.0c Compiler 2011.07 Jul 21 2011
+# -- Compiling module div_pipelined_latch
+# -- Compiling module pipelined_div_radix2
+# -- Compiling module radix2_linediv
+# 
+# Top level modules:
+# 	pipelined_div_radix2
+# QuestaSim-64 vlog 10.0c Compiler 2011.07 Jul 21 2011
+# -- Compiling module fetch
+# 
+# Top level modules:
+# 	fetch
+# QuestaSim-64 vlog 10.0c Compiler 2011.07 Jul 21 2011
+# -- Compiling module l1_cache_64entry_4way_line64b_bus_8b_damy
+# -- Compiling module l1_cache_64entry_4way_line64b_bus_8b
+# -- Compiling module l1_instruction_cache
+# 
+# Top level modules:
+# 	l1_cache_64entry_4way_line64b_bus_8b
+# 	l1_instruction_cache
+# QuestaSim-64 vlog 10.0c Compiler 2011.07 Jul 21 2011
+# -- Compiling module matching
+# 
+# Top level modules:
+# 	matching
+# QuestaSim-64 vlog 10.0c Compiler 2011.07 Jul 21 2011
+# -- Compiling module register_renaming_table
+# -- Compiling module renaming
+# 
+# Top level modules:
+# 	renaming
+# QuestaSim-64 vlog 10.0c Compiler 2011.07 Jul 21 2011
+# -- Compiling module commit_entry
+# -- Compiling module scheduler1
+# 
+# Top level modules:
+# 	scheduler1
+# QuestaSim-64 vlog 10.0c Compiler 2011.07 Jul 21 2011
+# -- Compiling module flag_rename_management
+# -- Compiling module frcr_timer
+# -- Compiling module general_register_entry
+# -- Compiling module priority_encoder_16
+# -- Compiling module regist_rbuffer_select
+# -- Compiling module reservation_alu0_entry
+# -- Compiling module reservation_alu1_entry
+# -- Compiling module reservation_alu2_entry
+# -- Compiling module reservation_alu3_entry
+# -- Compiling module reservation_free_entry_count
+# -- Compiling module reservation_search16to2
+# -- Compiling module scheduler2_free_search_64to2
+# -- Compiling module scheduler2
+# -- Compiling module system_register
+# 
+# Top level modules:
+# 	scheduler2
+# QuestaSim-64 vlog 10.0c Compiler 2011.07 Jul 21 2011
+# -- Compiling module core_interrupt_manager
+# -- Compiling module exception_manager
+# 
+# Top level modules:
+# 	core_interrupt_manager
+# 	exception_manager

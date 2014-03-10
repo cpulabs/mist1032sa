@@ -10,223 +10,220 @@ Update	:
 `default_nettype none
 	
 module pipelined_div_radix2(
-					//System
-					input					iCLOCK,
-					input					inRESET,
-					input					iREMOVE,
-					//Soure
-					output					oSOURCE_BUSY,
-					input					iSOURCE_VALID,
-					input					iSOURCE_SIGN,
-					input		[31:0]		iSOURCE_DIVIDEND,
-					input		[31:0]		iSOURCE_DIVISOR,
-					//Output
-					input					iOUT_BUSY,
-					output					oOUT_VALID,
-					output		[31:0]		oOUT_DATA_Q,
-					output		[31:0]		oOUT_DATA_R);
+		//System
+		input wire iCLOCK,
+		input wire inRESET,
+		input wire iREMOVE,
+		//Soure
+		output wire oSOURCE_BUSY,
+		input wire iSOURCE_VALID,
+		input wire iSOURCE_SIGN,
+		input wire [31:0] iSOURCE_DIVIDEND,
+		input wire [31:0] iSOURCE_DIVISOR,
+		//Output
+		input wire iOUT_BUSY,
+		output wire oOUT_VALID,
+		output wire [31:0] oOUT_DATA_Q,
+		output wire [31:0] oOUT_DATA_R
+	);
 					
 
-	wire		[1:0]		line0_q;
-	wire		[1:0]		line1_q;
-	wire		[1:0]		line2_q;
-	wire		[1:0]		line3_q;
-	wire		[1:0]		line4_q;
-	wire		[1:0]		line5_q;
-	wire		[1:0]		line6_q;
-	wire		[1:0]		line7_q;
-	wire		[1:0]		line8_q;
-	wire		[1:0]		line9_q;
-	wire		[1:0]		line10_q;
-	wire		[1:0]		line11_q;
-	wire		[1:0]		line12_q;
-	wire		[1:0]		line13_q;
-	wire		[1:0]		line14_q;
-	wire		[1:0]		line15_q;
+	wire [1:0] line0_q;
+	wire [1:0] line1_q;
+	wire [1:0] line2_q;
+	wire [1:0] line3_q;
+	wire [1:0] line4_q;
+	wire [1:0] line5_q;
+	wire [1:0] line6_q;
+	wire [1:0] line7_q;
+	wire [1:0] line8_q;
+	wire [1:0] line9_q;
+	wire [1:0] line10_q;
+	wire [1:0] line11_q;
+	wire [1:0] line12_q;
+	wire [1:0] line13_q;
+	wire [1:0] line14_q;
+	wire [1:0] line15_q;
 	
-	wire		[30:0]		line0_r;
-	wire		[30:0]		line1_r;
-	wire		[30:0]		line2_r;
-	wire		[30:0]		line3_r;
-	wire		[30:0]		line4_r;
-	wire		[30:0]		line5_r;
-	wire		[30:0]		line6_r;
-	wire		[30:0]		line7_r;
-	wire		[30:0]		line8_r;
-	wire		[30:0]		line9_r;
-	wire		[30:0]		line10_r;
-	wire		[30:0]		line11_r;
-	wire		[30:0]		line12_r;
-	wire		[30:0]		line13_r;
-	wire		[30:0]		line14_r;
-	wire		[30:0]		line15_r;
+	wire [30:0] line0_r;
+	wire [30:0] line1_r;
+	wire [30:0] line2_r;
+	wire [30:0] line3_r;
+	wire [30:0] line4_r;
+	wire [30:0] line5_r;
+	wire [30:0] line6_r;
+	wire [30:0] line7_r;
+	wire [30:0] line8_r;
+	wire [30:0] line9_r;
+	wire [30:0] line10_r;
+	wire [30:0] line11_r;
+	wire [30:0] line12_r;
+	wire [30:0] line13_r;
+	wire [30:0] line14_r;
+	wire [30:0] line15_r;
 
 	//Latch0
-	wire					latch0_valid;
-	wire					latch0_busy;
-	wire					latch0_sign;
-	wire		[31:0]		latch0_divisor;
-	wire		[31:0]		latch0_dividend;
-	wire		[1:0]		latch0_q;
-	wire		[30:0]		latch0_r;
+	wire latch0_valid;
+	wire latch0_busy;
+	wire latch0_sign;
+	wire [31:0] latch0_divisor;
+	wire [31:0] latch0_dividend;
+	wire [1:0] latch0_q;
+	wire [30:0] latch0_r;
 	//Latch1
-	wire					latch1_valid;
-	wire					latch1_busy;
-	wire					latch1_sign;
-	wire		[31:0]		latch1_divisor;
-	wire		[31:0]		latch1_dividend;
-	wire		[3:0]		latch1_q;
-	wire		[30:0]		latch1_r;
+	wire latch1_valid;
+	wire latch1_busy;
+	wire latch1_sign;
+	wire [31:0] latch1_divisor;
+	wire [31:0] latch1_dividend;
+	wire [3:0] latch1_q;
+	wire [30:0] latch1_r;
 	//Latch2
-	wire					latch2_valid;
-	wire					latch2_busy;
-	wire					latch2_sign;
-	wire		[31:0]		latch2_divisor;
-	wire		[31:0]		latch2_dividend;
-	wire		[5:0]		latch2_q;
-	wire		[30:0]		latch2_r;
+	wire latch2_valid;
+	wire latch2_busy;
+	wire latch2_sign;
+	wire [31:0] latch2_divisor;
+	wire [31:0] latch2_dividend;
+	wire [5:0] latch2_q;
+	wire [30:0] latch2_r;
 	//Latch3
-	wire					latch3_valid;
-	wire					latch3_busy;
-	wire					latch3_sign;
-	wire		[31:0]		latch3_divisor;
-	wire		[31:0]		latch3_dividend;
-	wire		[7:0]		latch3_q;
-	wire		[30:0]		latch3_r;
+	wire latch3_valid;
+	wire latch3_busy;
+	wire latch3_sign;
+	wire [31:0] latch3_divisor;
+	wire [31:0] latch3_dividend;
+	wire [7:0] latch3_q;
+	wire [30:0] latch3_r;
 	//Latch4
-	wire					latch4_valid;
-	wire					latch4_busy;
-	wire					latch4_sign;
-	wire		[31:0]		latch4_divisor;
-	wire		[31:0]		latch4_dividend;
-	wire		[9:0]		latch4_q;
-	wire		[30:0]		latch4_r;
+	wire latch4_valid;
+	wire latch4_busy;
+	wire latch4_sign;
+	wire [31:0] latch4_divisor;
+	wire [31:0] latch4_dividend;
+	wire [9:0] latch4_q;
+	wire [30:0] latch4_r;
 	//Latch5
-	wire					latch5_valid;
-	wire					latch5_busy;
-	wire					latch5_sign;
-	wire		[31:0]		latch5_divisor;
-	wire		[31:0]		latch5_dividend;
-	wire		[11:0]		latch5_q;
-	wire		[30:0]		latch5_r;
+	wire latch5_valid;
+	wire latch5_busy;
+	wire latch5_sign;
+	wire [31:0] latch5_divisor;
+	wire [31:0] latch5_dividend;
+	wire [11:0] latch5_q;
+	wire [30:0] latch5_r;
 	//Latch6
-	wire					latch6_valid;
-	wire					latch6_busy;
-	wire					latch6_sign;
-	wire		[31:0]		latch6_divisor;
-	wire		[31:0]		latch6_dividend;
-	wire		[13:0]		latch6_q;
-	wire		[30:0]		latch6_r;
+	wire latch6_valid;
+	wire latch6_busy;
+	wire latch6_sign;
+	wire [31:0] latch6_divisor;
+	wire [31:0] latch6_dividend;
+	wire [13:0] latch6_q;
+	wire [30:0] latch6_r;
 	//Latch7
-	wire					latch7_valid;
-	wire					latch7_busy;
-	wire					latch7_sign;
-	wire		[31:0]		latch7_divisor;
-	wire		[31:0]		latch7_dividend;
-	wire		[15:0]		latch7_q;
-	wire		[30:0]		latch7_r;
+	wire latch7_valid;
+	wire latch7_busy;
+	wire latch7_sign;
+	wire [31:0] latch7_divisor;
+	wire [31:0] latch7_dividend;
+	wire [15:0] latch7_q;
+	wire [30:0] latch7_r;
 	//Latch8
-	wire					latch8_valid;
-	wire					latch8_busy;
-	wire					latch8_sign;
-	wire		[31:0]		latch8_divisor;
-	wire		[31:0]		latch8_dividend;
-	wire		[17:0]		latch8_q;
-	wire		[30:0]		latch8_r;	
+	wire latch8_valid;
+	wire latch8_busy;
+	wire latch8_sign;
+	wire [31:0] latch8_divisor;
+	wire [31:0] latch8_dividend;
+	wire [17:0] latch8_q;
+	wire [30:0] latch8_r;	
 	//Latch9
-	wire					latch9_valid;
-	wire					latch9_busy;
-	wire					latch9_sign;
-	wire		[31:0]		latch9_divisor;
-	wire		[31:0]		latch9_dividend;
-	wire		[19:0]		latch9_q;
-	wire		[30:0]		latch9_r;
+	wire latch9_valid;
+	wire latch9_busy;
+	wire latch9_sign;
+	wire [31:0] latch9_divisor;
+	wire [31:0] latch9_dividend;
+	wire [19:0] latch9_q;
+	wire [30:0] latch9_r;
 	//Latch10
-	wire					latch10_valid;
-	wire					latch10_busy;
-	wire					latch10_sign;
-	wire		[31:0]		latch10_divisor;
-	wire		[31:0]		latch10_dividend;
-	wire		[21:0]		latch10_q;
-	wire		[30:0]		latch10_r;
+	wire latch10_valid;
+	wire latch10_busy;
+	wire latch10_sign;
+	wire [31:0] latch10_divisor;
+	wire [31:0] latch10_dividend;
+	wire [21:0] latch10_q;
+	wire [30:0] latch10_r;
 	//Latch10
-	wire					latch11_valid;
-	wire					latch11_busy;
-	wire					latch11_sign;
-	wire		[31:0]		latch11_divisor;
-	wire		[31:0]		latch11_dividend;
-	wire		[23:0]		latch11_q;
-	wire		[30:0]		latch11_r;
+	wire latch11_valid;
+	wire latch11_busy;
+	wire latch11_sign;
+	wire [31:0] latch11_divisor;
+	wire [31:0] latch11_dividend;
+	wire [23:0] latch11_q;
+	wire [30:0] latch11_r;
 	//Latch12
-	wire					latch12_valid;
-	wire					latch12_busy;
-	wire					latch12_sign;
-	wire		[31:0]		latch12_divisor;
-	wire		[31:0]		latch12_dividend;
-	wire		[25:0]		latch12_q;
-	wire		[30:0]		latch12_r;
+	wire latch12_valid;
+	wire latch12_busy;
+	wire latch12_sign;
+	wire [31:0] latch12_divisor;
+	wire [31:0] latch12_dividend;
+	wire [25:0] latch12_q;
+	wire [30:0] latch12_r;
 	//Latch13
-	wire					latch13_valid;
-	wire					latch13_busy;
-	wire					latch13_sign;
-	wire		[31:0]		latch13_divisor;
-	wire		[31:0]		latch13_dividend;
-	wire		[27:0]		latch13_q;
-	wire		[30:0]		latch13_r;
+	wire latch13_valid;
+	wire latch13_busy;
+	wire latch13_sign;
+	wire [31:0] latch13_divisor;
+	wire [31:0] latch13_dividend;
+	wire [27:0] latch13_q;
+	wire [30:0] latch13_r;
 	//Latch14
-	wire					latch14_valid;
-	wire					latch14_busy;
-	wire					latch14_sign;
-	wire		[31:0]		latch14_divisor;
-	wire		[31:0]		latch14_dividend;
-	wire		[29:0]		latch14_q;
-	wire		[30:0]		latch14_r;
+	wire latch14_valid;
+	wire latch14_busy;
+	wire latch14_sign;
+	wire [31:0] latch14_divisor;
+	wire [31:0] latch14_dividend;
+	wire [29:0] latch14_q;
+	wire [30:0] latch14_r;
 	//Latch15
-	wire					latch15_valid;
-	wire					latch15_sign;
-	wire		[31:0]		latch15_divisor;
-	wire		[31:0]		latch15_dividend;
-	wire		[31:0]		latch15_q;
-	wire		[30:0]		latch15_r;
+	wire latch15_valid;
+	wire latch15_sign;
+	wire [31:0] latch15_divisor;
+	wire [31:0] latch15_dividend;
+	wire [31:0] latch15_q;
+	wire [30:0] latch15_r;
 	
-	reg					signed_flag;
-	reg		[31:0]		diviend;
-	reg		[31:0]		divider;
+	reg signed_flag;
+	reg [31:0] diviend;
+	reg [31:0] divider;
 	
 	always@* begin
 		if(iSOURCE_SIGN)begin
 			if(iSOURCE_DIVIDEND[31] ^ iSOURCE_DIVISOR[31])begin
-				signed_flag		=		1'b1;
+				signed_flag = 1'b1;
 				if(iSOURCE_DIVIDEND[31])begin
-					diviend			=		~iSOURCE_DIVIDEND + 32'h1;
+					diviend = ~iSOURCE_DIVIDEND + 32'h1;
 				end
 				else begin
-					diviend			=		iSOURCE_DIVIDEND;
+					diviend = iSOURCE_DIVIDEND;
 				end
 				if(iSOURCE_DIVISOR[31])begin
-					divider			=		~iSOURCE_DIVISOR + 32'h1;
+					divider = ~iSOURCE_DIVISOR + 32'h1;
 				end
 				else begin
-					divider			=		iSOURCE_DIVISOR;
+					divider = iSOURCE_DIVISOR;
 				end
 			end
 			else begin
-				signed_flag		=		1'b0;
-				diviend			=		iSOURCE_DIVIDEND;
-				divider			=		iSOURCE_DIVISOR;
+				signed_flag = 1'b0;
+				diviend = iSOURCE_DIVIDEND;
+				divider = iSOURCE_DIVISOR;
 			end
 		end
 		else begin
-			signed_flag		=		1'b0;
-			diviend			=		iSOURCE_DIVIDEND;
-			divider			=		iSOURCE_DIVISOR;
+			signed_flag = 1'b0;
+			diviend = iSOURCE_DIVIDEND;
+			divider = iSOURCE_DIVISOR;
 		end
 	end
 	
-	
-	
-	
-
 	//Radix2-DIV0
 	radix2_linediv LINEDIV0(
 		.iSOURCE_DIVIDEND(diviend[31:30]),
@@ -243,7 +240,7 @@ module pipelined_div_radix2(
 		.iREMOVE(iREMOVE),
 		//PREVIOUS
 		.iPREVIOUS_VALID(iSOURCE_VALID),
-		.oPREVIOUS_BUSY(latch0_busy),
+		.oPREVIOUS_BUSY(),
 		.iPREVIOUS_SIGN(signed_flag),
 		.iPREVIOUS_DIVISOR(diviend),
 		.iPREVIOUS_DIVIDEND(divider),
@@ -725,20 +722,15 @@ module pipelined_div_radix2(
 		.oNEXT_R(latch15_r)
 	);
 
-	assign		oOUT_VALID		=		latch15_valid;
+	assign oOUT_VALID = latch15_valid;
 	//assign		oSOURCE_BUSY	=		latch0_busy;	
-	assign		oOUT_DATA_Q		=		(latch15_sign)? (~latch15_q + 32'b1) : latch15_q;
-	assign		oOUT_DATA_R		=		(latch15_sign)?  (~{1'b0, latch15_r}) + 32'b1 : {1'b0, latch15_r};
+	assign oOUT_DATA_Q = (latch15_sign)? (~latch15_q + 32'b1) : latch15_q;
+	assign oOUT_DATA_R = (latch15_sign)?  (~{1'b0, latch15_r}) + 32'b1 : {1'b0, latch15_r};
 	
 	
 endmodule
 	
-	
-	
 
 `default_nettype wire
 
-					
-			
-					
-					
+				

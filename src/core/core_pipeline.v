@@ -42,19 +42,6 @@ module core_pipeline #(
 		/****************************************
 		Load Store Access
 		****************************************/
-/*		
-		output wire oLDST_REQ,
-		input wire iLDST_BUSY,	
-		output wire [1:0] oLDST_ORDER,	//00=Byte Order 01=2Byte Order 10= Word Order 11= None
-		output wire oLDST_RW,		//0=Read 1=Write
-		output wire [13:0] oLDST_TID,
-		output wire [1:0] oLDST_MMUMOD,
-		output wire [31:0] oLDST_PDT,	
-		output wire [31:0] oLDST_ADDR,
-		output wire [31:0] oLDST_DATA,
-		input wire iLDST_VALID,
-		input wire [31:0] iLDST_DATA,
-*/
 		//Req
 		output wire oDATA_REQ,
 		input wire iDATA_LOCK,
@@ -103,11 +90,6 @@ module core_pipeline #(
 			
 	//Dummy
 	assign oFREE_TLB_FLUSH = 1'b0;
-	
-	assign oINST_FETCH_TID = {14{1'b0}};		
-	assign oINST_FETCH_MMUMOD = 2'h0;
-	assign oINST_FETCH_PDT = {32{1'b0}};
-	
 
 
 	/****************************************
@@ -593,6 +575,7 @@ module core_pipeline #(
 	wire alu32ldst_ldst_req;
 	wire ldst2alu3_ldst_busy;
 	wire [1:0] alu32ldst_ldst_order;
+	wire [3:0] alu32ldst_ldst_mask;
 	wire alu32ldst_ldst_rw;
 	wire [13:0] alu32ldst_ldst_tid;
 	wire [1:0] alu32ldst_ldst_mmumod;
@@ -672,12 +655,23 @@ module core_pipeline #(
 		.iEXT_NUM(iINTERRUPT_NUM),
 		.oEXT_ACK(oINTERRUPT_ACK),
 		//Internal IRQ
+		/*
 		.iSWI_ACTIVE(ex_alu02iic_swi_active),
 		.iSWI_NUM(ex_alu02iic_swi_number[6:0]),
 		//To Exception Manager
 		.iEXCEPTION_LOCK(exception2cim_irq_lock),
 		.oEXCEPTION_ACTIVE(cim2exception_irq_req),
 		.oEXCEPTION_IRQ_NUM(cim2exception_irq_num),
+		.iEXCEPTION_IRQ_ACK(exception2cim_irq_ack)
+		*/
+		.iFAULT_ACTIVE(ex_alu02iic_swi_active),
+		.iFAULT_NUM(ex_alu02iic_swi_number[6:0]),	
+		.iFAULT_FI0R(32'h0),	//dummy
+		///To Exception Manager
+		.iEXCEPTION_LOCK(exception2cim_irq_lock),
+		.oEXCEPTION_ACTIVE(cim2exception_irq_req),
+		.oEXCEPTION_IRQ_NUM(cim2exception_irq_num),
+		.oEXCEPTION_IRQ_FI0R(),
 		.iEXCEPTION_IRQ_ACK(exception2cim_irq_ack)
 	);
 	
@@ -784,8 +778,8 @@ module core_pipeline #(
 		.iCLOCK(iCLOCK),
 		.inRESET(inRESET),
 		//Remove
-		.iREMOVE(),
-		.iCACHE_FLASH(),
+		.iREMOVE(exception_event),
+		.iCACHE_FLASH(1'b0),
 		/****************************************
 		Memory Port Memory
 		****************************************/
@@ -898,10 +892,6 @@ module core_pipeline #(
 		.iPREVIOUS_1_INST(fetch2decoder_0_inst),
 		.iPREVIOUS_PC(fetch2decoder_pc),
 		.oPREVIOUS_LOCK(decoder2fetch_lock),
-
-
-	wire decoder2matching_0_adv_active;
-	wire [5:0] decoder2matching_0_adv_data;
 		//Next
 		.oNEXT_COMMON_VALID(decoder2matching_0_valid),
 		.oNEXT_0_VALID(),//(decoder2matching_0_valid), 
@@ -1833,6 +1823,7 @@ module core_pipeline #(
 		.oDATAIO_REQ(alu32ldst_ldst_req),
 		.iDATAIO_BUSY(ldst2alu3_ldst_busy),
 		.oDATAIO_ORDER(alu32ldst_ldst_order),
+		.oDATAIO_MASK(alu32ldst_ldst_mask),
 		.oDATAIO_RW(alu32ldst_ldst_rw),
 		.oDATAIO_TID(alu32ldst_ldst_tid),
 		.oDATAIO_MMUMOD(alu32ldst_ldst_mmumod),
@@ -1894,7 +1885,7 @@ module core_pipeline #(
 	
 	
 
-
+	/*
 	//Output Port
 	assign oLDST_REQ = (exception2ldst_ldst_use)? exception2ldst_ldst_req : alu32ldst_ldst_req;
 	assign oLDST_ORDER = (exception2ldst_ldst_use)? exception2ldst_ldst_order : alu32ldst_ldst_order;
@@ -1915,7 +1906,54 @@ module core_pipeline #(
 	assign ldst2alu3_ldst_busy = (exception2ldst_ldst_use)? 1'b1 : iLDST_BUSY;
 	assign ldst2alu3_ldst_req = (exception2ldst_ldst_use)? 1'b0 : iLDST_VALID;
 	assign ldst2alu3_ldst_data = iLDST_DATA;
+	*/
+
 	
+	losd_store_pipe_arbiter LDST_PIPE_ARBITOR(
+		.oLDST_REQ(oDATA_REQ),
+		.iLDST_BUSY(iDATA_LOCK),	
+		.oLDST_ORDER(oDATA_ORDER),	//00=Byte Order 01=2Byte Order 10= Word Order 11= None
+		.oLDST_MASK(oDATA_MASK),
+		.oLDST_RW(oDATA_RW),		//0=Read 1=Write
+		.oLDST_TID(oDATA_TID),
+		.oLDST_MMUMOD(oDATA_MMUMOD),
+		.oLDST_PDT(oDATA_PDT),	
+		.oLDST_ADDR(oDATA_ADDR),
+		.oLDST_DATA(oDATA_DATA),
+		.iLDST_VALID(iDATA_VALID),
+		.iLDST_PAGEFAULT(iDATA_PAGEFAULT),
+		.iLDST_MMU_FLAGS(iDATA_MMU_FLAGS),
+		.iLDST_DATA(iDATA_DATA),
+		//Selector
+		.iUSE_SEL(exception2ldst_ldst_use),		//0:Execution | 1:Exception
+		//Execution Module
+		.iEXE_REQ(alu32ldst_ldst_req),
+		.oEXE_BUSY(ldst2alu3_ldst_busy),
+		.iEXE_ORDER(alu32ldst_ldst_order),	//00=Byte Order 01=2Byte Order 10= Word Order 11= None
+		.iEXE_MASK(alu32ldst_ldst_mask),
+		.iEXE_RW(alu32ldst_ldst_rw),		//0=Read 1=Write
+		.iEXE_TID(alu32ldst_ldst_tid),
+		.iEXE_MMUMOD(alu32ldst_ldst_mmumod),
+		.iEXE_PDT(alu32ldst_ldst_pdt),
+		.iEXE_ADDR(alu32ldst_ldst_addr),
+		.iEXE_DATA(alu32ldst_ldst_data),
+		.oEXE_REQ(ldst2alu3_ldst_req),
+		.oEXE_PAGEFAULT(),
+		.oEXE_MMU_FLAGS(),
+		.oEXE_DATA(ldst2alu3_ldst_data),
+		//Exception Module
+		.iEXCEPT_REQ(exception2ldst_ldst_req),
+		.oEXCEPT_BUSY(ldst2exception_ldst_busy),
+		.iEXCEPT_ORDER(exception2ldst_ldst_order),	//00=Byte Order 01=2Byte Order 10= Word Order 11= None
+		.iEXCEPT_RW(exception2ldst_ldst_rw),		//0=Read 1=Write
+		.iEXCEPT_TID(exception2ldst_ldst_tid),
+		.iEXCEPT_MMUMOD(exception2ldst_ldst_mmumod),
+		.iEXCEPT_PDT(exception2ldst_ldst_pdt),
+		.iEXCEPT_ADDR(exception2ldst_ldst_addr),
+		.iEXCEPT_DATA(exception2ldst_ldst_data),
+		.oEXCEPT_REQ(ldst2exception_ldst_req),
+		.oEXCEPT_DATA(ldst2exception_ldst_data)
+	);
 	
 
 						

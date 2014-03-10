@@ -120,7 +120,7 @@ module dps_uart(
 	`elsif MIST1032ISA_XILINX_PRIMITIVE
 
 	`else
-		mist1032isa_sync_fifo #(8, 16, 4) TX_FIFO(
+		mist1032sa_sync_fifo #(8, 16, 4) TX_FIFO(
 			//System
 			.iCLOCK(iCLOCK),
 			.inRESET(inRESET),
@@ -168,7 +168,7 @@ module dps_uart(
 	`elsif MIST1032ISA_XILINX_PRIMITIVE
 
 	`else
-		mist1032isa_sync_fifo #(8, 16, 4) RX_FIFO(
+		mist1032sa_sync_fifo #(8, 16, 4) RX_FIFO(
 			//System
 			.iCLOCK(iCLOCK),
 			.inRESET(inRESET),
@@ -189,7 +189,7 @@ module dps_uart(
 	/*********************************************
 	* Uart Transmitter
 	*********************************************/
-	mist1032isa_uart_transmitter #(1'b1, 20'd108) UART_TRANSMITTER(
+	mist1032sa_uart_transmitter #(1'b1, 20'd108) UART_TRANSMITTER(
 		//System
 		.iCLOCK(iCLOCK),
 		.inRESET(inRESET),
@@ -206,7 +206,7 @@ module dps_uart(
 	/*********************************************
 	* Uart Receiver
 	*********************************************/
-	mist1032isa_uart_receiver #(1'b1, 20'd108) UART_RECEIVER(
+	mist1032sa_uart_receiver #(1'b1, 20'd108) UART_RECEIVER(
 		//System
 		.iCLOCK(iCLOCK),
 		.inRESET(inRESET),

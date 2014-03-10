@@ -1,0 +1,19 @@
+# vsim -do sim_run.tcl -c tb_inst_level 
+# ** Note: (vsim-3812) Design is being optimized...
+# ** Warning: ../../src/core/l1_instruction/l1_instruction_cache.v(331): (vopt-2241) Connection width does not match width of port 'iUP_DATA'. The port definition is at: ../../src/core/l1_instruction/l1_cache_64entry_4way_line64b.v(41).
+# ** Warning: ../../src/core/core_pipeline.v(855): (vopt-2241) Connection width does not match width of port 'iPREVIOUS_0_MMU_FLAGS'. The port definition is at: ../../src/core/fetch/fetch.v(25).
+# ** Warning: ../../src/core/core_pipeline.v(855): (vopt-2241) Connection width does not match width of port 'iPREVIOUS_1_MMU_FLAGS'. The port definition is at: ../../src/core/fetch/fetch.v(28).
+# ** Error: ../../src/core/core_pipeline.v(963): Port 'oNEXT_0_MMU_FLAGS' not found in module (23rd connection).
+# ** Error: ../../src/core/core_pipeline.v(963): Port 'oNEXT_1_MMU_FLAGS' not found in module (55th connection).
+# ** Warning: ../../src/core/execute/execute_port3.v(266): (vopt-2241) Connection width does not match width of port 'iAFE_CODE'. The port definition is at: ../../src/core/execute/execute_afe_load_store.v(8).
+# ** Warning: ../../src/core/core_pipeline.v(1956): (vopt-2241) Connection width does not match width of port 'iLDST_MMU_FLAGS'. The port definition is at: ../../src/core/losd_store_pipe_arbiter.v(16).
+# ** Warning: ../../src/core/core_pipeline.v(1956): (vopt-2241) Connection width does not match width of port 'iLDST_DATA'. The port definition is at: ../../src/core/losd_store_pipe_arbiter.v(17).
+# ** Error: ../../src/core/core_if.v(157): Port 'oINST_FETCH_REQ' not found in module (9th connection).
+# ** Error: ../../src/core/core_if.v(157): Port 'iINST_FETCH_BUSY' not found in module (10th connection).
+# ** Error: ../../src/core/core_if.v(157): Port 'oINST_FETCH_MMUMOD' not found in module (11th connection).
+# ** Error: ../../src/core/core_if.v(157): Port 'oINST_FETCH_PDT' not found in module (12th connection).
+# ** Error: ../../src/core/core_if.v(157): Port 'oINST_FETCH_ADDR' not found in module (13th connection).
+# ** Error: ../../src/mist1032sa.v(320): (vopt-2135) Too many port connections. Expected 46, found 48.
+# ** Warning: ./tb/tb_inst_level.v(229): (vopt-2241) Connection width does not match width of port 'iMEMORY_ADDR'. The port definition is at: ../model/sim_memory_model/sim_memory_model.v(33).
+# Optimization failed
+# Error loading design

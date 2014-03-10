@@ -127,7 +127,7 @@ module sim_memory_model(
 	endfunction
 
 	
-	mist1032isa_sync_fifo #(64, 8, 3) OUT_FIFO(
+	mist1032sa_sync_fifo #(64, 8, 3) OUT_FIFO(
 		.iCLOCK(iCLOCK),
 		.inRESET(inRESET),
 		.oCOUNT(),

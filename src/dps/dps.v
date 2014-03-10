@@ -2,7 +2,7 @@
 `default_nettype none	
 
 
-module default_peripheral_system(
+module dps(
 		input wire iCLOCK,
 		input wire iDPS_BASE_CLOCK,			//49.5120MHz
 		input wire inRESET,

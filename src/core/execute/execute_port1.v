@@ -147,7 +147,7 @@ module execute_port1(
 	assign sys_reg_zf = 1'b0;
 	assign sys_reg_flags = {sys_reg_sf, sys_reg_of, sys_reg_cf, sys_reg_pf, sys_reg_zf};
 	
-	sys_reg ALU1_SYS_REG(
+	execute_sys_reg ALU1_SYS_REG(
 		.iCMD(iPREVIOUS_EX_ALU1_CMD),
 		.iSOURCE0(iPREVIOUS_EX_ALU1_SOURCE0),
 		.iSOURCE1(iPREVIOUS_EX_ALU1_SOURCE1),
@@ -282,8 +282,8 @@ module execute_port1(
 	assign mul_pf_h = mul_tmp[32];
 	assign mul_zf_h = (mul_tmp == {64{1'b0}})? 1'b1 : 1'b0;
 	
-	assign mul_flags = (iPREVIOUS_CMD == `EXE_MUL_MULH || iPREVIOUS_CMD == `EXE_MUL_UMULH)? {mul_sf_h, mul_of_h, mul_cf_h, mul_pf_h, mul_zf_h} : {mul_sf_l, mul_of_l, mul_cf_l, mul_pf_l, mul_zf_l};
-	assign mul_data = (iPREVIOUS_CMD == `EXE_MUL_MULH || iPREVIOUS_CMD == `EXE_MUL_UMULH)? mul_tmp[63:32] : mul_tmp[31:0];
+	assign mul_flags = (iPREVIOUS_EX_ALU1_CMD == `EXE_MUL_MULH || iPREVIOUS_EX_ALU1_CMD == `EXE_MUL_UMULH)? {mul_sf_h, mul_of_h, mul_cf_h, mul_pf_h, mul_zf_h} : {mul_sf_l, mul_of_l, mul_cf_l, mul_pf_l, mul_zf_l};
+	assign mul_data = (iPREVIOUS_EX_ALU1_CMD == `EXE_MUL_MULH || iPREVIOUS_EX_ALU1_CMD == `EXE_MUL_UMULH)? mul_tmp[63:32] : mul_tmp[31:0];
 	
 	/****************************************
 	Latch Data Select 
@@ -370,6 +370,7 @@ module execute_port1(
 	
 	assign {exception_condition, exception_number} = 12'h0;//func_ecxeption_check(iPREVIOUS_EX_ALU1_VALID && (iPREVIOUS_EX_ALU1_UDIV || iPREVIOUS_EX_ALU1_SDIV), iPREVIOUS_EX_ALU1_SOURCE0, iPREVIOUS_EX_ALU1_SOURCE1);
 	
+	/*
 	function [11:0] func_ecxeption_check;
 		input func_mul;
 		input [31:0] func_source0;
@@ -385,6 +386,7 @@ module execute_port1(
 			end
 		end
 	endfunction
+	*/
 	
 	/****************************************
 	Divider
@@ -392,7 +394,7 @@ module execute_port1(
 	assign divider_condition = iPREVIOUS_EX_ALU1_VALID && (iPREVIOUS_EX_ALU1_UDIV || iPREVIOUS_EX_ALU1_SDIV);
 	
 	//parameter is N, DEPTH, DEPTH_N
-	sync_fifo #(14, 16, 4) ALU1_DIV_CONDITION_FIFO (
+	mist1032sa_sync_fifo #(14, 16, 4) ALU1_DIV_CONDITION_FIFO (
 		.iCLOCK(iCLOCK), 
 		.inRESET(inRESET), 
 		.iREMOVE(iFREE_EX), 
