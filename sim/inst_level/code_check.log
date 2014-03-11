@@ -207,6 +207,24 @@
 # 	core_if
 # 	pipeline_register
 # QuestaSim-64 vlog 10.0c Compiler 2011.07 Jul 21 2011
+# -- Compiling module l1_cache_64entry_4way_line64b_bus_8b_damy
+# -- Compiling module l1_cache_64entry_4way_line64b_bus_8b
+# -- Compiling module l1_instruction_cache
+# 
+# Top level modules:
+# 	l1_cache_64entry_4way_line64b_bus_8b
+# 	l1_instruction_cache
+# QuestaSim-64 vlog 10.0c Compiler 2011.07 Jul 21 2011
+# -- Compiling module l1_data_cache
+# -- Compiling module l1_data_cache_64entry_4way_line64b_bus_8b_damy
+# -- Compiling module l1_data_cache_64entry_4way_line64b_bus_8b
+# -- Compiling module l1_data_cache_counter
+# 
+# Top level modules:
+# 	l1_data_cache
+# 	l1_data_cache_64entry_4way_line64b_bus_8b
+# 	l1_data_cache_counter
+# QuestaSim-64 vlog 10.0c Compiler 2011.07 Jul 21 2011
 # -- Compiling module decode_authcheck
 # -- Compiling module decode_function
 # -- Compiling module decode_mmucheck
@@ -249,14 +267,6 @@
 # Top level modules:
 # 	fetch
 # QuestaSim-64 vlog 10.0c Compiler 2011.07 Jul 21 2011
-# -- Compiling module l1_cache_64entry_4way_line64b_bus_8b_damy
-# -- Compiling module l1_cache_64entry_4way_line64b_bus_8b
-# -- Compiling module l1_instruction_cache
-# 
-# Top level modules:
-# 	l1_cache_64entry_4way_line64b_bus_8b
-# 	l1_instruction_cache
-# QuestaSim-64 vlog 10.0c Compiler 2011.07 Jul 21 2011
 # -- Compiling module matching
 # 
 # Top level modules:
@@ -268,8 +278,8 @@
 # Top level modules:
 # 	renaming
 # QuestaSim-64 vlog 10.0c Compiler 2011.07 Jul 21 2011
-# -- Compiling module commit_entry
 # -- Compiling module scheduler1
+# -- Compiling module scheduler1_commit_entry
 # 
 # Top level modules:
 # 	scheduler1

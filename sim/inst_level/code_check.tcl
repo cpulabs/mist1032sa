@@ -23,6 +23,10 @@ vlog -work work +incdir+../../src/include +incdir+../../src/core/include ../../s
 
 vlog -work work +incdir+../../src/include +incdir+../../src/core/include ../../src/core/*.v
 
+vlog -work work +incdir+../../src/include +incdir+../../src/core/include ../../src/core/l1_instruction/*.v
+
+vlog -work work +incdir+../../src/include +incdir+../../src/core/include ../../src/core/l1_data/*.v
+
 vlog -work work +incdir+../../src/include +incdir+../../src/core/include ../../src/core/decode/*.v
 
 vlog -work work +incdir+../../src/include +incdir+../../src/core/include ../../src/core/execute/*.v
@@ -30,8 +34,6 @@ vlog -work work +incdir+../../src/include +incdir+../../src/core/include ../../s
 vlog -work work +incdir+../../src/include +incdir+../../src/core/include ../../src/core/execute/divider/*.v
 
 vlog -work work +incdir+../../src/include +incdir+../../src/core/include ../../src/core/fetch/*.v
-
-vlog -work work +incdir+../../src/include +incdir+../../src/core/include ../../src/core/l1_instruction/*.v
 
 vlog -work work +incdir+../../src/include +incdir+../../src/core/include ../../src/core/matching/*.v
 

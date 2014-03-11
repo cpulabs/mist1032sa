@@ -1,10 +1,6 @@
 /****************************************
-	Fetch Unit
-	- 2 instruction multi fetch
-	
-	
-	Make	:	2010/09/23
-	Update	:	2010/10/03
+Fetch Unit
+- 2 instructions multi fetch
 ****************************************/
 `default_nettype none
 

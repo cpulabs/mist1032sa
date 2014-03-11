@@ -9,14 +9,3 @@ Make	:	2012/08/04
 *****************************************************************************************************/
 
 
-`define				DEBUG_ENA				1'b0
-`define				DATA_RESET_ENABLE		1'b0	
-`define				DEBUG_MODE				1'b0		//0:ROM | 1:Flash 			
-`define				USE_MEMSIZE				32'h04000000					
-
-		
-		
-
-
-
-

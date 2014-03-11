@@ -14,14 +14,9 @@ If you do instruction-level or function-level check, you will need to select the
         `define MIST1032SA_INST_L1_CACHE
         //`define MIST1032SA_DATA_L1_CACHE
         //`define MIST1032SA_BRANCH_PREDICT
-        `define MIST1032SA_STANDARD_DEBUGGER
 `elsif MIST1032SA_SIM_FST
         //First Simulation Mode
-        `define MIST1032SA_STANDARD_DEBUGGER
         `define MIST1032SA_FIRST_SIM
 `else
         //Normal Simulation Mode
-        `define MIST1032SA_STANDARD_DEBUGGER
-        `define MIST1032SA_BRANCH_PREDICT
-        `define MIST1032SA_ALTERA_PRIMITIVE
 `endif

@@ -858,6 +858,9 @@ module core_pipeline #(
 	Stage : 2
 	Decoder Unit
 	****************************************/
+	assign decoder2matching_0_mmu_flags = 6'h0;
+	assign decoder2matching_1_mmu_flags = 6'h0;
+
 	decoder STAGE2_DECODER(
 		//System
 		.iCLOCK(iCLOCK), 
@@ -889,13 +892,13 @@ module core_pipeline #(
 		.iPREVIOUS_1_KERNEL_ACCESS(1'b1),
 		.iPREVIOUS_1_BRANCH_PREDICT(1'b0),
 		.iPREVIOUS_1_BRANCH_PREDICT_ADDR(32'h0),
-		.iPREVIOUS_1_INST(fetch2decoder_0_inst),
+		.iPREVIOUS_1_INST(fetch2decoder_1_inst),
 		.iPREVIOUS_PC(fetch2decoder_pc),
 		.oPREVIOUS_LOCK(decoder2fetch_lock),
 		//Next
 		.oNEXT_COMMON_VALID(decoder2matching_0_valid),
 		.oNEXT_0_VALID(),//(decoder2matching_0_valid), 
-		.oNEXT_0_MMU_FLAGS(decoder2matching_0_mmu_flags),
+		//.oNEXT_0_MMU_FLAGS(decoder2matching_0_mmu_flags),
 		.oNEXT_0_SOURCE0_ACTIVE(decoder2matching_0_source0_active), 
 		.oNEXT_0_SOURCE1_ACTIVE(decoder2matching_0_source1_active), 
 		.oNEXT_0_SOURCE0_SYSREG(decoder2matching_0_source0_sysreg), 
@@ -927,7 +930,7 @@ module core_pipeline #(
 		.oNEXT_0_EX_LDST(decoder2matching_0_ldst), 
 		.oNEXT_0_EX_BRANCH(decoder2matching_0_branch),
 		.oNEXT_1_VALID(decoder2matching_1_valid), 
-		.oNEXT_1_MMU_FLAGS(decoder2matching_1_mmu_flags),
+		//.oNEXT_1_MMU_FLAGS(decoder2matching_1_mmu_flags),
 		.oNEXT_1_SOURCE0_ACTIVE(decoder2matching_1_source0_active), 
 		.oNEXT_1_SOURCE1_ACTIVE(decoder2matching_1_source1_active), 
 		.oNEXT_1_SOURCE0_SYSREG(decoder2matching_1_source0_sysreg), 
@@ -1855,6 +1858,90 @@ module core_pipeline #(
 		.oSCHE2_ALU3_DATA(ex_alu32scheduler2_ldst_data)
 	);	
 	
+	/****************************************
+	Stage : 8
+	Data Cache
+	****************************************/
+	wire ldst_arbiter2d_cache_req;
+	wire d_cache2ldst_arbiter_busy;
+	wire [1:0] ldst_arbiter2d_cache_order;
+	wire [3:0] ldst_arbiter2d_cache_mask;
+	wire ldst_arbiter2d_cache_rw;
+	wire [31:0] ldst_arbiter2d_cache_tid;
+	wire [1:0] ldst_arbiter2d_cache_mmumod;
+	wire [31:0] ldst_arbiter2d_cache_pdt;
+	wire [31:0] ldst_arbiter2d_cache_addr;
+	wire [31:0] ldst_arbiter2d_cache_data;
+	wire d_cache2ldst_arbiter_valid;
+	wire d_cache2ldst_arbiter_pagefault;
+	wire [13:0] d_cache2ldst_arbiter_mmu_flags;
+	wire [31:0] d_cache2ldst_arbiter_data;
+
+	l1_data_cache L1_DATA_CACHE(
+		.iCLOCK(iCLOCK),
+		.inRESET(inRESET),
+		//Remove
+		.iREMOVE(exception_restart),
+		.iCACHE_FLASH(/*cache_flash || free_cache_flush*/1'b0),
+		//IOSR
+		.iSYSINFO_IOSR_VALID(iSYSINFO_IOSR_VALID),
+		.iSYSINFO_IOSR(iSYSINFO_IOSR),
+		/****************************************
+		Load/Store Module
+		****************************************/		
+		//Load Store -> Cache
+		.iLDST_REQ(ldst_arbiter2d_cache_req),
+		.oLDST_BUSY(d_cache2ldst_arbiter_busy),
+		.iLDST_ORDER(ldst_arbiter2d_cache_order),
+		.iLDST_MASK(ldst_arbiter2d_cache_mask),
+		.iLDST_RW(ldst_arbiter2d_cache_rw),
+		.iLDST_TID(ldst_arbiter2d_cache_tid),
+		.iLDST_MMUMOD(ldst_arbiter2d_cache_mmumod),
+		.iLDST_PDT(ldst_arbiter2d_cache_pdt),
+		.iLDST_ADDR(ldst_arbiter2d_cache_addr),
+		.iLDST_DATA(ldst_arbiter2d_cache_data),
+		//Cache -> Load Store
+		.oLDST_VALID(d_cache2ldst_arbiter_valid),
+		.oLDST_PAGEFAULT(d_cache2ldst_arbiter_pagefault),////////////////////////////////
+		.oLDST_MMU_FLAGS(d_cache2ldst_arbiter_mmu_flags),////////////////////////////////
+		.oLDST_DATA(d_cache2ldst_arbiter_data),
+		/****************************************
+		Data Memory
+		****************************************/
+		//Req
+		.oDATA_REQ(oDATA_REQ),
+		.iDATA_LOCK(iDATA_LOCK),
+		.oDATA_ORDER(oDATA_ORDER),
+		.oDATA_MASK(oDATA_MASK),
+		.oDATA_RW(oDATA_RW),		//0=Write 1=Read
+		.oDATA_TID(oDATA_TID),
+		.oDATA_MMUMOD(oDATA_MMUMOD),
+		.oDATA_PDT(oDATA_PDT),
+		.oDATA_ADDR(oDATA_ADDR),
+		//This -> Data RAM
+		.oDATA_DATA(oDATA_DATA),
+		//Data RAM -> This
+		.iDATA_VALID(iDATA_VALID),
+		.iDATA_PAGEFAULT(iDATA_PAGEFAULT),
+		.iDATA_MMU_FLAGS(iDATA_MMU_FLAGS),
+		.iDATA_DATA(iDATA_DATA),
+		/****************************************  
+		IO
+		****************************************/
+		//Req
+		.oIO_REQ(oIO_REQ),
+		.iIO_BUSY(iIO_BUSY),
+		.oIO_ORDER(oIO_ORDER),
+		.oIO_RW(oIO_RW),			//0=Write 1=Read
+		.oIO_ADDR(oIO_ADDR),
+		//Write
+		.oIO_DATA(oIO_DATA),
+		//Rec
+		.iIO_VALID(iIO_VALID),
+		.iIO_DATA(iIO_DATA)
+	);
+	
+
 	
 	
 	/****************************************
@@ -1910,20 +1997,20 @@ module core_pipeline #(
 
 	
 	losd_store_pipe_arbiter LDST_PIPE_ARBITOR(
-		.oLDST_REQ(oDATA_REQ),
-		.iLDST_BUSY(iDATA_LOCK),	
-		.oLDST_ORDER(oDATA_ORDER),	//00=Byte Order 01=2Byte Order 10= Word Order 11= None
-		.oLDST_MASK(oDATA_MASK),
-		.oLDST_RW(oDATA_RW),		//0=Read 1=Write
-		.oLDST_TID(oDATA_TID),
-		.oLDST_MMUMOD(oDATA_MMUMOD),
-		.oLDST_PDT(oDATA_PDT),	
-		.oLDST_ADDR(oDATA_ADDR),
-		.oLDST_DATA(oDATA_DATA),
-		.iLDST_VALID(iDATA_VALID),
-		.iLDST_PAGEFAULT(iDATA_PAGEFAULT),
-		.iLDST_MMU_FLAGS(iDATA_MMU_FLAGS),
-		.iLDST_DATA(iDATA_DATA),
+		.oLDST_REQ(ldst_arbiter2d_cache_req),
+		.iLDST_BUSY(d_cache2ldst_arbiter_busy),	
+		.oLDST_ORDER(ldst_arbiter2d_cache_order),	//00=Byte Order 01=2Byte Order 10= Word Order 11= None
+		.oLDST_MASK(ldst_arbiter2d_cache_mask),
+		.oLDST_RW(ldst_arbiter2d_cache_rw),		//0=Read 1=Write
+		.oLDST_TID(ldst_arbiter2d_cache_tid),
+		.oLDST_MMUMOD(ldst_arbiter2d_cache_mmumod),
+		.oLDST_PDT(ldst_arbiter2d_cache_pdt),	
+		.oLDST_ADDR(ldst_arbiter2d_cache_addr),
+		.oLDST_DATA(ldst_arbiter2d_cache_data),
+		.iLDST_VALID(d_cache2ldst_arbiter_valid),
+		.iLDST_PAGEFAULT(d_cache2ldst_arbiter_pagefault),
+		.iLDST_MMU_FLAGS(d_cache2ldst_arbiter_mmu_flags),
+		.iLDST_DATA(d_cache2ldst_arbiter_data),
 		//Selector
 		.iUSE_SEL(exception2ldst_ldst_use),		//0:Execution | 1:Exception
 		//Execution Module

@@ -1,0 +1,48 @@
+library verilog;
+use verilog.vl_types.all;
+entity l1_data_cache is
+    port(
+        iCLOCK          : in     vl_logic;
+        inRESET         : in     vl_logic;
+        iREMOVE         : in     vl_logic;
+        iCACHE_FLASH    : in     vl_logic;
+        iSYSINFO_IOSR_VALID: in     vl_logic;
+        iSYSINFO_IOSR   : in     vl_logic_vector(31 downto 0);
+        iLDST_REQ       : in     vl_logic;
+        oLDST_BUSY      : out    vl_logic;
+        iLDST_ORDER     : in     vl_logic_vector(1 downto 0);
+        iLDST_MASK      : in     vl_logic_vector(3 downto 0);
+        iLDST_RW        : in     vl_logic;
+        iLDST_TID       : in     vl_logic_vector(31 downto 0);
+        iLDST_MMUMOD    : in     vl_logic_vector(1 downto 0);
+        iLDST_PDT       : in     vl_logic_vector(31 downto 0);
+        iLDST_ADDR      : in     vl_logic_vector(31 downto 0);
+        iLDST_DATA      : in     vl_logic_vector(31 downto 0);
+        oLDST_VALID     : out    vl_logic;
+        oLDST_PAGEFAULT : out    vl_logic;
+        oLDST_MMU_FLAGS : out    vl_logic_vector(13 downto 0);
+        oLDST_DATA      : out    vl_logic_vector(31 downto 0);
+        oDATA_REQ       : out    vl_logic;
+        iDATA_LOCK      : in     vl_logic;
+        oDATA_ORDER     : out    vl_logic_vector(1 downto 0);
+        oDATA_MASK      : out    vl_logic_vector(3 downto 0);
+        oDATA_RW        : out    vl_logic;
+        oDATA_TID       : out    vl_logic_vector(13 downto 0);
+        oDATA_MMUMOD    : out    vl_logic_vector(1 downto 0);
+        oDATA_PDT       : out    vl_logic_vector(31 downto 0);
+        oDATA_ADDR      : out    vl_logic_vector(31 downto 0);
+        oDATA_DATA      : out    vl_logic_vector(31 downto 0);
+        iDATA_VALID     : in     vl_logic;
+        iDATA_PAGEFAULT : in     vl_logic;
+        iDATA_MMU_FLAGS : in     vl_logic_vector(27 downto 0);
+        iDATA_DATA      : in     vl_logic_vector(63 downto 0);
+        oIO_REQ         : out    vl_logic;
+        iIO_BUSY        : in     vl_logic;
+        oIO_ORDER       : out    vl_logic_vector(1 downto 0);
+        oIO_RW          : out    vl_logic;
+        oIO_ADDR        : out    vl_logic_vector(31 downto 0);
+        oIO_DATA        : out    vl_logic_vector(31 downto 0);
+        iIO_VALID       : in     vl_logic;
+        iIO_DATA        : in     vl_logic_vector(31 downto 0)
+    );
+end l1_data_cache;

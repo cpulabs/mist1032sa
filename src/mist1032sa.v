@@ -242,10 +242,18 @@ module mist1032sa(
 		/****************************************
 		System
 		****************************************/
+		/*
 		.iIF_CLOCK(iBUS_CLOCK),
 		.iCORE_CLOCK(iCORE_CLOCK),
 		.inRESET(inRESET),
 		.iRESET_SYNC(iRESET_SYNC),
+		*/
+		.iCLOCK(iCORE_CLOCK),
+		.inRESET(inRESET),
+		/****************************************
+		TLB Flush
+		****************************************/	
+		.oFREE_TLB_FLUSH(free_tlb_flush),
 		/****************************************
 		GCI Controll
 		****************************************/	
@@ -261,7 +269,7 @@ module mist1032sa(
 		//Req
 		.oINST_REQ(core2mem_inst_req),
 		.iINST_LOCK(mem2core_inst_lock),
-		.oINST_TID(),
+		//.oINST_TID(),
 		.oINST_MMUMOD(core2mem_inst_mmumod),
 		.oINST_PDT(core2mem_inst_pdt),
 		.oINST_ADDR(core2mem_inst_addr),

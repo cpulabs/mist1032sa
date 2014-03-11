@@ -128,7 +128,18 @@ module execute_port0(
 		end
 	end
 
-		//Output Assign
+	always@(posedge iCLOCK)begin
+		if(inRESET)begin
+			if(iPREVIOUS_EX_BRANCH_VALID)begin
+				$display("Execute Branch");
+			end
+		end
+	end
+
+
+
+
+	//Output Assign
 	assign oPREVIOUS_EX_BRANCH_LOCK = b_busy;	
 	
 	assign oJUMP_ACTIVE = b_stage_valid && !b_idts_valid && !b_ib_valid && !b_halt_valid;

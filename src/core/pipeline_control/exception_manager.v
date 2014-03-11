@@ -229,7 +229,7 @@ module exception_manager(
 			b_microcode_addr <= 32'h0;
 			b_new_spr_write_req <= 1'b0;
 			b_spr_mem_write_req <= 1'b0;
-			if(`DATA_RESET_ENABLE)begin		
+			if(`PROCESSOR_DATA_RESET_EN)begin		
 				b_debug_branch_counter <= 32'h0;				//debug
 				b_req_state <= `STT_MAIN_IDLE;
 				b_branch_addr <= {32{1'b0}};
