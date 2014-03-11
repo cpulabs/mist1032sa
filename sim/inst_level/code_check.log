@@ -295,8 +295,8 @@
 # -- Compiling module reservation_alu3_entry
 # -- Compiling module reservation_free_entry_count
 # -- Compiling module reservation_search16to2
-# -- Compiling module scheduler2_free_search_64to2
 # -- Compiling module scheduler2
+# -- Compiling module scheduler2_free_search_64to2
 # -- Compiling module system_register
 # 
 # Top level modules:

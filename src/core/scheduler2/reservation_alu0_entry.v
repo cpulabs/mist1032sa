@@ -25,7 +25,7 @@ module reservation_alu0_entry(
 		//Common Data Bus CDB(CH1, ADDER)
 		input wire iALU1_VALID,
 		input wire iALU1_FLAGS_OPT_VALID,	
-		input wire [3:0] iALU1_FLAGS_REGNAME,				//NEW
+		input wire [3:0] iALU1_FLAGS_REGNAME,		
 		input wire [5:0] iALU1_DESTINATION_REGNAME,
 		input wire iALU1_WRITEBACK,
 		input wire [31:0] iALU1_DATA,
@@ -33,7 +33,7 @@ module reservation_alu0_entry(
 		//Common Data Bus CDB(CH2, MULDIV)
 		input wire iALU2_VALID,
 		input wire iALU2_FLAGS_OPT_VALID,		
-		input wire [3:0] iALU2_FLAGS_REGNAME,				//NEW	
+		input wire [3:0] iALU2_FLAGS_REGNAME,	
 		input wire [5:0] iALU2_DESTINATION_REGNAME,
 		input wire iALU2_WRITEBACK,	
 		input wire [31:0] iALU2_DATA,

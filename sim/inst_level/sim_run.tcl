@@ -45,5 +45,8 @@ vlog -work work +incdir+../../src/include +incdir+../../src/core/include ../../s
 vlog -work work +incdir+../../src/include +incdir+../../src/core/include ../../src/core/scheduler2/*.v
 
 vlog -work work +incdir+../../src/include +incdir+../../src/core/include ../../src/core/pipeline_control/*.v
+vsim -voptargs="+acc"
+radix -hexadecimal
+log -r /*
 run -all
 quit

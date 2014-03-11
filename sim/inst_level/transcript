@@ -1,31 +1,4 @@
-# vsim -do sim_run.tcl -c tb_inst_level 
-# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
-# ** Warning: ../../src/core/l1_instruction/l1_instruction_cache.v(331): (vopt-2241) Connection width does not match width of port 'iUP_DATA'. The port definition is at: ../../src/core/l1_instruction/l1_cache_64entry_4way_line64b.v(41).
-# ** Warning: ../../src/core/core_pipeline.v(855): (vopt-2241) Connection width does not match width of port 'iPREVIOUS_0_MMU_FLAGS'. The port definition is at: ../../src/core/fetch/fetch.v(21).
-# ** Warning: ../../src/core/core_pipeline.v(855): (vopt-2241) Connection width does not match width of port 'iPREVIOUS_1_MMU_FLAGS'. The port definition is at: ../../src/core/fetch/fetch.v(24).
-# ** Warning: ../../src/core/execute/execute_port3.v(266): (vopt-2241) Connection width does not match width of port 'iAFE_CODE'. The port definition is at: ../../src/core/execute/execute_afe_load_store.v(8).
-# ** Warning: ../../src/core/core_pipeline.v(2043): (vopt-2241) Connection width does not match width of port 'oLDST_TID'. The port definition is at: ../../src/core/losd_store_pipe_arbiter.v(9).
-# ** Warning: ./tb/tb_inst_level.v(233): (vopt-2241) Connection width does not match width of port 'iMEMORY_ADDR'. The port definition is at: ../model/sim_memory_model/sim_memory_model.v(33).
-# ** Warning: ../../src/core/core_pipeline.v(966): (vopt-2685) [TFMPC] - Too few port connections for 'STAGE2_DECODER'.  Expected 99, found 85.
-# ** Warning: ../../src/core/core_pipeline.v(966): (vopt-2718) [TFMPC] - Missing connection for port 'oNEXT_1_BRANCH_PREDICT_ADDR'.
-# ** Warning: ../../src/core/core_pipeline.v(966): (vopt-2718) [TFMPC] - Missing connection for port 'oNEXT_1_BRANCH_PREDICT'.
-# ** Warning: ../../src/core/core_pipeline.v(966): (vopt-2718) [TFMPC] - Missing connection for port 'oNEXT_1_KERNEL_ACCESS'.
-# ** Warning: ../../src/core/core_pipeline.v(966): (vopt-2718) [TFMPC] - Missing connection for port 'oNEXT_1_PAGING_ENA'.
-# ** Warning: ../../src/core/core_pipeline.v(966): (vopt-2718) [TFMPC] - Missing connection for port 'oNEXT_1_FAULT_INVALID_INST'.
-# ** Warning: ../../src/core/core_pipeline.v(966): (vopt-2718) [TFMPC] - Missing connection for port 'oNEXT_1_FAULT_PRIVILEGE_ERROR'.
-# ** Warning: ../../src/core/core_pipeline.v(966): (vopt-2718) [TFMPC] - Missing connection for port 'oNEXT_1_FAULT_PAGEFAULT'.
-# ** Warning: ../../src/core/core_pipeline.v(966): (vopt-2718) [TFMPC] - Missing connection for port 'oNEXT_0_BRANCH_PREDICT_ADDR'.
-# ** Warning: ../../src/core/core_pipeline.v(966): (vopt-2718) [TFMPC] - Missing connection for port 'oNEXT_0_BRANCH_PREDICT'.
-# ** Warning: ../../src/core/core_pipeline.v(966): (vopt-2718) [TFMPC] - Missing connection for port 'oNEXT_0_KERNEL_ACCESS'.
-# ** Warning: ../../src/core/core_pipeline.v(966): (vopt-2718) [TFMPC] - Missing connection for port 'oNEXT_0_PAGING_ENA'.
-# ** Warning: ../../src/core/core_pipeline.v(966): (vopt-2718) [TFMPC] - Missing connection for port 'oNEXT_0_FAULT_INVALID_INST'.
-# ** Warning: ../../src/core/core_pipeline.v(966): (vopt-2718) [TFMPC] - Missing connection for port 'oNEXT_0_FAULT_PRIVILEGE_ERROR'.
-# ** Warning: ../../src/core/core_pipeline.v(966): (vopt-2718) [TFMPC] - Missing connection for port 'oNEXT_0_FAULT_PAGEFAULT'.
-# ** Warning: ./tb/tb_inst_level.v(154): (vopt-2685) [TFMPC] - Too few port connections for 'TARGET'.  Expected 45, found 43.
-# ** Warning: ./tb/tb_inst_level.v(154): (vopt-2718) [TFMPC] - Missing connection for port 'oMEMORY_MASK'.
-# ** Warning: ./tb/tb_inst_level.v(154): (vopt-2718) [TFMPC] - Missing connection for port 'iRESET_SYNC'.
-# ** Warning: ./tb/tb_inst_level.v(233): (vopt-2685) [TFMPC] - Too few port connections for 'MEMORY_MODEL'.  Expected 12, found 11.
-# ** Warning: ./tb/tb_inst_level.v(233): (vopt-2718) [TFMPC] - Missing connection for port 'iMEMORY_MASK'.
+# Reading C:/questasim64_10.0c/tcl/vsim/pref.tcl 
 # //  Questa Sim-64
 # //  Version 10.0c win64 Jul 21 2011
 # //
@@ -36,12 +9,37 @@
 # //  WHICH IS THE PROPERTY OF MENTOR GRAPHICS CORPORATION OR ITS
 # //  LICENSORS AND IS SUBJECT TO LICENSE TERMS.
 # //
-# Loading work.tb_inst_level(fast)
-# Loading work.fetch(fast)
-# Loading work.decode_function(fast)
-# Loading work.general_register_entry(fast)
-# ** Warning: (vsim-3015) ../../src/core/core_pipeline.v(855): [PCDPC] - Port size (6 or 6) does not match connection size (14) for port 'iPREVIOUS_0_MMU_FLAGS'.
-#         Region: /tb_inst_level/TARGET/CORE_IF/CORE_PIPELINE/STAGE1_FETCH
-# ** Warning: (vsim-3015) ../../src/core/core_pipeline.v(855): [PCDPC] - Port size (6 or 6) does not match connection size (14) for port 'iPREVIOUS_1_MMU_FLAGS'.
-#         Region: /tb_inst_level/TARGET/CORE_IF/CORE_PIPELINE/STAGE1_FETCH
-# do sim_run.tcl 
+# OpenFile vsim.wlf 
+#  
+add wave  \
+vsim:/tb_inst_level/TARGET/CORE_IF/CORE_PIPELINE/SATGE6_SCHEDULER2/iPREVIOUS_0_VALID
+add wave -position end  vsim:/tb_inst_level/TARGET/CORE_IF/CORE_PIPELINE/SATGE6_SCHEDULER2/iPREVIOUS_0_EX_SYS_REG
+add wave -position end  vsim:/tb_inst_level/TARGET/CORE_IF/CORE_PIPELINE/SATGE6_SCHEDULER2/iPREVIOUS_0_EX_SYS_LDST
+add wave -position end  vsim:/tb_inst_level/TARGET/CORE_IF/CORE_PIPELINE/SATGE6_SCHEDULER2/iPREVIOUS_0_EX_LOGIC
+add wave -position end  vsim:/tb_inst_level/TARGET/CORE_IF/CORE_PIPELINE/SATGE6_SCHEDULER2/iPREVIOUS_0_EX_SHIFT
+add wave -position end  vsim:/tb_inst_level/TARGET/CORE_IF/CORE_PIPELINE/SATGE6_SCHEDULER2/iPREVIOUS_0_EX_ADDER
+add wave -position end  vsim:/tb_inst_level/TARGET/CORE_IF/CORE_PIPELINE/SATGE6_SCHEDULER2/iPREVIOUS_0_EX_MUL
+add wave -position end  vsim:/tb_inst_level/TARGET/CORE_IF/CORE_PIPELINE/SATGE6_SCHEDULER2/iPREVIOUS_0_EX_SDIV
+add wave -position end  vsim:/tb_inst_level/TARGET/CORE_IF/CORE_PIPELINE/SATGE6_SCHEDULER2/iPREVIOUS_0_EX_UDIV
+add wave -position end  vsim:/tb_inst_level/TARGET/CORE_IF/CORE_PIPELINE/SATGE6_SCHEDULER2/iPREVIOUS_0_EX_LDST
+add wave -position end  vsim:/tb_inst_level/TARGET/CORE_IF/CORE_PIPELINE/SATGE6_SCHEDULER2/iPREVIOUS_0_EX_BRANCH
+add wave -position end  vsim:/tb_inst_level/TARGET/CORE_IF/CORE_PIPELINE/SATGE6_SCHEDULER2/iPREVIOUS_1_VALID
+add wave -position end  vsim:/tb_inst_level/TARGET/CORE_IF/CORE_PIPELINE/SATGE6_SCHEDULER2/iPREVIOUS_1_EX_SYS_REG
+add wave -position end  vsim:/tb_inst_level/TARGET/CORE_IF/CORE_PIPELINE/SATGE6_SCHEDULER2/iPREVIOUS_1_EX_SYS_LDST
+add wave -position end  vsim:/tb_inst_level/TARGET/CORE_IF/CORE_PIPELINE/SATGE6_SCHEDULER2/iPREVIOUS_1_EX_LOGIC
+add wave -position end  vsim:/tb_inst_level/TARGET/CORE_IF/CORE_PIPELINE/SATGE6_SCHEDULER2/iPREVIOUS_1_EX_SHIFT
+add wave -position end  vsim:/tb_inst_level/TARGET/CORE_IF/CORE_PIPELINE/SATGE6_SCHEDULER2/iPREVIOUS_1_EX_ADDER
+add wave -position end  vsim:/tb_inst_level/TARGET/CORE_IF/CORE_PIPELINE/SATGE6_SCHEDULER2/iPREVIOUS_1_EX_MUL
+add wave -position end  vsim:/tb_inst_level/TARGET/CORE_IF/CORE_PIPELINE/SATGE6_SCHEDULER2/iPREVIOUS_1_EX_SDIV
+add wave -position end  vsim:/tb_inst_level/TARGET/CORE_IF/CORE_PIPELINE/SATGE6_SCHEDULER2/iPREVIOUS_1_EX_UDIV
+add wave -position end  vsim:/tb_inst_level/TARGET/CORE_IF/CORE_PIPELINE/SATGE6_SCHEDULER2/iPREVIOUS_1_EX_LDST
+add wave -position end  vsim:/tb_inst_level/TARGET/CORE_IF/CORE_PIPELINE/SATGE6_SCHEDULER2/iPREVIOUS_1_EX_BRANCH
+add wave -position end  vsim:/tb_inst_level/TARGET/CORE_IF/CORE_PIPELINE/SATGE6_SCHEDULER2/iPREVIOUS_PC
+add wave -position end  vsim:/tb_inst_level/TARGET/CORE_IF/CORE_PIPELINE/SATGE6_SCHEDULER2/oPREVIOUS_LOCK
+add wave -position end  vsim:/tb_inst_level/TARGET/CORE_IF/CORE_PIPELINE/SATGE6_SCHEDULER2/rs_alu0_info_entry_valid
+add wave -position end  vsim:/tb_inst_level/TARGET/CORE_IF/CORE_PIPELINE/SATGE6_SCHEDULER2/rs_alu0_info_matching
+add wave -position end  vsim:/tb_inst_level/TARGET/CORE_IF/CORE_PIPELINE/SATGE6_SCHEDULER2/w_ex_inorder_execution_pointer
+write format wave -window .main_pane.wave.interior.cs.body.pw.wf C:/dev/home/takahiro/project/git/mist1032sa/sim/inst_level/waveview_template/scheduler2.do
+add wave -position 2  vsim:/tb_inst_level/TARGET/CORE_IF/CORE_PIPELINE/SATGE6_SCHEDULER2/rs_alu0_regist_ex_inorder_regist_pointer
+add wave -position end  vsim:/tb_inst_level/TARGET/CORE_IF/CORE_PIPELINE/SATGE6_SCHEDULER2/rs_alu0_regist_ex_inorder_regist_pointer
+write format wave -window .main_pane.wave.interior.cs.body.pw.wf C:/dev/home/takahiro/project/git/mist1032sa/sim/inst_level/waveview_template/scheduler2.do

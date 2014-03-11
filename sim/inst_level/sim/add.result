@@ -295,8 +295,8 @@
 # -- Compiling module reservation_alu3_entry
 # -- Compiling module reservation_free_entry_count
 # -- Compiling module reservation_search16to2
-# -- Compiling module scheduler2_free_search_64to2
 # -- Compiling module scheduler2
+# -- Compiling module scheduler2_free_search_64to2
 # -- Compiling module system_register
 # 
 # Top level modules:
@@ -308,6 +308,8 @@
 # Top level modules:
 # 	core_interrupt_manager
 # 	exception_manager
+# No design specified
+# hexadecimal
 # Check Start
 # [INF][sim_memory_model.v]Please wait. Endian converting for test file.
 # test!!!!!
@@ -378,7 +380,7 @@
 # [INFO]Time :                 4010, Core(FETCH) Instruction Issue - Pipe0 : 0d400104
 # [INFO]Time :                 4010, Core(FETCH) Instruction Issue - Pipe1 : 0d600103
 # [INFO]Time :                 4010, Core(FETCH) Program Count Register - Pipe0 : 000000a8
-# Break at ./tb/tb_inst_level.v line 210
+# Break in Module tb_inst_level at ./tb/tb_inst_level.v line 210
 # Stopped at ./tb/tb_inst_level.v line 210 
-# Simulation Breakpoint: Break at ./tb/tb_inst_level.v line 210
-# MACRO ./sim_run.tcl PAUSED at line 48
+# Simulation Breakpoint: Break in Module tb_inst_level at ./tb/tb_inst_level.v line 210
+# MACRO ./sim_run.tcl PAUSED at line 51
