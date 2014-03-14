@@ -1,5 +1,6 @@
 /sim/inst_level/sim
 /sim/inst_level/work
+/sim/inst_level/vsim.wlf
 /sim/func_level/sim
 /sim/func_level/work
 /sim/modelsim/work
