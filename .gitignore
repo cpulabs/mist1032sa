@@ -1,0 +1,11 @@
+/sim/inst_level/sim
+/sim/inst_level/work
+/sim/func_level/sim
+/sim/func_level/work
+/sim/modelsim/work
+
+#For modelsim and riviera-pro
+*.wlf
+transcript*
+*.asdb
+*.ucdb
