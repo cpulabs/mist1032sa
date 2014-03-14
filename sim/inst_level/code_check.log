@@ -273,10 +273,10 @@
 # 	matching
 # QuestaSim-64 vlog 10.0c Compiler 2011.07 Jul 21 2011
 # -- Compiling module register_renaming_table
-# -- Compiling module renaming
+# -- Compiling module rename
 # 
 # Top level modules:
-# 	renaming
+# 	rename
 # QuestaSim-64 vlog 10.0c Compiler 2011.07 Jul 21 2011
 # -- Compiling module scheduler1
 # -- Compiling module scheduler1_commit_entry

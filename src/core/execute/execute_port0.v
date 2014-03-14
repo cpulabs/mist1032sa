@@ -58,7 +58,7 @@ module execute_port0(
 	execute_branch EXECUTE_BRANCH(
 		.iDATA_0(32'h0),	//non use
 		.iDATA_1(iPREVIOUS_EX_BRANCH_SOURCE),		
-		.iPC(iPREVIOUS_EX_BRANCH_PC),
+		.iPC(iPREVIOUS_EX_BRANCH_PC - 32'h00000004),
 		.iFLAG(iPREVIOUS_EX_BRANCH_FLAG),
 		.iCC(iPREVIOUS_EX_BRANCH_CC),
 		.iCMD(iPREVIOUS_EX_BRANCH_CMD),
@@ -95,6 +95,7 @@ module execute_port0(
 	reg b_idts_valid;
 	reg b_halt_valid;
 	reg [5:0] b_commit_tag;
+	reg [31:0] b_pcr;
 	always@(posedge iCLOCK or negedge inRESET)begin
 		if(!inRESET)begin
 			b_stage_valid <= 1'b0;
@@ -105,6 +106,7 @@ module execute_port0(
 			b_idts_valid <= 1'b0;
 			b_halt_valid <= 1'b0;
 			b_commit_tag <= 6'h0;
+			b_pcr <= 32'h0;
 		end
 		else if(iRESET_SYNC || iFREE_RESTART)begin
 			b_stage_valid <= 1'b0;
@@ -115,6 +117,7 @@ module execute_port0(
 			b_idts_valid <= 1'b0;
 			b_halt_valid <= 1'b0;
 			b_commit_tag <= 6'h0;
+			b_pcr <= 32'h0;
 		end
 		else begin
 			b_stage_valid <= !b_busy && iPREVIOUS_EX_BRANCH_VALID;
@@ -125,14 +128,7 @@ module execute_port0(
 			b_idts_valid <= idts_valid;
 			b_halt_valid <= halt_valid;
 			b_commit_tag <= iPREVIOUS_EX_BRANCH_COMMIT_TAG;
-		end
-	end
-
-	always@(posedge iCLOCK)begin
-		if(inRESET)begin
-			if(iPREVIOUS_EX_BRANCH_VALID)begin
-				$display("Execute Branch");
-			end
+			b_pcr <= iPREVIOUS_EX_BRANCH_PC;
 		end
 	end
 

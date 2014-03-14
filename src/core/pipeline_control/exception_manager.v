@@ -76,96 +76,96 @@ Exception Manager
 
 
 module exception_manager(
-				input wire iCLOCK,
-				input wire inRESET,
-				/*********************************
-				Core
-				*********************************/
-				//Commit & Regist Info
-				input wire [5:0] iCOREINFO_COMMIT_COUNTER,
-				input wire iCOREINFO_EXCEPTION_PROTECT,	
-				//Scheduler1
-				input wire [31:0] iCOREINFO_CURRENT_PC,
-				//Free
-				output wire oCOREINFO_FREE_INST_DISCARD,
-				output wire oCOREINFO_FREE_EVENT,
-				output wire [5:0] oCOREINFO_FREE_COMMIT_TAG,
-				output wire oCOREINFO_FREE_ADDR_SET,
-				output wire [31:0] oCOREINFO_FREE_ADDR,
-				output wire oCOREINFO_FREE_RESTART,
-				output wire [31:0] oCOREINFO_FREE_CURRENT_PC,
-				output wire oCOREINFO_FREE_SET_IRQ_MODE,
-				output wire oCOREINFO_FREE_CLR_IRQ_MODE,
-				//output wire [31:0] oCOREINFO_FREE_NEW_PSR,	
-				output wire oCOREINFO_FREE_NEW_SPR_VALID,	
-				output wire [31:0] oCOREINFO_FREE_NEW_SPR,
-				//Order
-				output wire oCOREINFO_MCODE0_VALID,
-				output wire [31/*mitei*/:0] oCOREINFO_MCODE0,
-				output wire oCOREINFO_MCODE1_VALID,
-				output wire [31/*mitei*/:0] oCOREINFO_MCODE1,
-				input wire iCODEINFO_MCODE_LOCK,
-				//System Register Info
-				input wire [31:0] iCOREINFO_SYSREG_IDTR,
-				input wire [31:0] iCOREINFO_SYSREG_TISR,
-				input wire [31:0] iCOREINFO_SYSREG_TIDR,
-				input wire [31:0] iCOREINFO_SYSREG_PSR,
-				input wire [31:0] iCOREINFO_SYSREG_PPSR,
-				input wire [31:0] iCOREINFO_SYSREG_PPCR,
-				input wire [31:0] iCOREINFO_SYSREG_SPR,
-				//IO Port
-				output wire oLDST_USE,
-				output wire oLDST_REQ,
-				input wire iLDST_BUSY,
-				output wire [1:0] oLDST_ORDER,	//00=Byte Order 01=2Byte Order 10= Word Order 11= None
-				output wire oLDST_RW,		//0=Read 1=Write
-				output wire [13:0] oLDST_TID,
-				output wire [1:0] oLDST_MMUMOD,
-				output wire [31:0] oLDST_PDT,
-				output wire [31:0] oLDST_ADDR,
-				output wire [31:0] oLDST_DATA,
-				input wire iLDST_REQ,
-				input wire [31:0] iLDST_DATA,
-				/*********************************
-				Interrupt Configlation
-				*********************************/	
-				//GCI Interrupt Configlation Table
-				output wire oIO_IRQ_CONFIG_TABLE_REQ,
-				output wire [5:0] oIO_IRQ_CONFIG_TABLE_ENTRY,
-				output wire oIO_IRQ_CONFIG_TABLE_FLAG_MASK,
-				output wire oIO_IRQ_CONFIG_TABLE_FLAG_VALID,	
-				output wire [1:0] oIO_IRQ_CONFIG_TABLE_FLAG_LEVEL,	
-				//Interrupt COnfiglation Table
-				output wire oICT_REQ,
-				output wire [5:0] oICT_ENTRY,
-				output wire oICT_CONF_MASK,
-				output wire oICT_CONF_VALID,	
-				output wire [1:0] oICT_CONF_LEVEL,	
-				/*********************************
-				Exeption Source
-				*********************************/
-				//ALU Branch
-				input wire iALU_BRANCH_REQ,
-				input wire [31:0] iALU_BRANCH_ADDR,
-				input wire [5:0] iALU_BRANCH_COMMIT_TAG,
-				//IRQ-Ret
-				input wire iALU_INTRET_REQ,
-				input wire [31:0] iALU_INTRET_ADDR,
-				input wire [5:0] iALU_INTRET_COMMIT_TAG,
-				//IDT Set
-				input wire iIDT_SET_REQ,
-				input wire [31:0] iIDT_SET_R_ADDR,
-				input wire [5:0] iIDT_SET_COMMIT_TAG,
-				input wire [31:0] iIDT_SET_IDTR,
-				//Hardware Task Switch
-				input wire iHW_TS_REQ,
-				input wire [31:0] iHW_TS_ADDR,
-				output wire oHW_TS_BUSY,
-				//IRQ-Set
-				input wire iIRQ_REQ,
-				input wire [6:0] iIRQ_NUM,
-				output wire oIRQ_ACK,
-				output wire oIRQ_BUSY
+		input wire iCLOCK,
+		input wire inRESET,
+		/*********************************
+		Core
+		*********************************/
+		//Commit & Regist Info
+		input wire [5:0] iCOREINFO_COMMIT_COUNTER,
+		input wire iCOREINFO_EXCEPTION_PROTECT,	
+		//Scheduler1
+		input wire [31:0] iCOREINFO_CURRENT_PC,
+		//Free
+		output wire oCOREINFO_FREE_INST_DISCARD,
+		output wire oCOREINFO_FREE_EVENT,
+		output wire [5:0] oCOREINFO_FREE_COMMIT_TAG,
+		output wire oCOREINFO_FREE_ADDR_SET,
+		output wire [31:0] oCOREINFO_FREE_ADDR,
+		output wire oCOREINFO_FREE_RESTART,
+		output wire [31:0] oCOREINFO_FREE_CURRENT_PC,
+		output wire oCOREINFO_FREE_SET_IRQ_MODE,
+		output wire oCOREINFO_FREE_CLR_IRQ_MODE,
+		//output wire [31:0] oCOREINFO_FREE_NEW_PSR,	
+		output wire oCOREINFO_FREE_NEW_SPR_VALID,	
+		output wire [31:0] oCOREINFO_FREE_NEW_SPR,
+		//Order
+		output wire oCOREINFO_MCODE0_VALID,
+		output wire [31/*mitei*/:0] oCOREINFO_MCODE0,
+		output wire oCOREINFO_MCODE1_VALID,
+		output wire [31/*mitei*/:0] oCOREINFO_MCODE1,
+		input wire iCODEINFO_MCODE_LOCK,
+		//System Register Info
+		input wire [31:0] iCOREINFO_SYSREG_IDTR,
+		input wire [31:0] iCOREINFO_SYSREG_TISR,
+		input wire [31:0] iCOREINFO_SYSREG_TIDR,
+		input wire [31:0] iCOREINFO_SYSREG_PSR,
+		input wire [31:0] iCOREINFO_SYSREG_PPSR,
+		input wire [31:0] iCOREINFO_SYSREG_PPCR,
+		input wire [31:0] iCOREINFO_SYSREG_SPR,
+		//IO Port
+		output wire oLDST_USE,
+		output wire oLDST_REQ,
+		input wire iLDST_BUSY,
+		output wire [1:0] oLDST_ORDER,	//00=Byte Order 01=2Byte Order 10= Word Order 11= None
+		output wire oLDST_RW,		//0=Read 1=Write
+		output wire [13:0] oLDST_TID,
+		output wire [1:0] oLDST_MMUMOD,
+		output wire [31:0] oLDST_PDT,
+		output wire [31:0] oLDST_ADDR,
+		output wire [31:0] oLDST_DATA,
+		input wire iLDST_REQ,
+		input wire [31:0] iLDST_DATA,
+		/*********************************
+		Interrupt Configlation
+		*********************************/	
+		//GCI Interrupt Configlation Table
+		output wire oIO_IRQ_CONFIG_TABLE_REQ,
+		output wire [5:0] oIO_IRQ_CONFIG_TABLE_ENTRY,
+		output wire oIO_IRQ_CONFIG_TABLE_FLAG_MASK,
+		output wire oIO_IRQ_CONFIG_TABLE_FLAG_VALID,	
+		output wire [1:0] oIO_IRQ_CONFIG_TABLE_FLAG_LEVEL,	
+		//Interrupt COnfiglation Table
+		output wire oICT_REQ,
+		output wire [5:0] oICT_ENTRY,
+		output wire oICT_CONF_MASK,
+		output wire oICT_CONF_VALID,	
+		output wire [1:0] oICT_CONF_LEVEL,	
+		/*********************************
+		Exeption Source
+		*********************************/
+		//ALU Branch
+		input wire iALU_BRANCH_REQ,
+		input wire [31:0] iALU_BRANCH_ADDR,
+		input wire [5:0] iALU_BRANCH_COMMIT_TAG,
+		//IRQ-Ret
+		input wire iALU_INTRET_REQ,
+		input wire [31:0] iALU_INTRET_ADDR,
+		input wire [5:0] iALU_INTRET_COMMIT_TAG,
+		//IDT Set
+		input wire iIDT_SET_REQ,
+		input wire [31:0] iIDT_SET_R_ADDR,
+		input wire [5:0] iIDT_SET_COMMIT_TAG,
+		input wire [31:0] iIDT_SET_IDTR,
+		//Hardware Task Switch
+		input wire iHW_TS_REQ,
+		input wire [31:0] iHW_TS_ADDR,
+		output wire oHW_TS_BUSY,
+		//IRQ-Set
+		input wire iIRQ_REQ,
+		input wire [6:0] iIRQ_NUM,
+		output wire oIRQ_ACK,
+		output wire oIRQ_BUSY
 	);
 	
 

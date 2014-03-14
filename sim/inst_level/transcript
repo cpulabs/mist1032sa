@@ -1,4 +1,4 @@
-# Reading C:/questasim64_10.0c/tcl/vsim/pref.tcl 
+# vsim -do sim_run.tcl -c -voptargs=+acc tb_inst_level 
 # //  Questa Sim-64
 # //  Version 10.0c win64 Jul 21 2011
 # //
@@ -9,37 +9,149 @@
 # //  WHICH IS THE PROPERTY OF MENTOR GRAPHICS CORPORATION OR ITS
 # //  LICENSORS AND IS SUBJECT TO LICENSE TERMS.
 # //
-# OpenFile vsim.wlf 
-#  
-add wave  \
-vsim:/tb_inst_level/TARGET/CORE_IF/CORE_PIPELINE/SATGE6_SCHEDULER2/iPREVIOUS_0_VALID
-add wave -position end  vsim:/tb_inst_level/TARGET/CORE_IF/CORE_PIPELINE/SATGE6_SCHEDULER2/iPREVIOUS_0_EX_SYS_REG
-add wave -position end  vsim:/tb_inst_level/TARGET/CORE_IF/CORE_PIPELINE/SATGE6_SCHEDULER2/iPREVIOUS_0_EX_SYS_LDST
-add wave -position end  vsim:/tb_inst_level/TARGET/CORE_IF/CORE_PIPELINE/SATGE6_SCHEDULER2/iPREVIOUS_0_EX_LOGIC
-add wave -position end  vsim:/tb_inst_level/TARGET/CORE_IF/CORE_PIPELINE/SATGE6_SCHEDULER2/iPREVIOUS_0_EX_SHIFT
-add wave -position end  vsim:/tb_inst_level/TARGET/CORE_IF/CORE_PIPELINE/SATGE6_SCHEDULER2/iPREVIOUS_0_EX_ADDER
-add wave -position end  vsim:/tb_inst_level/TARGET/CORE_IF/CORE_PIPELINE/SATGE6_SCHEDULER2/iPREVIOUS_0_EX_MUL
-add wave -position end  vsim:/tb_inst_level/TARGET/CORE_IF/CORE_PIPELINE/SATGE6_SCHEDULER2/iPREVIOUS_0_EX_SDIV
-add wave -position end  vsim:/tb_inst_level/TARGET/CORE_IF/CORE_PIPELINE/SATGE6_SCHEDULER2/iPREVIOUS_0_EX_UDIV
-add wave -position end  vsim:/tb_inst_level/TARGET/CORE_IF/CORE_PIPELINE/SATGE6_SCHEDULER2/iPREVIOUS_0_EX_LDST
-add wave -position end  vsim:/tb_inst_level/TARGET/CORE_IF/CORE_PIPELINE/SATGE6_SCHEDULER2/iPREVIOUS_0_EX_BRANCH
-add wave -position end  vsim:/tb_inst_level/TARGET/CORE_IF/CORE_PIPELINE/SATGE6_SCHEDULER2/iPREVIOUS_1_VALID
-add wave -position end  vsim:/tb_inst_level/TARGET/CORE_IF/CORE_PIPELINE/SATGE6_SCHEDULER2/iPREVIOUS_1_EX_SYS_REG
-add wave -position end  vsim:/tb_inst_level/TARGET/CORE_IF/CORE_PIPELINE/SATGE6_SCHEDULER2/iPREVIOUS_1_EX_SYS_LDST
-add wave -position end  vsim:/tb_inst_level/TARGET/CORE_IF/CORE_PIPELINE/SATGE6_SCHEDULER2/iPREVIOUS_1_EX_LOGIC
-add wave -position end  vsim:/tb_inst_level/TARGET/CORE_IF/CORE_PIPELINE/SATGE6_SCHEDULER2/iPREVIOUS_1_EX_SHIFT
-add wave -position end  vsim:/tb_inst_level/TARGET/CORE_IF/CORE_PIPELINE/SATGE6_SCHEDULER2/iPREVIOUS_1_EX_ADDER
-add wave -position end  vsim:/tb_inst_level/TARGET/CORE_IF/CORE_PIPELINE/SATGE6_SCHEDULER2/iPREVIOUS_1_EX_MUL
-add wave -position end  vsim:/tb_inst_level/TARGET/CORE_IF/CORE_PIPELINE/SATGE6_SCHEDULER2/iPREVIOUS_1_EX_SDIV
-add wave -position end  vsim:/tb_inst_level/TARGET/CORE_IF/CORE_PIPELINE/SATGE6_SCHEDULER2/iPREVIOUS_1_EX_UDIV
-add wave -position end  vsim:/tb_inst_level/TARGET/CORE_IF/CORE_PIPELINE/SATGE6_SCHEDULER2/iPREVIOUS_1_EX_LDST
-add wave -position end  vsim:/tb_inst_level/TARGET/CORE_IF/CORE_PIPELINE/SATGE6_SCHEDULER2/iPREVIOUS_1_EX_BRANCH
-add wave -position end  vsim:/tb_inst_level/TARGET/CORE_IF/CORE_PIPELINE/SATGE6_SCHEDULER2/iPREVIOUS_PC
-add wave -position end  vsim:/tb_inst_level/TARGET/CORE_IF/CORE_PIPELINE/SATGE6_SCHEDULER2/oPREVIOUS_LOCK
-add wave -position end  vsim:/tb_inst_level/TARGET/CORE_IF/CORE_PIPELINE/SATGE6_SCHEDULER2/rs_alu0_info_entry_valid
-add wave -position end  vsim:/tb_inst_level/TARGET/CORE_IF/CORE_PIPELINE/SATGE6_SCHEDULER2/rs_alu0_info_matching
-add wave -position end  vsim:/tb_inst_level/TARGET/CORE_IF/CORE_PIPELINE/SATGE6_SCHEDULER2/w_ex_inorder_execution_pointer
-write format wave -window .main_pane.wave.interior.cs.body.pw.wf C:/dev/home/takahiro/project/git/mist1032sa/sim/inst_level/waveview_template/scheduler2.do
-add wave -position 2  vsim:/tb_inst_level/TARGET/CORE_IF/CORE_PIPELINE/SATGE6_SCHEDULER2/rs_alu0_regist_ex_inorder_regist_pointer
-add wave -position end  vsim:/tb_inst_level/TARGET/CORE_IF/CORE_PIPELINE/SATGE6_SCHEDULER2/rs_alu0_regist_ex_inorder_regist_pointer
-write format wave -window .main_pane.wave.interior.cs.body.pw.wf C:/dev/home/takahiro/project/git/mist1032sa/sim/inst_level/waveview_template/scheduler2.do
+# Loading work.tb_inst_level(fast)
+# Loading work.mist1032sa(fast)
+# Loading work.core_if(fast)
+# Loading work.core_pipeline(fast)
+# Loading work.core_interrupt_manager(fast)
+# Loading work.exception_manager(fast)
+# Loading work.l1_instruction_cache(fast)
+# Loading work.mist1032sa_arbiter_matching_queue(fast)
+# Loading work.l1_cache_64entry_4way_line64b_bus_8b_damy(fast)
+# Loading work.fetch(fast)
+# Loading work.mist1032sa_sync_fifo(fast)
+# Loading work.decoder(fast)
+# Loading work.decode_function(fast)
+# Loading work.pipeline_register(fast)
+# Loading work.pipeline_register(fast__1)
+# Loading work.matching(fast)
+# Loading work.mist1032sa_sync_fifo(fast__1)
+# Loading work.rename(fast)
+# Loading work.register_renaming_table(fast)
+# Loading work.register_renaming_table(fast__1)
+# Loading work.register_renaming_table(fast__2)
+# Loading work.register_renaming_table(fast__3)
+# Loading work.register_renaming_table(fast__4)
+# Loading work.register_renaming_table(fast__5)
+# Loading work.register_renaming_table(fast__6)
+# Loading work.register_renaming_table(fast__7)
+# Loading work.register_renaming_table(fast__8)
+# Loading work.register_renaming_table(fast__9)
+# Loading work.register_renaming_table(fast__10)
+# Loading work.register_renaming_table(fast__11)
+# Loading work.register_renaming_table(fast__12)
+# Loading work.register_renaming_table(fast__13)
+# Loading work.register_renaming_table(fast__14)
+# Loading work.register_renaming_table(fast__15)
+# Loading work.register_renaming_table(fast__16)
+# Loading work.register_renaming_table(fast__17)
+# Loading work.register_renaming_table(fast__18)
+# Loading work.register_renaming_table(fast__19)
+# Loading work.register_renaming_table(fast__20)
+# Loading work.register_renaming_table(fast__21)
+# Loading work.register_renaming_table(fast__22)
+# Loading work.register_renaming_table(fast__23)
+# Loading work.register_renaming_table(fast__24)
+# Loading work.register_renaming_table(fast__25)
+# Loading work.register_renaming_table(fast__26)
+# Loading work.register_renaming_table(fast__27)
+# Loading work.register_renaming_table(fast__28)
+# Loading work.register_renaming_table(fast__29)
+# Loading work.register_renaming_table(fast__30)
+# Loading work.register_renaming_table(fast__31)
+# Loading work.scheduler1(fast)
+# Loading work.mist1032sa_sync_fifo(fast__2)
+# Loading work.mist1032sa_sync_fifo(fast__3)
+# Loading work.scheduler1_commit_entry(fast)
+# Loading work.scheduler2(fast)
+# Loading work.scheduler2_free_search_64to2(fast)
+# Loading work.flag_rename_management(fast)
+# Loading work.system_register(fast)
+# Loading work.frcr_timer(fast)
+# Loading work.general_register_entry(fast)
+# Loading work.regist_rbuffer_select(fast)
+# Loading work.reservation_alu0_entry(fast)
+# Loading work.reservation_free_entry_count(fast)
+# Loading work.reservation_search16to2(fast)
+# Loading work.priority_encoder_16(fast)
+# Loading work.reservation_alu1_entry(fast)
+# Loading work.reservation_alu2_entry(fast)
+# Loading work.reservation_alu3_entry(fast)
+# Loading work.execute_port0(fast)
+# Loading work.execute_branch(fast)
+# Loading work.execute_port1(fast)
+# Loading work.execute_sys_reg(fast)
+# Loading work.execute_logic(fast)
+# Loading work.execute_shift(fast)
+# Loading work.execute_adder(fast)
+# Loading work.mist1032sa_sync_fifo(fast__4)
+# Loading work.pipelined_div_radix2(fast)
+# Loading work.radix2_linediv(fast)
+# Loading work.div_pipelined_latch(fast)
+# Loading work.div_pipelined_latch(fast__1)
+# Loading work.div_pipelined_latch(fast__2)
+# Loading work.div_pipelined_latch(fast__3)
+# Loading work.div_pipelined_latch(fast__4)
+# Loading work.div_pipelined_latch(fast__5)
+# Loading work.div_pipelined_latch(fast__6)
+# Loading work.div_pipelined_latch(fast__7)
+# Loading work.div_pipelined_latch(fast__8)
+# Loading work.div_pipelined_latch(fast__9)
+# Loading work.div_pipelined_latch(fast__10)
+# Loading work.div_pipelined_latch(fast__11)
+# Loading work.div_pipelined_latch(fast__12)
+# Loading work.div_pipelined_latch(fast__13)
+# Loading work.div_pipelined_latch(fast__14)
+# Loading work.div_pipelined_latch(fast__15)
+# Loading work.execute_port2(fast)
+# Loading work.execute_port3(fast)
+# Loading work.sysreg_spr_register(fast)
+# Loading work.execute_load_store(fast)
+# Loading work.execute_load_data(fast)
+# Loading work.execute_afe_load_store(fast)
+# Loading work.l1_data_cache(fast)
+# Loading work.l1_data_cache_64entry_4way_line64b_bus_8b_damy(fast)
+# Loading work.losd_store_pipe_arbiter(fast)
+# Loading work.memory_pipe_arbiter(fast)
+# Loading work.mmu_if(fast)
+# Loading work.mmu(fast)
+# Loading work.tlb(fast)
+# Loading work.mist1032sa_sync_fifo(fast__5)
+# Loading work.endian_controller(fast)
+# Loading work.pic(fast)
+# Loading work.dps(fast)
+# Loading work.dps_utim64(fast)
+# Loading work.utim64(fast)
+# Loading work.mist1032sa_async_fifo(fast)
+# Loading work.mist1032sa_async_fifo_double_flipflop(fast)
+# Loading work.main_counter(fast)
+# Loading work.comparator_counter(fast)
+# Loading work.mist1032sa_async_fifo(fast__1)
+# Loading work.dps_sci(fast)
+# Loading work.dps_uart(fast)
+# Loading work.mist1032sa_sync_fifo(fast__6)
+# Loading work.mist1032sa_uart_transmitter(fast)
+# Loading work.mist1032sa_uart_transmitter_double_flipflop(fast)
+# Loading work.mist1032sa_uart_transmitter_async2sync(fast)
+# Loading work.mist1032sa_uart_receiver(fast)
+# Loading work.mist1032sa_uart_receiver_double_flipflop(fast)
+# Loading work.mist1032sa_uart_receiver_double_flipflop(fast__1)
+# Loading work.mist1032sa_uart_receiver_async2sync(fast)
+# Loading work.dps_mimsr(fast)
+# Loading work.dps_lsflags(fast)
+# Loading work.dps_irq(fast)
+# Loading work.sim_memory_model(fast)
+# Loading work.mist1032sa_sync_fifo(fast__7)
+# ** Warning: (vsim-3015) ../../src/core/l1_instruction/l1_instruction_cache.v(331): [PCDPC] - Port size (32 or 32) does not match connection size (64) for port 'iUP_DATA'. The port definition is at: ../../src/core/l1_instruction/l1_cache_64entry_4way_line64b.v(41).
+#         Region: /tb_inst_level/TARGET/CORE_IF/CORE_PIPELINE/STAGE0_L1_INST/CACHE_MODULE
+# ** Warning: (vsim-3015) ../../src/core/core_pipeline.v(857): [PCDPC] - Port size (6 or 6) does not match connection size (14) for port 'iPREVIOUS_0_MMU_FLAGS'. The port definition is at: ../../src/core/fetch/fetch.v(21).
+#         Region: /tb_inst_level/TARGET/CORE_IF/CORE_PIPELINE/STAGE1_FETCH
+# ** Warning: (vsim-3015) ../../src/core/core_pipeline.v(857): [PCDPC] - Port size (6 or 6) does not match connection size (14) for port 'iPREVIOUS_1_MMU_FLAGS'. The port definition is at: ../../src/core/fetch/fetch.v(24).
+#         Region: /tb_inst_level/TARGET/CORE_IF/CORE_PIPELINE/STAGE1_FETCH
+# ** Warning: (vsim-3015) ../../src/core/execute/execute_port3.v(310): [PCDPC] - Port size (4 or 4) does not match connection size (6) for port 'iAFE_CODE'. The port definition is at: ../../src/core/execute/execute_afe_load_store.v(8).
+#         Region: /tb_inst_level/TARGET/CORE_IF/CORE_PIPELINE/SATGE7_EX_PORT3/EXEC_AFE_LDST
+# ** Warning: (vsim-3015) ../../src/core/core_pipeline.v(2049): [PCDPC] - Port size (14 or 14) does not match connection size (32) for port 'oLDST_TID'. The port definition is at: ../../src/core/losd_store_pipe_arbiter.v(9).
+#         Region: /tb_inst_level/TARGET/CORE_IF/CORE_PIPELINE/LDST_PIPE_ARBITOR
+# ** Warning: (vsim-3015) ./tb/tb_inst_level.v(235): [PCDPC] - Port size (26 or 26) does not match connection size (32) for port 'iMEMORY_ADDR'. The port definition is at: ../model/sim_memory_model/sim_memory_model.v(33).
+#         Region: /tb_inst_level/MEMORY_MODEL
+# do sim_run.tcl 

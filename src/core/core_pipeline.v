@@ -490,6 +490,7 @@ module core_pipeline #(
 	wire [5:0] scheduler22ex_alu1_destination_regname;
 	wire scheduler22ex_alu1_flags_writeback;
 	wire [3:0] scheduler22ex_alu1_flags_regname;
+	wire [31:0] scheduler22ex_alu1_pcr;
 	wire ex_alu12scheduler2_lock;
 	wire ex_alu12scheduler2_valid;
 	wire [5:0] ex_alu12scheduler2_commit_tag;
@@ -516,6 +517,7 @@ module core_pipeline #(
 	wire [5:0] scheduler22ex_alu2_destination_regname;
 	wire scheduler22ex_alu2_flags_writeback;
 	wire [3:0] scheduler22ex_alu2_flags_regname;
+	wire [31:0] scheduler22ex_alu2_pcr;
 	wire ex_alu22scheduler2_lock;
 	wire ex_alu22scheduler2_valid;
 	wire [5:0] ex_alu22scheduler2_commit_tag;
@@ -1121,9 +1123,9 @@ module core_pipeline #(
 							
 	/****************************************
 	Stage : 4
-	Renaming Unit
+	Rename Unit
 	****************************************/
-	renaming SATGE4_RENAMING(
+	rename SATGE4_RENAME(
 		.iCLOCK(iCLOCK), .inRESET(inRESET),
 		.iFREE_DEFAULT(exception_event), .iFREE_RESTART(exception_restart),
 		.iROLLBACK_UPDATE_CANDIDATE0_VALID(scheduler12renaming_rollback_update_info0_valid), 
@@ -1645,7 +1647,8 @@ module core_pipeline #(
 		.oNEXT_EX_ALU1_DESTINATION_SYSREG(scheduler22ex_alu1_destination_sysreg),
 		.oNEXT_EX_ALU1_DESTINATION_REGNAME(scheduler22ex_alu1_destination_regname), 
 		.oNEXT_EX_ALU1_FLAGS_WRITEBACK(scheduler22ex_alu1_flags_writeback), 
-		.oNEXT_EX_ALU1_FLAGS_REGNAME(scheduler22ex_alu1_flags_regname),							
+		.oNEXT_EX_ALU1_FLAGS_REGNAME(scheduler22ex_alu1_flags_regname),	
+		.oNEXT_EX_ALU1_PCR(scheduler22ex_alu1_pcr),							
 		.iNEXT_EX_ALU1_LOCK(ex_alu12scheduler2_lock),
 		.iSCHE2_EX_ALU1_VALID(ex_alu12scheduler2_valid), 
 		.iSCHE2_EX_ALU1_COMMIT_TAG(ex_alu12scheduler2_commit_tag),
@@ -1670,7 +1673,8 @@ module core_pipeline #(
 		.oNEXT_EX_ALU2_DESTINATION_SYSREG(scheduler22ex_alu2_destination_sysreg),
 		.oNEXT_EX_ALU2_DESTINATION_REGNAME(scheduler22ex_alu2_destination_regname), 
 		.oNEXT_EX_ALU2_FLAGS_WRITEBACK(scheduler22ex_alu2_flags_writeback), 
-		.oNEXT_EX_ALU2_FLAGS_REGNAME(scheduler22ex_alu2_flags_regname),							
+		.oNEXT_EX_ALU2_FLAGS_REGNAME(scheduler22ex_alu2_flags_regname),	
+		.oNEXT_EX_ALU2_PCR(scheduler22ex_alu2_pcr),						
 		.iNEXT_EX_ALU2_LOCK(ex_alu22scheduler2_lock),
 		.iSCHE2_EX_ALU2_VALID(ex_alu22scheduler2_valid), 
 		.iSCHE2_EX_ALU2_COMMIT_TAG(ex_alu22scheduler2_commit_tag),
@@ -1757,6 +1761,7 @@ module core_pipeline #(
 		.iPREVIOUS_EX_ALU1_DESTINATION_REGNAME(scheduler22ex_alu1_destination_regname), 
 		.iPREVIOUS_EX_ALU1_FLAGS_WRITEBACK(scheduler22ex_alu1_flags_writeback),
 		.iPREVIOUS_EX_ALU1_FLAGS_REGNAME(scheduler22ex_alu1_flags_regname),
+		.iPREVIOUS_EX_ALU1_PCR(scheduler22ex_alu1_pcr),
 		.oPREVIOUS_EX_ALU1_LOCK(ex_alu12scheduler2_lock),
 		//Exception
 		.oINTERRUPT_ACTIVE(ex_alu12cim_valid),
@@ -1792,6 +1797,7 @@ module core_pipeline #(
 		.iPREVIOUS_EX_ALU2_DESTINATION_REGNAME(scheduler22ex_alu2_destination_regname), 
 		.iPREVIOUS_EX_ALU2_FLAGS_WRITEBACK(scheduler22ex_alu2_flags_writeback),
 		.iPREVIOUS_EX_ALU2_FLAGS_REGNAME(scheduler22ex_alu2_flags_regname),
+		.iPREVIOUS_EX_ALU2_PCR(scheduler22ex_alu2_pcr),
 		.oPREVIOUS_EX_ALU2_LOCK(ex_alu22scheduler2_lock),
 		//Scheduler
 		.oSCHE1_EX_ALU2_VALID(ex_alu22scheduler1_valid), 

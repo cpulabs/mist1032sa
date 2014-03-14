@@ -1,0 +1,18 @@
+# Current time Fri Mar 14 07:57:34 2014
+# QuestaSim Stack Trace
+# Program = vish
+# Id = "10.0c"
+# Version = "2011.07"
+# Date = "Jul 21 2011"
+# Platform = win64
+
+Exception c0000005 has occurred at address 400f9260. Traceback:
+# 0    0x400f9260: 'Mtirpc_Init + 0x36540'
+# 1    0x1006a1dc: 'TclServiceIdle + 0x6c'
+# 2    0x01c0b120: '<unknown (@0x1c0b120)>'
+# 3    0x000029f6: '<unknown (@0x29f6)>'
+# 4    0x00000008: '<unknown (@0x8)>'
+# 5    0x00000008: '<unknown (@0x8)>'
+StackWalk failed 487
+# End of Stack Trace
+

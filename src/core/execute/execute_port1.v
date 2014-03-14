@@ -35,6 +35,7 @@ module execute_port1(
 		input wire [5:0] iPREVIOUS_EX_ALU1_DESTINATION_REGNAME,
 		input wire iPREVIOUS_EX_ALU1_FLAGS_WRITEBACK,
 		input wire [3:0] iPREVIOUS_EX_ALU1_FLAGS_REGNAME,
+		input wire [31:0] iPREVIOUS_EX_ALU1_PCR,		//
 		output wire oPREVIOUS_EX_ALU1_LOCK,
 		//Interrupt
 		output wire oINTERRUPT_ACTIVE,
@@ -118,6 +119,7 @@ module execute_port1(
 	reg b0_exception_valid;
 	reg [10:0] b0_exception_num;
 	reg [3:0] b0_flags_regname;
+	reg [31:0] b0_pcr;
 	reg b0_lock;
 	//Exception Check
 	wire exception_condition;
@@ -330,6 +332,7 @@ module execute_port1(
 			b0_exception_valid <= 1'b0;
 			b0_exception_num <= 11'h0;
 			b0_flags_regname <= 4'h0;
+			b0_pcr <= 32'h0;
 			b0_lock <= 1'b0;
 		end
 		else if(iFREE_EX)begin
@@ -344,6 +347,7 @@ module execute_port1(
 			b0_exception_valid <= 1'b0;
 			b0_exception_num <= 11'h0;
 			b0_flags_regname <= 4'h0;
+			b0_pcr <= 32'h0;
 			b0_lock <= 1'b0;
 		end
 		else begin
@@ -360,6 +364,7 @@ module execute_port1(
 			end
 			b0_exception_valid <= (b0_lock)? 1'b0 : exception_condition;
 			b0_exception_num <= exception_number;
+			b0_pcr <= iPREVIOUS_EX_ALU1_PCR;
 			b0_lock <= (b0_lock)? 1'b1 : exception_condition;
 		end
 	end //always

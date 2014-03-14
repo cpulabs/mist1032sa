@@ -6,6 +6,8 @@ module tb_inst_level;
 	`include "../task/task_disp_inst_issue.v"
 	`include "../task/task_disp_pcr.v"
 	`include "../task/task_disp_tag_info.v"
+	`include "../task/task_disp_branch.v"
+	`include "../task/task_disp_loadstore.v"
 
 	localparam PL_CORE_CYCLE = 20;		//It's necessary "Core Clock == Bus Clock". This restriction is removed near future.
 	localparam PL_BUS_CYCLE = 20;		//
@@ -207,7 +209,7 @@ module tb_inst_level;
 
 
 		#15000000 begin
-			$stop;
+			$finish;
 		end
 	end
 
@@ -238,9 +240,11 @@ module tb_inst_level;
 	******************************************************/
 	always@(posedge iCORE_CLOCK)begin
 		if(inRESET)begin
-			task_disp_inst_issue();
-			task_disp_pcr();
+			//task_disp_inst_issue();
+			//task_disp_pcr();
 			//task_disp_tag_info();
+			//task_disp_branch();
+			task_disp_loadstore();
 		end
 	end
 
@@ -262,11 +266,11 @@ module tb_inst_level;
 					$display("[SIM-ERR]Wrong Type : %d", assert_wrong_type);
 					$display("[SIM-ERR]Index:%d, Expect:%x, Result:%x", assert_wrong_number, assert_expect, assert_result);
 					$display("[SIM-ERR]Simulation Finished.");
-					$stop;
+					$finish;
 				end
 				else begin
 					$display("[SIM-OK]Simulation Finished.");
-					$stop;
+					$finish;
 				end
 			end
 			//Check Flag

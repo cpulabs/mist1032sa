@@ -32,6 +32,7 @@ module execute_port2(
 		input wire [5:0] iPREVIOUS_EX_ALU2_DESTINATION_REGNAME,
 		input wire iPREVIOUS_EX_ALU2_FLAGS_WRITEBACK,
 		input wire [3:0] iPREVIOUS_EX_ALU2_FLAGS_REGNAME,
+		input wire [31:0] iPREVIOUS_EX_ALU2_PCR,
 		output wire oPREVIOUS_EX_ALU2_LOCK,
 		//NEXTUNIT - SCHEDULER1
 		output wire oSCHE1_EX_ALU2_VALID,
@@ -95,6 +96,7 @@ module execute_port2(
 	reg [4:0] b0_flag;
 	reg b0_flags_writeback;
 	reg [3:0] b0_flags_regname;
+	reg [31:0] b0_pcr;
 	reg b0_lock;
 	
 	
@@ -267,6 +269,7 @@ module execute_port2(
 			b0_flag <= 5'b0;
 			b0_flags_writeback <= 1'b0;
 			b0_flags_regname <= 4'h0;
+			b0_pcr <= 32'h0;
 			b0_lock <= 1'b0;
 		end
 		else if(iFREE_EX)begin
@@ -279,6 +282,7 @@ module execute_port2(
 			b0_flag <= 5'b0;
 			b0_flags_writeback <= 1'b0;
 			b0_flags_regname <= 4'h0;
+			b0_pcr <= 32'h0;
 			b0_lock <= 1'b0;
 		end
 		else begin
@@ -291,6 +295,7 @@ module execute_port2(
 			b0_flag <= latch_sel_flag;
 			b0_flags_writeback <= iPREVIOUS_EX_ALU2_FLAGS_WRITEBACK;
 			b0_flags_regname <= iPREVIOUS_EX_ALU2_FLAGS_REGNAME;
+			b0_pcr <= iPREVIOUS_EX_ALU2_PCR;
 			b0_lock <= 1'b0;
 		end
 	end //always

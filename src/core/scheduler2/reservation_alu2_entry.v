@@ -9,24 +9,25 @@ module reservation_alu2_entry(
 		//Entry Remove
 		input wire iREMOVE_VALID,
 		//Regist
-		input wire iREGIST_VALID,
+		input wire iREGISTER_VALID,
 		output wire oINFO_REGIST_LOCK,
-		input wire iREGIST_DESTINATION_SYSREG,
-		input wire iREGIST_WRITEBACK,
-		input wire [4:0] iREGIST_CMD,
-		input wire [3:0] iREGIST_AFE,
-		input wire iREGIST_SYS_REG,	
-		input wire iREGIST_LOGIC,
-		input wire iREGIST_SHIFT,
-		input wire iREGIST_ADDER,
-		input wire iREGIST_FLAGS_OPT_VALID,	
-		input wire [3:0] iREGIST_FLAGS_REGNAME,			
-		input wire iREGIST_SOURCE0_VALID,
-		input wire [31:0] iREGIST_SOURCE0,		
-		input wire iREGIST_SOURCE1_VALID,
-		input wire [31:0] iREGIST_SOURCE1,
-		input wire [5:0] iREGIST_DESTINATION_REGNAME,
-		input wire [5:0] iREGIST_COMMIT_TAG,
+		input wire iREGISTER_DESTINATION_SYSREG,
+		input wire iREGISTER_WRITEBACK,
+		input wire [4:0] iREGISTER_CMD,
+		input wire [3:0] iREGISTER_AFE,
+		input wire iREGISTER_SYS_REG,	
+		input wire iREGISTER_LOGIC,
+		input wire iREGISTER_SHIFT,
+		input wire iREGISTER_ADDER,
+		input wire iREGISTER_FLAGS_OPT_VALID,	
+		input wire [3:0] iREGISTER_FLAGS_REGNAME,			
+		input wire iREGISTER_SOURCE0_VALID,
+		input wire [31:0] iREGISTER_SOURCE0,		
+		input wire iREGISTER_SOURCE1_VALID,
+		input wire [31:0] iREGISTER_SOURCE1,
+		input wire [31:0] iREGISTER_PCR,
+		input wire [5:0] iREGISTER_DESTINATION_REGNAME,
+		input wire [5:0] iREGISTER_COMMIT_TAG,
 		//Common Data Bus CDB(CH0, ADDER)
 		input wire iALU1_VALID,
 		input wire [5:0] iALU1_DESTINATION_REGNAME,
@@ -60,6 +61,7 @@ module reservation_alu2_entry(
 		output wire [31:0] oINFO_SOURCE0,
 		output wire oINFO_SOURCE1_VALID,
 		output wire [31:0] oINFO_SOURCE1,
+		output wire [31:0] oINFO_PCR,
 		output wire [5:0] oINFO_DESTINATION_REGNAME,
 		output wire [5:0] oINFO_COMMIT_TAG
 	);
@@ -82,6 +84,7 @@ module reservation_alu2_entry(
 	reg [31:0] b0_source0;
 	reg b0_source1_valid;
 	reg [31:0] b0_source1;
+	reg [31:0] b0_pcr;
 	reg [5:0] b0_destination_regname;
 	reg [5:0] b0_commit_tag;
 	
@@ -101,9 +104,10 @@ module reservation_alu2_entry(
 			b0_flag_opt_valid <= 1'b0;
 			b0_flags_regname <= 4'h0;
 			b0_source0_valid <= 1'b0;
-			b0_source0 <= {31{1'b0}};
+			b0_source0 <= {33{1'b0}};
 			b0_source1_valid <= 1'b0;
-			b0_source1 <= {31{1'b0}};
+			b0_source1 <= {33{1'b0}};
+			b0_pcr <= 32'h0;
 			b0_destination_regname <= {6{1'b0}};
 			b0_commit_tag <= {6{1'b0}};
 		end
@@ -121,9 +125,10 @@ module reservation_alu2_entry(
 			b0_flag_opt_valid <= 1'b0;
 			b0_flags_regname <= 4'h0;
 			b0_source0_valid <= 1'b0;
-			b0_source0 <= {31{1'b0}};
+			b0_source0 <= {32{1'b0}};
 			b0_source1_valid <= 1'b0;
-			b0_source1 <= {31{1'b0}};
+			b0_source1 <= {32{1'b0}};
+			b0_pcr <= 32'h0;
 			b0_destination_regname <= {6{1'b0}};
 			b0_commit_tag <= {6{1'b0}};
 		end
@@ -131,64 +136,65 @@ module reservation_alu2_entry(
 			case(b0_state)
 				1'h0 :			//Entry Regist Wait
 					begin
-						if(iREGIST_VALID)begin
+						if(iREGISTER_VALID)begin
 							b0_state <= 1'h1;
 							b0_reg_lock <= 1'b1;
-							b0_destination_sysreg <= iREGIST_DESTINATION_SYSREG;
-							b0_writeback <= iREGIST_WRITEBACK;
-							b0_cmd <= iREGIST_CMD;
-							b0_afe <= iREGIST_AFE;
-							b0_sys_reg <=		iREGIST_SYS_REG;
-							b0_logic <= iREGIST_LOGIC;
-							b0_shift <= iREGIST_SHIFT;
-							b0_adder <= iREGIST_ADDER;
+							b0_destination_sysreg <= iREGISTER_DESTINATION_SYSREG;
+							b0_writeback <= iREGISTER_WRITEBACK;
+							b0_cmd <= iREGISTER_CMD;
+							b0_afe <= iREGISTER_AFE;
+							b0_sys_reg <=		iREGISTER_SYS_REG;
+							b0_logic <= iREGISTER_LOGIC;
+							b0_shift <= iREGISTER_SHIFT;
+							b0_adder <= iREGISTER_ADDER;
 							//Source 0
-							if(iREGIST_SOURCE0_VALID)begin
+							if(iREGISTER_SOURCE0_VALID)begin
 								b0_source0_valid <= 1'b1;
-								b0_source0 <= iREGIST_SOURCE0;
+								b0_source0 <= iREGISTER_SOURCE0;
 							end
-							else if(iALU1_VALID & iALU1_WRITEBACK && iREGIST_SOURCE0[5:0] == iALU1_DESTINATION_REGNAME)begin
+							else if(iALU1_VALID & iALU1_WRITEBACK && iREGISTER_SOURCE0[5:0] == iALU1_DESTINATION_REGNAME)begin
 								b0_source0_valid <= 1'b1;
 								b0_source0 <= iALU1_DATA;
 							end
-							else if(iALU2_VALID & iALU2_WRITEBACK && iREGIST_SOURCE0[5:0] == iALU2_DESTINATION_REGNAME)begin
+							else if(iALU2_VALID & iALU2_WRITEBACK && iREGISTER_SOURCE0[5:0] == iALU2_DESTINATION_REGNAME)begin
 								b0_source0_valid <= 1'b1;
 								b0_source0 <= iALU2_DATA;
 							end
-							else if(iALU3_VALID && iREGIST_SOURCE0[5:0] == iALU3_DESTINATION_REGNAME)begin
+							else if(iALU3_VALID && iREGISTER_SOURCE0[5:0] == iALU3_DESTINATION_REGNAME)begin
 								b0_source0_valid <= 1'b1;
 								b0_source0 <= iALU3_DATA;
 							end
 							else begin
 								b0_source0_valid <= 1'b0;
-								b0_source0 <= {{26{1'b0}}, iREGIST_SOURCE0[5:0]};
+								b0_source0 <= {{26{1'b0}}, iREGISTER_SOURCE0[5:0]};
 							end	
 							
 							//Source1 
-							if(iREGIST_SOURCE1_VALID)begin
+							if(iREGISTER_SOURCE1_VALID)begin
 								b0_source1_valid <= 1'b1;
-								b0_source1 <= iREGIST_SOURCE1;
+								b0_source1 <= iREGISTER_SOURCE1;
 							end
-							else if(iALU1_VALID & iALU1_WRITEBACK && iREGIST_SOURCE1[5:0] == iALU1_DESTINATION_REGNAME)begin
+							else if(iALU1_VALID & iALU1_WRITEBACK && iREGISTER_SOURCE1[5:0] == iALU1_DESTINATION_REGNAME)begin
 								b0_source1_valid <= 1'b1;
 								b0_source1 <= iALU1_DATA;
 							end
-							else if(iALU2_VALID & iALU2_WRITEBACK && iREGIST_SOURCE1[5:0] == iALU2_DESTINATION_REGNAME)begin
+							else if(iALU2_VALID & iALU2_WRITEBACK && iREGISTER_SOURCE1[5:0] == iALU2_DESTINATION_REGNAME)begin
 								b0_source1_valid <= 1'b1;
 								b0_source1 <= iALU2_DATA;
 							end
-							else if(iALU3_VALID && iREGIST_SOURCE1[5:0] == iALU3_DESTINATION_REGNAME)begin
+							else if(iALU3_VALID && iREGISTER_SOURCE1[5:0] == iALU3_DESTINATION_REGNAME)begin
 								b0_source1_valid <= 1'b1;
 								b0_source1 <= iALU3_DATA;
 							end
 							else begin
 								b0_source1_valid <= 1'b0;
-								b0_source1 <= {{26{1'b0}}, iREGIST_SOURCE1[5:0]};
+								b0_source1 <= {{26{1'b0}}, iREGISTER_SOURCE1[5:0]};
 							end
-							b0_flag_opt_valid <= iREGIST_FLAGS_OPT_VALID;
-							b0_flags_regname <= iREGIST_FLAGS_REGNAME;
-							b0_destination_regname <= iREGIST_DESTINATION_REGNAME;
-							b0_commit_tag <= iREGIST_COMMIT_TAG;
+							b0_flag_opt_valid <= iREGISTER_FLAGS_OPT_VALID;
+							b0_flags_regname <= iREGISTER_FLAGS_REGNAME;
+							b0_destination_regname <= iREGISTER_DESTINATION_REGNAME;
+							b0_commit_tag <= iREGISTER_COMMIT_TAG;
+							b0_pcr <= iREGISTER_PCR;
 						end
 						else begin
 							b0_reg_lock <= 1'b0;
@@ -247,6 +253,7 @@ module reservation_alu2_entry(
 	assign oINFO_SOURCE1 = b0_source1;
 	assign oINFO_DESTINATION_REGNAME = b0_destination_regname;
 	assign oINFO_COMMIT_TAG = b0_commit_tag;
+	assign oINFO_PCR = b0_pcr;
 	
 	
 endmodule

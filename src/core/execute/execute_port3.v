@@ -10,6 +10,9 @@ Takahiro Ito @cpu_labs
 `include "core.h"
 `default_nettype none
 
+
+
+
 module execute_port3(
 		//System
 		input wire iCLOCK,
@@ -65,15 +68,19 @@ module execute_port3(
 	);
 
 
-	localparam PL_LDST_STT_IDLE = 1'h0;
-	localparam PL_LDST_STT_LDWAIT = 1'h1;
+	localparam PL_LDST_STT_IDLE = 3'h0;
+	localparam PL_LDST_STT_LDREQ = 3'h1;
+	localparam PL_LDST_STT_LDWAIT = 3'h2;
+	localparam PL_LDST_STT_STREQ = 3'h3;
+	localparam PL_LDST_STT_STWAIT = 3'h4;
+	localparam PL_LDST_STT_SPRWAIT = 3'h5;
 
-	reg b_ldst_state;
+	reg [2:0] b_ldst_state;
 
 	/****************************************
 	Lock
 	****************************************/
-	wire this_lock = b_ldst_state != PL_LDST_STT_IDLE ||  iDATAIO_BUSY;
+	wire this_lock = b_ldst_state != PL_LDST_STT_IDLE || iDATAIO_BUSY;
 
 	/****************************************
 	SPR Register
@@ -142,47 +149,6 @@ module execute_port3(
 	);
 
 
-	reg b_ldst_pipe_valid;
-	reg b_ldst_pipe_rw;
-	reg [31:0] b_ldst_pipe_addr;
-	reg [31:0] b_ldst_pipe_data;
-	reg [1:0] b_ldst_pipe_order;
-	reg [1:0] b_ldst_pipe_shift;
-	reg [3:0] b_ldst_pipe_mask;
-
-	always@(posedge iCLOCK or negedge inRESET)begin
-		if(!inRESET)begin
-			b_ldst_pipe_valid <= 1'b0;
-			b_ldst_pipe_rw <= 1'b0;
-			b_ldst_pipe_addr <= 32'h0;
-			b_ldst_pipe_data <= 32'h0;
-			b_ldst_pipe_order <= 2'h0;
-			b_ldst_pipe_shift <= 2'h0;
-			b_ldst_pipe_mask <= 4'h0;
-		end
-		else if(iRESET_SYNC)begin
-			b_ldst_pipe_valid <= 1'b0;
-			b_ldst_pipe_rw <= 1'b0;
-			b_ldst_pipe_addr <= 32'h0;
-			b_ldst_pipe_data <= 32'h0;
-			b_ldst_pipe_order <= 2'h0;
-			b_ldst_pipe_shift <= 2'h0;
-			b_ldst_pipe_mask <= 4'h0;
-		end
-		else begin
-			if(!this_lock)begin
-				b_ldst_pipe_valid <= iPREVIOUS_EX_ALU3_VALID;
-				b_ldst_pipe_rw <= ldst_pipe_rw;
-				b_ldst_pipe_addr <= ldst_pipe_addr; 
-				b_ldst_pipe_data <= ldst_pipe_data;
-				b_ldst_pipe_order <= ldst_pipe_order;
-				b_ldst_pipe_shift <= b_ldst_pipe_shift;
-				b_ldst_pipe_mask <= ldst_pipe_mask;
-			end
-		end
-	end
-
-
 	/****************************************
 	Load State
 	****************************************/
@@ -197,7 +163,19 @@ module execute_port3(
 			case(b_ldst_state)
 				PL_LDST_STT_IDLE:
 					begin
-						if(ldst_pipe_rw && iPREVIOUS_EX_ALU3_VALID && !this_lock)begin
+						if(!ldst_pipe_rw && iPREVIOUS_EX_ALU3_VALID && !this_lock)begin
+							b_ldst_state <= PL_LDST_STT_LDREQ;
+						end
+						else if(ldst_pipe_rw && iPREVIOUS_EX_ALU3_VALID && !this_lock)begin
+							b_ldst_state <= PL_LDST_STT_STREQ;
+						end
+						else if(iPREVIOUS_EX_ALU3_VALID && (iPREVIOUS_EX_ALU3_CMD == `EXE_SYS_LDST_WRITE_SPR))begin
+							b_ldst_state <= PL_LDST_STT_SPRWAIT;
+						end
+					end
+				PL_LDST_STT_LDREQ:
+					begin
+						if(!iDATAIO_BUSY)begin
 							b_ldst_state <= PL_LDST_STT_LDWAIT;
 						end
 					end
@@ -207,9 +185,75 @@ module execute_port3(
 							b_ldst_state <= PL_LDST_STT_IDLE;
 						end
 					end
+				PL_LDST_STT_STREQ:
+					begin
+						if(!iDATAIO_BUSY)begin
+							b_ldst_state <= PL_LDST_STT_STWAIT;
+						end
+					end
+				PL_LDST_STT_STWAIT:
+					begin
+						if(iDATAIO_REQ)begin
+							b_ldst_state <= PL_LDST_STT_IDLE;
+						end
+					end
+				PL_LDST_STT_SPRWAIT:
+					begin
+						b_ldst_state <= PL_LDST_STT_IDLE;
+					end
+				default:
+					begin
+						b_ldst_state <= PL_LDST_STT_IDLE;
+					end
 			endcase
 		end
 	end
+
+
+	reg b_ldst_pipe_valid;
+	reg b_ldst_pipe_rw;
+	reg [31:0] b_ldst_pipe_addr;
+	reg [31:0] b_ldst_pipe_data;
+	reg [1:0] b_ldst_pipe_order;
+	reg [1:0] b_ldst_pipe_shift;
+	reg [3:0] b_ldst_pipe_mask;
+	reg [31:0] b_ldst_pipe_pcr;
+
+	always@(posedge iCLOCK or negedge inRESET)begin
+		if(!inRESET)begin
+			b_ldst_pipe_valid <= 1'b0;
+			b_ldst_pipe_rw <= 1'b0;
+			b_ldst_pipe_addr <= 32'h0;
+			b_ldst_pipe_data <= 32'h0;
+			b_ldst_pipe_order <= 2'h0;
+			b_ldst_pipe_shift <= 2'h0;
+			b_ldst_pipe_mask <= 4'h0;
+			b_ldst_pipe_pcr <= 32'h0;
+		end
+		else if(iRESET_SYNC)begin
+			b_ldst_pipe_valid <= 1'b0;
+			b_ldst_pipe_rw <= 1'b0;
+			b_ldst_pipe_addr <= 32'h0;
+			b_ldst_pipe_data <= 32'h0;
+			b_ldst_pipe_order <= 2'h0;
+			b_ldst_pipe_shift <= 2'h0;
+			b_ldst_pipe_mask <= 4'h0;
+			b_ldst_pipe_pcr <= 32'h0;
+		end
+		else begin
+			if(!this_lock)begin
+				b_ldst_pipe_valid <= iPREVIOUS_EX_ALU3_VALID;
+				b_ldst_pipe_rw <= ldst_pipe_rw;
+				b_ldst_pipe_addr <= ldst_pipe_addr; 
+				b_ldst_pipe_data <= ldst_pipe_data;
+				b_ldst_pipe_order <= ldst_pipe_order;
+				b_ldst_pipe_shift <= b_ldst_pipe_shift;
+				b_ldst_pipe_mask <= ldst_pipe_mask;
+				b_ldst_pipe_pcr <= iPREVIOUS_EX_ALU3_PC;
+			end
+		end
+	end
+
 
 	/****************************************
 	Request Buffer
@@ -280,7 +324,7 @@ module execute_port3(
 	
 	assign oSYSREG_SPR = spr_data_info;
 	
-	assign oDATAIO_REQ = b_ldst_pipe_valid;
+	assign oDATAIO_REQ = b_ldst_pipe_valid && (b_ldst_state == PL_LDST_STT_LDREQ || b_ldst_state == PL_LDST_STT_STREQ) && !iDATAIO_BUSY;
 	assign oDATAIO_ORDER = b_ldst_pipe_order;
 	assign oDATAIO_MASK = b_ldst_pipe_mask;
 	assign oDATAIO_RW = b_ldst_pipe_rw;
@@ -290,7 +334,10 @@ module execute_port3(
 	/****************************************
 	Scheduler1 and 2 Output
 	****************************************/
-	wire execute_done = (b_ldst_pipe_valid && b_ldst_pipe_rw) || (b_ldst_pipe_valid && !b_ldst_pipe_rw && iDATAIO_REQ);
+	wire store_done = (b_ldst_state == PL_LDST_STT_STWAIT) && iDATAIO_REQ;//b_ldst_pipe_valid && b_ldst_pipe_rw;
+	wire load_done = (b_ldst_state == PL_LDST_STT_LDWAIT) && iDATAIO_REQ;
+	wire spr_done = b_ldst_pipe_valid && (b_ldst_state == PL_LDST_STT_SPRWAIT);
+	wire execute_done = store_done || load_done || spr_done;
 
 	assign oSCHE1_ALU3_VALID = execute_done;
 	assign oSCHE1_ALU3_COMMIT_TAG = b_latch_commit_tag;

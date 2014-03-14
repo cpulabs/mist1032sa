@@ -115,7 +115,7 @@ module fetch(
 				2'h1 : 		//Fetch State
 					begin
 						if(/*!this_lock*/!iEXCEPTION_EVENT && !fetch_addr_queue_full && !iPREVIOUS_FETCH_LOCK && !iFETCH_STOP_LOOPBUFFER_LIMIT)begin	
-							b_pc <= b_pc + 32'h8;
+							b_pc <= (b_pc[2])? b_pc + 32'h4 : b_pc + 32'h8;
 							b_fetch_valid <= 1'b1;
 						end
 					end
@@ -165,7 +165,7 @@ module fetch(
 				b1_next_inst <= iPREVIOUS_1_INST;
 				b1_next_inst_valid <= (b_jump_after_change_flag)? 1'b0 : (!iEXCEPTION_INST_DISCARD && iPREVIOUS_1_INST_VALID);
 				b1_next_mmu_flags <= iPREVIOUS_1_MMU_FLAGS;
-				b_pc_out	 <= (b_jump_after_change_flag)? fetch_addr_queue_addr + 32'h1 : fetch_addr_queue_addr;
+				b_pc_out <= (b_jump_after_change_flag)? fetch_addr_queue_addr + 32'h8 : fetch_addr_queue_addr + 32'h4;
 			end
 		end
 	end	//always

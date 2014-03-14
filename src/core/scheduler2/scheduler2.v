@@ -157,6 +157,7 @@ module scheduler2 #(
 		output wire [5:0] oNEXT_EX_ALU1_DESTINATION_REGNAME,
 		output wire oNEXT_EX_ALU1_FLAGS_WRITEBACK,
 		output wire [3:0] oNEXT_EX_ALU1_FLAGS_REGNAME,
+		output wire [31:0] oNEXT_EX_ALU1_PCR,
 		input wire iNEXT_EX_ALU1_LOCK,
 		//ALU-1(Input)
 		input wire iSCHE2_EX_ALU1_VALID,
@@ -184,6 +185,7 @@ module scheduler2 #(
 		output wire [5:0] oNEXT_EX_ALU2_DESTINATION_REGNAME,
 		output wire oNEXT_EX_ALU2_FLAGS_WRITEBACK,		
 		output wire [3:0] oNEXT_EX_ALU2_FLAGS_REGNAME,
+		output wire [31:0] oNEXT_EX_ALU2_PCR,
 		input wire iNEXT_EX_ALU2_LOCK,		
 		//ALU-2(Input)
 		input wire iSCHE2_EX_ALU2_VALID,
@@ -359,6 +361,7 @@ module scheduler2 #(
 	wire [31:0] rs_alu1_regist_source0[0:15];
 	wire rs_alu1_regist_source1_valid[0:15];
 	wire [31:0] rs_alu1_regist_source1[0:15];
+	wire [31:0] rs_alu1_regist_pcr[0:15];
 	wire [5:0] rs_alu1_regist_destination_regname[0:15];
 	wire [5:0] rs_alu1_regist_commit_tag[0:15];
 	wire rs_alu1_exout_valid[0:15];
@@ -381,6 +384,7 @@ module scheduler2 #(
 	wire [31:0] rs_alu1_info_source0[0:15];
 	wire rs_alu1_info_source1_valid[0:15];
 	wire [31:0] rs_alu1_info_source1[0:15];
+	wire [31:0] rs_alu1_info_pcr[0:15];
 	wire [5:0] rs_alu1_info_destination_regname[0:15];
 	wire [5:0] rs_alu1_info_commit_tag[0:15];
 	//Reservation Station2
@@ -408,6 +412,7 @@ module scheduler2 #(
 	wire [31:0] rs_alu2_regist_source0[0:15];
 	wire rs_alu2_regist_source1_valid[0:15];
 	wire [31:0] rs_alu2_regist_source1[0:15];
+	wire [31:0] rs_alu2_regist_pcr[0:15];
 	wire [5:0] rs_alu2_regist_destination_regname[0:15];
 	wire [5:0] rs_alu2_regist_commit_tag[0:15];
 	wire rs_alu2_exout_valid[0:15];
@@ -427,6 +432,7 @@ module scheduler2 #(
 	wire [31:0] rs_alu2_info_source0[0:15];
 	wire rs_alu2_info_source1_valid[0:15];
 	wire [31:0] rs_alu2_info_source1[0:15];
+	wire [31:0] rs_alu2_info_pcr[0:15];
 	wire [5:0] rs_alu2_info_destination_regname[0:15];
 	wire [5:0] rs_alu2_info_commit_tag[0:15];
 	//Load Store Reservation
@@ -1557,6 +1563,7 @@ module scheduler2 #(
 			assign rs_alu1_regist_source0[i] = (rs_alu1_regist_0_num == i[3:0])? w_register_mix_prev0_source0 : w_register_mix_prev1_source0;
 			assign rs_alu1_regist_source1_valid[i] = (rs_alu1_regist_0_num == i[3:0])? w_register_mix_prev0_source1_valid : w_register_mix_prev1_source1_valid;
 			assign rs_alu1_regist_source1[i] = (rs_alu1_regist_0_num == i[3:0])? w_register_mix_prev0_source1 : w_register_mix_prev1_source1;
+			assign rs_alu1_regist_pcr[i] = (rs_alu1_regist_0_num == i[3:0])? iPREVIOUS_PC : (iPREVIOUS_PC + 32'h4);
 			assign rs_alu1_regist_destination_regname[i] = (rs_alu1_regist_0_num == i[3:0])? iPREVIOUS_0_DESTINATION_REGNAME : iPREVIOUS_1_DESTINATION_REGNAME;
 			assign rs_alu1_regist_commit_tag[i] = (rs_alu1_regist_0_num == i[3:0])? iPREVIOUS_0_COMMIT_TAG : iPREVIOUS_1_COMMIT_TAG;	
 			//Exout Wire
@@ -1574,26 +1581,27 @@ module scheduler2 #(
 				.inRESET(inRESET), 
 				.iREMOVE_VALID(iFREE_RESERVATIONSTATION), 
 				.oINFO_REGIST_LOCK(rs_alu1_regist_lock[i[3:0]]),
-				.iREGIST_DESTINATION_SYSREG(rs_alu1_regist_destination_sysreg[i[3:0]]),
-				.iREGIST_VALID(rs_alu1_regist_valid[i[3:0]]), 
-				.iREGIST_WRITEBACK(rs_alu1_regist_writeback[i[3:0]]), 
-				.iREGIST_CMD(rs_alu1_regist_cmd[i[3:0]]), 
-				.iREGIST_AFE(rs_alu1_regist_afe[i[3:0]]),
-				.iREGIST_SYS_REG(rs_alu1_regist_sys_reg[i[3:0]]), 
-				.iREGIST_LOGIC(rs_alu1_regist_logic[i[3:0]]), 
-				.iREGIST_SHIFT(rs_alu1_regist_shift[i[3:0]]), 
-				.iREGIST_MUL(rs_alu1_regist_mul[i[3:0]]),
-				.iREGIST_SDIV(rs_alu1_regist_sdiv[i[3:0]]), 
-				.iREGIST_UDIV(rs_alu1_regist_udiv[i[3:0]]), 
-				.iREGIST_ADDER(rs_alu1_regist_adder[i[3:0]]), 
-				.iREGIST_FLAGS_OPT_VALID(rs_alu1_regist_flags_writeback[i[3:0]]),
-				.iREGIST_FLAGS_REGNAME(rs_alu1_regist_flags_regname[i[3:0]]),
-				.iREGIST_SOURCE0_VALID(rs_alu1_regist_source0_valid[i[3:0]]), 
-				.iREGIST_SOURCE0(rs_alu1_regist_source0[i[3:0]]), 
-				.iREGIST_SOURCE1_VALID(rs_alu1_regist_source1_valid[i[3:0]]), 
-				.iREGIST_SOURCE1(rs_alu1_regist_source1[i[3:0]]), 
-				.iREGIST_DESTINATION_REGNAME(rs_alu1_regist_destination_regname[i[3:0]]),
-				.iREGIST_COMMIT_TAG(rs_alu1_regist_commit_tag[i[3:0]]),
+				.iREGISTER_DESTINATION_SYSREG(rs_alu1_regist_destination_sysreg[i[3:0]]),
+				.iREGISTER_VALID(rs_alu1_regist_valid[i[3:0]]), 
+				.iREGISTER_WRITEBACK(rs_alu1_regist_writeback[i[3:0]]), 
+				.iREGISTER_CMD(rs_alu1_regist_cmd[i[3:0]]), 
+				.iREGISTER_AFE(rs_alu1_regist_afe[i[3:0]]),
+				.iREGISTER_SYS_REG(rs_alu1_regist_sys_reg[i[3:0]]), 
+				.iREGISTER_LOGIC(rs_alu1_regist_logic[i[3:0]]), 
+				.iREGISTER_SHIFT(rs_alu1_regist_shift[i[3:0]]), 
+				.iREGISTER_MUL(rs_alu1_regist_mul[i[3:0]]),
+				.iREGISTER_SDIV(rs_alu1_regist_sdiv[i[3:0]]), 
+				.iREGISTER_UDIV(rs_alu1_regist_udiv[i[3:0]]), 
+				.iREGISTER_ADDER(rs_alu1_regist_adder[i[3:0]]), 
+				.iREGISTER_FLAGS_OPT_VALID(rs_alu1_regist_flags_writeback[i[3:0]]),
+				.iREGISTER_FLAGS_REGNAME(rs_alu1_regist_flags_regname[i[3:0]]),
+				.iREGISTER_SOURCE0_VALID(rs_alu1_regist_source0_valid[i[3:0]]), 
+				.iREGISTER_SOURCE0(rs_alu1_regist_source0[i[3:0]]), 
+				.iREGISTER_SOURCE1_VALID(rs_alu1_regist_source1_valid[i[3:0]]), 
+				.iREGISTER_SOURCE1(rs_alu1_regist_source1[i[3:0]]), 
+				.iREGISTER_PCR(rs_alu1_regist_pcr[i[3:0]]),
+				.iREGISTER_DESTINATION_REGNAME(rs_alu1_regist_destination_regname[i[3:0]]),
+				.iREGISTER_COMMIT_TAG(rs_alu1_regist_commit_tag[i[3:0]]),
 				.iALU1_VALID(iSCHE2_EX_ALU1_VALID && !iSCHE2_EX_ALU1_DESTINATION_SYSREG), 
 				.iALU1_DESTINATION_REGNAME(iSCHE2_EX_ALU1_DESTINATION_REGNAME), 
 				.iALU1_WRITEBACK(iSCHE2_EX_ALU1_WRITEBACK), 
@@ -1625,6 +1633,7 @@ module scheduler2 #(
 				.oINFO_SOURCE0(rs_alu1_info_source0[i[3:0]]), 
 				.oINFO_SOURCE1_VALID(rs_alu1_info_source1_valid[i[3:0]]), 
 				.oINFO_SOURCE1(rs_alu1_info_source1[i[3:0]]), 
+				.oINFO_PCR(rs_alu1_info_pcr[i[3:0]]),
 				.oINFO_DESTINATION_REGNAME(rs_alu1_info_destination_regname[i[3:0]]), 
 				.oINFO_COMMIT_TAG(rs_alu1_info_commit_tag[i[3:0]])
 			);
@@ -1709,7 +1718,7 @@ module scheduler2 #(
 		.oSELECT_VALID(rs_alu2_exout_entry_num_valid), 
 		.oSELECT_NUM(rs_alu2_exout_entry_num)
 	);
-	
+
 	
 	//RB Write Control
 	generate
@@ -1731,6 +1740,7 @@ module scheduler2 #(
 			assign rs_alu2_regist_source0[i] = (rs_alu2_regist_0_num == i[3:0])? w_register_mix_prev0_source0 : w_register_mix_prev1_source0;
 			assign rs_alu2_regist_source1_valid[i] = (rs_alu2_regist_0_num == i[3:0])? w_register_mix_prev0_source1_valid : w_register_mix_prev1_source1_valid;
 			assign rs_alu2_regist_source1[i] = (rs_alu2_regist_0_num == i[3:0])? w_register_mix_prev0_source1 : w_register_mix_prev1_source1;
+			assign rs_alu2_regist_pcr[i] = (rs_alu2_regist_0_num == i[3:0])? iPREVIOUS_PC : (iPREVIOUS_PC + 32'h4);
 			assign rs_alu2_regist_destination_regname[i] = (rs_alu2_regist_0_num == i[3:0])? iPREVIOUS_0_DESTINATION_REGNAME : iPREVIOUS_1_DESTINATION_REGNAME;
 			assign rs_alu2_regist_commit_tag[i] = (rs_alu2_regist_0_num == i[3:0])? iPREVIOUS_0_COMMIT_TAG : iPREVIOUS_1_COMMIT_TAG;	
 			//Exout Wire
@@ -1748,23 +1758,24 @@ module scheduler2 #(
 				.inRESET(inRESET), 
 				.oINFO_REGIST_LOCK(rs_alu2_regist_lock[i[3:0]]),
 				.iREMOVE_VALID(iFREE_RESERVATIONSTATION), 
-				.iREGIST_DESTINATION_SYSREG(rs_alu2_regist_destination_sysreg[i[3:0]]),
-				.iREGIST_VALID(rs_alu2_regist_valid[i[3:0]]), 
-				.iREGIST_WRITEBACK(rs_alu2_regist_writeback[i[3:0]]), 
-				.iREGIST_CMD(rs_alu2_regist_cmd[i[3:0]]), 
-				.iREGIST_AFE(rs_alu2_regist_afe[i[3:0]]),
-				.iREGIST_SYS_REG(rs_alu2_regist_sys_reg[i[3:0]]),
-				.iREGIST_LOGIC(rs_alu2_regist_logic[i[3:0]]), 
-				.iREGIST_SHIFT(rs_alu2_regist_shift[i[3:0]]), 
-				.iREGIST_ADDER(rs_alu2_regist_adder[i[3:0]]), 
-				.iREGIST_FLAGS_OPT_VALID(rs_alu2_regist_flags_writeback[i[3:0]]),
-				.iREGIST_FLAGS_REGNAME(rs_alu2_regist_flags_regname[i[3:0]]),
-				.iREGIST_SOURCE0_VALID(rs_alu2_regist_source0_valid[i[3:0]]), 
-				.iREGIST_SOURCE0(rs_alu2_regist_source0[i[3:0]]), 
-				.iREGIST_SOURCE1_VALID(rs_alu2_regist_source1_valid[i[3:0]]), 
-				.iREGIST_SOURCE1(rs_alu2_regist_source1[i[3:0]]), 
-				.iREGIST_DESTINATION_REGNAME(rs_alu2_regist_destination_regname[i[3:0]]),
-				.iREGIST_COMMIT_TAG(rs_alu2_regist_commit_tag[i[3:0]]),
+				.iREGISTER_DESTINATION_SYSREG(rs_alu2_regist_destination_sysreg[i[3:0]]),
+				.iREGISTER_VALID(rs_alu2_regist_valid[i[3:0]]), 
+				.iREGISTER_WRITEBACK(rs_alu2_regist_writeback[i[3:0]]), 
+				.iREGISTER_CMD(rs_alu2_regist_cmd[i[3:0]]), 
+				.iREGISTER_AFE(rs_alu2_regist_afe[i[3:0]]),
+				.iREGISTER_SYS_REG(rs_alu2_regist_sys_reg[i[3:0]]),
+				.iREGISTER_LOGIC(rs_alu2_regist_logic[i[3:0]]), 
+				.iREGISTER_SHIFT(rs_alu2_regist_shift[i[3:0]]), 
+				.iREGISTER_ADDER(rs_alu2_regist_adder[i[3:0]]), 
+				.iREGISTER_FLAGS_OPT_VALID(rs_alu2_regist_flags_writeback[i[3:0]]),
+				.iREGISTER_FLAGS_REGNAME(rs_alu2_regist_flags_regname[i[3:0]]),
+				.iREGISTER_SOURCE0_VALID(rs_alu2_regist_source0_valid[i[3:0]]), 
+				.iREGISTER_SOURCE0(rs_alu2_regist_source0[i[3:0]]), 
+				.iREGISTER_SOURCE1_VALID(rs_alu2_regist_source1_valid[i[3:0]]), 
+				.iREGISTER_SOURCE1(rs_alu2_regist_source1[i[3:0]]), 
+				.iREGISTER_PCR(rs_alu2_regist_pcr[i[3:0]]), 
+				.iREGISTER_DESTINATION_REGNAME(rs_alu2_regist_destination_regname[i[3:0]]),
+				.iREGISTER_COMMIT_TAG(rs_alu2_regist_commit_tag[i[3:0]]),
 				.iALU1_VALID(iSCHE2_EX_ALU1_VALID && !iSCHE2_EX_ALU1_DESTINATION_SYSREG), 
 				.iALU1_DESTINATION_REGNAME(iSCHE2_EX_ALU1_DESTINATION_REGNAME), 
 				.iALU1_WRITEBACK(iSCHE2_EX_ALU1_WRITEBACK), 
@@ -1793,6 +1804,7 @@ module scheduler2 #(
 				.oINFO_SOURCE0(rs_alu2_info_source0[i[3:0]]), 
 				.oINFO_SOURCE1_VALID(rs_alu2_info_source1_valid[i[3:0]]), 
 				.oINFO_SOURCE1(rs_alu2_info_source1[i[3:0]]), 
+				.oINFO_PCR(rs_alu2_info_pcr[i[3:0]]), 
 				.oINFO_DESTINATION_REGNAME(rs_alu2_info_destination_regname[i[3:0]]), 
 				.oINFO_COMMIT_TAG(rs_alu2_info_commit_tag[i[3:0]])
 			);
@@ -2272,6 +2284,7 @@ module scheduler2 #(
 	assign oNEXT_EX_ALU1_DESTINATION_REGNAME = rs_alu1_info_destination_regname[rs_alu1_exout_entry_num];
 	assign oNEXT_EX_ALU1_FLAGS_WRITEBACK = rs_alu1_info_flags_writeback[rs_alu1_exout_entry_num];
 	assign oNEXT_EX_ALU1_FLAGS_REGNAME = rs_alu1_info_flags_regname[rs_alu1_exout_entry_num];
+	assign oNEXT_EX_ALU1_PCR = rs_alu1_info_pcr[rs_alu1_exout_entry_num];
 	
 	//To ALU-2
 	assign oNEXT_EX_ALU2_VALID = rs_alu2_exout_entry_num_valid;
@@ -2289,6 +2302,7 @@ module scheduler2 #(
 	assign oNEXT_EX_ALU2_DESTINATION_REGNAME = rs_alu2_info_destination_regname[rs_alu2_exout_entry_num];
 	assign oNEXT_EX_ALU2_FLAGS_WRITEBACK = rs_alu2_info_flags_writeback[rs_alu2_exout_entry_num];
 	assign oNEXT_EX_ALU2_FLAGS_REGNAME = rs_alu2_info_flags_regname[rs_alu2_exout_entry_num];
+	assign oNEXT_EX_ALU2_PCR = rs_alu2_info_pcr[rs_alu2_exout_entry_num];
 		
 	//To ALU-3
 	//rs_alu3_info_source0_sysreg[w_rs_alu3_exe_pointer];
