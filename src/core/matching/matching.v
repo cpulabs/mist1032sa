@@ -344,7 +344,7 @@ module matching(
 	mist1032sa_sync_fifo #(114*2, 16, 4) INST_LOOP_BUFFER(
 		.iCLOCK(iCLOCK),
 		.inRESET(inRESET),
-		.iREMOVE(iFREE_RESTART),
+		.iREMOVE(iFREE_RESTART || iFREE_DEFAULT),
 		.oCOUNT(loop_buffer_count), 	
 		//WR
 		.iWR_EN(!prev_lock && (iPREVIOUS_0_VALID || iPREVIOUS_1_VALID)),
@@ -495,7 +495,7 @@ module matching(
 			regist_counter <= 8'h0;
 			commit_counter <= 8'h0;
 		end
-		else if(iFREE_RESTART)begin
+		else if(iFREE_RESTART || iFREE_DEFAULT)begin
 			regist_counter <= 8'h0;
 			commit_counter <= 8'h0;
 		end

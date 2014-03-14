@@ -209,6 +209,7 @@ module tb_inst_level;
 
 
 		#15000000 begin
+		//#250000000 begin
 			$finish;
 		end
 	end
@@ -243,7 +244,7 @@ module tb_inst_level;
 			//task_disp_inst_issue();
 			//task_disp_pcr();
 			//task_disp_tag_info();
-			//task_disp_branch();
+			task_disp_branch();
 			task_disp_loadstore();
 		end
 	end

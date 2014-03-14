@@ -949,7 +949,7 @@ module priority_encoder_16(
 													iSOURCE_VALID8, iSOURCE_VALID9, iSOURCE_VALID10, iSOURCE_VALID11,
 													iSOURCE_VALID12, iSOURCE_VALID13, iSOURCE_VALID14, iSOURCE_VALID15);
 													
-	assign {oSELECT_VALID, oSELECT_NUM} = {b_last_valid, b_last_num};
+	assign {oSELECT_VALID, oSELECT_NUM} = {sel_valid, sel_num};
 		
 endmodule
 	
