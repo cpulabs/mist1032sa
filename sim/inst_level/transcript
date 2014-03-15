@@ -1,5 +1,4 @@
 # vsim -do sim_run.tcl -c -voptargs=+acc tb_inst_level 
-# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
 # //  Questa Sim-64
 # //  Version 10.0c win64 Jul 21 2011
 # //
@@ -145,14 +144,14 @@
 # Loading work.mist1032sa_sync_fifo(fast__7)
 # ** Warning: (vsim-3015) ../../src/core/l1_instruction/l1_instruction_cache.v(331): [PCDPC] - Port size (32 or 32) does not match connection size (64) for port 'iUP_DATA'. The port definition is at: ../../src/core/l1_instruction/l1_cache_64entry_4way_line64b.v(41).
 #         Region: /tb_inst_level/TARGET/CORE_IF/CORE_PIPELINE/STAGE0_L1_INST/CACHE_MODULE
-# ** Warning: (vsim-3015) ../../src/core/core_pipeline.v(857): [PCDPC] - Port size (6 or 6) does not match connection size (14) for port 'iPREVIOUS_0_MMU_FLAGS'. The port definition is at: ../../src/core/fetch/fetch.v(21).
+# ** Warning: (vsim-3015) ../../src/core/core_pipeline.v(860): [PCDPC] - Port size (6 or 6) does not match connection size (14) for port 'iPREVIOUS_0_MMU_FLAGS'. The port definition is at: ../../src/core/fetch/fetch.v(21).
 #         Region: /tb_inst_level/TARGET/CORE_IF/CORE_PIPELINE/STAGE1_FETCH
-# ** Warning: (vsim-3015) ../../src/core/core_pipeline.v(857): [PCDPC] - Port size (6 or 6) does not match connection size (14) for port 'iPREVIOUS_1_MMU_FLAGS'. The port definition is at: ../../src/core/fetch/fetch.v(24).
+# ** Warning: (vsim-3015) ../../src/core/core_pipeline.v(860): [PCDPC] - Port size (6 or 6) does not match connection size (14) for port 'iPREVIOUS_1_MMU_FLAGS'. The port definition is at: ../../src/core/fetch/fetch.v(24).
 #         Region: /tb_inst_level/TARGET/CORE_IF/CORE_PIPELINE/STAGE1_FETCH
-# ** Warning: (vsim-3015) ../../src/core/execute/execute_port3.v(310): [PCDPC] - Port size (4 or 4) does not match connection size (6) for port 'iAFE_CODE'. The port definition is at: ../../src/core/execute/execute_afe_load_store.v(8).
+# ** Warning: (vsim-3015) ../../src/core/execute/execute_port3.v(314): [PCDPC] - Port size (4 or 4) does not match connection size (6) for port 'iAFE_CODE'. The port definition is at: ../../src/core/execute/execute_afe_load_store.v(8).
 #         Region: /tb_inst_level/TARGET/CORE_IF/CORE_PIPELINE/SATGE7_EX_PORT3/EXEC_AFE_LDST
-# ** Warning: (vsim-3015) ../../src/core/core_pipeline.v(2049): [PCDPC] - Port size (14 or 14) does not match connection size (32) for port 'oLDST_TID'. The port definition is at: ../../src/core/losd_store_pipe_arbiter.v(9).
+# ** Warning: (vsim-3015) ../../src/core/core_pipeline.v(2064): [PCDPC] - Port size (14 or 14) does not match connection size (32) for port 'oLDST_TID'. The port definition is at: ../../src/core/losd_store_pipe_arbiter.v(9).
 #         Region: /tb_inst_level/TARGET/CORE_IF/CORE_PIPELINE/LDST_PIPE_ARBITOR
-# ** Warning: (vsim-3015) ./tb/tb_inst_level.v(236): [PCDPC] - Port size (26 or 26) does not match connection size (32) for port 'iMEMORY_ADDR'. The port definition is at: ../model/sim_memory_model/sim_memory_model.v(33).
+# ** Warning: (vsim-3015) ./tb/tb_inst_level.v(237): [PCDPC] - Port size (26 or 26) does not match connection size (32) for port 'iMEMORY_ADDR'. The port definition is at: ../model/sim_memory_model/sim_memory_model.v(33).
 #         Region: /tb_inst_level/MEMORY_MODEL
 # do sim_run.tcl 

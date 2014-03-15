@@ -487,6 +487,7 @@ module core_pipeline #(
 	wire [31:0] scheduler22ex_alu1_source0;
 	wire [31:0] scheduler22ex_alu1_source1;
 	wire scheduler22ex_alu1_destination_sysreg;
+	wire [4:0] scheduler22ex_alu1_logic_dest;
 	wire [5:0] scheduler22ex_alu1_destination_regname;
 	wire scheduler22ex_alu1_flags_writeback;
 	wire [3:0] scheduler22ex_alu1_flags_regname;
@@ -514,6 +515,7 @@ module core_pipeline #(
 	wire [31:0] scheduler22ex_alu2_source0;
 	wire [31:0] scheduler22ex_alu2_source1;
 	wire scheduler22ex_alu2_destination_sysreg;
+	wire [4:0] scheduler22ex_alu2_logic_dest;
 	wire [5:0] scheduler22ex_alu2_destination_regname;
 	wire scheduler22ex_alu2_flags_writeback;
 	wire [3:0] scheduler22ex_alu2_flags_regname;
@@ -539,6 +541,7 @@ module core_pipeline #(
 	wire [31:0] scheduler22ex_alu3_source1;
 	wire scheduler22ex_alu3_adv_active;
 	wire [5:0] scheduler22ex_alu3_adv_data;
+	wire [4:0] scheduler22ex_alu3_logic_dest;
 	wire [5:0] scheduler22ex_alu3_destination_regname;
 	wire [31:0] scheduler22ex_alu3_pc;
 	wire ex_alu32scheduler2_ldst_lock;
@@ -1645,6 +1648,7 @@ module core_pipeline #(
 		.oNEXT_EX_ALU1_SOURCE0(scheduler22ex_alu1_source0), 
 		.oNEXT_EX_ALU1_SOURCE1(scheduler22ex_alu1_source1),
 		.oNEXT_EX_ALU1_DESTINATION_SYSREG(scheduler22ex_alu1_destination_sysreg),
+		.oNEXT_EX_ALU1_LOGIC_DEST(scheduler22ex_alu1_logic_dest),	//for debug
 		.oNEXT_EX_ALU1_DESTINATION_REGNAME(scheduler22ex_alu1_destination_regname), 
 		.oNEXT_EX_ALU1_FLAGS_WRITEBACK(scheduler22ex_alu1_flags_writeback), 
 		.oNEXT_EX_ALU1_FLAGS_REGNAME(scheduler22ex_alu1_flags_regname),	
@@ -1671,6 +1675,7 @@ module core_pipeline #(
 		.oNEXT_EX_ALU2_SOURCE0(scheduler22ex_alu2_source0), 
 		.oNEXT_EX_ALU2_SOURCE1(scheduler22ex_alu2_source1),
 		.oNEXT_EX_ALU2_DESTINATION_SYSREG(scheduler22ex_alu2_destination_sysreg),
+		.oNEXT_EX_ALU2_LOGIC_DEST(scheduler22ex_alu2_logic_dest), 	//for debug
 		.oNEXT_EX_ALU2_DESTINATION_REGNAME(scheduler22ex_alu2_destination_regname), 
 		.oNEXT_EX_ALU2_FLAGS_WRITEBACK(scheduler22ex_alu2_flags_writeback), 
 		.oNEXT_EX_ALU2_FLAGS_REGNAME(scheduler22ex_alu2_flags_regname),	
@@ -1695,6 +1700,7 @@ module core_pipeline #(
 		.oNEXT_EX_ALU3_SOURCE1(scheduler22ex_alu3_source1),
 		.oNEXT_EX_ALU3_ADV_ACTIVE(scheduler22ex_alu3_adv_active),
 		.oNEXT_EX_ALU3_ADV_DATA(scheduler22ex_alu3_adv_data),
+		.oNEXT_EX_ALU3_LOGIC_DEST(scheduler22ex_alu3_logic_dest),	//for debug
 		.oNEXT_EX_ALU3_DESTINATION_REGNAME(scheduler22ex_alu3_destination_regname), 
 		.oNEXT_EX_ALU3_PC(scheduler22ex_alu3_pc),
 		.iNEXT_EX_ALU3_LOCK(ex_alu32scheduler2_ldst_lock),
@@ -1758,6 +1764,7 @@ module core_pipeline #(
 		.iPREVIOUS_EX_ALU1_SOURCE0(scheduler22ex_alu1_source0), 
 		.iPREVIOUS_EX_ALU1_SOURCE1(scheduler22ex_alu1_source1), 
 		.iPREVIOUS_EX_ALU1_DESTINATION_SYSREG(scheduler22ex_alu1_destination_sysreg),
+		.iPREVIOUS_EX_ALU1_LOGIC_DEST(scheduler22ex_alu1_logic_dest),
 		.iPREVIOUS_EX_ALU1_DESTINATION_REGNAME(scheduler22ex_alu1_destination_regname), 
 		.iPREVIOUS_EX_ALU1_FLAGS_WRITEBACK(scheduler22ex_alu1_flags_writeback),
 		.iPREVIOUS_EX_ALU1_FLAGS_REGNAME(scheduler22ex_alu1_flags_regname),
@@ -1767,11 +1774,15 @@ module core_pipeline #(
 		.oINTERRUPT_ACTIVE(ex_alu12cim_valid),
 		.oINTERRUPT_NUM(ex_alu12cim_num),
 		//Scheduler
-		.oSCHE1_EX_ALU1_VALID(ex_alu12scheduler1_valid), .oSCHE1_EX_ALU1_COMMIT_TAG(ex_alu12scheduler1_commit_tag),
-		.oSCHE2_EX_ALU1_VALID(ex_alu12scheduler2_valid), .oSCHE2_EX_ALU1_COMMIT_TAG(ex_alu12scheduler2_commit_tag),
+		.oSCHE1_EX_ALU1_VALID(ex_alu12scheduler1_valid), 
+		.oSCHE1_EX_ALU1_COMMIT_TAG(ex_alu12scheduler1_commit_tag),
+		.oSCHE2_EX_ALU1_VALID(ex_alu12scheduler2_valid), 
+		.oSCHE2_EX_ALU1_COMMIT_TAG(ex_alu12scheduler2_commit_tag),
 		.oSCHE2_EX_ALU1_SYSREG(ex_alu12scheduler2_destination_sysreg),
+		.oSCHE2_EX_ALU1_LOGIC_DEST(),
 		.oSCHE2_EX_ALU1_DESTINATION_REGNAME(ex_alu12scheduler2_destination_regname), 
-		.oSCHE2_EX_ALU1_WRITEBACK(ex_alu12scheduler2_writeback), .oSCHE2_EX_ALU1_DATA(ex_alu12scheduler2_data), 
+		.oSCHE2_EX_ALU1_WRITEBACK(ex_alu12scheduler2_writeback), 
+		.oSCHE2_EX_ALU1_DATA(ex_alu12scheduler2_data), 
 		.oSCHE2_EX_ALU1_FLAG(ex_alu12scheduler2_flag), 
 		.oSCHE2_EX_ALU1_FLAGS_WRITEBACK(ex_alu12scheduler2_flags_writeback),
 		.oSCHE2_EX_ALU1_FLAGS_REGNAME(ex_alu12scheduler2_flags_regname)
@@ -1794,6 +1805,7 @@ module core_pipeline #(
 		.iPREVIOUS_EX_ALU2_SOURCE0(scheduler22ex_alu2_source0), 
 		.iPREVIOUS_EX_ALU2_SOURCE1(scheduler22ex_alu2_source1), 
 		.iPREVIOUS_EX_ALU2_DESTINATION_SYSREG(scheduler22ex_alu2_destination_sysreg),
+		.iPREVIOUS_EX_ALU2_LOGIC_DEST(scheduler22ex_alu2_logic_dest),
 		.iPREVIOUS_EX_ALU2_DESTINATION_REGNAME(scheduler22ex_alu2_destination_regname), 
 		.iPREVIOUS_EX_ALU2_FLAGS_WRITEBACK(scheduler22ex_alu2_flags_writeback),
 		.iPREVIOUS_EX_ALU2_FLAGS_REGNAME(scheduler22ex_alu2_flags_regname),
@@ -1805,6 +1817,7 @@ module core_pipeline #(
 		.oSCHE2_EX_ALU2_VALID(ex_alu22scheduler2_valid), 
 		.oSCHE2_EX_ALU2_COMMIT_TAG(ex_alu22scheduler2_commit_tag),
 		.oSCHE2_EX_ALU2_SYSREG(ex_alu22scheduler2_destination_sysreg),
+		.oSCHE2_EX_ALU2_LOGIC_DEST(),
 		.oSCHE2_EX_ALU2_DESTINATION_REGNAME(ex_alu22scheduler2_destination_regname), 
 		.oSCHE2_EX_ALU2_WRITEBACK(ex_alu22scheduler2_writeback), 
 		.oSCHE2_EX_ALU2_DATA(ex_alu22scheduler2_data), 
@@ -1850,6 +1863,7 @@ module core_pipeline #(
 		.iPREVIOUS_EX_ALU3_SOURCE1(scheduler22ex_alu3_source1), 
 		.iPREVIOUS_EX_ALU3_ADV_ACTIVE(scheduler22ex_alu3_adv_active),
 		.iPREVIOUS_EX_ALU3_ADV_DATA(scheduler22ex_alu3_adv_data),
+		.iPREVIOUS_EX_ALU3_LOGIC_DEST(scheduler22ex_alu3_logic_dest),
 		.iPREVIOUS_EX_ALU3_DESTINATION_REGNAME(scheduler22ex_alu3_destination_regname), .iPREVIOUS_EX_ALU3_PC(scheduler22ex_alu3_pc),
 		.iPREVIOUS_EX_ALU3_SYS_LDST(scheduler22ex_alu3_sys_ldst), 
 		.iPREVIOUS_EX_ALU3_LDST(scheduler22ex_alu3_ldst),
@@ -1858,6 +1872,7 @@ module core_pipeline #(
 		.oSCHE1_ALU3_COMMIT_TAG(ex_alu32scheduler1_ldst_commit_tag),
 		.oSCHE2_ALU3_VALID(ex_alu32scheduler2_ldst_valid), 
 		.oSCHE2_ALU3_COMMIT_TAG(ex_alu32scheduler2_ldst_commit_tag),
+		.oSCHE2_ALU3_LOGIC_DEST(),
 		.oSCHE2_ALU3_DESTINATION_REGNAME(ex_alu32scheduler2_ldst_destination_regname), 
 		.oSCHE2_ALU3_DESTINATION_SYSREG(ex_alu32scheduler2_ldst_destination_sysreg), 
 		.oSCHE2_ALU3_WRITEBACK(ex_alu32scheduler2_ldst_writeback),

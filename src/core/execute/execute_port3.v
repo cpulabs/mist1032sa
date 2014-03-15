@@ -11,8 +11,6 @@ Takahiro Ito @cpu_labs
 `default_nettype none
 
 
-
-
 module execute_port3(
 		//System
 		input wire iCLOCK,
@@ -50,6 +48,7 @@ module execute_port3(
 		input wire [31:0] iPREVIOUS_EX_ALU3_SOURCE1,
 		input wire iPREVIOUS_EX_ALU3_ADV_ACTIVE,
 		input wire [5:0] iPREVIOUS_EX_ALU3_ADV_DATA,
+		input wire [4:0] iPREVIOUS_EX_ALU3_LOGIC_DEST,		// for debug
 		input wire [5:0] iPREVIOUS_EX_ALU3_DESTINATION_REGNAME,		
 		input wire [31:0] iPREVIOUS_EX_ALU3_PC,	
 		input wire iPREVIOUS_EX_ALU3_SYS_LDST,		
@@ -61,6 +60,7 @@ module execute_port3(
 		//Scheduler2-Output
 		output wire oSCHE2_ALU3_VALID,
 		output wire [5:0] oSCHE2_ALU3_COMMIT_TAG,
+		output wire [4:0] oSCHE2_ALU3_LOGIC_DEST,			//for debug
 		output wire [5:0] oSCHE2_ALU3_DESTINATION_REGNAME,
 		output wire oSCHE2_ALU3_DESTINATION_SYSREG,	
 		output wire oSCHE2_ALU3_WRITEBACK,
@@ -260,6 +260,7 @@ module execute_port3(
 	****************************************/
 	reg [5:0] b_latch_commit_tag;
 	reg [5:0] b_latch_phisical_dest_addr;
+	reg [4:0] b_latch_logic_dest;
 	reg b_latch_adv_active;
 	reg [5:0] b_latch_adv_data;
 
@@ -267,12 +268,14 @@ module execute_port3(
 		if(!inRESET)begin
 			b_latch_commit_tag <= 6'h0;
 			b_latch_phisical_dest_addr <= 6'h0;
+			b_latch_logic_dest <= 5'h0;
 			b_latch_adv_active <= 1'b0;
 			b_latch_adv_data <= 6'h0;
 		end
 		else if(iRESET_SYNC)begin
 			b_latch_commit_tag <= 6'h0;
 			b_latch_phisical_dest_addr <= 6'h0;
+			b_latch_logic_dest <= 5'h0;
 			b_latch_adv_active <= 1'b0;
 			b_latch_adv_data <= 6'h0;
 		end
@@ -280,6 +283,7 @@ module execute_port3(
 			if(!this_lock)begin
 				b_latch_commit_tag <= iPREVIOUS_EX_ALU3_COMMIT_TAG;
 				b_latch_phisical_dest_addr <= iPREVIOUS_EX_ALU3_DESTINATION_REGNAME;
+				b_latch_logic_dest <= iPREVIOUS_EX_ALU3_LOGIC_DEST;
 				b_latch_adv_active <= iPREVIOUS_EX_ALU3_ADV_ACTIVE;
 				b_latch_adv_data <= iPREVIOUS_EX_ALU3_ADV_DATA;
 			end
@@ -342,6 +346,7 @@ module execute_port3(
 	assign oSCHE1_ALU3_VALID = execute_done;
 	assign oSCHE1_ALU3_COMMIT_TAG = b_latch_commit_tag;
 	assign oSCHE2_ALU3_VALID = execute_done;
+	assign oSCHE2_ALU3_LOGIC_DEST = b_latch_logic_dest;
 	assign oSCHE2_ALU3_DESTINATION_REGNAME = b_latch_phisical_dest_addr;
 	assign oSCHE2_ALU3_COMMIT_TAG = b_latch_commit_tag;
 	assign oSCHE2_ALU3_WRITEBACK = !b_ldst_pipe_rw;

@@ -138,7 +138,7 @@ module execute_port0(
 	//Output Assign
 	assign oPREVIOUS_EX_BRANCH_LOCK = b_busy;	
 	
-	assign oJUMP_ACTIVE = b_stage_valid && !b_idts_valid && !b_ib_valid && !b_halt_valid;
+	assign oJUMP_ACTIVE = b_stage_valid && b_jump_valid && !b_idts_valid && !b_ib_valid && !b_halt_valid;
 	assign oJUMP_ADDR = b_branch_addr;
 	
 	assign oINTR_ACTIVE = b_ib_valid;

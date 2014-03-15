@@ -17,6 +17,7 @@ entity execute_port2 is
         iPREVIOUS_EX_ALU2_SOURCE0: in     vl_logic_vector(31 downto 0);
         iPREVIOUS_EX_ALU2_SOURCE1: in     vl_logic_vector(31 downto 0);
         iPREVIOUS_EX_ALU2_DESTINATION_SYSREG: in     vl_logic;
+        iPREVIOUS_EX_ALU2_LOGIC_DEST: in     vl_logic_vector(4 downto 0);
         iPREVIOUS_EX_ALU2_DESTINATION_REGNAME: in     vl_logic_vector(5 downto 0);
         iPREVIOUS_EX_ALU2_FLAGS_WRITEBACK: in     vl_logic;
         iPREVIOUS_EX_ALU2_FLAGS_REGNAME: in     vl_logic_vector(3 downto 0);
@@ -27,6 +28,7 @@ entity execute_port2 is
         oSCHE2_EX_ALU2_VALID: out    vl_logic;
         oSCHE2_EX_ALU2_COMMIT_TAG: out    vl_logic_vector(5 downto 0);
         oSCHE2_EX_ALU2_SYSREG: out    vl_logic;
+        oSCHE2_EX_ALU2_LOGIC_DEST: out    vl_logic_vector(4 downto 0);
         oSCHE2_EX_ALU2_DESTINATION_REGNAME: out    vl_logic_vector(5 downto 0);
         oSCHE2_EX_ALU2_WRITEBACK: out    vl_logic;
         oSCHE2_EX_ALU2_DATA: out    vl_logic_vector(31 downto 0);

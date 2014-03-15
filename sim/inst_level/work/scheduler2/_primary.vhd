@@ -132,6 +132,7 @@ entity scheduler2 is
         oNEXT_EX_ALU1_SOURCE0: out    vl_logic_vector(31 downto 0);
         oNEXT_EX_ALU1_SOURCE1: out    vl_logic_vector(31 downto 0);
         oNEXT_EX_ALU1_DESTINATION_SYSREG: out    vl_logic;
+        oNEXT_EX_ALU1_LOGIC_DEST: out    vl_logic_vector(4 downto 0);
         oNEXT_EX_ALU1_DESTINATION_REGNAME: out    vl_logic_vector(5 downto 0);
         oNEXT_EX_ALU1_FLAGS_WRITEBACK: out    vl_logic;
         oNEXT_EX_ALU1_FLAGS_REGNAME: out    vl_logic_vector(3 downto 0);
@@ -158,6 +159,7 @@ entity scheduler2 is
         oNEXT_EX_ALU2_SOURCE0: out    vl_logic_vector(31 downto 0);
         oNEXT_EX_ALU2_SOURCE1: out    vl_logic_vector(31 downto 0);
         oNEXT_EX_ALU2_DESTINATION_SYSREG: out    vl_logic;
+        oNEXT_EX_ALU2_LOGIC_DEST: out    vl_logic_vector(4 downto 0);
         oNEXT_EX_ALU2_DESTINATION_REGNAME: out    vl_logic_vector(5 downto 0);
         oNEXT_EX_ALU2_FLAGS_WRITEBACK: out    vl_logic;
         oNEXT_EX_ALU2_FLAGS_REGNAME: out    vl_logic_vector(3 downto 0);
@@ -182,6 +184,7 @@ entity scheduler2 is
         oNEXT_EX_ALU3_SOURCE1: out    vl_logic_vector(31 downto 0);
         oNEXT_EX_ALU3_ADV_ACTIVE: out    vl_logic;
         oNEXT_EX_ALU3_ADV_DATA: out    vl_logic_vector(5 downto 0);
+        oNEXT_EX_ALU3_LOGIC_DEST: out    vl_logic_vector(4 downto 0);
         oNEXT_EX_ALU3_DESTINATION_REGNAME: out    vl_logic_vector(5 downto 0);
         oNEXT_EX_ALU3_PC: out    vl_logic_vector(31 downto 0);
         iNEXT_EX_ALU3_LOCK: in     vl_logic;

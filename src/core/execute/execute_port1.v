@@ -32,10 +32,11 @@ module execute_port1(
 		input wire [31:0] iPREVIOUS_EX_ALU1_SOURCE0,
 		input wire [31:0] iPREVIOUS_EX_ALU1_SOURCE1,
 		input wire iPREVIOUS_EX_ALU1_DESTINATION_SYSREG,
+		input wire [4:0] iPREVIOUS_EX_ALU1_LOGIC_DEST,	//For debug
 		input wire [5:0] iPREVIOUS_EX_ALU1_DESTINATION_REGNAME,
 		input wire iPREVIOUS_EX_ALU1_FLAGS_WRITEBACK,
 		input wire [3:0] iPREVIOUS_EX_ALU1_FLAGS_REGNAME,
-		input wire [31:0] iPREVIOUS_EX_ALU1_PCR,		//
+		input wire [31:0] iPREVIOUS_EX_ALU1_PCR,		//For debug
 		output wire oPREVIOUS_EX_ALU1_LOCK,
 		//Interrupt
 		output wire oINTERRUPT_ACTIVE,
@@ -47,6 +48,7 @@ module execute_port1(
 		output wire oSCHE2_EX_ALU1_VALID,
 		output wire [5:0] oSCHE2_EX_ALU1_COMMIT_TAG,
 		output wire oSCHE2_EX_ALU1_SYSREG,
+		output wire [4:0] oSCHE2_EX_ALU1_LOGIC_DEST,	//For debug
 		output wire [5:0] oSCHE2_EX_ALU1_DESTINATION_REGNAME,
 		output wire oSCHE2_EX_ALU1_WRITEBACK,
 		output wire [31:0] oSCHE2_EX_ALU1_DATA,
@@ -111,6 +113,7 @@ module execute_port1(
 	reg b0_valid;
 	reg [5:0] b0_commit_tag;
 	reg b0_sysreg;
+	reg [4:0] b0_logic_dest;
 	reg [5:0] b0_destination_regname;
 	reg b0_writeback;
 	reg [31:0] b0_data;
@@ -129,6 +132,7 @@ module execute_port1(
 	wire divider_mod_flag;
 	wire [5:0] divider_commit_tag;
 	wire divider_sysreg;
+	wire [4:0] divider_logic_dest;
 	wire [5:0] divider_destination_regname;
 	wire divider_out_valid;
 	wire [31:0]	divider_out_q;
@@ -324,6 +328,7 @@ module execute_port1(
 			b0_valid <= 1'b0;
 			b0_commit_tag <= {6{1'b0}};
 			b0_sysreg <= 1'b0;
+			b0_logic_dest <= 5'h0;
 			b0_destination_regname <= {6{1'b0}};
 			b0_writeback <= 1'b0;
 			b0_data <= {32{1'b0}};
@@ -339,6 +344,7 @@ module execute_port1(
 			b0_valid <= 1'b0;
 			b0_commit_tag <= {6{1'b0}};
 			b0_sysreg <= 1'b0;
+			b0_logic_dest <= 5'h0;
 			b0_destination_regname <= {6{1'b0}};
 			b0_writeback <= 1'b0;
 			b0_data <= {32{1'b0}};
@@ -355,6 +361,7 @@ module execute_port1(
 				b0_valid <= (b0_lock)? 1'b0 : iPREVIOUS_EX_ALU1_VALID && (iPREVIOUS_EX_ALU1_LOGIC || iPREVIOUS_EX_ALU1_SHIFT || iPREVIOUS_EX_ALU1_ADDER || iPREVIOUS_EX_ALU1_MUL);
 				b0_commit_tag <= iPREVIOUS_EX_ALU1_COMMIT_TAG;
 				b0_sysreg <= iPREVIOUS_EX_ALU1_DESTINATION_SYSREG;
+				b0_logic_dest <= iPREVIOUS_EX_ALU1_LOGIC_DEST;
 				b0_destination_regname <= iPREVIOUS_EX_ALU1_DESTINATION_REGNAME;
 				b0_writeback <= iPREVIOUS_EX_ALU1_WRITEBACK;
 				b0_data <= latch_sel_data;
@@ -399,16 +406,16 @@ module execute_port1(
 	assign divider_condition = iPREVIOUS_EX_ALU1_VALID && (iPREVIOUS_EX_ALU1_UDIV || iPREVIOUS_EX_ALU1_SDIV);
 	
 	//parameter is N, DEPTH, DEPTH_N
-	mist1032sa_sync_fifo #(14, 16, 4) ALU1_DIV_CONDITION_FIFO (
+	mist1032sa_sync_fifo #(19, 16, 4) ALU1_DIV_CONDITION_FIFO (
 		.iCLOCK(iCLOCK), 
 		.inRESET(inRESET), 
 		.iREMOVE(iFREE_EX), 
 		.oCOUNT(/* Not Use */), 	
 		.iWR_EN(divider_condition), 
-		.iWR_DATA({(iPREVIOUS_EX_ALU1_UDIV && iPREVIOUS_EX_ALU1_CMD == `EXE_DIV_UMOD || iPREVIOUS_EX_ALU1_SDIV && iPREVIOUS_EX_ALU1_CMD == `EXE_DIV_MOD), iPREVIOUS_EX_ALU1_COMMIT_TAG, iPREVIOUS_EX_ALU1_DESTINATION_SYSREG, iPREVIOUS_EX_ALU1_DESTINATION_REGNAME}), 
+		.iWR_DATA({(iPREVIOUS_EX_ALU1_UDIV && iPREVIOUS_EX_ALU1_CMD == `EXE_DIV_UMOD || iPREVIOUS_EX_ALU1_SDIV && iPREVIOUS_EX_ALU1_CMD == `EXE_DIV_MOD), iPREVIOUS_EX_ALU1_COMMIT_TAG, iPREVIOUS_EX_ALU1_DESTINATION_SYSREG, iPREVIOUS_EX_ALU1_DESTINATION_REGNAME, iPREVIOUS_EX_ALU1_LOGIC_DEST}), 
 		.oWR_FULL(/* Not Use */),
 		.iRD_EN(divider_out_valid), 
-		.oRD_DATA({divider_mod_flag, divider_commit_tag, divider_sysreg, divider_destination_regname}), 
+		.oRD_DATA({divider_mod_flag, divider_commit_tag, divider_sysreg, divider_destination_regname, divider_logic_dest}), 
 		.oRD_EMPTY(/* Not Use */)
 	);
 	
@@ -445,6 +452,7 @@ module execute_port1(
 	assign oSCHE1_EX_ALU1_COMMIT_TAG = (!divider_out_valid)? b0_commit_tag : divider_commit_tag;
 	assign oSCHE2_EX_ALU1_VALID = (!divider_out_valid)? b0_valid : divider_out_valid;
 	assign oSCHE2_EX_ALU1_SYSREG = (!divider_out_valid)? b0_sysreg : divider_sysreg;
+	assign oSCHE2_EX_ALU1_LOGIC_DEST = (!divider_out_valid)? b0_logic_dest : divider_logic_dest;
 	assign oSCHE2_EX_ALU1_DESTINATION_REGNAME = (!divider_out_valid)? b0_destination_regname : divider_destination_regname;
 	assign oSCHE2_EX_ALU1_COMMIT_TAG = (!divider_out_valid)? b0_commit_tag : divider_commit_tag;
 	assign oSCHE2_EX_ALU1_WRITEBACK = (!divider_out_valid)? b0_writeback : 1'b1;

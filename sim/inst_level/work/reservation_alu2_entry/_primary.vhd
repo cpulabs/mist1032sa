@@ -22,6 +22,7 @@ entity reservation_alu2_entry is
         iREGISTER_SOURCE1_VALID: in     vl_logic;
         iREGISTER_SOURCE1: in     vl_logic_vector(31 downto 0);
         iREGISTER_PCR   : in     vl_logic_vector(31 downto 0);
+        iREGISTER_LOGIC_DEST: in     vl_logic_vector(4 downto 0);
         iREGISTER_DESTINATION_REGNAME: in     vl_logic_vector(5 downto 0);
         iREGISTER_COMMIT_TAG: in     vl_logic_vector(5 downto 0);
         iALU1_VALID     : in     vl_logic;
@@ -53,6 +54,7 @@ entity reservation_alu2_entry is
         oINFO_SOURCE1_VALID: out    vl_logic;
         oINFO_SOURCE1   : out    vl_logic_vector(31 downto 0);
         oINFO_PCR       : out    vl_logic_vector(31 downto 0);
+        oINFO_LOGIC_DEST: out    vl_logic_vector(4 downto 0);
         oINFO_DESTINATION_REGNAME: out    vl_logic_vector(5 downto 0);
         oINFO_COMMIT_TAG: out    vl_logic_vector(5 downto 0)
     );

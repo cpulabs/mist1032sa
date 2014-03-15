@@ -3,6 +3,13 @@
 `timescale 1ns/1ns
 
 module tb_func_level;
+	`include "../task/task_disp_inst_issue.v"
+	`include "../task/task_disp_pcr.v"
+	`include "../task/task_disp_tag_info.v"
+	`include "../task/task_disp_branch.v"
+	`include "../task/task_disp_loadstore.v"
+	`include "../task/task_disp_logic_register.v"
+
 	localparam PL_CORE_CYCLE = 20;		//It's necessary "Core Clock == Bus Clock". This restriction is removed near future.
 	localparam PL_BUS_CYCLE = 20;		//
 	localparam PL_DPS_CYCLE = 18;
@@ -229,6 +236,21 @@ module tb_func_level;
 		.oMEMORY_DATA(iMEMORY_DATA)
 	);
 
+	/******************************************************
+	Display Dump
+	******************************************************/
+	always@(posedge iCORE_CLOCK)begin
+		if(inRESET)begin
+			//task_disp_inst_issue();
+			//task_disp_pcr();
+			//task_disp_tag_info();
+			//task_disp_branch();
+			task_disp_loadstore();
+			//task_disp_logic_register_all();
+			//task_disp_logic_register_single(5'h2);
+		end
+	end
+	
 	/******************************************************
 	Assertion
 	******************************************************/

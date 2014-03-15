@@ -17,6 +17,7 @@ entity reservation_alu3_entry is
         iREGISTER_SOURCE1: in     vl_logic_vector(31 downto 0);
         iREGISTER_ADV_ACTIVE: in     vl_logic;
         iREGISTER_ADV_DATA: in     vl_logic_vector(5 downto 0);
+        iREGISTER_LOGIC_DEST: in     vl_logic_vector(4 downto 0);
         iREGISTER_DESTINATION_REGNAME: in     vl_logic_vector(5 downto 0);
         iREGISTER_DESTINATION_SYSREG: in     vl_logic;
         iREGISTER_COMMIT_TAG: in     vl_logic_vector(5 downto 0);
@@ -48,6 +49,7 @@ entity reservation_alu3_entry is
         oINFO_SOURCE1   : out    vl_logic_vector(31 downto 0);
         oINFO_ADV_ACTIVE: out    vl_logic;
         oINFO_ADV_DATA  : out    vl_logic_vector(5 downto 0);
+        oINFO_LOGIC_DEST: out    vl_logic_vector(4 downto 0);
         oINFO_DESTINATION_REGNAME: out    vl_logic_vector(5 downto 0);
         oINFO_DESTINATION_SYSREG: out    vl_logic;
         oINFO_COMMIT_TAG: out    vl_logic_vector(5 downto 0);

@@ -8,6 +8,7 @@ module tb_inst_level;
 	`include "../task/task_disp_tag_info.v"
 	`include "../task/task_disp_branch.v"
 	`include "../task/task_disp_loadstore.v"
+	`include "../task/task_disp_logic_register.v"
 
 	localparam PL_CORE_CYCLE = 20;		//It's necessary "Core Clock == Bus Clock". This restriction is removed near future.
 	localparam PL_BUS_CYCLE = 20;		//
@@ -244,8 +245,10 @@ module tb_inst_level;
 			//task_disp_inst_issue();
 			//task_disp_pcr();
 			//task_disp_tag_info();
-			task_disp_branch();
+			//task_disp_branch();
 			task_disp_loadstore();
+			//task_disp_logic_register_all();
+			//task_disp_logic_register_single(5'h2);
 		end
 	end
 

@@ -1,1221 +1,1221 @@
-timestamp=1394822865179
+timestamp=1394861807167
 
 [$root]
-A/$root=22|""|0|1*4886702
-BinW64/$root=3*4989324
+A/$root=22|""|0|1*10984245
+BinW64/$root=3*10502738
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [ALTERA_DEVICE_FAMILIES]
-A/ALTERA_DEVICE_FAMILIES=22|./../../model/altera/altera_mf.v|1344|1*1912659
-BinW64/ALTERA_DEVICE_FAMILIES=3*2292680
+A/ALTERA_DEVICE_FAMILIES=22|./../../model/altera/altera_mf.v|1344|1*8008672
+BinW64/ALTERA_DEVICE_FAMILIES=3*7804117
 R=./../../model/altera/altera_mf.v|1344
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [ALTERA_MF_HINT_EVALUATION]
-A/ALTERA_MF_HINT_EVALUATION=22|./../../model/altera/altera_mf.v|1222|1*1909080
-BinW64/ALTERA_MF_HINT_EVALUATION=3*2289765
+A/ALTERA_MF_HINT_EVALUATION=22|./../../model/altera/altera_mf.v|1222|1*8005093
+BinW64/ALTERA_MF_HINT_EVALUATION=3*7801195
 R=./../../model/altera/altera_mf.v|1222
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [ALTERA_MF_MEMORY_INITIALIZATION]
-A/ALTERA_MF_MEMORY_INITIALIZATION=22|./../../model/altera/altera_mf.v|71|1*1893520
-BinW64/ALTERA_MF_MEMORY_INITIALIZATION=3*2265481
+A/ALTERA_MF_MEMORY_INITIALIZATION=22|./../../model/altera/altera_mf.v|71|1*7989533
+BinW64/ALTERA_MF_MEMORY_INITIALIZATION=3*7776877
 R=./../../model/altera/altera_mf.v|71
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [MF_cycloneiii_pll]
-A/MF_cycloneiii_pll=22|./../../model/altera/altera_mf.v|14528|1*2405670
-BinW64/MF_cycloneiii_pll=3*2662594
+A/MF_cycloneiii_pll=22|./../../model/altera/altera_mf.v|14528|1*8501683
+BinW64/MF_cycloneiii_pll=3*8174766
 R=./../../model/altera/altera_mf.v|14528
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [MF_cycloneiiigl_m_cntr]
-A/MF_cycloneiiigl_m_cntr=22|./../../model/altera/altera_mf.v|17857|1*2532233
-BinW64/MF_cycloneiiigl_m_cntr=3*2760363
+A/MF_cycloneiiigl_m_cntr=22|./../../model/altera/altera_mf.v|17857|1*8628246
+BinW64/MF_cycloneiiigl_m_cntr=3*8272523
 R=./../../model/altera/altera_mf.v|17857
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [MF_cycloneiiigl_n_cntr]
-A/MF_cycloneiiigl_n_cntr=22|./../../model/altera/altera_mf.v|17938|1*2534729
-BinW64/MF_cycloneiiigl_n_cntr=3*2762052
+A/MF_cycloneiiigl_n_cntr=22|./../../model/altera/altera_mf.v|17938|1*8630742
+BinW64/MF_cycloneiiigl_n_cntr=3*8274214
 R=./../../model/altera/altera_mf.v|17938
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [MF_cycloneiiigl_pll]
-A/MF_cycloneiiigl_pll=22|./../../model/altera/altera_mf.v|18208|1*2542254
-BinW64/MF_cycloneiiigl_pll=3*2770172
+A/MF_cycloneiiigl_pll=22|./../../model/altera/altera_mf.v|18208|1*8638267
+BinW64/MF_cycloneiiigl_pll=3*8282354
 R=./../../model/altera/altera_mf.v|18208
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [MF_cycloneiiigl_scale_cntr]
-A/MF_cycloneiiigl_scale_cntr=22|./../../model/altera/altera_mf.v|18009|1*2536908
-BinW64/MF_cycloneiiigl_scale_cntr=3*2763393
+A/MF_cycloneiiigl_scale_cntr=22|./../../model/altera/altera_mf.v|18009|1*8632921
+BinW64/MF_cycloneiiigl_scale_cntr=3*8275556
 R=./../../model/altera/altera_mf.v|18009
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [MF_pll_reg]
-A/MF_pll_reg=22|./../../model/altera/altera_mf.v|2445|1*1966625
-BinW64/MF_pll_reg=3*2336793
+A/MF_pll_reg=22|./../../model/altera/altera_mf.v|2445|1*8062638
+BinW64/MF_pll_reg=3*7848185
 R=./../../model/altera/altera_mf.v|2445
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [MF_stratix_pll]
-A/MF_stratix_pll=22|./../../model/altera/altera_mf.v|2504|1*1968204
-BinW64/MF_stratix_pll=3*2337708
+A/MF_stratix_pll=22|./../../model/altera/altera_mf.v|2504|1*8064217
+BinW64/MF_stratix_pll=3*7849102
 D/MF_stratix_pll=4*0
 R=./../../model/altera/altera_mf.v|2504
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [MF_stratixii_pll]
-A/MF_stratixii_pll=22|./../../model/altera/altera_mf.v|6595|1*2121191
-BinW64/MF_stratixii_pll=3*2439938
+A/MF_stratixii_pll=22|./../../model/altera/altera_mf.v|6595|1*8217204
+BinW64/MF_stratixii_pll=3*7951695
 R=./../../model/altera/altera_mf.v|6595
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [MF_stratixiii_pll]
-A/MF_stratixiii_pll=22|./../../model/altera/altera_mf.v|10426|1*2244361
-BinW64/MF_stratixiii_pll=3*2539171
+A/MF_stratixiii_pll=22|./../../model/altera/altera_mf.v|10426|1*8340374
+BinW64/MF_stratixiii_pll=3*8051139
 R=./../../model/altera/altera_mf.v|10426
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [a_graycounter]
-A/a_graycounter=22|./../../model/altera/altera_mf.v|48845|1*3581009
-BinW64/a_graycounter=3*4421769
+A/a_graycounter=22|./../../model/altera/altera_mf.v|48845|1*9677022
+BinW64/a_graycounter=3*9934775
 R=./../../model/altera/altera_mf.v|48845
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [alt3pram]
-A/alt3pram=22|./../../model/altera/altera_mf.v|47054|1*3537915
-BinW64/alt3pram=3*4349687
+A/alt3pram=22|./../../model/altera/altera_mf.v|47054|1*9633928
+BinW64/alt3pram=3*9862817
 R=./../../model/altera/altera_mf.v|47054
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [alt_aeq_s4]
-A/alt_aeq_s4=22|./../../model/altera/altera_mf.v|49699|1*3628526
-BinW64/alt_aeq_s4=3*4449992
+A/alt_aeq_s4=22|./../../model/altera/altera_mf.v|49699|1*9724539
+BinW64/alt_aeq_s4=3*9962952
 R=./../../model/altera/altera_mf.v|49699
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [alt_cal]
-A/alt_cal=22|./../../model/altera/altera_mf.v|49265|1*3593912
-BinW64/alt_cal=3*4434773
+A/alt_cal=22|./../../model/altera/altera_mf.v|49265|1*9689925
+BinW64/alt_cal=3*9947784
 R=./../../model/altera/altera_mf.v|49265
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [alt_cal_c3gxb]
-A/alt_cal_c3gxb=22|./../../model/altera/altera_mf.v|49492|1*3613150
-BinW64/alt_cal_c3gxb=3*4442094
+A/alt_cal_c3gxb=22|./../../model/altera/altera_mf.v|49492|1*9709163
+BinW64/alt_cal_c3gxb=3*9955072
 R=./../../model/altera/altera_mf.v|49492
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [alt_cal_mm]
-A/alt_cal_mm=22|./../../model/altera/altera_mf.v|49367|1*3601895
-BinW64/alt_cal_mm=3*4438432
+A/alt_cal_mm=22|./../../model/altera/altera_mf.v|49367|1*9697908
+BinW64/alt_cal_mm=3*9951427
 R=./../../model/altera/altera_mf.v|49367
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [alt_cal_sv]
-A/alt_cal_sv=22|./../../model/altera/altera_mf.v|49592|1*3620963
-BinW64/alt_cal_sv=3*4445559
+A/alt_cal_sv=22|./../../model/altera/altera_mf.v|49592|1*9716976
+BinW64/alt_cal_sv=3*9958544
 R=./../../model/altera/altera_mf.v|49592
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [alt_dfe]
-A/alt_dfe=22|./../../model/altera/altera_mf.v|50076|1*3646907
-BinW64/alt_dfe=3*4465052
+A/alt_dfe=22|./../../model/altera/altera_mf.v|50076|1*9742920
+BinW64/alt_dfe=3*9978003
 R=./../../model/altera/altera_mf.v|50076
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [alt_eyemon]
-A/alt_eyemon=22|./../../model/altera/altera_mf.v|49796|1*3635814
-BinW64/alt_eyemon=3*4453320
+A/alt_eyemon=22|./../../model/altera/altera_mf.v|49796|1*9731827
+BinW64/alt_eyemon=3*9966279
 R=./../../model/altera/altera_mf.v|49796
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [altaccumulate]
-A/altaccumulate=22|./../../model/altera/altera_mf.v|31488|1*3101124
-BinW64/altaccumulate=3*3428655
+A/altaccumulate=22|./../../model/altera/altera_mf.v|31488|1*9197137
+BinW64/altaccumulate=3*8942646
 R=./../../model/altera/altera_mf.v|31488
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [altclklock]
-A/altclklock=22|./../../model/altera/altera_mf.v|42058|1*3413075
-BinW64/altclklock=3*4138937
+A/altclklock=22|./../../model/altera/altera_mf.v|42058|1*9509088
+BinW64/altclklock=3*9652319
 R=./../../model/altera/altera_mf.v|42058
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [altddio_bidir]
-A/altddio_bidir=22|./../../model/altera/altera_mf.v|43498|1*3447067
-BinW64/altddio_bidir=3*4179426
+A/altddio_bidir=22|./../../model/altera/altera_mf.v|43498|1*9543080
+BinW64/altddio_bidir=3*9692641
 R=./../../model/altera/altera_mf.v|43498
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [altddio_in]
-A/altddio_in=22|./../../model/altera/altera_mf.v|42984|1*3434541
-BinW64/altddio_in=3*4160907
+A/altddio_in=22|./../../model/altera/altera_mf.v|42984|1*9530554
+BinW64/altddio_in=3*9674159
 R=./../../model/altera/altera_mf.v|42984
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [altddio_out]
-A/altddio_out=22|./../../model/altera/altera_mf.v|43247|1*3440182
-BinW64/altddio_out=3*4170173
+A/altddio_out=22|./../../model/altera/altera_mf.v|43247|1*9536195
+BinW64/altddio_out=3*9683375
 R=./../../model/altera/altera_mf.v|43247
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [altdpram]
-A/altdpram=22|./../../model/altera/altera_mf.v|43637|1*3452892
-BinW64/altdpram=3*4181028
+A/altdpram=22|./../../model/altera/altera_mf.v|43637|1*9548905
+BinW64/altdpram=3*9694243
 R=./../../model/altera/altera_mf.v|43637
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [altera_std_synchronizer]
-A/altera_std_synchronizer=22|./../../model/altera/altera_mf.v|49071|1*3589021
-BinW64/altera_std_synchronizer=3*4430512
+A/altera_std_synchronizer=22|./../../model/altera/altera_mf.v|49071|1*9685034
+BinW64/altera_std_synchronizer=3*9943529
 R=./../../model/altera/altera_mf.v|49071
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [altera_std_synchronizer_bundle]
-A/altera_std_synchronizer_bundle=22|./../../model/altera/altera_mf.v|49230|1*3591687
-BinW64/altera_std_synchronizer_bundle=3*4433826
+A/altera_std_synchronizer_bundle=22|./../../model/altera/altera_mf.v|49230|1*9687700
+BinW64/altera_std_synchronizer_bundle=3*9946837
 R=./../../model/altera/altera_mf.v|49230
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [altfp_mult]
-A/altfp_mult=22|./../../model/altera/altera_mf.v|41171|1*3393391
-BinW64/altfp_mult=3*4104727
+A/altfp_mult=22|./../../model/altera/altera_mf.v|41171|1*9489404
+BinW64/altfp_mult=3*9618067
 R=./../../model/altera/altera_mf.v|41171
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [altlvds_rx]
-A/altlvds_rx=22|./../../model/altera/altera_mf.v|23593|1*2803935
-BinW64/altlvds_rx=3*2959094
+A/altlvds_rx=22|./../../model/altera/altera_mf.v|23593|1*8899948
+BinW64/altlvds_rx=3*8472877
 R=./../../model/altera/altera_mf.v|23593
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [altlvds_tx]
-A/altlvds_tx=22|./../../model/altera/altera_mf.v|27147|1*2950020
-BinW64/altlvds_tx=3*3156872
+A/altlvds_tx=22|./../../model/altera/altera_mf.v|27147|1*9046033
+BinW64/altlvds_tx=3*8670767
 R=./../../model/altera/altera_mf.v|27147
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [altmult_accum]
-A/altmult_accum=22|./../../model/altera/altera_mf.v|31730|1*3110402
-BinW64/altmult_accum=3*3440486
+A/altmult_accum=22|./../../model/altera/altera_mf.v|31730|1*9206415
+BinW64/altmult_accum=3*8954410
 R=./../../model/altera/altera_mf.v|31730
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [altmult_add]
-A/altmult_add=22|./../../model/altera/altera_mf.v|33919|1*3180335
-BinW64/altmult_add=3*3546113
+A/altmult_add=22|./../../model/altera/altera_mf.v|33919|1*9276348
+BinW64/altmult_add=3*9059632
 R=./../../model/altera/altera_mf.v|33919
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [altparallel_flash_loader]
-A/altparallel_flash_loader=22|./../../model/altera/altera_mf.v|51953|1*3714446
-BinW64/altparallel_flash_loader=3*4503936
+A/altparallel_flash_loader=22|./../../model/altera/altera_mf.v|51953|1*9810459
+BinW64/altparallel_flash_loader=3*10016891
 R=./../../model/altera/altera_mf.v|51953
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [altpll]
-A/altpll=22|./../../model/altera/altera_mf.v|21581|1*2672712
-BinW64/altpll=3*2868840
+A/altpll=22|./../../model/altera/altera_mf.v|21581|1*8768725
+BinW64/altpll=3*8381283
 R=./../../model/altera/altera_mf.v|21581
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [altserial_flash_loader]
-A/altserial_flash_loader=22|./../../model/altera/altera_mf.v|52067|1*3726722
-BinW64/altserial_flash_loader=3*4504952
+A/altserial_flash_loader=22|./../../model/altera/altera_mf.v|52067|1*9822735
+BinW64/altserial_flash_loader=3*10017907
 R=./../../model/altera/altera_mf.v|52067
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [altshift_taps]
-A/altshift_taps=22|./../../model/altera/altera_mf.v|48712|1*3576095
-BinW64/altshift_taps=3*4417487
+A/altshift_taps=22|./../../model/altera/altera_mf.v|48712|1*9672108
+BinW64/altshift_taps=3*9930514
 R=./../../model/altera/altera_mf.v|48712
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [altsource_probe]
-A/altsource_probe=22|./../../model/altera/altera_mf.v|52177|1*3735477
-BinW64/altsource_probe=3*4506043
+A/altsource_probe=22|./../../model/altera/altera_mf.v|52177|1*9831490
+BinW64/altsource_probe=3*10018998
 R=./../../model/altera/altera_mf.v|52177
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [altsqrt]
-A/altsqrt=22|./../../model/altera/altera_mf.v|41856|1*3407617
-BinW64/altsqrt=3*4129949
+A/altsqrt=22|./../../model/altera/altera_mf.v|41856|1*9503630
+BinW64/altsqrt=3*9643342
 R=./../../model/altera/altera_mf.v|41856
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [altsquare]
-A/altsquare=22|./../../model/altera/altera_mf.v|48936|1*3584120
-BinW64/altsquare=3*4424481
+A/altsquare=22|./../../model/altera/altera_mf.v|48936|1*9680133
+BinW64/altsquare=3*9937489
 R=./../../model/altera/altera_mf.v|48936
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [altstratixii_oct]
-A/altstratixii_oct=22|./../../model/altera/altera_mf.v|51937|1*3713065
-BinW64/altstratixii_oct=3*4503627
+A/altstratixii_oct=22|./../../model/altera/altera_mf.v|51937|1*9809078
+BinW64/altstratixii_oct=3*10016582
 R=./../../model/altera/altera_mf.v|51937
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [altsyncram]
-A/altsyncram=22|./../../model/altera/altera_mf.v|44162|1*3470986
-BinW64/altsyncram=3*4218121
+A/altsyncram=22|./../../model/altera/altera_mf.v|44162|1*9566999
+BinW64/altsyncram=3*9731291
 R=./../../model/altera/altera_mf.v|44162
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [arm_m_cntr]
-A/arm_m_cntr=22|./../../model/altera/altera_mf.v|6310|1*2113586
-BinW64/arm_m_cntr=3*2434017
+A/arm_m_cntr=22|./../../model/altera/altera_mf.v|6310|1*8209599
+BinW64/arm_m_cntr=3*7945747
 R=./../../model/altera/altera_mf.v|6310
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [arm_n_cntr]
-A/arm_n_cntr=22|./../../model/altera/altera_mf.v|6390|1*2116013
-BinW64/arm_n_cntr=3*2435694
+A/arm_n_cntr=22|./../../model/altera/altera_mf.v|6390|1*8212026
+BinW64/arm_n_cntr=3*7947427
 R=./../../model/altera/altera_mf.v|6390
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [arm_scale_cntr]
-A/arm_scale_cntr=22|./../../model/altera/altera_mf.v|6472|1*2118246
-BinW64/arm_scale_cntr=3*2437406
+A/arm_scale_cntr=22|./../../model/altera/altera_mf.v|6472|1*8214259
+BinW64/arm_scale_cntr=3*7949140
 R=./../../model/altera/altera_mf.v|6472
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [cda_m_cntr]
-A/cda_m_cntr=22|./../../model/altera/altera_mf.v|14249|1*2398120
-BinW64/cda_m_cntr=3*2657048
+A/cda_m_cntr=22|./../../model/altera/altera_mf.v|14249|1*8494133
+BinW64/cda_m_cntr=3*8169198
 R=./../../model/altera/altera_mf.v|14249
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [cda_n_cntr]
-A/cda_n_cntr=22|./../../model/altera/altera_mf.v|14330|1*2400568
-BinW64/cda_n_cntr=3*2658727
+A/cda_n_cntr=22|./../../model/altera/altera_mf.v|14330|1*8496581
+BinW64/cda_n_cntr=3*8170879
 R=./../../model/altera/altera_mf.v|14330
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [cda_scale_cntr]
-A/cda_scale_cntr=22|./../../model/altera/altera_mf.v|14401|1*2402699
-BinW64/cda_scale_cntr=3*2660058
+A/cda_scale_cntr=22|./../../model/altera/altera_mf.v|14401|1*8498712
+BinW64/cda_scale_cntr=3*8172209
 R=./../../model/altera/altera_mf.v|14401
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [comparator_counter]
-A/comparator_counter=22|./../../../src/dps/device/utim64/comparator_counter.v|3|1*3828121
-BinW64/comparator_counter=3*4535696
+A/comparator_counter=22|./../../../src/dps/device/utim64/comparator_counter.v|3|1*9924534
+BinW64/comparator_counter=3*10048601
 R=./../../../src/dps/device/utim64/comparator_counter.v|3
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [core]
-A/core=22|./../../../src/core/core.v|6|1*3949790
-BinW64/core=3*4621759
+A/core=22|./../../../src/core/core.v|6|1*10046507
+BinW64/core=3*10134407
 R=./../../../src/core/core.v|6
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [core_if]
-A/core_if=22|./../../../src/core/core_if.v|4|1*4092705
-BinW64/core_if=3*4622707
+A/core_if=22|./../../../src/core/core_if.v|4|1*10189978
+BinW64/core_if=3*10135355
 R=./../../../src/core/core_if.v|4
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [core_interrupt_manager]
-A/core_interrupt_manager=22|./../../../src/core/pipeline_control/core_interrupt_manager.v|4|1*4887540
-BinW64/core_interrupt_manager=3*4989491
+A/core_interrupt_manager=22|./../../../src/core/pipeline_control/core_interrupt_manager.v|4|1*10985083
+BinW64/core_interrupt_manager=3*10502905
 R=./../../../src/core/pipeline_control/core_interrupt_manager.v|4
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [core_pipeline]
-A/core_pipeline=22|./../../../src/core/core_pipeline.v|7|1*3958008
-BinW64/core_pipeline=3*4622141
+A/core_pipeline=22|./../../../src/core/core_pipeline.v|7|1*10054725
+BinW64/core_pipeline=3*10134789
 R=./../../../src/core/core_pipeline.v|7
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [cycloneiiigl_post_divider]
-A/cycloneiiigl_post_divider=22|./../../model/altera/altera_mf.v|18119|1*2539927
-BinW64/cycloneiiigl_post_divider=3*2765936
+A/cycloneiiigl_post_divider=22|./../../model/altera/altera_mf.v|18119|1*8635940
+BinW64/cycloneiiigl_post_divider=3*8278118
 R=./../../model/altera/altera_mf.v|18119
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [dcfifo]
-A/dcfifo=22|./../../model/altera/altera_mf.v|31352|1*3091690
-BinW64/dcfifo=3*3426996
+A/dcfifo=22|./../../model/altera/altera_mf.v|31352|1*9187703
+BinW64/dcfifo=3*8940980
 R=./../../model/altera/altera_mf.v|31352
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [dcfifo_async]
-A/dcfifo_async=22|./../../model/altera/altera_mf.v|29635|1*3025887
-BinW64/dcfifo_async=3*3332563
+A/dcfifo_async=22|./../../model/altera/altera_mf.v|29635|1*9121900
+BinW64/dcfifo_async=3*8846740
 R=./../../model/altera/altera_mf.v|29635
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [dcfifo_dffpipe]
-A/dcfifo_dffpipe=22|./../../model/altera/altera_mf.v|29405|1*3019592
-BinW64/dcfifo_dffpipe=3*3323171
+A/dcfifo_dffpipe=22|./../../model/altera/altera_mf.v|29405|1*9115605
+BinW64/dcfifo_dffpipe=3*8837340
 R=./../../model/altera/altera_mf.v|29405
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [dcfifo_fefifo]
-A/dcfifo_fefifo=22|./../../model/altera/altera_mf.v|29483|1*3022002
-BinW64/dcfifo_fefifo=3*3327764
+A/dcfifo_fefifo=22|./../../model/altera/altera_mf.v|29483|1*9118015
+BinW64/dcfifo_fefifo=3*8841939
 R=./../../model/altera/altera_mf.v|29483
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [dcfifo_low_latency]
-A/dcfifo_low_latency=22|./../../model/altera/altera_mf.v|30430|1*3056126
-BinW64/dcfifo_low_latency=3*3360163
+A/dcfifo_low_latency=22|./../../model/altera/altera_mf.v|30430|1*9152139
+BinW64/dcfifo_low_latency=3*8874296
 R=./../../model/altera/altera_mf.v|30430
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [dcfifo_mixed_widths]
-A/dcfifo_mixed_widths=22|./../../model/altera/altera_mf.v|31048|1*3076356
-BinW64/dcfifo_mixed_widths=3*3390989
+A/dcfifo_mixed_widths=22|./../../model/altera/altera_mf.v|31048|1*9172369
+BinW64/dcfifo_mixed_widths=3*8905003
 R=./../../model/altera/altera_mf.v|31048
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [dcfifo_sync]
-A/dcfifo_sync=22|./../../model/altera/altera_mf.v|30121|1*3043247
-BinW64/dcfifo_sync=3*3346429
+A/dcfifo_sync=22|./../../model/altera/altera_mf.v|30121|1*9139260
+BinW64/dcfifo_sync=3*8860574
 R=./../../model/altera/altera_mf.v|30121
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [decode_authcheck]
-A/decode_authcheck=22|./../../../src/core/decode/decode_authcheck.v|6|1*4240443
-BinW64/decode_authcheck=3*4717586
+A/decode_authcheck=22|./../../../src/core/decode/decode_authcheck.v|6|1*10337748
+BinW64/decode_authcheck=3*10230695
 R=./../../../src/core/decode/decode_authcheck.v|6
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [decode_function]
-A/decode_function=22|./../../../src/core/decode/decode_function.v|4|1*4234861
-BinW64/decode_function=3*4686551
+A/decode_function=22|./../../../src/core/decode/decode_function.v|4|1*10332166
+BinW64/decode_function=3*10199632
 R=./../../../src/core/decode/decode_function.v|4
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [decode_mmucheck]
-A/decode_mmucheck=22|./../../../src/core/decode/decode_mmucheck.v|6|1*4243162
-BinW64/decode_mmucheck=3*4718795
+A/decode_mmucheck=22|./../../../src/core/decode/decode_mmucheck.v|6|1*10340467
+BinW64/decode_mmucheck=3*10231905
 R=./../../../src/core/decode/decode_mmucheck.v|6
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [decoder]
-A/decoder=22|./../../../src/core/decode/decoder.v|8|1*4207605
-BinW64/decoder=3*4685197
+A/decoder=22|./../../../src/core/decode/decoder.v|8|1*10304910
+BinW64/decoder=3*10198282
 R=./../../../src/core/decode/decoder.v|8
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [dffp]
-A/dffp=22|./../../model/altera/altera_mf.v|2088|1*1955537
-BinW64/dffp=3*2328838
+A/dffp=22|./../../model/altera/altera_mf.v|2088|1*8051550
+BinW64/dffp=3*7840226
 R=./../../model/altera/altera_mf.v|2088
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [div_pipelined_latch]
-A/div_pipelined_latch=22|./../../../src/core/execute/divider/div_pipelined_latch.v|4|1*4351474
-BinW64/div_pipelined_latch=3*4788420
+A/div_pipelined_latch=22|./../../../src/core/execute/divider/div_pipelined_latch.v|4|1*10448779
+BinW64/div_pipelined_latch=3*10301928
 R=./../../../src/core/execute/divider/div_pipelined_latch.v|4
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [dps]
-A/dps=22|./../../../src/dps/dps.v|5|1*3788704
-BinW64/dps=3*4516562
+A/dps=22|./../../../src/dps/dps.v|5|1*9884877
+BinW64/dps=3*10029502
 R=./../../../src/dps/dps.v|5
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [dps_irq]
-A/dps_irq=22|./../../../src/dps/dps_irq.v|6|1*3802194
-BinW64/dps_irq=3*4522544
+A/dps_irq=22|./../../../src/dps/dps_irq.v|6|1*9898367
+BinW64/dps_irq=3*10035469
 R=./../../../src/dps/dps_irq.v|6
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [dps_lsflags]
-A/dps_lsflags=22|./../../../src/dps/dps_lsflags.v|5|1*3799578
-BinW64/dps_lsflags=3*4521121
+A/dps_lsflags=22|./../../../src/dps/dps_lsflags.v|5|1*9895751
+BinW64/dps_lsflags=3*10034053
 R=./../../../src/dps/dps_lsflags.v|5
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [dps_mimsr]
-A/dps_mimsr=22|./../../../src/dps/device/mimsr/dps_mimsr.v|9|1*3807674
-BinW64/dps_mimsr=3*4526323
+A/dps_mimsr=22|./../../../src/dps/device/mimsr/dps_mimsr.v|9|1*9903927
+BinW64/dps_mimsr=3*10039246
 R=./../../../src/dps/device/mimsr/dps_mimsr.v|9
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [dps_sci]
-A/dps_sci=22|./../../../src/dps/device/sci/dps_sci.v|4|1*3810565
-BinW64/dps_sci=3*4527373
+A/dps_sci=22|./../../../src/dps/device/sci/dps_sci.v|4|1*9906898
+BinW64/dps_sci=3*10040296
 R=./../../../src/dps/device/sci/dps_sci.v|4
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [dps_uart]
-A/dps_uart=22|./../../../src/dps/device/sci/dps_uart.v|25|1*3820053
-BinW64/dps_uart=3*4533765
+A/dps_uart=22|./../../../src/dps/device/sci/dps_uart.v|25|1*9916386
+BinW64/dps_uart=3*10046671
 R=./../../../src/dps/device/sci/dps_uart.v|25
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [dps_utim64]
-A/dps_utim64=22|./../../../src/dps/device/utim64/dps_utim64.v|6|1*3831478
-BinW64/dps_utim64=3*4538722
+A/dps_utim64=22|./../../../src/dps/device/utim64/dps_utim64.v|6|1*9927891
+BinW64/dps_utim64=3*10051642
 R=./../../../src/dps/device/utim64/dps_utim64.v|6
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [dummy_hub]
-A/dummy_hub=22|./../../model/altera/altera_mf.v|51447|1*3676947
-BinW64/dummy_hub=3*4494573
+A/dummy_hub=22|./../../model/altera/altera_mf.v|51447|1*9772960
+BinW64/dummy_hub=3*10007545
 R=./../../model/altera/altera_mf.v|51447
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [endian_controller]
-A/endian_controller=22|./../../../src/endian_controller.v|6|1*3741122
-BinW64/endian_controller=3*4506977
+A/endian_controller=22|./../../../src/endian_controller.v|6|1*9837215
+BinW64/endian_controller=3*10019927
 R=./../../../src/endian_controller.v|6
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [exception_manager]
-A/exception_manager=22|./../../../src/core/pipeline_control/exception_manager.v|78|1*4894314
-BinW64/exception_manager=3*4994833
+A/exception_manager=22|./../../../src/core/pipeline_control/exception_manager.v|78|1*10991857
+BinW64/exception_manager=3*10508257
 R=./../../../src/core/pipeline_control/exception_manager.v|78
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [execute_adder]
-A/execute_adder=22|./../../../src/core/execute/execute_adder.v|11|1*4246813
-BinW64/execute_adder=3*4720186
+A/execute_adder=22|./../../../src/core/execute/execute_adder.v|11|1*10344118
+BinW64/execute_adder=3*10233296
 R=./../../../src/core/execute/execute_adder.v|11
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [execute_afe_load_store]
-A/execute_afe_load_store=22|./../../../src/core/execute/execute_afe_load_store.v|6|1*4250667
-BinW64/execute_afe_load_store=3*4726179
+A/execute_afe_load_store=22|./../../../src/core/execute/execute_afe_load_store.v|6|1*10347972
+BinW64/execute_afe_load_store=3*10239271
 R=./../../../src/core/execute/execute_afe_load_store.v|6
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [execute_branch]
-A/execute_branch=22|./../../../src/core/execute/execute_branch.v|10|1*4252886
-BinW64/execute_branch=3*4727475
+A/execute_branch=22|./../../../src/core/execute/execute_branch.v|10|1*10350191
+BinW64/execute_branch=3*10240567
 R=./../../../src/core/execute/execute_branch.v|10
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [execute_load_data]
-A/execute_load_data=22|./../../../src/core/execute/execute_load_data.v|3|1*4257670
-BinW64/execute_load_data=3*4731149
+A/execute_load_data=22|./../../../src/core/execute/execute_load_data.v|3|1*10354975
+BinW64/execute_load_data=3*10244239
 R=./../../../src/core/execute/execute_load_data.v|3
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [execute_load_store]
-A/execute_load_store=22|./../../../src/core/execute/execute_load_store.v|12|1*4260947
-BinW64/execute_load_store=3*4732627
+A/execute_load_store=22|./../../../src/core/execute/execute_load_store.v|12|1*10358252
+BinW64/execute_load_store=3*10245719
 R=./../../../src/core/execute/execute_load_store.v|12
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [execute_logic]
-A/execute_logic=22|./../../../src/core/execute/execute_logic.v|10|1*4268493
-BinW64/execute_logic=3*4740763
+A/execute_logic=22|./../../../src/core/execute/execute_logic.v|10|1*10365798
+BinW64/execute_logic=3*10253831
 R=./../../../src/core/execute/execute_logic.v|10
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [execute_port0]
-A/execute_port0=22|./../../../src/core/execute/execute_port0.v|13|1*4272664
-BinW64/execute_port0=3*4746764
+A/execute_port0=22|./../../../src/core/execute/execute_port0.v|13|1*10369969
+BinW64/execute_port0=3*10259840
 R=./../../../src/core/execute/execute_port0.v|13
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [execute_port1]
-A/execute_port1=22|./../../../src/core/execute/execute_port1.v|13|1*4281605
-BinW64/execute_port1=3*4749765
+A/execute_port1=22|./../../../src/core/execute/execute_port1.v|13|1*10378910
+BinW64/execute_port1=3*10262819
 R=./../../../src/core/execute/execute_port1.v|13
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [execute_port2]
-A/execute_port2=22|./../../../src/core/execute/execute_port2.v|13|1*4315687
-BinW64/execute_port2=3*4773913
+A/execute_port2=22|./../../../src/core/execute/execute_port2.v|13|1*10412992
+BinW64/execute_port2=3*10287391
 R=./../../../src/core/execute/execute_port2.v|13
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [execute_port3]
-A/execute_port3=22|./../../../src/core/execute/execute_port3.v|16|1*4331142
-BinW64/execute_port3=3*4778984
+A/execute_port3=22|./../../../src/core/execute/execute_port3.v|16|1*10428447
+BinW64/execute_port3=3*10292456
 R=./../../../src/core/execute/execute_port3.v|16
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [execute_shift]
-A/execute_shift=22|./../../../src/core/execute/execute_shift.v|10|1*4306655
-BinW64/execute_shift=3*4760646
+A/execute_shift=22|./../../../src/core/execute/execute_shift.v|10|1*10403960
+BinW64/execute_shift=3*10273690
 R=./../../../src/core/execute/execute_shift.v|10
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [execute_sys_reg]
-A/execute_sys_reg=22|./../../../src/core/execute/execute_sys_reg.v|8|1*4304836
-BinW64/execute_sys_reg=3*4759295
+A/execute_sys_reg=22|./../../../src/core/execute/execute_sys_reg.v|8|1*10402141
+BinW64/execute_sys_reg=3*10272334
 R=./../../../src/core/execute/execute_sys_reg.v|8
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [fetch]
-A/fetch=22|./../../../src/core/fetch/fetch.v|7|1*4394373
-BinW64/fetch=3*4794969
+A/fetch=22|./../../../src/core/fetch/fetch.v|7|1*10491678
+BinW64/fetch=3*10308435
 R=./../../../src/core/fetch/fetch.v|7
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [flag_rename_management]
-A/flag_rename_management=22|./../../../src/core/scheduler2/flag_rename_management.v|4|1*4578070
-BinW64/flag_rename_management=3*4855321
+A/flag_rename_management=22|./../../../src/core/scheduler2/flag_rename_management.v|4|1*10675613
+BinW64/flag_rename_management=3*10369155
 R=./../../../src/core/scheduler2/flag_rename_management.v|4
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [flexible_lvds_rx]
-A/flexible_lvds_rx=22|./../../model/altera/altera_mf.v|25627|1*2892597
-BinW64/flexible_lvds_rx=3*3090513
+A/flexible_lvds_rx=22|./../../model/altera/altera_mf.v|25627|1*8988610
+BinW64/flexible_lvds_rx=3*8604352
 R=./../../model/altera/altera_mf.v|25627
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [flexible_lvds_tx]
-A/flexible_lvds_tx=22|./../../model/altera/altera_mf.v|28845|1*3006493
-BinW64/flexible_lvds_tx=3*3274436
+A/flexible_lvds_tx=22|./../../model/altera/altera_mf.v|28845|1*9102506
+BinW64/flexible_lvds_tx=3*8788586
 R=./../../model/altera/altera_mf.v|28845
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [frcr_timer]
-A/frcr_timer=22|./../../../src/core/scheduler2/frcr_timer.v|5|1*4583226
-BinW64/frcr_timer=3*4858107
+A/frcr_timer=22|./../../../src/core/scheduler2/frcr_timer.v|5|1*10680769
+BinW64/frcr_timer=3*10371946
 R=./../../../src/core/scheduler2/frcr_timer.v|5
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [general_register_entry]
-A/general_register_entry=22|./../../../src/core/scheduler2/general_register_entry.v|5|1*4584996
-BinW64/general_register_entry=3*4859101
+A/general_register_entry=22|./../../../src/core/scheduler2/general_register_entry.v|5|1*10682539
+BinW64/general_register_entry=3*10372939
 R=./../../../src/core/scheduler2/general_register_entry.v|5
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [jtag_tap_controller]
-A/jtag_tap_controller=22|./../../model/altera/altera_mf.v|50990|1*3670331
-BinW64/jtag_tap_controller=3*4489058
+A/jtag_tap_controller=22|./../../model/altera/altera_mf.v|50990|1*9766344
+BinW64/jtag_tap_controller=3*10002006
 R=./../../model/altera/altera_mf.v|50990
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [l1_cache_64entry_4way_line64b_bus_8b]
-A/l1_cache_64entry_4way_line64b_bus_8b=22|./../../../src/core/l1_instruction/l1_cache_64entry_4way_line64b.v|79|1*4116467
-BinW64/l1_cache_64entry_4way_line64b_bus_8b=3*4629733
+A/l1_cache_64entry_4way_line64b_bus_8b=22|./../../../src/core/l1_instruction/l1_cache_64entry_4way_line64b.v|79|1*10213772
+BinW64/l1_cache_64entry_4way_line64b_bus_8b=3*10142494
 R=./../../../src/core/l1_instruction/l1_cache_64entry_4way_line64b.v|79
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [l1_cache_64entry_4way_line64b_bus_8b_damy]
-A/l1_cache_64entry_4way_line64b_bus_8b_damy=22|./../../../src/core/l1_instruction/l1_cache_64entry_4way_line64b.v|13|1*4112077
-BinW64/l1_cache_64entry_4way_line64b_bus_8b_damy=3*4628623
+A/l1_cache_64entry_4way_line64b_bus_8b_damy=22|./../../../src/core/l1_instruction/l1_cache_64entry_4way_line64b.v|13|1*10209382
+BinW64/l1_cache_64entry_4way_line64b_bus_8b_damy=3*10141383
 R=./../../../src/core/l1_instruction/l1_cache_64entry_4way_line64b.v|13
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [l1_data_cache]
-A/l1_data_cache=22|./../../../src/core/l1_data/l1_data_cache.v|6|1*4155546
-BinW64/l1_data_cache=3*4653615
+A/l1_data_cache=22|./../../../src/core/l1_data/l1_data_cache.v|6|1*10252851
+BinW64/l1_data_cache=3*10166354
 R=./../../../src/core/l1_data/l1_data_cache.v|6
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [l1_data_cache_64entry_4way_line64b_bus_8b]
-A/l1_data_cache_64entry_4way_line64b_bus_8b=22|./../../../src/core/l1_data/l1_data_cache_64entry_4way_line64b.v|83|1*4177436
-BinW64/l1_data_cache_64entry_4way_line64b_bus_8b=3*4663157
+A/l1_data_cache_64entry_4way_line64b_bus_8b=22|./../../../src/core/l1_data/l1_data_cache_64entry_4way_line64b.v|83|1*10274741
+BinW64/l1_data_cache_64entry_4way_line64b_bus_8b=3*10176039
 R=./../../../src/core/l1_data/l1_data_cache_64entry_4way_line64b.v|83
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [l1_data_cache_64entry_4way_line64b_bus_8b_damy]
-A/l1_data_cache_64entry_4way_line64b_bus_8b_damy=22|./../../../src/core/l1_data/l1_data_cache_64entry_4way_line64b.v|17|1*4172930
-BinW64/l1_data_cache_64entry_4way_line64b_bus_8b_damy=3*4662025
+A/l1_data_cache_64entry_4way_line64b_bus_8b_damy=22|./../../../src/core/l1_data/l1_data_cache_64entry_4way_line64b.v|17|1*10270235
+BinW64/l1_data_cache_64entry_4way_line64b_bus_8b_damy=3*10174914
 R=./../../../src/core/l1_data/l1_data_cache_64entry_4way_line64b.v|17
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [l1_data_cache_counter]
-A/l1_data_cache_counter=22|./../../../src/core/l1_data/l1_data_cache_hit_counter.v|3|1*4203397
-BinW64/l1_data_cache_counter=3*4681640
+A/l1_data_cache_counter=22|./../../../src/core/l1_data/l1_data_cache_hit_counter.v|3|1*10300702
+BinW64/l1_data_cache_counter=3*10194732
 R=./../../../src/core/l1_data/l1_data_cache_hit_counter.v|3
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [l1_instruction_cache]
-A/l1_instruction_cache=22|./../../../src/core/l1_instruction/l1_instruction_cache.v|7|1*4141007
-BinW64/l1_instruction_cache=3*4647694
+A/l1_instruction_cache=22|./../../../src/core/l1_instruction/l1_instruction_cache.v|7|1*10238312
+BinW64/l1_instruction_cache=3*10160469
 R=./../../../src/core/l1_instruction/l1_instruction_cache.v|7
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [lcell]
-A/lcell=22|./../../model/altera/altera_mf.v|34|1*1892586
-BinW64/lcell=3*2265091
+A/lcell=22|./../../model/altera/altera_mf.v|34|1*7988599
+BinW64/lcell=3*7776487
 R=./../../model/altera/altera_mf.v|34
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [losd_store_pipe_arbiter]
-A/losd_store_pipe_arbiter=22|./../../../src/core/losd_store_pipe_arbiter.v|3|1*4100781
-BinW64/losd_store_pipe_arbiter=3*4623092
+A/losd_store_pipe_arbiter=22|./../../../src/core/losd_store_pipe_arbiter.v|3|1*10198054
+BinW64/losd_store_pipe_arbiter=3*10135740
 R=./../../../src/core/losd_store_pipe_arbiter.v|3
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [main_counter]
-A/main_counter=22|./../../../src/dps/device/utim64/main_counter.v|5|1*3857147
-BinW64/main_counter=3*4548719
+A/main_counter=22|./../../../src/dps/device/utim64/main_counter.v|5|1*9953560
+BinW64/main_counter=3*10061564
 R=./../../../src/dps/device/utim64/main_counter.v|5
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [matching]
-A/matching=22|./../../../src/core/matching/matching.v|13|1*4403785
-BinW64/matching=3*4799806
+A/matching=22|./../../../src/core/matching/matching.v|13|1*10501090
+BinW64/matching=3*10313381
 R=./../../../src/core/matching/matching.v|13
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [memory_pipe_arbiter]
-A/memory_pipe_arbiter=22|./../../../src/memory_pipe_arbiter.v|4|1*3743570
-BinW64/memory_pipe_arbiter=3*4508592
+A/memory_pipe_arbiter=22|./../../../src/memory_pipe_arbiter.v|4|1*9839663
+BinW64/memory_pipe_arbiter=3*10021542
 R=./../../../src/memory_pipe_arbiter.v|4
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [mist1032sa]
-A/mist1032sa=22|./../../../src/mist1032sa.v|18|1*3759540
-BinW64/mist1032sa=3*4513701
+A/mist1032sa=22|./../../../src/mist1032sa.v|18|1*9855633
+BinW64/mist1032sa=3*10026648
 R=./../../../src/mist1032sa.v|18
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [mist1032sa_arbiter_matching_queue]
-A/mist1032sa_arbiter_matching_queue=22|./../../../src/lib/mist1032sa_arbiter_matching_queue.v|5|1*3899650
-BinW64/mist1032sa_arbiter_matching_queue=3*4576105
+A/mist1032sa_arbiter_matching_queue=22|./../../../src/lib/mist1032sa_arbiter_matching_queue.v|5|1*9996223
+BinW64/mist1032sa_arbiter_matching_queue=3*10088763
 R=./../../../src/lib/mist1032sa_arbiter_matching_queue.v|5
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [mist1032sa_async_fifo]
-A/mist1032sa_async_fifo=22|./../../../src/lib/mist1032sa_async_fifo.v|27|1*3904342
-BinW64/mist1032sa_async_fifo=3*4582600
+A/mist1032sa_async_fifo=22|./../../../src/lib/mist1032sa_async_fifo.v|27|1*10000915
+BinW64/mist1032sa_async_fifo=3*10095271
 R=./../../../src/lib/mist1032sa_async_fifo.v|27
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [mist1032sa_async_fifo_double_flipflop]
-A/mist1032sa_async_fifo_double_flipflop=22|./../../../src/lib/mist1032sa_async_fifo_double_flipflop.v|5|1*3911874
-BinW64/mist1032sa_async_fifo_double_flipflop=3*4590609
+A/mist1032sa_async_fifo_double_flipflop=22|./../../../src/lib/mist1032sa_async_fifo_double_flipflop.v|5|1*10008447
+BinW64/mist1032sa_async_fifo_double_flipflop=3*10103317
 R=./../../../src/lib/mist1032sa_async_fifo_double_flipflop.v|5
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [mist1032sa_sync_fifo]
-A/mist1032sa_sync_fifo=22|./../../../src/lib/mist1032sa_sync_fifo.v|25|1*3913933
-BinW64/mist1032sa_sync_fifo=3*4592396
+A/mist1032sa_sync_fifo=22|./../../../src/lib/mist1032sa_sync_fifo.v|25|1*10010506
+BinW64/mist1032sa_sync_fifo=3*10105098
 R=./../../../src/lib/mist1032sa_sync_fifo.v|25
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [mist1032sa_uart_receiver]
-A/mist1032sa_uart_receiver=22|./../../../src/lib/mist1032sa_uart_receiver.v|30|1*3917749
-BinW64/mist1032sa_uart_receiver=3*4598385
+A/mist1032sa_uart_receiver=22|./../../../src/lib/mist1032sa_uart_receiver.v|30|1*10014322
+BinW64/mist1032sa_uart_receiver=3*10111046
 R=./../../../src/lib/mist1032sa_uart_receiver.v|30
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [mist1032sa_uart_receiver_async2sync]
-A/mist1032sa_uart_receiver_async2sync=22|./../../../src/lib/mist1032sa_uart_receiver_async2sync.v|4|1*3926362
-BinW64/mist1032sa_uart_receiver_async2sync=3*4604771
+A/mist1032sa_uart_receiver_async2sync=22|./../../../src/lib/mist1032sa_uart_receiver_async2sync.v|4|1*10022935
+BinW64/mist1032sa_uart_receiver_async2sync=3*10117410
 R=./../../../src/lib/mist1032sa_uart_receiver_async2sync.v|4
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [mist1032sa_uart_receiver_double_flipflop]
-A/mist1032sa_uart_receiver_double_flipflop=22|./../../../src/lib/mist1032sa_uart_receiver_double_flipflop.v|4|1*3924285
-BinW64/mist1032sa_uart_receiver_double_flipflop=3*4602981
+A/mist1032sa_uart_receiver_double_flipflop=22|./../../../src/lib/mist1032sa_uart_receiver_double_flipflop.v|4|1*10020858
+BinW64/mist1032sa_uart_receiver_double_flipflop=3*10115627
 R=./../../../src/lib/mist1032sa_uart_receiver_double_flipflop.v|4
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [mist1032sa_uart_transmitter]
-A/mist1032sa_uart_transmitter=22|./../../../src/lib/mist1032sa_uart_transmitter.v|29|1*3928310
-BinW64/mist1032sa_uart_transmitter=3*4606499
+A/mist1032sa_uart_transmitter=22|./../../../src/lib/mist1032sa_uart_transmitter.v|29|1*10024883
+BinW64/mist1032sa_uart_transmitter=3*10119140
 R=./../../../src/lib/mist1032sa_uart_transmitter.v|29
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [mist1032sa_uart_transmitter_async2sync]
-A/mist1032sa_uart_transmitter_async2sync=22|./../../../src/lib/mist1032sa_uart_transmitter_async2sync.v|4|1*3936638
-BinW64/mist1032sa_uart_transmitter_async2sync=3*4613093
+A/mist1032sa_uart_transmitter_async2sync=22|./../../../src/lib/mist1032sa_uart_transmitter_async2sync.v|4|1*10033211
+BinW64/mist1032sa_uart_transmitter_async2sync=3*10125793
 R=./../../../src/lib/mist1032sa_uart_transmitter_async2sync.v|4
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [mist1032sa_uart_transmitter_double_flipflop]
-A/mist1032sa_uart_transmitter_double_flipflop=22|./../../../src/lib/mist1032sa_uart_transmitter_double_flipflop.v|4|1*3934543
-BinW64/mist1032sa_uart_transmitter_double_flipflop=3*4611301
+A/mist1032sa_uart_transmitter_double_flipflop=22|./../../../src/lib/mist1032sa_uart_transmitter_double_flipflop.v|4|1*10031116
+BinW64/mist1032sa_uart_transmitter_double_flipflop=3*10124006
 R=./../../../src/lib/mist1032sa_uart_transmitter_double_flipflop.v|4
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [mmu]
-A/mmu=22|./../../../src/mmu/mmu.v|11|1*3860502
-BinW64/mmu=3*4550415
+A/mmu=22|./../../../src/mmu/mmu.v|11|1*9956995
+BinW64/mmu=3*10063261
 R=./../../../src/mmu/mmu.v|11
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [mmu_if]
-A/mmu_if=22|./../../../src/mmu/mmu_if.v|6|1*3885591
-BinW64/mmu_if=3*4571665
+A/mmu_if=22|./../../../src/mmu/mmu_if.v|6|1*9982084
+BinW64/mmu_if=3*10084378
 R=./../../../src/mmu/mmu_if.v|6
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [parallel_add]
-A/parallel_add=22|./../../model/altera/altera_mf.v|47737|1*3558457
-BinW64/parallel_add=3*4377317
+A/parallel_add=22|./../../model/altera/altera_mf.v|47737|1*9654470
+BinW64/parallel_add=3*9890328
 R=./../../model/altera/altera_mf.v|47737
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [pic]
-A/pic=22|./../../../src/pic/pic.v|4|1*3939362
-BinW64/pic=3*4614991
+A/pic=22|./../../../src/pic/pic.v|4|1*10036015
+BinW64/pic=3*10127694
 R=./../../../src/pic/pic.v|4
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [pipeline_register]
-A/pipeline_register=22|./../../../src/core/pipeline_register.v|3|1*4108527
-BinW64/pipeline_register=3*4626297
+A/pipeline_register=22|./../../../src/core/pipeline_register.v|3|1*10205800
+BinW64/pipeline_register=3*10139056
 R=./../../../src/core/pipeline_register.v|3
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [pipelined_div_radix2]
-A/pipelined_div_radix2=22|./../../../src/core/execute/divider/pipelined_div_radix2.v|12|1*4356388
-BinW64/pipelined_div_radix2=3*4791215
+A/pipelined_div_radix2=22|./../../../src/core/execute/divider/pipelined_div_radix2.v|12|1*10453693
+BinW64/pipelined_div_radix2=3*10304695
 R=./../../../src/core/execute/divider/pipelined_div_radix2.v|12
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [pll_iobuf]
-A/pll_iobuf=22|./../../model/altera/altera_mf.v|2121|1*1957012
-BinW64/pll_iobuf=3*2329545
+A/pll_iobuf=22|./../../model/altera/altera_mf.v|2121|1*8053025
+BinW64/pll_iobuf=3*7840934
 R=./../../model/altera/altera_mf.v|2121
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [priority_encoder_16]
-A/priority_encoder_16=22|./../../../src/core/scheduler2/priority_encoder_16.v|6|1*4591488
-BinW64/priority_encoder_16=3*4864474
+A/priority_encoder_16=22|./../../../src/core/scheduler2/priority_encoder_16.v|6|1*10689031
+BinW64/priority_encoder_16=3*10378284
 R=./../../../src/core/scheduler2/priority_encoder_16.v|6
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [radix2_linediv]
-A/radix2_linediv=22|./../../../src/core/execute/divider/radix2_linediv.v|4|1*4390092
-BinW64/radix2_linediv=3*4793144
+A/radix2_linediv=22|./../../../src/core/execute/divider/radix2_linediv.v|4|1*10487397
+BinW64/radix2_linediv=3*10306628
 R=./../../../src/core/execute/divider/radix2_linediv.v|4
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [regist_rbuffer_select]
-A/regist_rbuffer_select=22|./../../../src/core/scheduler2/regist_rbuffer_select.v|5|1*4598209
-BinW64/regist_rbuffer_select=3*4877692
+A/regist_rbuffer_select=22|./../../../src/core/scheduler2/regist_rbuffer_select.v|5|1*10695752
+BinW64/regist_rbuffer_select=3*10391483
 R=./../../../src/core/scheduler2/regist_rbuffer_select.v|5
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [register_renaming_table]
-A/register_renaming_table=22|./../../../src/core/rename/register_renaming_table.v|4|1*4436179
-BinW64/register_renaming_table=3*4811806
+A/register_renaming_table=22|./../../../src/core/rename/register_renaming_table.v|4|1*10533722
+BinW64/register_renaming_table=3*10325592
 R=./../../../src/core/rename/register_renaming_table.v|4
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [rename]
-A/rename=22|./../../../src/core/rename/rename.v|13|1*4441487
-BinW64/rename=3*4815762
+A/rename=22|./../../../src/core/rename/rename.v|13|1*10539030
+BinW64/rename=3*10329493
 R=./../../../src/core/rename/rename.v|13
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [reservation_alu0_entry]
-A/reservation_alu0_entry=22|./../../../src/core/scheduler2/reservation_alu0_entry.v|5|1*4603813
-BinW64/reservation_alu0_entry=3*4879801
+A/reservation_alu0_entry=22|./../../../src/core/scheduler2/reservation_alu0_entry.v|5|1*10701356
+BinW64/reservation_alu0_entry=3*10393562
 R=./../../../src/core/scheduler2/reservation_alu0_entry.v|5
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [reservation_alu1_entry]
-A/reservation_alu1_entry=22|./../../../src/core/scheduler2/reservation_alu1_entry.v|5|1*4613384
-BinW64/reservation_alu1_entry=3*4884565
+A/reservation_alu1_entry=22|./../../../src/core/scheduler2/reservation_alu1_entry.v|5|1*10710927
+BinW64/reservation_alu1_entry=3*10398309
 R=./../../../src/core/scheduler2/reservation_alu1_entry.v|5
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [reservation_alu2_entry]
-A/reservation_alu2_entry=22|./../../../src/core/scheduler2/reservation_alu2_entry.v|5|1*4627108
-BinW64/reservation_alu2_entry=3*4889991
+A/reservation_alu2_entry=22|./../../../src/core/scheduler2/reservation_alu2_entry.v|5|1*10724651
+BinW64/reservation_alu2_entry=3*10403722
 R=./../../../src/core/scheduler2/reservation_alu2_entry.v|5
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [reservation_alu3_entry]
-A/reservation_alu3_entry=22|./../../../src/core/scheduler2/reservation_alu3_entry.v|5|1*4639506
-BinW64/reservation_alu3_entry=3*4895073
+A/reservation_alu3_entry=22|./../../../src/core/scheduler2/reservation_alu3_entry.v|5|1*10737049
+BinW64/reservation_alu3_entry=3*10408789
 R=./../../../src/core/scheduler2/reservation_alu3_entry.v|5
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [reservation_free_entry_count]
-A/reservation_free_entry_count=22|./../../../src/core/scheduler2/reservation_free_entry_count.v|5|1*4651186
-BinW64/reservation_free_entry_count=3*4900401
+A/reservation_free_entry_count=22|./../../../src/core/scheduler2/reservation_free_entry_count.v|5|1*10748729
+BinW64/reservation_free_entry_count=3*10414106
 R=./../../../src/core/scheduler2/reservation_free_entry_count.v|5
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [reservation_search16to2]
-A/reservation_search16to2=22|./../../../src/core/scheduler2/reservation_search16to2.v|5|1*4656687
-BinW64/reservation_search16to2=3*4902521
+A/reservation_search16to2=22|./../../../src/core/scheduler2/reservation_search16to2.v|5|1*10754230
+BinW64/reservation_search16to2=3*10416219
 R=./../../../src/core/scheduler2/reservation_search16to2.v|5
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [scfifo]
-A/scfifo=22|./../../model/altera/altera_mf.v|47906|1*3565170
-BinW64/scfifo=3*4390536
+A/scfifo=22|./../../model/altera/altera_mf.v|47906|1*9661183
+BinW64/scfifo=3*9903537
 R=./../../model/altera/altera_mf.v|47906
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [scheduler1]
-A/scheduler1=22|./../../../src/core/scheduler1/scheduler1.v|13|1*4493600
-BinW64/scheduler1=3*4828580
+A/scheduler1=22|./../../../src/core/scheduler1/scheduler1.v|13|1*10591143
+BinW64/scheduler1=3*10342435
 R=./../../../src/core/scheduler1/scheduler1.v|13
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [scheduler1_commit_entry]
-A/scheduler1_commit_entry=22|./../../../src/core/scheduler1/scheduler1_commit_entry.v|5|1*4567658
-BinW64/scheduler1_commit_entry=3*4850207
+A/scheduler1_commit_entry=22|./../../../src/core/scheduler1/scheduler1_commit_entry.v|5|1*10665201
+BinW64/scheduler1_commit_entry=3*10363977
 R=./../../../src/core/scheduler1/scheduler1_commit_entry.v|5
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [scheduler2]
-A/scheduler2=22|./../../../src/core/scheduler2/scheduler2.v|14|1*4667248
-BinW64/scheduler2=3*4910604
+A/scheduler2=22|./../../../src/core/scheduler2/scheduler2.v|14|1*10764791
+BinW64/scheduler2=3*10424324
 R=./../../../src/core/scheduler2/scheduler2.v|14
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [scheduler2_free_search_64to2]
-A/scheduler2_free_search_64to2=22|./../../../src/core/scheduler2/scheduler2_free_search_64to2.v|4|1*4858257
-BinW64/scheduler2_free_search_64to2=3*4966559
+A/scheduler2_free_search_64to2=22|./../../../src/core/scheduler2/scheduler2_free_search_64to2.v|4|1*10955800
+BinW64/scheduler2_free_search_64to2=3*10479997
 R=./../../../src/core/scheduler2/scheduler2_free_search_64to2.v|4
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [signal_gen]
-A/signal_gen=22|./../../model/altera/altera_mf.v|50423|1*3657923
-BinW64/signal_gen=3*4476977
+A/signal_gen=22|./../../model/altera/altera_mf.v|50423|1*9753936
+BinW64/signal_gen=3*9989924
 R=./../../model/altera/altera_mf.v|50423
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [sim_memory_model]
-A/sim_memory_model=22|./../../model/sim_memory_model/sim_memory_model.v|24|1*1882923
-BinW64/sim_memory_model=3*2259767
+A/sim_memory_model=22|./../../model/sim_memory_model/sim_memory_model.v|24|1*7978833
+BinW64/sim_memory_model=3*7771140
 R=./../../model/sim_memory_model/sim_memory_model.v|24
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [sld_signaltap]
-A/sld_signaltap=22|./../../model/altera/altera_mf.v|51831|1*3700674
-BinW64/sld_signaltap=3*4502590
+A/sld_signaltap=22|./../../model/altera/altera_mf.v|51831|1*9796687
+BinW64/sld_signaltap=3*10015551
 R=./../../model/altera/altera_mf.v|51831
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [sld_virtual_jtag]
-A/sld_virtual_jtag=22|./../../model/altera/altera_mf.v|51704|1*3690459
-BinW64/sld_virtual_jtag=3*4501828
+A/sld_virtual_jtag=22|./../../model/altera/altera_mf.v|51704|1*9786472
+BinW64/sld_virtual_jtag=3*10014787
 R=./../../model/altera/altera_mf.v|51704
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [sld_virtual_jtag_basic]
-A/sld_virtual_jtag_basic=22|./../../model/altera/altera_mf.v|52099|1*3729533
-BinW64/sld_virtual_jtag_basic=3*4505366
+A/sld_virtual_jtag_basic=22|./../../model/altera/altera_mf.v|52099|1*9825546
+BinW64/sld_virtual_jtag_basic=3*10018321
 R=./../../model/altera/altera_mf.v|52099
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [stratix_lvds_rx]
-A/stratix_lvds_rx=22|./../../model/altera/altera_mf.v|24790|1*2865842
-BinW64/stratix_lvds_rx=3*3055094
+A/stratix_lvds_rx=22|./../../model/altera/altera_mf.v|24790|1*8961855
+BinW64/stratix_lvds_rx=3*8569007
 R=./../../model/altera/altera_mf.v|24790
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [stratix_tx_outclk]
-A/stratix_tx_outclk=22|./../../model/altera/altera_mf.v|28636|1*2998760
-BinW64/stratix_tx_outclk=3*3267007
+A/stratix_tx_outclk=22|./../../model/altera/altera_mf.v|28636|1*9094773
+BinW64/stratix_tx_outclk=3*8781153
 R=./../../model/altera/altera_mf.v|28636
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [stratixgx_dpa_lvds_rx]
-A/stratixgx_dpa_lvds_rx=22|./../../model/altera/altera_mf.v|24898|1*2870078
-BinW64/stratixgx_dpa_lvds_rx=3*3058617
+A/stratixgx_dpa_lvds_rx=22|./../../model/altera/altera_mf.v|24898|1*8966091
+BinW64/stratixgx_dpa_lvds_rx=3*8572526
 R=./../../model/altera/altera_mf.v|24898
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [stratixii_lvds_rx]
-A/stratixii_lvds_rx=22|./../../model/altera/altera_mf.v|25301|1*2882560
-BinW64/stratixii_lvds_rx=3*3077866
+A/stratixii_lvds_rx=22|./../../model/altera/altera_mf.v|25301|1*8978573
+BinW64/stratixii_lvds_rx=3*8591731
 R=./../../model/altera/altera_mf.v|25301
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [stratixii_tx_outclk]
-A/stratixii_tx_outclk=22|./../../model/altera/altera_mf.v|28744|1*3002741
-BinW64/stratixii_tx_outclk=3*3270832
+A/stratixii_tx_outclk=22|./../../model/altera/altera_mf.v|28744|1*9098754
+BinW64/stratixii_tx_outclk=3*8784982
 R=./../../model/altera/altera_mf.v|28744
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [stratixiii_lvds_rx]
-A/stratixiii_lvds_rx=22|./../../model/altera/altera_mf.v|26087|1*2905124
-BinW64/stratixiii_lvds_rx=3*3118702
+A/stratixiii_lvds_rx=22|./../../model/altera/altera_mf.v|26087|1*9001137
+BinW64/stratixiii_lvds_rx=3*8632610
 R=./../../model/altera/altera_mf.v|26087
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [stratixiii_lvds_rx_channel]
-A/stratixiii_lvds_rx_channel=22|./../../model/altera/altera_mf.v|26269|1*2919305
-BinW64/stratixiii_lvds_rx_channel=3*3126097
+A/stratixiii_lvds_rx_channel=22|./../../model/altera/altera_mf.v|26269|1*9015318
+BinW64/stratixiii_lvds_rx_channel=3*8640001
 R=./../../model/altera/altera_mf.v|26269
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [stratixiii_lvds_rx_dpa]
-A/stratixiii_lvds_rx_dpa=22|./../../model/altera/altera_mf.v|26878|1*2940974
-BinW64/stratixiii_lvds_rx_dpa=3*3143862
+A/stratixiii_lvds_rx_dpa=22|./../../model/altera/altera_mf.v|26878|1*9036987
+BinW64/stratixiii_lvds_rx_dpa=3*8657751
 R=./../../model/altera/altera_mf.v|26878
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [stratixv_local_clk_divider]
-A/stratixv_local_clk_divider=22|./../../model/altera/altera_mf.v|28542|1*2947872
-BinW64/stratixv_local_clk_divider=3*3154650
+A/stratixv_local_clk_divider=22|./../../model/altera/altera_mf.v|28542|1*9043885
+BinW64/stratixv_local_clk_divider=3*8668543
 R=./../../model/altera/altera_mf.v|28542
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [stx_m_cntr]
-A/stx_m_cntr=22|./../../model/altera/altera_mf.v|2147|1*1958307
-BinW64/stx_m_cntr=3*2330273
+A/stx_m_cntr=22|./../../model/altera/altera_mf.v|2147|1*8054320
+BinW64/stx_m_cntr=3*7841666
 R=./../../model/altera/altera_mf.v|2147
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [stx_n_cntr]
-A/stx_n_cntr=22|./../../model/altera/altera_mf.v|2225|1*1960734
-BinW64/stx_n_cntr=3*2331871
+A/stx_n_cntr=22|./../../model/altera/altera_mf.v|2225|1*8056747
+BinW64/stx_n_cntr=3*7843260
 R=./../../model/altera/altera_mf.v|2225
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [stx_scale_cntr]
-A/stx_scale_cntr=22|./../../model/altera/altera_mf.v|2310|1*1963172
-BinW64/stx_scale_cntr=3*2333809
+A/stx_scale_cntr=22|./../../model/altera/altera_mf.v|2310|1*8059185
+BinW64/stx_scale_cntr=3*7845198
 R=./../../model/altera/altera_mf.v|2310
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [sysreg_spr_register]
-A/sysreg_spr_register=22|./../../../src/core/execute/sysreg_spr_register.v|5|1*4348660
-BinW64/sysreg_spr_register=3*4786603
+A/sysreg_spr_register=22|./../../../src/core/execute/sysreg_spr_register.v|5|1*10445965
+BinW64/sysreg_spr_register=3*10300112
 R=./../../../src/core/execute/sysreg_spr_register.v|5
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [system_register]
-A/system_register=22|./../../../src/core/scheduler2/system_register.v|5|1*4884892
-BinW64/system_register=3*4988446
+A/system_register=22|./../../../src/core/scheduler2/system_register.v|5|1*10982435
+BinW64/system_register=3*10501860
 R=./../../../src/core/scheduler2/system_register.v|5
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [tb_inst_level]
-A/tb_inst_level=22|./../tb/tb_inst_level.v|5|1*1868706
-BinW64/tb_inst_level=3*2251614
+A/tb_inst_level=22|./../tb/tb_inst_level.v|5|1*7964496
+BinW64/tb_inst_level=3*7763754
 R=./../tb/tb_inst_level.v|5
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [tlb]
-A/tlb=22|./../../../src/mmu/tlb.v|16|1*3873676
-BinW64/tlb=3*4559906
+A/tlb=22|./../../../src/mmu/tlb.v|16|1*9970169
+BinW64/tlb=3*10072616
 R=./../../../src/mmu/tlb.v|16
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [ttn_m_cntr]
-A/ttn_m_cntr=22|./../../model/altera/altera_mf.v|10147|1*2236811
-BinW64/ttn_m_cntr=3*2533626
+A/ttn_m_cntr=22|./../../model/altera/altera_mf.v|10147|1*8332824
+BinW64/ttn_m_cntr=3*8045571
 R=./../../model/altera/altera_mf.v|10147
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [ttn_n_cntr]
-A/ttn_n_cntr=22|./../../model/altera/altera_mf.v|10228|1*2239259
-BinW64/ttn_n_cntr=3*2535304
+A/ttn_n_cntr=22|./../../model/altera/altera_mf.v|10228|1*8335272
+BinW64/ttn_n_cntr=3*8047252
 R=./../../model/altera/altera_mf.v|10228
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [ttn_scale_cntr]
-A/ttn_scale_cntr=22|./../../model/altera/altera_mf.v|10299|1*2241390
-BinW64/ttn_scale_cntr=3*2536633
+A/ttn_scale_cntr=22|./../../model/altera/altera_mf.v|10299|1*8337403
+BinW64/ttn_scale_cntr=3*8048582
 R=./../../model/altera/altera_mf.v|10299
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [utim64]
-A/utim64=22|./../../../src/dps/device/utim64/utim64.v|43|1*3838684
-BinW64/utim64=3*4544014
+A/utim64=22|./../../../src/dps/device/utim64/utim64.v|43|1*9935097
+BinW64/utim64=3*10056917
 R=./../../../src/dps/device/utim64/utim64.v|43
 Version=2013.02.81 (Windows64)|00000045789cd3cd5128cf2fca56d04d494a57d0cecc4b4ec92cd2d6d3d307a2e2a2647da0404e694a2a1699e4fca254983400ff95168f
 
 [~A]
-../../src/core/core.v_core_if.v_core_pipeline.v_losd_store_pipe_arbiter.v_pipeline_register.v=0*1605481*1626352
-../../src/core/decode/decoder.v_decode_authcheck.v_decode_function.v_decode_mmucheck.v=0*1673602*1686194
-../../src/core/execute/divider/div_pipelined_latch.v_pipelined_div_radix2.v_radix2_linediv.v=0*1729180*1734289
-../../src/core/execute/execute_adder.v_execute_afe_load_store.v_execute_branch.v_execute_load_data.v_execute_load_store.v_execute_logic.v_execute_port0.v_execute_port1.v_execute_port2.v_execute_port3.v_execute_shift.v_execute_sys_reg.v_sysreg_spr_register.v=0*1706566*1723633
-../../src/core/fetch/fetch.v=0*1738002*1739991
-../../src/core/l1_data/l1_data_cache.v_l1_data_cache_64entry_4way_line64b.v_l1_data_cache_hit_counter.v=0*1652355*1661459
-../../src/core/l1_instruction/l1_cache_64entry_4way_line64b.v_l1_instruction_cache.v=0*1634822*1642339
-../../src/core/matching/matching.v=0*1751693*1757432
-../../src/core/pipeline_control/core_interrupt_manager.v_exception_manager.v=0*1916489*1922814
-../../src/core/rename/register_renaming_table.v_rename.v=0*1773312*1780705
-../../src/core/scheduler1/scheduler1.v_scheduler1_commit_entry.v=0*1802066*1813484
-../../src/core/scheduler2/flag_rename_management.v_frcr_timer.v_general_register_entry.v_priority_encoder_16.v_regist_rbuffer_select.v_reservation_alu0_entry.v_reservation_alu1_entry.v_reservation_alu2_entry.v_reservation_alu3_entry.v_reservation_free_entry_count.v_reservation_search16to2.v_scheduler2.v_scheduler2_free_search_64to2.v_system_register.v=0*1866751*1908506
-../../src/dps/device/mimsr/dps_mimsr.v=0*1542389*1542979
-../../src/dps/device/sci/dps_sci.v_dps_uart.v=0*1546653*1550307
-../../src/dps/device/utim64/comparator_counter.v_dps_utim64.v_main_counter.v_utim64.v=0*1554858*1559368
-../../src/dps/dps.v_dps_irq.v_dps_lsflags.v=0*1537384*1540620
-../../src/endian_controller.v_memory_pipe_arbiter.v_mist1032sa.v=0*1525867*1532836
-../../src/lib/mist1032sa_arbiter_matching_queue.v_mist1032sa_async_fifo.v_mist1032sa_async_fifo_double_flipflop.v_mist1032sa_sync_fifo.v_mist1032sa_uart_receiver.v_mist1032sa_uart_receiver_async2sync.v_mist1032sa_uart_receiver_double_flipflop.v_mist1032sa_uart_transmitter.v_mist1032sa_uart_transmitter_async2sync.v_mist1032sa_uart_transmitter_double_flipflop.v=0*1581546*1586828
-../../src/mmu/mmu.v_mmu_if.v_tlb.v=0*1566519*1574050
-../../src/pic/pic.v=0*1590736*1592652
-../model/altera/altera_mf.v=0*1105087*1518773
-../model/sim_memory_model/sim_memory_model.v=0*766027*767792
-./tb/tb_inst_level.v=0*760190*763275
+../../src/core/core.v_core_if.v_core_pipeline.v_losd_store_pipe_arbiter.v_pipeline_register.v=0*3943471*3964342
+../../src/core/decode/decoder.v_decode_authcheck.v_decode_function.v_decode_mmucheck.v=0*4011624*4024216
+../../src/core/execute/divider/div_pipelined_latch.v_pipelined_div_radix2.v_radix2_linediv.v=0*4067202*4072311
+../../src/core/execute/execute_adder.v_execute_afe_load_store.v_execute_branch.v_execute_load_data.v_execute_load_store.v_execute_logic.v_execute_port0.v_execute_port1.v_execute_port2.v_execute_port3.v_execute_shift.v_execute_sys_reg.v_sysreg_spr_register.v=0*4044588*4061655
+../../src/core/fetch/fetch.v=0*4076024*4078013
+../../src/core/l1_data/l1_data_cache.v_l1_data_cache_64entry_4way_line64b.v_l1_data_cache_hit_counter.v=0*3990377*3999481
+../../src/core/l1_instruction/l1_cache_64entry_4way_line64b.v_l1_instruction_cache.v=0*3972844*3980361
+../../src/core/matching/matching.v=0*4089715*4095470
+../../src/core/pipeline_control/core_interrupt_manager.v_exception_manager.v=0*4254511*4260836
+../../src/core/rename/register_renaming_table.v_rename.v=0*4111350*4118743
+../../src/core/scheduler1/scheduler1.v_scheduler1_commit_entry.v=0*4140104*4151522
+../../src/core/scheduler2/flag_rename_management.v_frcr_timer.v_general_register_entry.v_priority_encoder_16.v_regist_rbuffer_select.v_reservation_alu0_entry.v_reservation_alu1_entry.v_reservation_alu2_entry.v_reservation_alu3_entry.v_reservation_free_entry_count.v_reservation_search16to2.v_scheduler2.v_scheduler2_free_search_64to2.v_system_register.v=0*4204789*4246528
+../../src/dps/device/mimsr/dps_mimsr.v=0*3878651*3879241
+../../src/dps/device/sci/dps_sci.v_dps_uart.v=0*3883235*3886889
+../../src/dps/device/utim64/comparator_counter.v_dps_utim64.v_main_counter.v_utim64.v=0*3891776*3896286
+../../src/dps/dps.v_dps_irq.v_dps_lsflags.v=0*3873310*3876546
+../../src/endian_controller.v_memory_pipe_arbiter.v_mist1032sa.v=0*3861473*3868442
+../../src/lib/mist1032sa_arbiter_matching_queue.v_mist1032sa_async_fifo.v_mist1032sa_async_fifo_double_flipflop.v_mist1032sa_sync_fifo.v_mist1032sa_uart_receiver.v_mist1032sa_uart_receiver_async2sync.v_mist1032sa_uart_receiver_double_flipflop.v_mist1032sa_uart_transmitter.v_mist1032sa_uart_transmitter_async2sync.v_mist1032sa_uart_transmitter_double_flipflop.v=0*3919120*3924402
+../../src/mmu/mmu.v_mmu_if.v_tlb.v=0*3903773*3911304
+../../src/pic/pic.v=0*3928630*3930546
+../model/altera/altera_mf.v=0*3440373*3854059
+../model/sim_memory_model/sim_memory_model.v=0*3100977*3102742
+./tb/tb_inst_level.v=0*3094804*3097873
 LastVerilogToplevel=decode_mmucheck
-ModifyID=2046
+ModifyID=5952
 Version=73
 
 [~MFT]
-0=338|0work.mgf|1922814|419190
-1=392|1work.mgf|4894314|1885392
-3=392|3work.mgf|4994833|2255121
+0=904|0work.mgf|4260836|1643958
+1=1156|1work.mgf|10991857|7982078
+3=1156|3work.mgf|10508257|7767261
 4=0|4work.mgf|0|0
 
 [~U]
-$root=12|0*1909516|
-ALTERA_DEVICE_FAMILIES=12|0*773144|
-ALTERA_MF_HINT_EVALUATION=12|0*772406|
-ALTERA_MF_MEMORY_INITIALIZATION=12|0*769320|
-MF_cycloneiii_pll=12|0*839360|
-MF_cycloneiiigl_m_cntr=12|0*855741|
-MF_cycloneiiigl_n_cntr=12|0*856125|
-MF_cycloneiiigl_pll=12|0*857132|
-MF_cycloneiiigl_scale_cntr=12|0*856405|
-MF_pll_reg=12|0*788428|
-MF_stratix_pll=12|0*788703|
-MF_stratixii_pll=12|0*804782|
-MF_stratixiii_pll=12|0*819008|
-a_graycounter=12|0*1074584||0x10
-alt3pram=12|0*1069906||0x10
-alt_aeq_s4=12|0*1080817||0x10
-alt_cal=12|0*1076254||0x10
-alt_cal_c3gxb=12|0*1078884||0x10
-alt_cal_mm=12|0*1077274||0x10
-alt_cal_sv=12|0*1079871||0x10
-alt_dfe=12|0*1084253||0x10
-alt_eyemon=12|0*1082491||0x10
-altaccumulate=12|0*1006463||0x10
-altclklock=12|0*1038470||0x10
-altddio_bidir=12|0*1041643||0x10
-altddio_in=12|0*1040122|
-altddio_out=12|0*1040813|
-altdpram=12|0*1042909||0x10
-altera_std_synchronizer=12|0*1075602|
-altera_std_synchronizer_bundle=12|0*1075896||0x10
-altfp_mult=12|0*1036272||0x10
-altlvds_rx=12|0*887531||0x10
-altlvds_tx=12|0*929480||0x10
-altmult_accum=12|0*1007196||0x10
-altmult_add=12|0*1014796||0x10
-altparallel_flash_loader=12|0*1097698||0x10
-altpll=12|0*873759||0x10
-altserial_flash_loader=12|0*1100948||0x10
-altshift_taps=12|0*1073897||0x10
-altsource_probe=12|0*1103752||0x10
-altsqrt=12|0*1037969||0x10
-altsquare=12|0*1075090||0x10
-altstratixii_oct=12|0*1097363||0x10
-altsyncram=12|0*1045172|
-arm_m_cntr=12|0*803772|
-arm_n_cntr=12|0*804120|
-arm_scale_cntr=12|0*804364|
-cda_m_cntr=12|0*838350|
-cda_n_cntr=12|0*838698|
-cda_scale_cntr=12|0*838942|
-comparator_counter=12|0*1551831|
-core=12|0*1594326||0x10
-core_if=12|0*1600106|
-core_interrupt_manager=12|0*1911058|
-core_pipeline=12|0*1597088|
-cycloneiiigl_post_divider=12|0*856859|
-dcfifo=12|0*1004992||0x10
-dcfifo_async=12|0*958532|
-dcfifo_dffpipe=12|0*957654|
-dcfifo_fefifo=12|0*958014|
-dcfifo_low_latency=12|0*960952|
-dcfifo_mixed_widths=12|0*962877|
-dcfifo_sync=12|0*959934|
-decode_authcheck=12|0*1672263||0x10
-decode_function=12|0*1670011|
-decode_mmucheck=12|0*1672906||0x10
-decoder=12|0*1663409|
-dffp=12|0*786852|
-div_pipelined_latch=12|0*1725913|
-dps=12|0*1534347|
-dps_irq=12|0*1536372|
-dps_lsflags=12|0*1535869|
-dps_mimsr=12|0*1542078|
-dps_sci=12|0*1544464|
-dps_uart=12|0*1545555|
-dps_utim64=12|0*1552559|
-dummy_hub=12|0*1089247|
-endian_controller=12|0*1520183|
-exception_manager=12|0*1912304|
-execute_adder=12|0*1688175|
-execute_afe_load_store=12|0*1689003|
-execute_branch=12|0*1689449|
-execute_load_data=12|0*1690599|
-execute_load_store=12|0*1691236|
-execute_logic=12|0*1692794|
-execute_port0=12|0*1693464|
-execute_port1=12|0*1695103|
-execute_port2=12|0*1700060|
-execute_port3=12|0*1702968|
-execute_shift=12|0*1698693|
-execute_sys_reg=12|0*1698407|
-fetch=12|0*1736324|
-flag_rename_management=12|0*1815555|
-flexible_lvds_rx=12|0*922807|
-flexible_lvds_tx=12|0*956583|
-frcr_timer=12|0*1816844|
-general_register_entry=12|0*1817157|
-jtag_tap_controller=12|0*1087936|
-l1_cache_64entry_4way_line64b_bus_8b=12|0*1629334||0x10
-l1_cache_64entry_4way_line64b_bus_8b_damy=12|0*1628244|
-l1_data_cache=12|0*1644238|
-l1_data_cache_64entry_4way_line64b_bus_8b=12|0*1647820||0x10
-l1_data_cache_64entry_4way_line64b_bus_8b_damy=12|0*1646671|
-l1_data_cache_counter=12|0*1652002||0x10
-l1_instruction_cache=12|0*1633082|
-lcell=12|0*769171||0x10
-losd_store_pipe_arbiter=12|0*1602877|
-main_counter=12|0*1554347|
-matching=12|0*1741914|
-memory_pipe_arbiter=12|0*1520698|
-mist1032sa=12|0*1523139|
-mist1032sa_arbiter_matching_queue=12|0*1575595|
-mist1032sa_async_fifo=12|0*1576224|
-mist1032sa_async_fifo_double_flipflop=12|0*1577235|
-mist1032sa_sync_fifo=12|0*1577609|
-mist1032sa_uart_receiver=12|0*1578203|
-mist1032sa_uart_receiver_async2sync=12|0*1579449|
-mist1032sa_uart_receiver_double_flipflop=12|0*1579066|
-mist1032sa_uart_transmitter=12|0*1579809|
-mist1032sa_uart_transmitter_async2sync=12|0*1581177|
-mist1032sa_uart_transmitter_double_flipflop=12|0*1580785|
-mmu=12|0*1560980|
-mmu_if=12|0*1564646|
-parallel_add=12|0*1071727||0x10
-pic=12|0*1588828|
-pipeline_register=12|0*1604941||0x10
-pipelined_div_radix2=12|0*1726896|
-pll_iobuf=12|0*787109|
-priority_encoder_16=12|0*1819110|
-radix2_linediv=12|0*1728520|
-regist_rbuffer_select=12|0*1820993|
-register_renaming_table=12|0*1759361|
-rename=12|0*1761406|
-reservation_alu0_entry=12|0*1822905|
-reservation_alu1_entry=12|0*1825541|
-reservation_alu2_entry=12|0*1829026|
-reservation_alu3_entry=12|0*1832230|
-reservation_free_entry_count=12|0*1835364|
-reservation_search16to2=12|0*1836703|
-scfifo=12|0*1072569||0x10
-scheduler1=12|0*1782672|
-scheduler1_commit_entry=12|0*1799304|
-scheduler2=12|0*1839722|
-scheduler2_free_search_64to2=12|0*1857742|
-signal_gen=12|0*1085954|
-sim_memory_model=12|0*764630|
-sld_signaltap=12|0*1094072||0x10
-sld_virtual_jtag=12|0*1092061||0x10
-sld_virtual_jtag_basic=12|0*1101711||0x10
-stratix_lvds_rx=12|0*919862|
-stratix_tx_outclk=12|0*955701|
-stratixgx_dpa_lvds_rx=12|0*920367|
-stratixii_lvds_rx=12|0*921360|
-stratixii_tx_outclk=12|0*956139|
-stratixiii_lvds_rx=12|0*924160|
-stratixiii_lvds_rx_channel=12|0*926352|
-stratixiii_lvds_rx_dpa=12|0*928235|
-stratixv_local_clk_divider=12|0*929225|
-stx_m_cntr=12|0*787320|
-stx_n_cntr=12|0*787668|
-stx_scale_cntr=12|0*787961|
-sysreg_spr_register=12|0*1706192|
-system_register=12|0*1866395|
-tb_inst_level=12|0*759030||0x10
-tlb=12|0*1562960|
-ttn_m_cntr=12|0*817998|
-ttn_n_cntr=12|0*818346|
-ttn_scale_cntr=12|0*818590|
-utim64=12|0*1553542|
+$root=12|0*4247538|
+ALTERA_DEVICE_FAMILIES=12|0*3108430|
+ALTERA_MF_HINT_EVALUATION=12|0*3107692|
+ALTERA_MF_MEMORY_INITIALIZATION=12|0*3104606|
+MF_cycloneiii_pll=12|0*3174646|
+MF_cycloneiiigl_m_cntr=12|0*3191027|
+MF_cycloneiiigl_n_cntr=12|0*3191411|
+MF_cycloneiiigl_pll=12|0*3192418|
+MF_cycloneiiigl_scale_cntr=12|0*3191691|
+MF_pll_reg=12|0*3123714|
+MF_stratix_pll=12|0*3123989|
+MF_stratixii_pll=12|0*3140068|
+MF_stratixiii_pll=12|0*3154294|
+a_graycounter=12|0*3409870||0x10
+alt3pram=12|0*3405192||0x10
+alt_aeq_s4=12|0*3416103||0x10
+alt_cal=12|0*3411540||0x10
+alt_cal_c3gxb=12|0*3414170||0x10
+alt_cal_mm=12|0*3412560||0x10
+alt_cal_sv=12|0*3415157||0x10
+alt_dfe=12|0*3419539||0x10
+alt_eyemon=12|0*3417777||0x10
+altaccumulate=12|0*3341749||0x10
+altclklock=12|0*3373756||0x10
+altddio_bidir=12|0*3376929||0x10
+altddio_in=12|0*3375408|
+altddio_out=12|0*3376099|
+altdpram=12|0*3378195||0x10
+altera_std_synchronizer=12|0*3410888|
+altera_std_synchronizer_bundle=12|0*3411182||0x10
+altfp_mult=12|0*3371558||0x10
+altlvds_rx=12|0*3222817||0x10
+altlvds_tx=12|0*3264766||0x10
+altmult_accum=12|0*3342482||0x10
+altmult_add=12|0*3350082||0x10
+altparallel_flash_loader=12|0*3432984||0x10
+altpll=12|0*3209045||0x10
+altserial_flash_loader=12|0*3436234||0x10
+altshift_taps=12|0*3409183||0x10
+altsource_probe=12|0*3439038||0x10
+altsqrt=12|0*3373255||0x10
+altsquare=12|0*3410376||0x10
+altstratixii_oct=12|0*3432649||0x10
+altsyncram=12|0*3380458|
+arm_m_cntr=12|0*3139058|
+arm_n_cntr=12|0*3139406|
+arm_scale_cntr=12|0*3139650|
+cda_m_cntr=12|0*3173636|
+cda_n_cntr=12|0*3173984|
+cda_scale_cntr=12|0*3174228|
+comparator_counter=12|0*3888749|
+core=12|0*3932316||0x10
+core_if=12|0*3938096|
+core_interrupt_manager=12|0*4249080|
+core_pipeline=12|0*3935078|
+cycloneiiigl_post_divider=12|0*3192145|
+dcfifo=12|0*3340278||0x10
+dcfifo_async=12|0*3293818|
+dcfifo_dffpipe=12|0*3292940|
+dcfifo_fefifo=12|0*3293300|
+dcfifo_low_latency=12|0*3296238|
+dcfifo_mixed_widths=12|0*3298163|
+dcfifo_sync=12|0*3295220|
+decode_authcheck=12|0*4010285||0x10
+decode_function=12|0*4008033|
+decode_mmucheck=12|0*4010928||0x10
+decoder=12|0*4001431|
+dffp=12|0*3122138|
+div_pipelined_latch=12|0*4063935|
+dps=12|0*3870273|
+dps_irq=12|0*3872298|
+dps_lsflags=12|0*3871795|
+dps_mimsr=12|0*3878340|
+dps_sci=12|0*3881046|
+dps_uart=12|0*3882137|
+dps_utim64=12|0*3889477|
+dummy_hub=12|0*3424533|
+endian_controller=12|0*3855789|
+exception_manager=12|0*4250326|
+execute_adder=12|0*4026197|
+execute_afe_load_store=12|0*4027025|
+execute_branch=12|0*4027471|
+execute_load_data=12|0*4028621|
+execute_load_store=12|0*4029258|
+execute_logic=12|0*4030816|
+execute_port0=12|0*4031486|
+execute_port1=12|0*4033125|
+execute_port2=12|0*4038082|
+execute_port3=12|0*4040990|
+execute_shift=12|0*4036715|
+execute_sys_reg=12|0*4036429|
+fetch=12|0*4074346|
+flag_rename_management=12|0*4153593|
+flexible_lvds_rx=12|0*3258093|
+flexible_lvds_tx=12|0*3291869|
+frcr_timer=12|0*4154882|
+general_register_entry=12|0*4155195|
+jtag_tap_controller=12|0*3423222|
+l1_cache_64entry_4way_line64b_bus_8b=12|0*3967356||0x10
+l1_cache_64entry_4way_line64b_bus_8b_damy=12|0*3966266|
+l1_data_cache=12|0*3982260|
+l1_data_cache_64entry_4way_line64b_bus_8b=12|0*3985842||0x10
+l1_data_cache_64entry_4way_line64b_bus_8b_damy=12|0*3984693|
+l1_data_cache_counter=12|0*3990024||0x10
+l1_instruction_cache=12|0*3971104|
+lcell=12|0*3104457||0x10
+losd_store_pipe_arbiter=12|0*3940867|
+main_counter=12|0*3891265|
+matching=12|0*4079936|
+memory_pipe_arbiter=12|0*3856304|
+mist1032sa=12|0*3858745|
+mist1032sa_arbiter_matching_queue=12|0*3913169|
+mist1032sa_async_fifo=12|0*3913798|
+mist1032sa_async_fifo_double_flipflop=12|0*3914809|
+mist1032sa_sync_fifo=12|0*3915183|
+mist1032sa_uart_receiver=12|0*3915777|
+mist1032sa_uart_receiver_async2sync=12|0*3917023|
+mist1032sa_uart_receiver_double_flipflop=12|0*3916640|
+mist1032sa_uart_transmitter=12|0*3917383|
+mist1032sa_uart_transmitter_async2sync=12|0*3918751|
+mist1032sa_uart_transmitter_double_flipflop=12|0*3918359|
+mmu=12|0*3898234|
+mmu_if=12|0*3901900|
+parallel_add=12|0*3407013||0x10
+pic=12|0*3926722|
+pipeline_register=12|0*3942931|
+pipelined_div_radix2=12|0*4064918|
+pll_iobuf=12|0*3122395|
+priority_encoder_16=12|0*4157148|
+radix2_linediv=12|0*4066542|
+regist_rbuffer_select=12|0*4159031|
+register_renaming_table=12|0*4097399|
+rename=12|0*4099444|
+reservation_alu0_entry=12|0*4160943|
+reservation_alu1_entry=12|0*4163579|
+reservation_alu2_entry=12|0*4167064|
+reservation_alu3_entry=12|0*4170268|
+reservation_free_entry_count=12|0*4173402|
+reservation_search16to2=12|0*4174741|
+scfifo=12|0*3407855||0x10
+scheduler1=12|0*4120710|
+scheduler1_commit_entry=12|0*4137342|
+scheduler2=12|0*4177760|
+scheduler2_free_search_64to2=12|0*4195780|
+signal_gen=12|0*3421240|
+sim_memory_model=12|0*3099580|
+sld_signaltap=12|0*3429358||0x10
+sld_virtual_jtag=12|0*3427347||0x10
+sld_virtual_jtag_basic=12|0*3436997||0x10
+stratix_lvds_rx=12|0*3255148|
+stratix_tx_outclk=12|0*3290987|
+stratixgx_dpa_lvds_rx=12|0*3255653|
+stratixii_lvds_rx=12|0*3256646|
+stratixii_tx_outclk=12|0*3291425|
+stratixiii_lvds_rx=12|0*3259446|
+stratixiii_lvds_rx_channel=12|0*3261638|
+stratixiii_lvds_rx_dpa=12|0*3263521|
+stratixv_local_clk_divider=12|0*3264511|
+stx_m_cntr=12|0*3122606|
+stx_n_cntr=12|0*3122954|
+stx_scale_cntr=12|0*3123247|
+sysreg_spr_register=12|0*4044214|
+system_register=12|0*4204433|
+tb_inst_level=12|0*3093644||0x10
+tlb=12|0*3900214|
+ttn_m_cntr=12|0*3153284|
+ttn_n_cntr=12|0*3153632|
+ttn_scale_cntr=12|0*3153876|
+utim64=12|0*3890460|
 

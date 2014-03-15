@@ -21,6 +21,7 @@ module reservation_alu3_entry(
 		input wire [31:0] iREGISTER_SOURCE1,
 		input wire iREGISTER_ADV_ACTIVE,
 		input wire [5:0] iREGISTER_ADV_DATA,
+		input wire [4:0] iREGISTER_LOGIC_DEST,
 		input wire [5:0] iREGISTER_DESTINATION_REGNAME,
 		input wire iREGISTER_DESTINATION_SYSREG,
 		input wire [5:0] iREGISTER_COMMIT_TAG,			
@@ -58,6 +59,7 @@ module reservation_alu3_entry(
 		output wire [31:0] oINFO_SOURCE1,
 		output wire oINFO_ADV_ACTIVE,
 		output wire [5:0] oINFO_ADV_DATA,
+		output wire [4:0] oINFO_LOGIC_DEST,
 		output wire [5:0] oINFO_DESTINATION_REGNAME,
 		output wire oINFO_DESTINATION_SYSREG,
 		output wire [5:0] oINFO_COMMIT_TAG,
@@ -77,6 +79,7 @@ module reservation_alu3_entry(
 	reg [31:0] b0_source1;
 	reg b0_adv_active;
 	reg [5:0] b0_adv_data;
+	reg [4:0] b0_logic_dest;
 	reg [5:0] b0_destination_regname;
 	reg b0_destination_sysreg;
 	reg [5:0] b0_commit_tag;
@@ -99,6 +102,7 @@ module reservation_alu3_entry(
 			b0_adv_active <= 1'b0;
 			b0_adv_data <= 6'h0;
 			b0_source1_sysreg <= 1'b0;	
+			b0_logic_dest <= 5'h0;
 			b0_destination_regname <= {6{1'b0}};
 			b0_destination_sysreg <= 1'b0;
 			b0_commit_tag <= {6{1'b0}};
@@ -118,7 +122,8 @@ module reservation_alu3_entry(
 			b0_source1 <= {32{1'b0}};
 			b0_adv_active <= 1'b0;
 			b0_adv_data <= 6'h0;
-			b0_source1_sysreg <= 1'b0;	
+			b0_source1_sysreg <= 1'b0;
+			b0_logic_dest <= 5'h0;
 			b0_destination_regname <= {6{1'b0}};
 			b0_destination_sysreg <= 1'b0;
 			b0_commit_tag <= {6{1'b0}};
@@ -199,6 +204,7 @@ module reservation_alu3_entry(
 							b0_destination_sysreg <= iREGISTER_DESTINATION_SYSREG;
 							b0_commit_tag <= iREGISTER_COMMIT_TAG;
 							b0_pc <= iREGISTER_PC;
+							b0_logic_dest <= iREGISTER_LOGIC_DEST;
 							//Ex Inorder Pointer
 							if(iREGISTER_EX_REGIST_POINTER == iEX_EXECUTION_POINTER)begin		
 								b0_ex_pointer_matching <= 1'b1;
@@ -274,6 +280,7 @@ module reservation_alu3_entry(
 	assign oINFO_SOURCE1 = b0_source1;
 	assign oINFO_ADV_ACTIVE = b0_adv_active;
 	assign oINFO_ADV_DATA = b0_adv_data;
+	assign oINFO_LOGIC_DEST = b0_logic_dest;
 	assign oINFO_DESTINATION_REGNAME = b0_destination_regname;
 	assign oINFO_DESTINATION_SYSREG = b0_destination_sysreg;
 	assign oINFO_COMMIT_TAG = b0_commit_tag;

@@ -32,6 +32,7 @@ entity execute_port3 is
         iPREVIOUS_EX_ALU3_SOURCE1: in     vl_logic_vector(31 downto 0);
         iPREVIOUS_EX_ALU3_ADV_ACTIVE: in     vl_logic;
         iPREVIOUS_EX_ALU3_ADV_DATA: in     vl_logic_vector(5 downto 0);
+        iPREVIOUS_EX_ALU3_LOGIC_DEST: in     vl_logic_vector(4 downto 0);
         iPREVIOUS_EX_ALU3_DESTINATION_REGNAME: in     vl_logic_vector(5 downto 0);
         iPREVIOUS_EX_ALU3_PC: in     vl_logic_vector(31 downto 0);
         iPREVIOUS_EX_ALU3_SYS_LDST: in     vl_logic;
@@ -41,6 +42,7 @@ entity execute_port3 is
         oSCHE1_ALU3_COMMIT_TAG: out    vl_logic_vector(5 downto 0);
         oSCHE2_ALU3_VALID: out    vl_logic;
         oSCHE2_ALU3_COMMIT_TAG: out    vl_logic_vector(5 downto 0);
+        oSCHE2_ALU3_LOGIC_DEST: out    vl_logic_vector(4 downto 0);
         oSCHE2_ALU3_DESTINATION_REGNAME: out    vl_logic_vector(5 downto 0);
         oSCHE2_ALU3_DESTINATION_SYSREG: out    vl_logic;
         oSCHE2_ALU3_WRITEBACK: out    vl_logic;

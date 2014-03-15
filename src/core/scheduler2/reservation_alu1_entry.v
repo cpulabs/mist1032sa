@@ -29,6 +29,7 @@ module reservation_alu1_entry(
 		input wire iREGISTER_SOURCE1_VALID,
 		input wire [31:0] iREGISTER_SOURCE1,
 		input wire [31:0] iREGISTER_PCR,
+		input wire [4:0] iREGISTER_LOGIC_DEST,
 		input wire [5:0] iREGISTER_DESTINATION_REGNAME,
 		input wire [5:0] iREGISTER_COMMIT_TAG,
 		//Common Data Bus CDB(CH0, ADDER)
@@ -68,6 +69,7 @@ module reservation_alu1_entry(
 		output wire oINFO_SOURCE1_VALID,
 		output wire [31:0] oINFO_SOURCE1,
 		output wire [31:0] oINFO_PCR,
+		output wire [4:0] oINFO_LOGIC_DEST,
 		output wire [5:0] oINFO_DESTINATION_REGNAME,
 		output wire [5:0] oINFO_COMMIT_TAG
 	);
@@ -94,6 +96,7 @@ module reservation_alu1_entry(
 	reg b0_source1_valid;
 	reg [31:0] b0_source1;
 	reg [31:0] b0_pcr;
+	reg [4:0] b0_logic_dest;
 	reg [5:0] b0_destination_regname;
 	reg [5:0] b0_commit_tag;
 	
@@ -121,6 +124,7 @@ module reservation_alu1_entry(
 			b0_source1 <= {32{1'b0}};
 			b0_pcr <= 32'h0;
 			b0_destination_regname <= {6{1'b0}};
+			b0_logic_dest <= 5'h0;
 			b0_commit_tag <= {6{1'b0}};
 		end
 		else if(iREMOVE_VALID || iEXOUT_VALID)begin
@@ -145,6 +149,7 @@ module reservation_alu1_entry(
 			b0_source1 <= {32{1'b0}};
 			b0_pcr <= 32'h0;
 			b0_destination_regname <= {6{1'b0}};
+			b0_logic_dest <= 5'h0;
 			b0_commit_tag <= {6{1'b0}};
 		end
 		else begin
@@ -213,6 +218,7 @@ module reservation_alu1_entry(
 							b0_destination_regname <= iREGISTER_DESTINATION_REGNAME;
 							b0_commit_tag <= iREGISTER_COMMIT_TAG;
 							b0_pcr <= iREGISTER_PCR;
+							b0_logic_dest <= iREGISTER_LOGIC_DEST;
 						end
 						else begin
 							b0_reg_lock <= 1'b0;
@@ -273,6 +279,7 @@ module reservation_alu1_entry(
 	assign oINFO_SOURCE1_VALID = b0_source1_valid;
 	assign oINFO_SOURCE1 = b0_source1;
 	assign oINFO_PCR = b0_pcr;
+	assign oINFO_LOGIC_DEST = b0_logic_dest;
 	assign oINFO_DESTINATION_REGNAME = b0_destination_regname;
 	assign oINFO_COMMIT_TAG = b0_commit_tag;
 

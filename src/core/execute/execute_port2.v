@@ -29,6 +29,7 @@ module execute_port2(
 		input wire [31:0] iPREVIOUS_EX_ALU2_SOURCE0,
 		input wire [31:0] iPREVIOUS_EX_ALU2_SOURCE1,
 		input wire iPREVIOUS_EX_ALU2_DESTINATION_SYSREG,
+		input wire [4:0] iPREVIOUS_EX_ALU2_LOGIC_DEST,			//for debug
 		input wire [5:0] iPREVIOUS_EX_ALU2_DESTINATION_REGNAME,
 		input wire iPREVIOUS_EX_ALU2_FLAGS_WRITEBACK,
 		input wire [3:0] iPREVIOUS_EX_ALU2_FLAGS_REGNAME,
@@ -41,6 +42,7 @@ module execute_port2(
 		output wire oSCHE2_EX_ALU2_VALID,
 		output wire [5:0] oSCHE2_EX_ALU2_COMMIT_TAG,
 		output wire oSCHE2_EX_ALU2_SYSREG,
+		output wire [4:0] oSCHE2_EX_ALU2_LOGIC_DEST,			//for debug
 		output wire [5:0] oSCHE2_EX_ALU2_DESTINATION_REGNAME,
 		output wire oSCHE2_EX_ALU2_WRITEBACK,
 		output wire [31:0] oSCHE2_EX_ALU2_DATA,
@@ -90,6 +92,7 @@ module execute_port2(
 	reg b0_valid;
 	reg [5:0] b0_commit_tag;
 	reg b0_sysreg;
+	reg [4:0] b0_logic_dest;
 	reg [5:0] b0_destination_regname;
 	reg b0_writeback;
 	reg [31:0] b0_data;
@@ -216,7 +219,7 @@ module execute_port2(
 	/****************************************
 	Adder
 	****************************************/
-	execute_adder	#(32) ALU2_ADDER(	
+	execute_adder #(32) ALU2_ADDER(	
 		.iDATA_0(iPREVIOUS_EX_ALU2_SOURCE0), 
 		.iDATA_1(iPREVIOUS_EX_ALU2_SOURCE1), 
 		.iADDER_CMD(iPREVIOUS_EX_ALU2_CMD),
@@ -289,6 +292,7 @@ module execute_port2(
 			b0_valid <= (b0_lock)? 1'b0 : iPREVIOUS_EX_ALU2_VALID;
 			b0_commit_tag <= iPREVIOUS_EX_ALU2_COMMIT_TAG;
 			b0_sysreg <= iPREVIOUS_EX_ALU2_DESTINATION_SYSREG;
+			b0_logic_dest <= iPREVIOUS_EX_ALU2_LOGIC_DEST;
 			b0_destination_regname <= iPREVIOUS_EX_ALU2_DESTINATION_REGNAME;
 			b0_writeback <= iPREVIOUS_EX_ALU2_WRITEBACK;
 			b0_data <= latch_sel_data;
@@ -307,6 +311,7 @@ module execute_port2(
 	assign oSCHE1_EX_ALU2_VALID = b0_valid;
 	assign oSCHE1_EX_ALU2_COMMIT_TAG = b0_commit_tag;
 	assign oSCHE2_EX_ALU2_VALID = b0_valid;
+	assign oSCHE2_EX_ALU2_LOGIC_DEST = b0_logic_dest;
 	assign oSCHE2_EX_ALU2_DESTINATION_REGNAME = b0_destination_regname;
 	assign oSCHE2_EX_ALU2_COMMIT_TAG = b0_commit_tag;
 	assign oSCHE2_EX_ALU2_SYSREG = b0_sysreg;
