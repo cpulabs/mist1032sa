@@ -3981,7 +3981,7 @@ module decode_function(
 							/* Commit Wait Instruction */			1'b0,
 							/* Condition Code & AFE */				f_decode_inst[19:16],
 							/* Source0 */							`SYSREG_SPR,
-							/* Source1 */							{{16{1'b0}}, f_decode_inst[15:0]},
+							/* Source1 */							{{14{f_decode_inst[15]}}, f_decode_inst[15:0], 2'h0},//{{16{1'b0}}, f_decode_inst[15:0]},
 							/* Source0 Use Flags*/					1'b0,
 							/* Source1-Immediate */					1'b1,
 							/* Source0 Active */					1'b1,

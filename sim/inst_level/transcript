@@ -148,7 +148,7 @@
 #         Region: /tb_inst_level/TARGET/CORE_IF/CORE_PIPELINE/STAGE1_FETCH
 # ** Warning: (vsim-3015) ../../src/core/core_pipeline.v(860): [PCDPC] - Port size (6 or 6) does not match connection size (14) for port 'iPREVIOUS_1_MMU_FLAGS'. The port definition is at: ../../src/core/fetch/fetch.v(24).
 #         Region: /tb_inst_level/TARGET/CORE_IF/CORE_PIPELINE/STAGE1_FETCH
-# ** Warning: (vsim-3015) ../../src/core/execute/execute_port3.v(314): [PCDPC] - Port size (4 or 4) does not match connection size (6) for port 'iAFE_CODE'. The port definition is at: ../../src/core/execute/execute_afe_load_store.v(8).
+# ** Warning: (vsim-3015) ../../src/core/execute/execute_port3.v(315): [PCDPC] - Port size (4 or 4) does not match connection size (6) for port 'iAFE_CODE'. The port definition is at: ../../src/core/execute/execute_afe_load_store.v(8).
 #         Region: /tb_inst_level/TARGET/CORE_IF/CORE_PIPELINE/SATGE7_EX_PORT3/EXEC_AFE_LDST
 # ** Warning: (vsim-3015) ../../src/core/core_pipeline.v(2064): [PCDPC] - Port size (14 or 14) does not match connection size (32) for port 'oLDST_TID'. The port definition is at: ../../src/core/losd_store_pipe_arbiter.v(9).
 #         Region: /tb_inst_level/TARGET/CORE_IF/CORE_PIPELINE/LDST_PIPE_ARBITOR

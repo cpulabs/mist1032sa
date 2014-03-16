@@ -244,7 +244,7 @@ module tb_func_level;
 			//task_disp_inst_issue();
 			//task_disp_pcr();
 			//task_disp_tag_info();
-			//task_disp_branch();
+			task_disp_branch();
 			task_disp_loadstore();
 			//task_disp_logic_register_all();
 			//task_disp_logic_register_single(5'h2);

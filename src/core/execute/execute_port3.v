@@ -76,6 +76,11 @@ module execute_port3(
 	localparam PL_LDST_STT_SPRWAIT = 3'h5;
 
 	reg [2:0] b_ldst_state;
+	
+	
+	wire push_condition = iPREVIOUS_EX_ALU3_LDST && (iPREVIOUS_EX_ALU3_CMD == `EXE_LDSW_PUSH || iPREVIOUS_EX_ALU3_CMD == `EXE_LDSW_PPUSH);
+	wire pop_condition = iPREVIOUS_EX_ALU3_LDST && (iPREVIOUS_EX_ALU3_CMD == `EXE_LDSW_POP);
+	wire spradd_condition = iPREVIOUS_EX_ALU3_SYS_LDST && (iPREVIOUS_EX_ALU3_CMD == `EXE_SYS_LDST_ADD_SPR);
 
 	/****************************************
 	Lock
@@ -85,9 +90,6 @@ module execute_port3(
 	/****************************************
 	SPR Register
 	****************************************/	
-	wire push_condition;
-	wire pop_condition;
-	wire sysreg_write_condition;
 
 	wire spr_write_condition;
 	wire [31:0] spr_data_info;
@@ -96,8 +98,24 @@ module execute_port3(
 	wire ldst_spr_out_valid;
 	wire [31:0] ldst_spr_out_data;
 	
-	assign sysreg_write_condition = iPREVIOUS_EX_ALU3_SYS_LDST && iPREVIOUS_EX_ALU3_DESTINATION_SYSREG && iPREVIOUS_EX_ALU3_CMD == `EXE_SYS_LDST_WRITE_SPR;
-	assign spr_write_condition = iFREE_SYSREG_NEW_SPR_VALID || (!this_lock && iPREVIOUS_EX_ALU3_VALID && (sysreg_write_condition || push_condition || pop_condition));
+	wire sysreg_write_condition = iPREVIOUS_EX_ALU3_SYS_LDST && iPREVIOUS_EX_ALU3_DESTINATION_SYSREG && iPREVIOUS_EX_ALU3_CMD == `EXE_SYS_LDST_WRITE_SPR;
+	assign spr_write_condition = iFREE_SYSREG_NEW_SPR_VALID || (!this_lock && iPREVIOUS_EX_ALU3_VALID && (sysreg_write_condition || push_condition || pop_condition || spradd_condition));
+	
+	reg [31:0] spr_write_data;
+	always @* begin
+		if(iFREE_SYSREG_NEW_SPR_VALID)begin
+			spr_write_data = iFREE_SYSREG_NEW_SPR;
+		end
+		else if(ldst_spr_out_valid)begin
+			spr_write_data = ldst_spr_out_data;
+		end
+		else if(spradd_condition)begin
+			spr_write_data = spr_data_info + iPREVIOUS_EX_ALU3_SOURCE1;
+		end
+		else begin
+			spr_write_data = iPREVIOUS_EX_ALU3_SOURCE0;
+		end
+	end
 	
 	
 	sysreg_spr_register	SPR_REGISTER(
@@ -105,8 +123,10 @@ module execute_port3(
 		.iCLOCK(iCLOCK),
 		.inRESET(inRESET),
 		//Register
+		//.iREGIST_REQ(spr_write_condition),
+		//.iREGIST_DATA((iFREE_SYSREG_NEW_SPR_VALID)? iFREE_SYSREG_NEW_SPR : (ldst_spr_out_valid)? ldst_spr_out_data : iPREVIOUS_EX_ALU3_SOURCE0),
 		.iREGIST_REQ(spr_write_condition),
-		.iREGIST_DATA((iFREE_SYSREG_NEW_SPR_VALID)? iFREE_SYSREG_NEW_SPR : (ldst_spr_out_valid)? ldst_spr_out_data : iPREVIOUS_EX_ALU3_SOURCE0),
+		.iREGIST_DATA(spr_write_data),
 		//Info
 		.oINFO_DATA(spr_data_info)
 	);
@@ -163,14 +183,15 @@ module execute_port3(
 			case(b_ldst_state)
 				PL_LDST_STT_IDLE:
 					begin
-						if(!ldst_pipe_rw && iPREVIOUS_EX_ALU3_VALID && !this_lock)begin
+						if(iPREVIOUS_EX_ALU3_VALID && iPREVIOUS_EX_ALU3_SYS_LDST && (iPREVIOUS_EX_ALU3_CMD == `EXE_SYS_LDST_WRITE_SPR || iPREVIOUS_EX_ALU3_CMD == `EXE_SYS_LDST_READ_SPR))begin
+						//if(iPREVIOUS_EX_ALU3_VALID && (push_condition || pop_condition || spradd_condition))begin
+							b_ldst_state <= PL_LDST_STT_SPRWAIT;
+						end
+						else if(!ldst_pipe_rw && iPREVIOUS_EX_ALU3_VALID && !this_lock)begin
 							b_ldst_state <= PL_LDST_STT_LDREQ;
 						end
 						else if(ldst_pipe_rw && iPREVIOUS_EX_ALU3_VALID && !this_lock)begin
 							b_ldst_state <= PL_LDST_STT_STREQ;
-						end
-						else if(iPREVIOUS_EX_ALU3_VALID && (iPREVIOUS_EX_ALU3_CMD == `EXE_SYS_LDST_WRITE_SPR))begin
-							b_ldst_state <= PL_LDST_STT_SPRWAIT;
 						end
 					end
 				PL_LDST_STT_LDREQ:
@@ -312,6 +333,7 @@ module execute_port3(
 		.iDATA(ldst_pipe_load_data),
 		.oDATA(ldst_pipe_with_afe_data)
 	);
+	wire [31:0] load_data = (b_latch_adv_active)? ldst_pipe_with_afe_data : ldst_pipe_load_data;
 
 
 
@@ -350,7 +372,7 @@ module execute_port3(
 	assign oSCHE2_ALU3_DESTINATION_REGNAME = b_latch_phisical_dest_addr;
 	assign oSCHE2_ALU3_COMMIT_TAG = b_latch_commit_tag;
 	assign oSCHE2_ALU3_WRITEBACK = !b_ldst_pipe_rw;
-	assign oSCHE2_ALU3_DATA = (b_latch_adv_active)? ldst_pipe_with_afe_data : ldst_pipe_load_data;
+	assign oSCHE2_ALU3_DATA = (b_ldst_state == PL_LDST_STT_SPRWAIT)? spr_data_info : load_data;
 
 
 endmodule
