@@ -1,4 +1,3 @@
-# ** Warning: (vlib-34) Library already exists at "work".
 # QuestaSim-64 vlog 10.0c Compiler 2011.07 Jul 21 2011
 # -- Compiling module tb_func_level
 # 
@@ -132,6 +131,13 @@
 # 	sld_virtual_jtag_basic
 # 	altsource_probe
 # QuestaSim-64 vlog 10.0c Compiler 2011.07 Jul 21 2011
+# -- Compiling module cache_ram_16entry_256bit
+# -- Compiling module cache_ram_16entry_512bit
+# 
+# Top level modules:
+# 	cache_ram_16entry_256bit
+# 	cache_ram_16entry_512bit
+# QuestaSim-64 vlog 10.0c Compiler 2011.07 Jul 21 2011
 # -- Compiling module endian_controller
 # -- Compiling module memory_pipe_arbiter
 # ** Warning: ../../src/memory_pipe_arbiter.v(167): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
@@ -212,7 +218,7 @@
 # -- Compiling module l1_instruction_cache
 # 
 # Top level modules:
-# 	l1_cache_64entry_4way_line64b_bus_8b
+# 	l1_cache_64entry_4way_line64b_bus_8b_damy
 # 	l1_instruction_cache
 # QuestaSim-64 vlog 10.0c Compiler 2011.07 Jul 21 2011
 # -- Compiling module l1_data_cache
@@ -296,10 +302,12 @@
 # -- Compiling module reservation_free_entry_count
 # -- Compiling module reservation_search16to2
 # -- Compiling module scheduler2
+# -- Compiling module scheduler2_allocate_rsv_station
 # -- Compiling module scheduler2_free_search_64to2
 # -- Compiling module system_register
 # 
 # Top level modules:
+# 	regist_rbuffer_select
 # 	scheduler2
 # QuestaSim-64 vlog 10.0c Compiler 2011.07 Jul 21 2011
 # -- Compiling module core_interrupt_manager

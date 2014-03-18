@@ -117,7 +117,7 @@ module l1_instruction_cache(
 				L_PARAM_MEMREQ:	//Request State
 					begin
 						//Cache ON
-						`ifdef MIST1032ISA_INST_L1_CACHE
+						`ifdef MIST1032SA_INST_L1_CACHE
 							//Next Stage Check
 							if(iINST_VALID && iINST_PAGEFAULT)begin
 								b_req_main_state <= L_PARAM_OUTINST;
@@ -164,7 +164,7 @@ module l1_instruction_cache(
 				L_PARAM_MEMGET:	//Get Wait State
 					begin
 						//Cache ON
-						`ifdef MIST1032ISA_INST_L1_CACHE
+						`ifdef MIST1032SA_INST_L1_CACHE
 							if(iINST_VALID)begin
 								//Data Check
 								b_cache_write_data <= {iINST_DATA, b_cache_write_data[511:64]};
@@ -249,7 +249,7 @@ module l1_instruction_cache(
 		.oRD_EMPTY(/* Not Use */)
 	);
 
-	`ifdef MIST1032ISA_INST_L1_CACHE
+	`ifdef MIST1032SA_INST_L1_CACHE
 		l1_cache_64entry_4way_line64b_bus_8b CACHE_MODULE(
 			/********************************
 			System
@@ -363,7 +363,7 @@ module l1_instruction_cache(
 	assign oINST_REQ = (b_req_main_state == L_PARAM_MEMREQ)? !load_lock : 1'b0;
 	assign oINST_MMUMOD = b_req_mmumod;
 	
-	`ifdef MIST1032ISA_INST_L1_CACHE
+	`ifdef MIST1032SA_INST_L1_CACHE
 		assign oINST_ADDR = {b_req_addr[31:6], b_req_state[2:0], 3'h0};
 	`else
 		assign oINST_ADDR = {b_req_addr[31:3], 3'h0};

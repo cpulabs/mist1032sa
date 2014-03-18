@@ -347,7 +347,7 @@ module l1_cache_64entry_4way_line64b_bus_8b(
 	Byte Enable		: YES(8bit)
 	Read==Write		: Dont care
 	---------------------------------------*/
-	/*`ifdef MIST1032ISA_SIMULATION
+	/*`ifdef MIST1032SA_SYNTH
 		damy_memory_16entry_256bit MEMORY_MMUFLAG_DAMY_BLOCK0(
 			.iCLOCK(iCLOCK),
 			.iBYTE_ENA(memory_mmuflag_write_byte_enable),

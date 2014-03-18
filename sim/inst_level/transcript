@@ -17,7 +17,9 @@
 # Loading work.exception_manager(fast)
 # Loading work.l1_instruction_cache(fast)
 # Loading work.mist1032sa_arbiter_matching_queue(fast)
-# Loading work.l1_cache_64entry_4way_line64b_bus_8b_damy(fast)
+# Loading work.l1_cache_64entry_4way_line64b_bus_8b(fast)
+# Loading work.cache_ram_16entry_512bit(fast)
+# Loading work.cache_ram_16entry_256bit(fast)
 # Loading work.fetch(fast)
 # Loading work.mist1032sa_sync_fifo(fast)
 # Loading work.decoder(fast)
@@ -69,7 +71,7 @@
 # Loading work.system_register(fast)
 # Loading work.frcr_timer(fast)
 # Loading work.general_register_entry(fast)
-# Loading work.regist_rbuffer_select(fast)
+# Loading work.scheduler2_allocate_rsv_station(fast)
 # Loading work.reservation_alu0_entry(fast)
 # Loading work.reservation_free_entry_count(fast)
 # Loading work.reservation_search16to2(fast)
@@ -142,13 +144,13 @@
 # Loading work.dps_irq(fast)
 # Loading work.sim_memory_model(fast)
 # Loading work.mist1032sa_sync_fifo(fast__7)
-# ** Warning: (vsim-3015) ../../src/core/l1_instruction/l1_instruction_cache.v(331): [PCDPC] - Port size (32 or 32) does not match connection size (64) for port 'iUP_DATA'. The port definition is at: ../../src/core/l1_instruction/l1_cache_64entry_4way_line64b.v(41).
+# ** Warning: (vsim-3015) ../../src/core/l1_instruction/l1_instruction_cache.v(292): [PCDPC] - Port size (32 or 32) does not match connection size (64) for port 'iUP_DATA'. The port definition is at: ../../src/core/l1_instruction/l1_cache_64entry_4way_line64b.v(107).
 #         Region: /tb_inst_level/TARGET/CORE_IF/CORE_PIPELINE/STAGE0_L1_INST/CACHE_MODULE
 # ** Warning: (vsim-3015) ../../src/core/core_pipeline.v(860): [PCDPC] - Port size (6 or 6) does not match connection size (14) for port 'iPREVIOUS_0_MMU_FLAGS'. The port definition is at: ../../src/core/fetch/fetch.v(21).
 #         Region: /tb_inst_level/TARGET/CORE_IF/CORE_PIPELINE/STAGE1_FETCH
 # ** Warning: (vsim-3015) ../../src/core/core_pipeline.v(860): [PCDPC] - Port size (6 or 6) does not match connection size (14) for port 'iPREVIOUS_1_MMU_FLAGS'. The port definition is at: ../../src/core/fetch/fetch.v(24).
 #         Region: /tb_inst_level/TARGET/CORE_IF/CORE_PIPELINE/STAGE1_FETCH
-# ** Warning: (vsim-3015) ../../src/core/execute/execute_port3.v(315): [PCDPC] - Port size (4 or 4) does not match connection size (6) for port 'iAFE_CODE'. The port definition is at: ../../src/core/execute/execute_afe_load_store.v(8).
+# ** Warning: (vsim-3015) ../../src/core/execute/execute_port3.v(340): [PCDPC] - Port size (4 or 4) does not match connection size (6) for port 'iAFE_CODE'. The port definition is at: ../../src/core/execute/execute_afe_load_store.v(8).
 #         Region: /tb_inst_level/TARGET/CORE_IF/CORE_PIPELINE/SATGE7_EX_PORT3/EXEC_AFE_LDST
 # ** Warning: (vsim-3015) ../../src/core/core_pipeline.v(2064): [PCDPC] - Port size (14 or 14) does not match connection size (32) for port 'oLDST_TID'. The port definition is at: ../../src/core/losd_store_pipe_arbiter.v(9).
 #         Region: /tb_inst_level/TARGET/CORE_IF/CORE_PIPELINE/LDST_PIPE_ARBITOR

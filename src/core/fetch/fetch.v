@@ -73,7 +73,8 @@ module fetch(
 		.iWR_EN(!iEXCEPTION_EVENT && b_fetch_valid && !fetch_addr_queue_full && !iPREVIOUS_FETCH_LOCK && !iFETCH_STOP_LOOPBUFFER_LIMIT), 
 		.iWR_DATA(b_pc), 
 		.oWR_FULL(fetch_addr_queue_full),
-		.iRD_EN(oNEXT_0_INST_VALID || oNEXT_1_INST_VALID), 
+		//.iRD_EN(oNEXT_0_INST_VALID || oNEXT_1_INST_VALID), 
+		.iRD_EN(iPREVIOUS_0_INST_VALID || iPREVIOUS_1_INST_VALID), 
 		.oRD_DATA(fetch_addr_queue_addr), 
 		.oRD_EMPTY(/* Not Use */)
 	);
@@ -122,7 +123,7 @@ module fetch(
 				2'h2:
 					begin
 						if(iEXCEPTION_ADDR_SET && iEXCEPTION_RESTART)begin
-							b_pc <= {iEXCEPTION_ADDR[31:1], 1'b0};
+							b_pc <= {iEXCEPTION_ADDR[31:3], 3'h0};//{iEXCEPTION_ADDR[31:1], 1'b0};
 							b_fetch_valid <= 1'b1;
 							b_fetch_state <= 2'h1;
 						end
@@ -173,19 +174,41 @@ module fetch(
 	/****************************************
 	Contrall - Change (Jump After Aliment That spans)
 	****************************************/
+	/*
 	always@(posedge iCLOCK or negedge inRESET)begin	
 		if(!inRESET)begin
 			b_jump_after_change_flag <= 1'b0;
 		end
 		else begin
 			//Jump Event
-			if(iEXCEPTION_EVENT && iEXCEPTION_ADDR[0])begin			//ayasii
+			//if(iEXCEPTION_EVENT && iEXCEPTION_ADDR[0])begin			//ayasii
 				b_jump_after_change_flag <= 1'b1;
 			end
 			//Fetch State
 			else begin
 				if(!iNEXT_LOCK)begin
 					if(!iEXCEPTION_INST_DISCARD && (iPREVIOUS_0_INST_VALID && iPREVIOUS_1_INST_VALID))begin
+						b_jump_after_change_flag <= 1'b0;
+					end
+				end
+			end
+		end
+	end
+	*/
+
+	always@(posedge iCLOCK or negedge inRESET)begin	
+		if(!inRESET)begin
+			b_jump_after_change_flag <= 1'b0;
+		end
+		else begin
+			//Jump Event
+			if(iEXCEPTION_ADDR_SET && iEXCEPTION_ADDR[2])begin	
+				b_jump_after_change_flag <= 1'b1;
+			end
+			//Fetch State
+			else begin
+				if(!iNEXT_LOCK)begin
+					if(!iEXCEPTION_INST_DISCARD && (iPREVIOUS_0_INST_VALID || iPREVIOUS_1_INST_VALID))begin
 						b_jump_after_change_flag <= 1'b0;
 					end
 				end

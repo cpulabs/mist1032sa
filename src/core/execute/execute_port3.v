@@ -77,10 +77,17 @@ module execute_port3(
 
 	reg [2:0] b_ldst_state;
 	
-	
+	wire load_condition = iPREVIOUS_EX_ALU3_LDST && 
+							(iPREVIOUS_EX_ALU3_CMD == `EXE_LDSW_LD8 || iPREVIOUS_EX_ALU3_CMD == `EXE_LDSW_LD16 || iPREVIOUS_EX_ALU3_CMD == `EXE_LDSW_LD32 || 
+							iPREVIOUS_EX_ALU3_CMD == `EXE_LDSW_LDD8 || iPREVIOUS_EX_ALU3_CMD == `EXE_LDSW_LDD16 || iPREVIOUS_EX_ALU3_CMD == `EXE_LDSW_LDD32); 
+	wire store_condition = iPREVIOUS_EX_ALU3_LDST && 
+							(iPREVIOUS_EX_ALU3_CMD == `EXE_LDSW_ST8 || iPREVIOUS_EX_ALU3_CMD == `EXE_LDSW_ST16 || iPREVIOUS_EX_ALU3_CMD == `EXE_LDSW_ST32 || 
+							iPREVIOUS_EX_ALU3_CMD == `EXE_LDSW_STD8 || iPREVIOUS_EX_ALU3_CMD == `EXE_LDSW_STD16 || iPREVIOUS_EX_ALU3_CMD == `EXE_LDSW_STD32); 
 	wire push_condition = iPREVIOUS_EX_ALU3_LDST && (iPREVIOUS_EX_ALU3_CMD == `EXE_LDSW_PUSH || iPREVIOUS_EX_ALU3_CMD == `EXE_LDSW_PPUSH);
 	wire pop_condition = iPREVIOUS_EX_ALU3_LDST && (iPREVIOUS_EX_ALU3_CMD == `EXE_LDSW_POP);
-	wire spradd_condition = iPREVIOUS_EX_ALU3_SYS_LDST && (iPREVIOUS_EX_ALU3_CMD == `EXE_SYS_LDST_ADD_SPR);
+	wire write_spr_condition = iPREVIOUS_EX_ALU3_SYS_LDST && (iPREVIOUS_EX_ALU3_CMD == `EXE_SYS_LDST_WRITE_SPR);
+	wire read_spr_condition = iPREVIOUS_EX_ALU3_SYS_LDST && (iPREVIOUS_EX_ALU3_CMD == `EXE_SYS_LDST_READ_SPR);
+	wire add_spr_condition = iPREVIOUS_EX_ALU3_SYS_LDST && (iPREVIOUS_EX_ALU3_CMD == `EXE_SYS_LDST_ADD_SPR);
 
 	/****************************************
 	Lock
@@ -90,16 +97,13 @@ module execute_port3(
 	/****************************************
 	SPR Register
 	****************************************/	
-
-	wire spr_write_condition;
 	wire [31:0] spr_data_info;
 
 	//SPR
 	wire ldst_spr_out_valid;
 	wire [31:0] ldst_spr_out_data;
 	
-	wire sysreg_write_condition = iPREVIOUS_EX_ALU3_SYS_LDST && iPREVIOUS_EX_ALU3_DESTINATION_SYSREG && iPREVIOUS_EX_ALU3_CMD == `EXE_SYS_LDST_WRITE_SPR;
-	assign spr_write_condition = iFREE_SYSREG_NEW_SPR_VALID || (!this_lock && iPREVIOUS_EX_ALU3_VALID && (sysreg_write_condition || push_condition || pop_condition || spradd_condition));
+	wire sysreg_spr_write_condition = iFREE_SYSREG_NEW_SPR_VALID || (!this_lock && iPREVIOUS_EX_ALU3_VALID && (push_condition || pop_condition || write_spr_condition || add_spr_condition));
 	
 	reg [31:0] spr_write_data;
 	always @* begin
@@ -109,7 +113,7 @@ module execute_port3(
 		else if(ldst_spr_out_valid)begin
 			spr_write_data = ldst_spr_out_data;
 		end
-		else if(spradd_condition)begin
+		else if(add_spr_condition)begin
 			spr_write_data = spr_data_info + iPREVIOUS_EX_ALU3_SOURCE1;
 		end
 		else begin
@@ -123,9 +127,7 @@ module execute_port3(
 		.iCLOCK(iCLOCK),
 		.inRESET(inRESET),
 		//Register
-		//.iREGIST_REQ(spr_write_condition),
-		//.iREGIST_DATA((iFREE_SYSREG_NEW_SPR_VALID)? iFREE_SYSREG_NEW_SPR : (ldst_spr_out_valid)? ldst_spr_out_data : iPREVIOUS_EX_ALU3_SOURCE0),
-		.iREGIST_REQ(spr_write_condition),
+		.iREGIST_REQ(sysreg_spr_write_condition),
 		.iREGIST_DATA(spr_write_data),
 		//Info
 		.oINFO_DATA(spr_data_info)
@@ -183,14 +185,10 @@ module execute_port3(
 			case(b_ldst_state)
 				PL_LDST_STT_IDLE:
 					begin
-						if(iPREVIOUS_EX_ALU3_VALID && iPREVIOUS_EX_ALU3_SYS_LDST && (iPREVIOUS_EX_ALU3_CMD == `EXE_SYS_LDST_WRITE_SPR || iPREVIOUS_EX_ALU3_CMD == `EXE_SYS_LDST_READ_SPR))begin
-						//if(iPREVIOUS_EX_ALU3_VALID && (push_condition || pop_condition || spradd_condition))begin
-							b_ldst_state <= PL_LDST_STT_SPRWAIT;
-						end
-						else if(!ldst_pipe_rw && iPREVIOUS_EX_ALU3_VALID && !this_lock)begin
+						if((load_condition || pop_condition) && !ldst_pipe_rw && iPREVIOUS_EX_ALU3_VALID && !this_lock)begin
 							b_ldst_state <= PL_LDST_STT_LDREQ;
 						end
-						else if(ldst_pipe_rw && iPREVIOUS_EX_ALU3_VALID && !this_lock)begin
+						else if((store_condition || push_condition) && ldst_pipe_rw && iPREVIOUS_EX_ALU3_VALID && !this_lock)begin
 							b_ldst_state <= PL_LDST_STT_STREQ;
 						end
 					end
@@ -284,6 +282,7 @@ module execute_port3(
 	reg [4:0] b_latch_logic_dest;
 	reg b_latch_adv_active;
 	reg [5:0] b_latch_adv_data;
+	reg b_latch_done_exe;
 
 	always@(posedge iCLOCK or negedge inRESET)begin
 		if(!inRESET)begin
@@ -292,6 +291,7 @@ module execute_port3(
 			b_latch_logic_dest <= 5'h0;
 			b_latch_adv_active <= 1'b0;
 			b_latch_adv_data <= 6'h0;
+			b_latch_done_exe <= 1'h0;
 		end
 		else if(iRESET_SYNC)begin
 			b_latch_commit_tag <= 6'h0;
@@ -307,9 +307,14 @@ module execute_port3(
 				b_latch_logic_dest <= iPREVIOUS_EX_ALU3_LOGIC_DEST;
 				b_latch_adv_active <= iPREVIOUS_EX_ALU3_ADV_ACTIVE;
 				b_latch_adv_data <= iPREVIOUS_EX_ALU3_ADV_DATA;
+				b_latch_done_exe <= iPREVIOUS_EX_ALU3_VALID && (write_spr_condition || read_spr_condition || add_spr_condition);
+			end
+			else begin
+				b_latch_done_exe <= 1'b0;
 			end
 		end
 	end
+	
 
 	/****************************************
 	Load Data
@@ -360,9 +365,9 @@ module execute_port3(
 	/****************************************
 	Scheduler1 and 2 Output
 	****************************************/
-	wire store_done = (b_ldst_state == PL_LDST_STT_STWAIT) && iDATAIO_REQ;//b_ldst_pipe_valid && b_ldst_pipe_rw;
+	wire store_done = (b_ldst_state == PL_LDST_STT_STWAIT) && iDATAIO_REQ;
 	wire load_done = (b_ldst_state == PL_LDST_STT_LDWAIT) && iDATAIO_REQ;
-	wire spr_done = b_ldst_pipe_valid && (b_ldst_state == PL_LDST_STT_SPRWAIT);
+	wire spr_done = b_latch_done_exe;
 	wire execute_done = store_done || load_done || spr_done;
 
 	assign oSCHE1_ALU3_VALID = execute_done;
@@ -372,7 +377,7 @@ module execute_port3(
 	assign oSCHE2_ALU3_DESTINATION_REGNAME = b_latch_phisical_dest_addr;
 	assign oSCHE2_ALU3_COMMIT_TAG = b_latch_commit_tag;
 	assign oSCHE2_ALU3_WRITEBACK = !b_ldst_pipe_rw;
-	assign oSCHE2_ALU3_DATA = (b_ldst_state == PL_LDST_STT_SPRWAIT)? spr_data_info : load_data;
+	assign oSCHE2_ALU3_DATA = (b_latch_done_exe)? spr_data_info : load_data;
 
 
 endmodule

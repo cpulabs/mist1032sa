@@ -1261,7 +1261,8 @@ module scheduler2 #(
 	wire rs2_1_regist_valid;
 	wire rs3_1_regist_valid;
 	
-	regist_rbuffer_select RB_SELECT(
+	//regist_rbuffer_select RB_SELECT(
+	scheduler2_allocate_rsv_station RB_SELECT(
 		.iORDER_LOCK(this_lock),
 		.iORDER_0_VALID(iPREVIOUS_0_VALID),
 		.iORDER_0_EX_SYS_REG(iPREVIOUS_0_EX_SYS_REG),	

@@ -1,3 +1,4 @@
 ./tb/*.v
 ../model/sim_memory_model/sim_memory_model.v
 ../model/altera/altera_mf.v
+../model/memory/*.v

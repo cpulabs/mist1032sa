@@ -6,6 +6,7 @@ import locale;
 import shutil;
 import os;
 import os.path;
+import re
 
 check_list = [];
 
@@ -24,6 +25,17 @@ def check_file(f_name):
 		if(line.find("[SIM-OK]Simulation Finished.") != -1):
 			return 0;
 	return -1;
+
+def get_sim_time(f_name):
+	time = 0
+	r = re.compile("Time: ([0-9]*) ns");
+	fh = open(f_name, 'r');
+	for line in fh:
+		m = r.search(line);
+		if(m != None):
+			return int(m.group(1))
+		#if(line.find("[SIM-OK]Simulation Finished.") != -1):
+	return time
 
 
 
@@ -47,9 +59,10 @@ if __name__ == "__main__":
 		mnemonic = line.replace(sys.argv[1], "");
 		mnemonic = mnemonic.replace(".result", "");
 		if(check_file(line) == 0):
-			print(str(cnt) + " : " + mnemonic + " -> Simulation OK!");
+			print(str(cnt) + " : " + mnemonic + " -> Simulation OK, Time : " + str(get_sim_time(line)));
 		else:
-			print(str(cnt) + " : " + mnemonic + " -> Error! Show " + line);
+			#print(str(cnt) + " : " + mnemonic + " -> Error Show " + line);
+			print(str(cnt) + " : " + mnemonic + " -> Error");
 		cnt = cnt + 1
 
 	print("\ndone");

@@ -19,4 +19,5 @@ If you do instruction-level or function-level check, you will need to select the
         `define MIST1032SA_FIRST_SIM
 `else
         //Normal Simulation Mode
+		`define MIST1032SA_INST_L1_CACHE
 `endif

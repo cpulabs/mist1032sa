@@ -5,6 +5,8 @@ vlog -work work +incdir+../../src/include +incdir+../../src/core/include ./tb/*.
 vlog -work work +incdir+../../src/include +incdir+../../src/core/include ../model/sim_memory_model/sim_memory_model.v
 
 vlog -work work +incdir+../../src/include +incdir+../../src/core/include ../model/altera/altera_mf.v
+
+vlog -work work +incdir+../../src/include +incdir+../../src/core/include ../model/memory/*.v
 vlog -work work +incdir+../../src/include +incdir+../../src/core/include ../../src/*.v
 
 vlog -work work +incdir+../../src/include +incdir+../../src/core/include ../../src/dps/*.v

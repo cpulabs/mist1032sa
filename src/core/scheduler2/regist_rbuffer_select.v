@@ -2,6 +2,7 @@
 
 `default_nettype none
 
+//module scheduler2_allocate_rsv_station(
 module regist_rbuffer_select(
 		input wire iORDER_LOCK,
 		input wire iORDER_0_VALID,
