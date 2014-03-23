@@ -647,7 +647,7 @@ module matching(
 	/****************************************
 	This -> Next
 	****************************************/	
-	assign oNEXT_0_VALID = next_0_valid;
+	assign oNEXT_0_VALID = next_0_valid && !iFREE_DEFAULT;
 	assign {
 		oNEXT_0_DESTINATION_SYSREG,
 		oNEXT_0_DEST_RENAME,		
@@ -739,7 +739,7 @@ module matching(
 																					inst_1_ex_ldst,
 																					inst_1_ex_branch};
 			
-	assign oNEXT_1_VALID = next_1_valid;										
+	assign oNEXT_1_VALID = next_1_valid && !iFREE_DEFAULT;										
 	assign {
 		oNEXT_1_DESTINATION_SYSREG,
 		oNEXT_1_DEST_RENAME,		

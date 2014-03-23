@@ -217,10 +217,10 @@ module fetch(
 	end
 	
 	
-	assign oNEXT_0_INST = b0_next_inst;
+	assign oNEXT_0_INST = b0_next_inst/* && !iEXCEPTION_EVENT*/;
 	assign oNEXT_0_INST_VALID = (!iNEXT_LOCK)? b0_next_inst_valid : 1'b0;
 	assign oNEXT_0_MMU_FLAGS = b0_next_mmu_flags;
-	assign oNEXT_1_INST = b1_next_inst;
+	assign oNEXT_1_INST = b1_next_inst/* && !iEXCEPTION_EVENT*/;
 	assign oNEXT_1_INST_VALID = (!iNEXT_LOCK)? b1_next_inst_valid : 1'b0;	
 	assign oNEXT_1_MMU_FLAGS = b1_next_mmu_flags;
 	

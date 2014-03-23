@@ -3,7 +3,13 @@
 /sim/inst_level/vsim.wlf
 /sim/func_level/sim
 /sim/func_level/work
+/sim/sys_level/sim
+/sim/sys_level/work
+/sim/sys_level/vsim.wlf
 /sim/modelsim/work
+
+
+/sim/sys_level/bin
 
 #For modelsim and riviera-pro
 *.wlf

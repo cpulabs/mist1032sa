@@ -36,6 +36,7 @@ module tb_inst_level;
 	wire oMEMORY_REQ;
 	wire  iMEMORY_LOCK;
 	wire [1:0] oMEMORY_ORDER;				//00=Byte Order 01=2Byte Order 10= Word Order 11= None
+	wire [3:0] oMEMORY_MASK;
 	wire oMEMORY_RW;						//1:Write | 0:Read
 	wire [31:0] oMEMORY_ADDR;
 	//This -> Data RAM
@@ -108,6 +109,7 @@ module tb_inst_level;
 		.oMEMORY_REQ(oMEMORY_REQ),
 		.iMEMORY_LOCK(iMEMORY_LOCK),
 		.oMEMORY_ORDER(oMEMORY_ORDER),				//00=Byte Order 01=2Byte Order 10= Word Order 11= None
+		.oMEMORY_MASK(oMEMORY_MASK),
 		.oMEMORY_RW(oMEMORY_RW),						//1:Write | 0:Read
 		.oMEMORY_ADDR(oMEMORY_ADDR),
 		//This -> Data RAM
@@ -226,6 +228,7 @@ module tb_inst_level;
 		.iMEMORY_REQ(oMEMORY_REQ),
 		.oMEMORY_LOCK(iMEMORY_LOCK),
 		.iMEMORY_ORDER(oMEMORY_ORDER),				//00=Byte Order 01=2Byte Order 10= Word Order 11= None
+		.iMEMORY_MASK(oMEMORY_MASK),
 		.iMEMORY_RW(oMEMORY_RW),						//1:Write | 0:Read
 		.iMEMORY_ADDR(oMEMORY_ADDR),
 		//This -> Data RAM

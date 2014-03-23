@@ -14,7 +14,7 @@ entity sim_memory_model is
         iMEMORY_ORDER   : in     vl_logic_vector(1 downto 0);
         iMEMORY_MASK    : in     vl_logic_vector(3 downto 0);
         iMEMORY_RW      : in     vl_logic;
-        iMEMORY_ADDR    : in     vl_logic_vector(25 downto 0);
+        iMEMORY_ADDR    : in     vl_logic_vector(31 downto 0);
         iMEMORY_DATA    : in     vl_logic_vector(31 downto 0);
         oMEMORY_VALID   : out    vl_logic;
         iMEMORY_LOCK    : in     vl_logic;

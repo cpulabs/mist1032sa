@@ -66,7 +66,7 @@ module register_renaming_table #(
 				default :
 					begin
 						//Rollback!
-						if(iRESTART_VALID)begin			
+						if(iRESTART_VALID)begin		/*	
 							if(iROLLBACK_UPDATE_CANDIDATE3_VALID && iROLLBACK_UPDATE_CANDIDATE3_LREGNAME == ENTRY_ID[4:0])begin	
 								b_regname <= iROLLBACK_UPDATE_CANDIDATE3_PREGNAME;
 								bb_regname <= iROLLBACK_UPDATE_CANDIDATE3_PREGNAME;
@@ -83,10 +83,10 @@ module register_renaming_table #(
 								b_regname <= iROLLBACK_UPDATE_CANDIDATE0_PREGNAME;
 								bb_regname <= iROLLBACK_UPDATE_CANDIDATE0_PREGNAME;
 							end
-							else begin
+							else begin*/
 								b_regname <= b_rollback_point;
 								bb_regname <= b_rollback_point;
-							end
+							//end
 						end
 						//Rollback Regname Update - 2012/01/24
 						if(iROLLBACK_UPDATE_CANDIDATE3_VALID && iROLLBACK_UPDATE_CANDIDATE3_LREGNAME == ENTRY_ID[4:0])begin	

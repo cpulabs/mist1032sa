@@ -1,0 +1,319 @@
+# ** Warning: (vlib-34) Library already exists at "work".
+# QuestaSim-64 vlog 10.0c Compiler 2011.07 Jul 21 2011
+# -- Compiling module tb_sys_level
+# 
+# Top level modules:
+# 	tb_sys_level
+# QuestaSim-64 vlog 10.0c Compiler 2011.07 Jul 21 2011
+# -- Compiling module sim_memory_model
+# 
+# Top level modules:
+# 	sim_memory_model
+# QuestaSim-64 vlog 10.0c Compiler 2011.07 Jul 21 2011
+# -- Compiling module lcell
+# -- Compiling module ALTERA_MF_MEMORY_INITIALIZATION
+# -- Compiling module ALTERA_MF_HINT_EVALUATION
+# -- Compiling module ALTERA_DEVICE_FAMILIES
+# -- Compiling module dffp
+# -- Compiling module pll_iobuf
+# -- Compiling module stx_m_cntr
+# -- Compiling module stx_n_cntr
+# -- Compiling module stx_scale_cntr
+# -- Compiling module MF_pll_reg
+# -- Compiling module MF_stratix_pll
+# -- Compiling module arm_m_cntr
+# -- Compiling module arm_n_cntr
+# -- Compiling module arm_scale_cntr
+# -- Compiling module MF_stratixii_pll
+# -- Compiling module ttn_m_cntr
+# -- Compiling module ttn_n_cntr
+# -- Compiling module ttn_scale_cntr
+# -- Compiling module MF_stratixiii_pll
+# -- Compiling module cda_m_cntr
+# -- Compiling module cda_n_cntr
+# -- Compiling module cda_scale_cntr
+# -- Compiling module MF_cycloneiii_pll
+# -- Compiling module MF_cycloneiiigl_m_cntr
+# -- Compiling module MF_cycloneiiigl_n_cntr
+# -- Compiling module MF_cycloneiiigl_scale_cntr
+# -- Compiling module cycloneiiigl_post_divider
+# -- Compiling module MF_cycloneiiigl_pll
+# -- Compiling module altpll
+# -- Compiling module altlvds_rx
+# -- Compiling module stratix_lvds_rx
+# -- Compiling module stratixgx_dpa_lvds_rx
+# -- Compiling module stratixii_lvds_rx
+# -- Compiling module flexible_lvds_rx
+# -- Compiling module stratixiii_lvds_rx
+# -- Compiling module stratixiii_lvds_rx_channel
+# -- Compiling module stratixiii_lvds_rx_dpa
+# -- Compiling module altlvds_tx
+# -- Compiling module stratixv_local_clk_divider
+# -- Compiling module stratix_tx_outclk
+# -- Compiling module stratixii_tx_outclk
+# -- Compiling module flexible_lvds_tx
+# -- Compiling module dcfifo_dffpipe
+# -- Compiling module dcfifo_fefifo
+# -- Compiling module dcfifo_async
+# -- Compiling module dcfifo_sync
+# -- Compiling module dcfifo_low_latency
+# -- Compiling module dcfifo_mixed_widths
+# -- Compiling module dcfifo
+# -- Compiling module altaccumulate
+# -- Compiling module altmult_accum
+# -- Compiling module altmult_add
+# -- Compiling module altfp_mult
+# -- Compiling module altsqrt
+# -- Compiling module altclklock
+# -- Compiling module altddio_in
+# -- Compiling module altddio_out
+# -- Compiling module altddio_bidir
+# -- Compiling module altdpram
+# -- Compiling module altsyncram
+# -- Compiling module alt3pram
+# -- Compiling module parallel_add
+# -- Compiling module scfifo
+# -- Compiling module altshift_taps
+# -- Compiling module a_graycounter
+# -- Compiling module altsquare
+# -- Compiling module altera_std_synchronizer
+# -- Compiling module altera_std_synchronizer_bundle
+# -- Compiling module alt_cal
+# -- Compiling module alt_cal_mm
+# -- Compiling module alt_cal_c3gxb
+# -- Compiling module alt_cal_sv
+# -- Compiling module alt_aeq_s4
+# -- Compiling module alt_eyemon
+# -- Compiling module alt_dfe
+# -- Compiling module signal_gen
+# -- Compiling module jtag_tap_controller
+# -- Compiling module dummy_hub
+# -- Compiling module sld_virtual_jtag
+# -- Compiling module sld_signaltap
+# -- Compiling module altstratixii_oct
+# -- Compiling module altparallel_flash_loader
+# -- Compiling module altserial_flash_loader
+# -- Compiling module sld_virtual_jtag_basic
+# -- Compiling module altsource_probe
+# 
+# Top level modules:
+# 	lcell
+# 	altpll
+# 	altlvds_rx
+# 	altlvds_tx
+# 	dcfifo
+# 	altaccumulate
+# 	altmult_accum
+# 	altmult_add
+# 	altfp_mult
+# 	altsqrt
+# 	altclklock
+# 	altddio_bidir
+# 	altdpram
+# 	alt3pram
+# 	parallel_add
+# 	scfifo
+# 	altshift_taps
+# 	a_graycounter
+# 	altsquare
+# 	altera_std_synchronizer_bundle
+# 	alt_cal
+# 	alt_cal_mm
+# 	alt_cal_c3gxb
+# 	alt_cal_sv
+# 	alt_aeq_s4
+# 	alt_eyemon
+# 	alt_dfe
+# 	sld_virtual_jtag
+# 	sld_signaltap
+# 	altstratixii_oct
+# 	altparallel_flash_loader
+# 	altserial_flash_loader
+# 	sld_virtual_jtag_basic
+# 	altsource_probe
+# QuestaSim-64 vlog 10.0c Compiler 2011.07 Jul 21 2011
+# -- Compiling module cache_ram_16entry_256bit
+# -- Compiling module cache_ram_16entry_512bit
+# 
+# Top level modules:
+# 	cache_ram_16entry_256bit
+# 	cache_ram_16entry_512bit
+# QuestaSim-64 vlog 10.0c Compiler 2011.07 Jul 21 2011
+# -- Compiling module endian_controller
+# -- Compiling module memory_pipe_arbiter
+# ** Warning: ../../src/memory_pipe_arbiter.v(167): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
+# -- Compiling module mist1032sa
+# 
+# Top level modules:
+# 	mist1032sa
+# QuestaSim-64 vlog 10.0c Compiler 2011.07 Jul 21 2011
+# -- Compiling module dps
+# -- Compiling module dps_irq
+# -- Compiling module dps_lsflags
+# 
+# Top level modules:
+# 	dps
+# QuestaSim-64 vlog 10.0c Compiler 2011.07 Jul 21 2011
+# -- Compiling module dps_mimsr
+# 
+# Top level modules:
+# 	dps_mimsr
+# QuestaSim-64 vlog 10.0c Compiler 2011.07 Jul 21 2011
+# -- Compiling module dps_sci
+# -- Compiling module dps_uart
+# 
+# Top level modules:
+# 	dps_sci
+# QuestaSim-64 vlog 10.0c Compiler 2011.07 Jul 21 2011
+# -- Compiling module comparator_counter
+# -- Compiling module dps_utim64
+# -- Compiling module main_counter
+# -- Compiling module utim64
+# 
+# Top level modules:
+# 	dps_utim64
+# QuestaSim-64 vlog 10.0c Compiler 2011.07 Jul 21 2011
+# -- Compiling module mmu
+# -- Compiling module mmu_if
+# -- Compiling module tlb
+# 
+# Top level modules:
+# 	mmu_if
+# QuestaSim-64 vlog 10.0c Compiler 2011.07 Jul 21 2011
+# -- Compiling module mist1032sa_arbiter_matching_queue
+# -- Compiling module mist1032sa_async_fifo
+# -- Compiling module mist1032sa_async_fifo_double_flipflop
+# -- Compiling module mist1032sa_sync_fifo
+# -- Compiling module mist1032sa_uart_receiver
+# -- Compiling module mist1032sa_uart_receiver_async2sync
+# -- Compiling module mist1032sa_uart_receiver_double_flipflop
+# -- Compiling module mist1032sa_uart_transmitter
+# -- Compiling module mist1032sa_uart_transmitter_async2sync
+# -- Compiling module mist1032sa_uart_transmitter_double_flipflop
+# 
+# Top level modules:
+# 	mist1032sa_arbiter_matching_queue
+# 	mist1032sa_async_fifo
+# 	mist1032sa_sync_fifo
+# 	mist1032sa_uart_receiver
+# 	mist1032sa_uart_transmitter
+# QuestaSim-64 vlog 10.0c Compiler 2011.07 Jul 21 2011
+# -- Compiling module pic
+# 
+# Top level modules:
+# 	pic
+# QuestaSim-64 vlog 10.0c Compiler 2011.07 Jul 21 2011
+# -- Compiling module core
+# -- Compiling module core_if
+# -- Compiling module core_pipeline
+# -- Compiling module losd_store_pipe_arbiter
+# -- Compiling module pipeline_register
+# 
+# Top level modules:
+# 	core
+# 	core_if
+# 	pipeline_register
+# QuestaSim-64 vlog 10.0c Compiler 2011.07 Jul 21 2011
+# -- Compiling module l1_cache_64entry_4way_line64b_bus_8b_damy
+# -- Compiling module l1_cache_64entry_4way_line64b_bus_8b
+# -- Compiling module l1_instruction_cache
+# 
+# Top level modules:
+# 	l1_cache_64entry_4way_line64b_bus_8b_damy
+# 	l1_instruction_cache
+# QuestaSim-64 vlog 10.0c Compiler 2011.07 Jul 21 2011
+# -- Compiling module l1_data_cache
+# -- Compiling module l1_data_cache_64entry_4way_line64b_bus_8b_damy
+# -- Compiling module l1_data_cache_64entry_4way_line64b_bus_8b
+# -- Compiling module l1_data_cache_counter
+# 
+# Top level modules:
+# 	l1_data_cache
+# 	l1_data_cache_64entry_4way_line64b_bus_8b
+# 	l1_data_cache_counter
+# QuestaSim-64 vlog 10.0c Compiler 2011.07 Jul 21 2011
+# -- Compiling module decode_authcheck
+# -- Compiling module decode_function
+# -- Compiling module decode_mmucheck
+# -- Compiling module decoder
+# 
+# Top level modules:
+# 	decode_authcheck
+# 	decode_mmucheck
+# 	decoder
+# QuestaSim-64 vlog 10.0c Compiler 2011.07 Jul 21 2011
+# -- Compiling module execute_adder
+# -- Compiling module execute_afe_load_store
+# -- Compiling module execute_branch
+# -- Compiling module execute_load_data
+# -- Compiling module execute_load_store
+# -- Compiling module execute_logic
+# -- Compiling module execute_port0
+# -- Compiling module execute_port1
+# -- Compiling module execute_port2
+# -- Compiling module execute_port3
+# -- Compiling module execute_shift
+# -- Compiling module execute_sys_reg
+# -- Compiling module sysreg_spr_register
+# 
+# Top level modules:
+# 	execute_port0
+# 	execute_port1
+# 	execute_port2
+# 	execute_port3
+# QuestaSim-64 vlog 10.0c Compiler 2011.07 Jul 21 2011
+# -- Compiling module div_pipelined_latch
+# -- Compiling module pipelined_div_radix2
+# -- Compiling module radix2_linediv
+# 
+# Top level modules:
+# 	pipelined_div_radix2
+# QuestaSim-64 vlog 10.0c Compiler 2011.07 Jul 21 2011
+# -- Compiling module fetch
+# 
+# Top level modules:
+# 	fetch
+# QuestaSim-64 vlog 10.0c Compiler 2011.07 Jul 21 2011
+# -- Compiling module matching
+# 
+# Top level modules:
+# 	matching
+# QuestaSim-64 vlog 10.0c Compiler 2011.07 Jul 21 2011
+# -- Compiling module register_renaming_table
+# -- Compiling module rename
+# 
+# Top level modules:
+# 	rename
+# QuestaSim-64 vlog 10.0c Compiler 2011.07 Jul 21 2011
+# -- Compiling module scheduler1
+# -- Compiling module scheduler1_commit_entry
+# 
+# Top level modules:
+# 	scheduler1
+# QuestaSim-64 vlog 10.0c Compiler 2011.07 Jul 21 2011
+# -- Compiling module flag_rename_management
+# -- Compiling module frcr_timer
+# -- Compiling module priority_encoder_16
+# -- Compiling module regist_rbuffer_select
+# -- Compiling module reservation_alu0_entry
+# -- Compiling module reservation_alu1_entry
+# -- Compiling module reservation_alu2_entry
+# -- Compiling module reservation_alu3_entry
+# -- Compiling module reservation_free_entry_count
+# -- Compiling module reservation_search16to2
+# -- Compiling module scheduler2
+# -- Compiling module scheduler2_allocate_rsv_station
+# -- Compiling module scheduler2_free_search_64to2
+# -- Compiling module scheduler2_gr
+# -- Compiling module system_register
+# 
+# Top level modules:
+# 	regist_rbuffer_select
+# 	scheduler2
+# QuestaSim-64 vlog 10.0c Compiler 2011.07 Jul 21 2011
+# -- Compiling module core_interrupt_manager
+# -- Compiling module exception_manager
+# 
+# Top level modules:
+# 	core_interrupt_manager
+# 	exception_manager

@@ -66,7 +66,8 @@ def sim_start(simulator, top_name, hex_name, tb_model_list, srclist, inclist):
 
 		#Start Sim
 		if(simulator == "modelsim"):
-			subprocess.call("vsim -c " + top_name + " -do sim_run.tcl", shell=True);
+			#subprocess.call("vsim -c " + top_name + " -do sim_run.tcl", shell=True);
+			subprocess.call("vsim -c " + top_name + " -do sim_run.tcl -voptargs=+acc", shell=True); #for Save log
 		elif(simulator == "riviera"):
 			subprocess.call("vsimsa -do sim_run.tcl", shell=True);
 		else:

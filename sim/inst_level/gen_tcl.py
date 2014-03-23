@@ -48,8 +48,6 @@ def generate_tcl(run, simulator, top_name, tb_model_list, srclist, inclist, log_
 			#For Wave save
 			wr_string = wr_string + 'vsim -voptargs="+acc"\n';
 			wr_string = wr_string + "radix -hexadecimal\n";
-			
-			
 			wr_string = wr_string + "log -r /*\n";
 			#"""
 			wr_string = wr_string + "run -all\n";

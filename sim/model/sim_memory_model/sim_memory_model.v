@@ -30,7 +30,7 @@ module sim_memory_model(
 		input wire [1:0] iMEMORY_ORDER,				//00=Byte Order 01=2Byte Order 10= Word Order 11= None
 		input wire [3:0] iMEMORY_MASK,
 		input wire iMEMORY_RW,						//1:Write | 0:Read
-		input wire [25:0] iMEMORY_ADDR,
+		input wire [31:0] iMEMORY_ADDR,//input wire [25:0] iMEMORY_ADDR,
 		//This -> Data RAM
 		input wire [31:0] iMEMORY_DATA,
 		//Data RAM -> This
@@ -41,7 +41,7 @@ module sim_memory_model(
 	
 	parameter P_MEM_INIT_LOAD = 1;		//0=not load | 1=load
 	parameter P_MEM_INIT_LOAD_FIEL = "binary_file.bin";
-	parameter P_MEM_SIZE = 134217728/8;
+	parameter P_MEM_SIZE = (134217728)/8;
 	
 	wire fifo_write_full;
 	wire fifo_read_empty;
@@ -54,7 +54,16 @@ module sim_memory_model(
 	wire system_busy = fifo_write_full;
 	wire system_read_condition = iMEMORY_REQ && !iMEMORY_RW && !system_busy;
 	wire system_write_condition = iMEMORY_REQ && iMEMORY_RW && !system_busy;
-						
+	
+	//Error Check
+	always@(posedge iCLOCK)begin
+		if(system_write_condition || system_read_condition)begin
+			if(P_MEM_SIZE*8 <= iMEMORY_ADDR)begin	
+				$display("[ERROR][sim_memory_model.v] Memory model, over address. MAX_ADDR[%x], REQ_ADDR[%x]", P_MEM_SIZE*8, iMEMORY_ADDR);
+			end
+		end
+	end
+	
 	
 	function [63:0] func_data_mask;
 		input func_word_select; //0

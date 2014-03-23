@@ -278,6 +278,7 @@ module execute_port3(
 	Request Buffer
 	****************************************/
 	reg [5:0] b_latch_commit_tag;
+	reg b_latch_dest_sysreg;
 	reg [5:0] b_latch_phisical_dest_addr;
 	reg [4:0] b_latch_logic_dest;
 	reg b_latch_adv_active;
@@ -287,6 +288,7 @@ module execute_port3(
 	always@(posedge iCLOCK or negedge inRESET)begin
 		if(!inRESET)begin
 			b_latch_commit_tag <= 6'h0;
+			b_latch_dest_sysreg <= 1'b0;
 			b_latch_phisical_dest_addr <= 6'h0;
 			b_latch_logic_dest <= 5'h0;
 			b_latch_adv_active <= 1'b0;
@@ -295,6 +297,7 @@ module execute_port3(
 		end
 		else if(iRESET_SYNC)begin
 			b_latch_commit_tag <= 6'h0;
+			b_latch_dest_sysreg <= 1'b0;
 			b_latch_phisical_dest_addr <= 6'h0;
 			b_latch_logic_dest <= 5'h0;
 			b_latch_adv_active <= 1'b0;
@@ -303,6 +306,7 @@ module execute_port3(
 		else begin
 			if(!this_lock)begin
 				b_latch_commit_tag <= iPREVIOUS_EX_ALU3_COMMIT_TAG;
+				b_latch_dest_sysreg <= iPREVIOUS_EX_ALU3_DESTINATION_SYSREG;
 				b_latch_phisical_dest_addr <= iPREVIOUS_EX_ALU3_DESTINATION_REGNAME;
 				b_latch_logic_dest <= iPREVIOUS_EX_ALU3_LOGIC_DEST;
 				b_latch_adv_active <= iPREVIOUS_EX_ALU3_ADV_ACTIVE;
@@ -346,8 +350,6 @@ module execute_port3(
 	Data & IO Port
 	****************************************/
 	assign oPREVIOUS_EX_ALU3_LOCK = this_lock;
-		
-	assign oSCHE2_ALU3_DESTINATION_SYSREG = 1'b0;
 	
 	assign oDATAIO_TID = iSYSREG_TIDR[13:0];
 	assign oDATAIO_MMUMOD = iSYSREG_PSR[1:0];
@@ -375,6 +377,7 @@ module execute_port3(
 	assign oSCHE2_ALU3_VALID = execute_done;
 	assign oSCHE2_ALU3_LOGIC_DEST = b_latch_logic_dest;
 	assign oSCHE2_ALU3_DESTINATION_REGNAME = b_latch_phisical_dest_addr;
+	assign oSCHE2_ALU3_DESTINATION_SYSREG = b_latch_dest_sysreg;
 	assign oSCHE2_ALU3_COMMIT_TAG = b_latch_commit_tag;
 	assign oSCHE2_ALU3_WRITEBACK = !b_ldst_pipe_rw;
 	assign oSCHE2_ALU3_DATA = (b_latch_done_exe)? spr_data_info : load_data;

@@ -805,7 +805,7 @@ module rename(
 	assign oSTAGE_INFO_0_VALID = b0_valid;
 	assign oSTAGE_INFO_1_VALID = b1_valid;
 	//Next-0	
-	assign oNEXT_0_VALID = !this_lock && b0_valid;
+	assign oNEXT_0_VALID = !this_lock && b0_valid && !iFREE_DEFAULT;
 	assign oNEXT_0_SOURCE0_ACTIVE = b0_source0_active;
 	assign oNEXT_0_SOURCE1_ACTIVE = b0_source1_active;
 	assign oNEXT_0_SOURCE0_SYSREG = b0_source0_sysreg;
@@ -837,7 +837,7 @@ module rename(
 	assign oNEXT_0_EX_LDST = b0_ex_ldst;
 	assign oNEXT_0_EX_BRANCH = b0_ex_branch;
 	//Next-1			
-	assign oNEXT_1_VALID = !this_lock && b1_valid;
+	assign oNEXT_1_VALID = !this_lock && b1_valid && !iFREE_DEFAULT;
 	assign oNEXT_1_SOURCE0_ACTIVE = b1_source0_active;
 	assign oNEXT_1_SOURCE1_ACTIVE = b1_source1_active;
 	assign oNEXT_1_SOURCE0_SYSREG = b1_source0_sysreg;

@@ -302,10 +302,10 @@
  478:	0d c0 01 c0 	clr	r14
  47c:	0d c0 01 e0 	clr	r15
  480:	18 00 03 c0 	srspr	rbase
- 484:	12 00 03 c0 	pop	rbase
- 488:	12 00 03 c0 	pop	rbase
- 48c:	12 00 03 c0 	pop	rbase
- 490:	12 00 03 c0 	pop	rbase
+ 484:	12 00 01 e0 	pop	r15
+ 488:	12 00 01 e0 	pop	r15
+ 48c:	12 00 01 e0 	pop	r15
+ 490:	12 00 01 e0 	pop	r15
  494:	00 10 03 d0 	add	rbase,16
  498:	18 00 03 a0 	srspr	rglobl
  49c:	20 70 03 e3 	movepc	rret,12

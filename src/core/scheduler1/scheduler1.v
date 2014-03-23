@@ -1264,7 +1264,7 @@ module scheduler1(
 	assign oFLAGR_RENAME_ROLLBACK_UPDATE_INFO3_PREGNAME = b_commit_flags_p_regname_n3;
 	
 	//Next-0	
-	assign oNEXT_0_VALID = (!this_lock)? b0_valid : 1'b0;		//12/19 2:13 always@de this_lock or inext_loxk dotirawo tukauka mayota toki
+	assign oNEXT_0_VALID = (!this_lock)? b0_valid && !iEXCEPTION_EVENT : 1'b0;		//12/19 2:13 always@de this_lock or inext_loxk dotirawo tukauka mayota toki
 	assign oNEXT_0_SOURCE0_ACTIVE = b0_source0_active;
 	assign oNEXT_0_SOURCE1_ACTIVE = b0_source1_active;
 	assign oNEXT_0_SOURCE0_SYSREG = b0_source0_sysreg;
@@ -1297,7 +1297,7 @@ module scheduler1(
 	assign oNEXT_0_EX_LDST = b0_ex_ldst;
 	assign oNEXT_0_EX_BRANCH = b0_ex_branch;	
 	//Next-1			
-	assign oNEXT_1_VALID = (!this_lock)? b1_valid : 1'b0;		//12/19 2:13 always@de this_lock or inext_loxk dotirawo tukauka mayota toki
+	assign oNEXT_1_VALID = (!this_lock)? b1_valid && !iEXCEPTION_EVENT : 1'b0;		//12/19 2:13 always@de this_lock or inext_loxk dotirawo tukauka mayota toki
 	assign oNEXT_1_SOURCE0_ACTIVE = b1_source0_active;
 	assign oNEXT_1_SOURCE1_ACTIVE = b1_source1_active;
 	assign oNEXT_1_SOURCE0_SYSREG = b1_source0_sysreg;

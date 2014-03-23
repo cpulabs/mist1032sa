@@ -293,7 +293,6 @@
 # QuestaSim-64 vlog 10.0c Compiler 2011.07 Jul 21 2011
 # -- Compiling module flag_rename_management
 # -- Compiling module frcr_timer
-# -- Compiling module general_register_entry
 # -- Compiling module priority_encoder_16
 # -- Compiling module regist_rbuffer_select
 # -- Compiling module reservation_alu0_entry
@@ -305,6 +304,7 @@
 # -- Compiling module scheduler2
 # -- Compiling module scheduler2_allocate_rsv_station
 # -- Compiling module scheduler2_free_search_64to2
+# -- Compiling module scheduler2_gr
 # -- Compiling module system_register
 # 
 # Top level modules:

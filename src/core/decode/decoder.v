@@ -382,6 +382,8 @@ module decoder(
 		)
 	);
 
+	wire nexe_decode_0_valid;
+	wire nexe_decode_1_valid;
 
 	pipeline_register #(82) PIPELINE_REG_PIPE0(
 		.iCLOCK(iCLOCK),
@@ -430,7 +432,7 @@ module decoder(
 		.iNEXT_BUSY(iNEXT_LOCK),
 		.oNEXT_DATA(
 			{
-				oNEXT_0_VALID,
+				nexe_decode_0_valid,//oNEXT_0_VALID,
 				oNEXT_0_SOURCE0_ACTIVE,			
 				oNEXT_0_SOURCE1_ACTIVE,		
 				oNEXT_0_SOURCE0_SYSREG,		
@@ -512,7 +514,7 @@ module decoder(
 		.iNEXT_BUSY(iNEXT_LOCK),
 		.oNEXT_DATA(
 			{
-				oNEXT_1_VALID,
+				nexe_decode_1_valid,//oNEXT_1_VALID,
 				oNEXT_1_SOURCE0_ACTIVE,			
 				oNEXT_1_SOURCE1_ACTIVE,		
 				oNEXT_1_SOURCE0_SYSREG,		
@@ -546,6 +548,9 @@ module decoder(
 			}
 		)
 	);
+	
+	assign oNEXT_0_VALID = !iRESET_SYNC && nexe_decode_0_valid;
+	assign oNEXT_1_VALID = !iRESET_SYNC && nexe_decode_1_valid;
 		
 	assign oPREVIOUS_LOCK = latch_busy;
 
