@@ -7,18 +7,18 @@ module decode_function(
 		//Info
 		output wire oINF_ERROR,
 		//
-		output wire oDECODE_SOURCE0_ACTIVE,			
-		output wire oDECODE_SOURCE1_ACTIVE,		
-		output wire oDECODE_SOURCE0_SYSREG,		
-		output wire oDECODE_SOURCE1_SYSREG,		
-		output wire oDECODE_SOURCE0_SYSREG_RENAME,	
+		output wire oDECODE_SOURCE0_ACTIVE,
+		output wire oDECODE_SOURCE1_ACTIVE,
+		output wire oDECODE_SOURCE0_SYSREG,
+		output wire oDECODE_SOURCE1_SYSREG,
+		output wire oDECODE_SOURCE0_SYSREG_RENAME,
 		output wire oDECODE_SOURCE1_SYSREG_RENAME,
-		output wire oDECODE_ADV_ACTIVE,	
-		output wire oDECODE_DESTINATION_SYSREG,	
-		output wire oDECODE_DEST_RENAME,	
+		output wire oDECODE_ADV_ACTIVE,
+		output wire oDECODE_DESTINATION_SYSREG,
+		output wire oDECODE_DEST_RENAME,
 		output wire oDECODE_WRITEBACK,
 		output wire oDECODE_FLAGS_WRITEBACK,
-		output wire oDECODE_FRONT_COMMIT_WAIT,				
+		output wire oDECODE_FRONT_COMMIT_WAIT,
 		output wire [4:0] oDECODE_CMD,
 		output wire [3:0] oDECODE_CC_AFE,
 		output wire [4:0] oDECODE_SOURCE0,
@@ -27,14 +27,14 @@ module decode_function(
 		output wire oDECODE_SOURCE0_FLAGS,
 		output wire oDECODE_SOURCE1_IMM,
 		output wire [4:0] oDECODE_DESTINATION,
-		output wire oDECODE_EX_SYS_REG,	
-		output wire oDECODE_EX_SYS_LDST,	
+		output wire oDECODE_EX_SYS_REG,
+		output wire oDECODE_EX_SYS_LDST,
 		output wire oDECODE_EX_LOGIC,
 		output wire oDECODE_EX_SHIFT,
 		output wire oDECODE_EX_ADDER,
-		output wire oDECODE_EX_MUL,			
-		output wire oDECODE_EX_SDIV,		
-		output wire oDECODE_EX_UDIV,		
+		output wire oDECODE_EX_MUL,
+		output wire oDECODE_EX_SDIV,
+		output wire oDECODE_EX_UDIV,
 		output wire oDECODE_EX_LDST,
 		output wire oDECODE_EX_BRANCH
 	);
@@ -48,7 +48,7 @@ module decode_function(
 				Integer
 				*******************/
 				`OC_ADD :
-					begin	
+					begin
 						if(!f_decode_inst[20])begin			//O2
 							f_decode	=	{
 								/* Decode Error */						1'b0,
@@ -103,7 +103,7 @@ module decode_function(
 						end
 					end
 				`OC_SUB :
-					begin	
+					begin
 						if(!f_decode_inst[20])begin			//O2
 							f_decode	=	{
 								/* Decode Error */						1'b0,
@@ -157,7 +157,7 @@ module decode_function(
 							};
 						end
 					end
-				`OC_MULL : 
+				`OC_MULL :
 					begin
 						if(!f_decode_inst[20])begin			//O2
 							f_decode	=	{
@@ -212,7 +212,7 @@ module decode_function(
 							};
 						end
 					end
-				`OC_MULH : 
+				`OC_MULH :
 					begin
 						if(!f_decode_inst[20])begin			//O2
 							f_decode	=	{
@@ -267,7 +267,7 @@ module decode_function(
 							};
 						end
 					end
-				`OC_UDIV : 
+				`OC_UDIV :
 					begin
 						if(!f_decode_inst[20])begin			//O2
 							f_decode	=	{
@@ -377,7 +377,7 @@ module decode_function(
 							};
 						end
 					end
-				`OC_CMP : 
+				`OC_CMP :
 					begin
 						if(!f_decode_inst[20])begin			//O2
 							f_decode	=	{
@@ -432,7 +432,7 @@ module decode_function(
 							};
 						end
 					end
-				`OC_DIV : 
+				`OC_DIV :
 					begin
 						if(!f_decode_inst[20])begin			//O2
 							f_decode	=	{
@@ -571,7 +571,7 @@ module decode_function(
 					end
 
 
-				`OC_UMULL : 
+				`OC_UMULL :
 					begin
 						if(!f_decode_inst[20])begin			//O2
 							f_decode	=	{
@@ -627,7 +627,7 @@ module decode_function(
 						end
 					end
 
-				`OC_UMULH : 
+				`OC_UMULH :
 					begin
 						if(!f_decode_inst[20])begin			//O2
 							f_decode	=	{
@@ -684,7 +684,7 @@ module decode_function(
 					end
 
 
-					
+
 				`OC_IC :
 					begin
 						f_decode	=	{
@@ -713,7 +713,7 @@ module decode_function(
 						};
 					end
 				`OC_ADDC :
-					begin	
+					begin
 						if(!f_decode_inst[20])begin			//O2
 							f_decode	=	{
 								/* Decode Error */						1'b0,
@@ -822,7 +822,7 @@ module decode_function(
 						};
 					end
 				`OC_MAX :
-					begin	
+					begin
 						if(!f_decode_inst[20])begin			//O2
 							f_decode	=	{
 								/* Decode Error */						1'b0,
@@ -877,7 +877,7 @@ module decode_function(
 						end
 					end
 				`OC_MIN :
-					begin	
+					begin
 						if(!f_decode_inst[20])begin			//O2
 							f_decode	=	{
 								/* Decode Error */						1'b0,
@@ -932,7 +932,7 @@ module decode_function(
 						end
 					end
 				`OC_UMAX :
-					begin	
+					begin
 						if(!f_decode_inst[20])begin			//O2
 							f_decode	=	{
 								/* Decode Error */						1'b0,
@@ -987,7 +987,7 @@ module decode_function(
 						end
 					end
 				`OC_UMIN :
-					begin	
+					begin
 						if(!f_decode_inst[20])begin			//O2
 							f_decode	=	{
 								/* Decode Error */						1'b0,
@@ -1041,10 +1041,10 @@ module decode_function(
 							};
 						end
 					end
-					
-					
+
+
 				`OC_SEXT8 :
-					begin		//O2	
+					begin		//O2
 						f_decode	=	{
 							/* Decode Error */						1'b0,
 							/* Commit Wait Instruction */			1'b0,
@@ -1071,7 +1071,7 @@ module decode_function(
 						};
 					end
 				`OC_SEXT16 :
-					begin		//O2	
+					begin		//O2
 						f_decode	=	{
 							/* Decode Error */						1'b0,
 							/* Commit Wait Instruction */			1'b0,
@@ -1103,7 +1103,7 @@ module decode_function(
 				/*******************
 				Shift
 				*******************/
-				`OC_SHL : 
+				`OC_SHL :
 					begin
 						if(!f_decode_inst[20])begin			//O2
 							f_decode	=	{
@@ -1158,7 +1158,7 @@ module decode_function(
 							};
 						end
 					end
-				`OC_SHR : 
+				`OC_SHR :
 					begin
 						if(!f_decode_inst[20])begin			//O2
 							f_decode	=	{
@@ -1213,7 +1213,7 @@ module decode_function(
 							};
 						end
 					end
-				`OC_SAR : 
+				`OC_SAR :
 					begin
 						if(!f_decode_inst[20])begin			//O2
 							f_decode	=	{
@@ -1268,7 +1268,7 @@ module decode_function(
 							};
 						end
 					end
-				`OC_ROL : 
+				`OC_ROL :
 					begin
 						if(!f_decode_inst[20])begin			//O2
 							f_decode	=	{
@@ -1323,7 +1323,7 @@ module decode_function(
 							};
 						end
 					end
-				`OC_ROR : 
+				`OC_ROR :
 					begin
 						if(!f_decode_inst[20])begin			//O2
 							f_decode	=	{
@@ -1569,7 +1569,7 @@ module decode_function(
 							/* Execute Module Command */			`EXE_LOGIC_XNOR,
 							/* Execute Module */					`EXE_SELECT_LOGIC
 						};
-					end	
+					end
 				`OC_TEST :
 					begin									//O2
 						f_decode	=	{
@@ -1596,7 +1596,7 @@ module decode_function(
 							/* Execute Module Command */			`EXE_LOGIC_TEST,
 							/* Execute Module */					`EXE_SELECT_LOGIC
 						};
-					end	
+					end
 				`OC_WL16 :
 					begin									//I16
 						f_decode	=	{
@@ -1731,7 +1731,7 @@ module decode_function(
 							/* Execute Module Command */			`EXE_LOGIC_CLW,
 							/* Execute Module */					`EXE_SELECT_LOGIC
 						};
-					end	
+					end
 				`OC_SET :				//okasi
 					begin									//O1
 						f_decode	=	{
@@ -1813,7 +1813,7 @@ module decode_function(
 							/* Execute Module */					`EXE_SELECT_LOGIC
 						};
 					end
-				`OC_GETB : 
+				`OC_GETB :
 					begin
 						if(!f_decode_inst[20])begin			//O2
 							f_decode	=	{
@@ -1868,7 +1868,7 @@ module decode_function(
 							};
 						end
 					end
-				`OC_GET8 : 
+				`OC_GET8 :
 					begin
 						if(!f_decode_inst[20])begin			//O2
 							f_decode	=	{
@@ -1923,7 +1923,7 @@ module decode_function(
 							};
 						end
 					end
-				`OC_LIL	:	
+				`OC_LIL	:
 					begin									//I16
 						f_decode	=	{
 							/* Decode Error */						1'b0,
@@ -1950,7 +1950,7 @@ module decode_function(
 							/* Execute Module */					`EXE_SELECT_LOGIC
 						};
 					end
-				`OC_LIH	:	
+				`OC_LIH	:
 					begin									//I16
 						f_decode	=	{
 							/* Decode Error */						1'b0,
@@ -1977,7 +1977,7 @@ module decode_function(
 							/* Execute Module */					`EXE_SELECT_LOGIC
 						};
 					end
-				`OC_ULIL	:	
+				`OC_ULIL	:
 					begin									//I16
 						f_decode	=	{
 							/* Decode Error */						1'b0,
@@ -2007,7 +2007,7 @@ module decode_function(
 				/*******************
 				Load/Store
 				*******************/
-				`OC_LD8 : 
+				`OC_LD8 :
 					begin
 						if(!f_decode_inst[20])begin			//O2
 							f_decode	=	{
@@ -2062,7 +2062,7 @@ module decode_function(
 							};
 						end
 					end
-				`OC_LD16 : 
+				`OC_LD16 :
 					begin
 						if(!f_decode_inst[20])begin			//O2
 							f_decode	=	{
@@ -2117,7 +2117,7 @@ module decode_function(
 							};
 						end
 					end
-				`OC_LD32 : 
+				`OC_LD32 :
 					begin
 						if(!f_decode_inst[20])begin			//O2
 							f_decode	=	{
@@ -2172,7 +2172,7 @@ module decode_function(
 							};
 						end
 					end
-				`OC_ST8 : 
+				`OC_ST8 :
 					begin
 						if(!f_decode_inst[20])begin			//O2
 							f_decode	=	{
@@ -2227,7 +2227,7 @@ module decode_function(
 							};
 						end
 					end
-				`OC_ST16 : 
+				`OC_ST16 :
 					begin
 						if(!f_decode_inst[20])begin			//O2
 							f_decode	=	{
@@ -2282,7 +2282,7 @@ module decode_function(
 							};
 						end
 					end
-				`OC_ST32 : 
+				`OC_ST32 :
 					begin
 						if(!f_decode_inst[20])begin			//O2
 							f_decode	=	{
@@ -2416,7 +2416,7 @@ module decode_function(
 							/* Execute Module */					`EXE_SELECT_LDST
 						};
 					end
-				`OC_LDD8 : 
+				`OC_LDD8 :
 					begin			//O2
 						f_decode	=	{
 							/* Decode Error */						1'b0,
@@ -2432,8 +2432,8 @@ module decode_function(
 							/* Source1 System Register */			1'b0,
 							/* Source0 System Register Rename */	1'b0,
 							/* Source1 System Register Rename */	1'b0,
-							/* Displacement Data -> ADV */			6'h0,
-							/* Displacement Data -> ADV Enable */	1'b0,
+							/* Displacement Data -> ADV */			f_decode_inst[15:10],
+							/* Displacement Data -> ADV Enable */	1'b1,
 							/* Destination */						f_decode_inst[9:5],
 							/* Write Back Enable */					1'b1,
 							/* Make Flag Instruction */				1'b0,
@@ -2443,7 +2443,7 @@ module decode_function(
 							/* Execute Module */					`EXE_SELECT_LDST
 						};
 					end
-				`OC_LDD16 : 
+				`OC_LDD16 :
 					begin			//O2
 						f_decode	=	{
 							/* Decode Error */						1'b0,
@@ -2459,8 +2459,8 @@ module decode_function(
 							/* Source1 System Register */			1'b0,
 							/* Source0 System Register Rename */	1'b0,
 							/* Source1 System Register Rename */	1'b0,
-							/* Displacement Data -> ADV */			6'h0,
-							/* Displacement Data -> ADV Enable */	1'b0,
+							/* Displacement Data -> ADV */			f_decode_inst[15:10],
+							/* Displacement Data -> ADV Enable */	1'b1,
 							/* Destination */						f_decode_inst[9:5],
 							/* Write Back Enable */					1'b1,
 							/* Make Flag Instruction */				1'b0,
@@ -2470,7 +2470,7 @@ module decode_function(
 							/* Execute Module */					`EXE_SELECT_LDST
 						};
 					end
-				`OC_LDD32 : 
+				`OC_LDD32 :
 					begin			//O2
 						f_decode	=	{
 							/* Decode Error */						1'b0,
@@ -2486,8 +2486,8 @@ module decode_function(
 							/* Source1 System Register */			1'b0,
 							/* Source0 System Register Rename */	1'b0,
 							/* Source1 System Register Rename */	1'b0,
-							/* Displacement Data -> ADV */			6'h0,
-							/* Displacement Data -> ADV Enable */	1'b0,
+							/* Displacement Data -> ADV */			f_decode_inst[15:10],
+							/* Displacement Data -> ADV Enable */	1'b1,
 							/* Destination */						f_decode_inst[9:5],
 							/* Write Back Enable */					1'b1,
 							/* Make Flag Instruction */				1'b0,
@@ -2497,7 +2497,7 @@ module decode_function(
 							/* Execute Module */					`EXE_SELECT_LDST
 						};
 					end
-				`OC_STD8 : 
+				`OC_STD8 :
 					begin			//O2
 						f_decode	=	{
 							/* Decode Error */						1'b0,
@@ -2513,8 +2513,8 @@ module decode_function(
 							/* Source1 System Register */			1'b0,
 							/* Source0 System Register Rename */	1'b0,
 							/* Source1 System Register Rename */	1'b0,
-							/* Displacement Data -> ADV */			6'h0,
-							/* Displacement Data -> ADV Enable */	1'b0,
+							/* Displacement Data -> ADV */			f_decode_inst[15:10],
+							/* Displacement Data -> ADV Enable */	1'b1,
 							/* Destination */						5'h00,		//Memory
 							/* Write Back Enable */					1'b0,
 							/* Make Flag Instruction */				1'b0,
@@ -2524,7 +2524,7 @@ module decode_function(
 							/* Execute Module */					`EXE_SELECT_LDST
 						};
 					end
-				`OC_STD16 : 
+				`OC_STD16 :
 					begin			//O2
 						f_decode	=	{
 							/* Decode Error */						1'b0,
@@ -2540,8 +2540,8 @@ module decode_function(
 							/* Source1 System Register */			1'b0,
 							/* Source0 System Register Rename */	1'b0,
 							/* Source1 System Register Rename */	1'b0,
-							/* Displacement Data -> ADV */			6'h0,
-							/* Displacement Data -> ADV Enable */	1'b0,
+							/* Displacement Data -> ADV */			f_decode_inst[15:10],
+							/* Displacement Data -> ADV Enable */	1'b1,
 							/* Destination */						5'h00,		//Memory
 							/* Write Back Enable */					1'b0,
 							/* Make Flag Instruction */				1'b0,
@@ -2551,7 +2551,7 @@ module decode_function(
 							/* Execute Module */					`EXE_SELECT_LDST
 						};
 					end
-				`OC_STD32 : 
+				`OC_STD32 :
 					begin			//O2
 						f_decode	=	{
 							/* Decode Error */						1'b0,
@@ -2567,8 +2567,8 @@ module decode_function(
 							/* Source1 System Register */			1'b0,
 							/* Source0 System Register Rename */	1'b0,
 							/* Source1 System Register Rename */	1'b0,
-							/* Displacement Data -> ADV */			6'h0,
-							/* Displacement Data -> ADV Enable */	1'b0,
+							/* Displacement Data -> ADV */			f_decode_inst[15:10],
+							/* Displacement Data -> ADV Enable */	1'b1,
 							/* Destination */						5'h00,		//Memory
 							/* Write Back Enable */					1'b0,
 							/* Make Flag Instruction */				1'b0,
@@ -2582,7 +2582,7 @@ module decode_function(
 				Branch
 				*******************/
 				`OC_BUR :
-					begin	
+					begin
 						if(!f_decode_inst[20])begin			//JO1
 							f_decode	=	{
 								/* Decode Error */						1'b0,
@@ -2637,7 +2637,7 @@ module decode_function(
 						end
 					end
 				`OC_BR :
-					begin	
+					begin
 						if(!f_decode_inst[20])begin			//JO1
 							f_decode	=	{
 								/* Decode Error */						1'b0,
@@ -2692,7 +2692,7 @@ module decode_function(
 						end
 					end
 				`OC_B :
-					begin	
+					begin
 						if(!f_decode_inst[20])begin			//JO1
 							f_decode	=	{
 								/* Decode Error */						1'b0,
@@ -2724,7 +2724,7 @@ module decode_function(
 								/* Decode Error */						1'b0,
 								/* Commit Wait Instruction */			1'b0,
 								/* Condition Code & AFE */				f_decode_inst[19:16],
-								/* Source0 */							{5{1'b0}},								//none		
+								/* Source0 */							{5{1'b0}},								//none
 								/* Source1 */							{{14{1'b0}}, f_decode_inst[15:0], 2'b0},		//Rd
 								/* Source0 Use Flags*/					1'b1,
 								/* Source1-Immediate */					1'b1,
@@ -2747,7 +2747,7 @@ module decode_function(
 						end
 					end
 				`OC_IB :
-					begin	
+					begin
 						if(!f_decode_inst[20])begin			//JO1
 							f_decode	=	{
 								/* Decode Error */						1'b0,
@@ -2779,7 +2779,7 @@ module decode_function(
 								/* Decode Error */						1'b0,
 								/* Commit Wait Instruction */			1'b0,
 								/* Condition Code & AFE */				f_decode_inst[19:16],
-								/* Source0 */							{5{1'b0}},								//none		
+								/* Source0 */							{5{1'b0}},								//none
 								/* Source1 */							{{14{1'b0}}, f_decode_inst[15:0], 2'h0},		//Rd
 								/* Source0 Use Flags*/					1'b0,
 								/* Source1-Immediate */					1'b1,
@@ -2802,7 +2802,7 @@ module decode_function(
 						end
 					end
 				`OC_BURN :
-					begin	
+					begin
 						if(!f_decode_inst[20])begin			//JO1
 							f_decode	=	{
 								/* Decode Error */						1'b0,
@@ -2857,7 +2857,7 @@ module decode_function(
 						end
 					end
 				`OC_BRN :
-					begin	
+					begin
 						if(!f_decode_inst[20])begin			//JO1
 							f_decode	=	{
 								/* Decode Error */						1'b0,
@@ -2912,7 +2912,7 @@ module decode_function(
 						end
 					end
 				`OC_BN :
-					begin	
+					begin
 						if(!f_decode_inst[20])begin			//JO1
 							f_decode	=	{
 								/* Decode Error */						1'b0,
@@ -2944,7 +2944,7 @@ module decode_function(
 								/* Decode Error */						1'b0,
 								/* Commit Wait Instruction */			1'b0,
 								/* Condition Code & AFE */				f_decode_inst[19:16],
-								/* Source0 */							{5{1'b0}},								//none		
+								/* Source0 */							{5{1'b0}},								//none
 								/* Source1 */							{{14{1'b0}}, f_decode_inst[15:0], 2'b0},		//Rd
 								/* Source0 Use Flags*/					1'b1,
 								/* Source1-Immediate */					1'b1,
@@ -2968,7 +2968,7 @@ module decode_function(
 					end
 				/*******************
 				System Read
-				*******************/			
+				*******************/
 				`OC_SRSPR :
 					begin									//O1
 						f_decode	=	{
@@ -3022,7 +3022,7 @@ module decode_function(
 							/* Execute Module Command */			`EXE_SYS_REG_BUFFER0,
 							/* Execute Module */					`EXE_SELECT_SYS_REG
 						};
-					end				
+					end
 				`OC_SRPIDR :
 					begin									//O1
 						f_decode	=	{
@@ -3050,7 +3050,7 @@ module decode_function(
 							/* Execute Module */					`EXE_SELECT_SYS_REG
 						};
 					end
-				`OC_SRCIDR : 
+				`OC_SRCIDR :
 					begin									//O1
 						f_decode	=	{
 							/* Decode Error */						1'b0,
@@ -3077,7 +3077,7 @@ module decode_function(
 							/* Execute Module */					`EXE_SELECT_SYS_REG
 						};
 					end
-				`OC_MODER : 
+				`OC_MODER :
 					begin									//O1
 						f_decode	=	{
 							/* Decode Error */						1'b0,
@@ -3104,7 +3104,7 @@ module decode_function(
 							/* Execute Module */					`EXE_SELECT_SYS_REG
 						};
 					end
-				`OC_SRIEIR : 
+				`OC_SRIEIR :
 					begin									//O1
 						f_decode	=	{
 							/* Decode Error */						1'b0,
@@ -3131,7 +3131,7 @@ module decode_function(
 							/* Execute Module */					`EXE_SELECT_SYS_REG
 						};
 					end
-				`OC_SRTISR : 
+				`OC_SRTISR :
 					begin									//O1
 						f_decode	=	{
 							/* Decode Error */						1'b0,
@@ -3158,7 +3158,7 @@ module decode_function(
 							/* Execute Module */					`EXE_SELECT_SYS_REG
 						};
 					end
-				`OC_SRKPDTR : 
+				`OC_SRKPDTR :
 					begin									//O1
 						f_decode	=	{
 							/* Decode Error */						1'b0,
@@ -3185,7 +3185,7 @@ module decode_function(
 							/* Execute Module */					`EXE_SELECT_SYS_REG
 						};
 					end
-				`OC_SRMMUR : 
+				`OC_SRMMUR :
 					begin									//O1
 						f_decode	=	{
 							/* Decode Error */						1'b0,
@@ -3212,7 +3212,7 @@ module decode_function(
 							/* Execute Module */					`EXE_SELECT_SYS_REG
 						};
 					end
-				`OC_SRIOSR : 
+				`OC_SRIOSR :
 					begin									//O1
 						f_decode	=	{
 							/* Decode Error */						1'b0,
@@ -3239,7 +3239,7 @@ module decode_function(
 							/* Execute Module */					`EXE_SELECT_SYS_REG
 						};
 					end
-				`OC_SRTIDR : 
+				`OC_SRTIDR :
 					begin									//O1
 						f_decode	=	{
 							/* Decode Error */						1'b0,
@@ -3266,7 +3266,7 @@ module decode_function(
 							/* Execute Module */					`EXE_SELECT_SYS_REG
 						};
 					end
-				`OC_SRPPSR: 
+				`OC_SRPPSR:
 					begin									//O1
 						f_decode	=	{
 							/* Decode Error */						1'b0,
@@ -3293,7 +3293,7 @@ module decode_function(
 							/* Execute Module */					`EXE_SELECT_SYS_REG
 						};
 					end
-				`OC_SRPPCR: 
+				`OC_SRPPCR:
 					begin									//O1
 						f_decode	=	{
 							/* Decode Error */						1'b0,
@@ -3320,7 +3320,7 @@ module decode_function(
 							/* Execute Module */					`EXE_SELECT_SYS_REG
 						};
 					end
-				`OC_SRPPDTR: 
+				`OC_SRPPDTR:
 					begin									//O1
 						f_decode	=	{
 							/* Decode Error */						1'b0,
@@ -3347,7 +3347,7 @@ module decode_function(
 							/* Execute Module */					`EXE_SELECT_SYS_REG
 						};
 					end
-				`OC_SRPTIDR: 
+				`OC_SRPTIDR:
 					begin									//O1
 						f_decode	=	{
 							/* Decode Error */						1'b0,
@@ -3374,7 +3374,7 @@ module decode_function(
 							/* Execute Module */					`EXE_SELECT_SYS_REG
 						};
 					end
-				`OC_SRPSR: 
+				`OC_SRPSR:
 					begin									//O1
 						f_decode	=	{
 							/* Decode Error */						1'b0,
@@ -3401,7 +3401,7 @@ module decode_function(
 							/* Execute Module */					`EXE_SELECT_SYS_REG
 						};
 					end
-				`OC_SRFRCR: 
+				`OC_SRFRCR:
 					begin									//C
 						f_decode	=	{
 							/* Decode Error */						1'b0,
@@ -3428,7 +3428,7 @@ module decode_function(
 							/* Execute Module */					`EXE_SELECT_SYS_REG
 						};
 					end
-				`OC_SRFRCLR: 
+				`OC_SRFRCLR:
 					begin									//O1
 						f_decode	=	{
 							/* Decode Error */						1'b0,
@@ -3455,7 +3455,7 @@ module decode_function(
 							/* Execute Module */					`EXE_SELECT_SYS_REG
 						};
 					end
-				`OC_SRFRCHR: 
+				`OC_SRFRCHR:
 					begin									//O1
 						f_decode	=	{
 							/* Decode Error */						1'b0,
@@ -3482,7 +3482,7 @@ module decode_function(
 							/* Execute Module */					`EXE_SELECT_SYS_REG
 						};
 					end
-				`OC_SRPFLAGR: 
+				`OC_SRPFLAGR:
 					begin									//O1
 						f_decode	=	{
 							/* Decode Error */						1'b0,
@@ -3509,7 +3509,7 @@ module decode_function(
 							/* Execute Module */					`EXE_SELECT_SYS_REG
 						};
 					end
-					
+
 				/*******************
 				System Write
 				*******************/
@@ -3540,7 +3540,7 @@ module decode_function(
 							/* Execute Module */					`EXE_SELECT_SYS_LDST
 						};
 					end
-				`OC_SRPDTW : 
+				`OC_SRPDTW :
 					begin									//O1
 						f_decode	=	{
 							/* Decode Error */						1'b0,
@@ -3567,7 +3567,7 @@ module decode_function(
 							/* Execute Module */					`EXE_SELECT_SYS_LDST
 						};
 					end
-				`OC_SRIEIW : 
+				`OC_SRIEIW :
 					begin
 						if(!f_decode_inst[20])begin			//O1
 							f_decode	=	{
@@ -3676,7 +3676,7 @@ module decode_function(
 							/* Execute Module */					`EXE_SELECT_SYS_REG
 						};
 					end
-				`OC_SRMMUW : 
+				`OC_SRMMUW :
 					begin
 						if(!f_decode_inst[20])begin			//O1
 							f_decode	=	{
@@ -3974,7 +3974,7 @@ module decode_function(
 							/* Execute Module */					`EXE_SELECT_SYS_REG
 						};
 					end
-				`OC_SRSPWADD : 
+				`OC_SRSPWADD :
 					begin						//CI16
 						f_decode	=	{
 							/* Decode Error */						1'b0,
@@ -4057,9 +4057,9 @@ module decode_function(
 							/* Destination Rename*/					1'b0,
 							/* Execute Module Command */			`EXE_BRANCH_HALT,
 							/* Execute Module */					`EXE_SELECT_BRANCH
-						};	
+						};
 					end
-				`OC_MOVE : 
+				`OC_MOVE :
 					begin
 						f_decode	=	{
 							/* Decode Error */						1'b0,
@@ -4086,8 +4086,8 @@ module decode_function(
 							/* Execute Module */					`EXE_SELECT_LOGIC
 						};
 					end
-				`OC_MOVEPC	:	
-					begin	
+				`OC_MOVEPC	:
+					begin
 						if(!f_decode_inst[20])begin			//O2
 							f_decode	=	{
 								/* Decode Error */						1'b0,
@@ -4144,13 +4144,13 @@ module decode_function(
 				/*******************
 				OS Support
 				*******************/
-				`OC_SWI	:	
+				`OC_SWI	:
 					begin					//I11
 						f_decode	=	{
 							/* Decode Error */						1'b0,
 							/* Commit Wait Instruction */			1'b0,
 							/* Condition Code & AFE */				f_decode_inst[19:16],
-							/* Source0 */							{5{1'b0}},								//none		
+							/* Source0 */							{5{1'b0}},								//none
 							/* Source1 */							{{21{1'b0}}, f_decode_inst[15:10], f_decode_inst[4:0]},
 							/* Source0 Use Flags*/					1'b0,
 							/* Source1-Immediate */					1'b1,
@@ -4197,7 +4197,7 @@ module decode_function(
 							/* Execute Module Command */			`EXE_BRANCH_IDTS,
 							/* Execute Module */					`EXE_SELECT_BRANCH
 						};
-					end	
+					end
 				//Error
 				default :
 					begin
@@ -4209,7 +4209,7 @@ module decode_function(
 			endcase
 		end
 	endfunction
-	
+
 
 
 	assign {
@@ -4220,28 +4220,28 @@ module decode_function(
 		oDECODE_SOURCE1,
 		oDECODE_SOURCE0_FLAGS,
 		oDECODE_SOURCE1_IMM,
-		oDECODE_SOURCE0_ACTIVE,			
-		oDECODE_SOURCE1_ACTIVE,		
-		oDECODE_SOURCE0_SYSREG,		
-		oDECODE_SOURCE1_SYSREG,		
-		oDECODE_SOURCE0_SYSREG_RENAME,	
+		oDECODE_SOURCE0_ACTIVE,
+		oDECODE_SOURCE1_ACTIVE,
+		oDECODE_SOURCE0_SYSREG,
+		oDECODE_SOURCE1_SYSREG,
+		oDECODE_SOURCE0_SYSREG_RENAME,
 		oDECODE_SOURCE1_SYSREG_RENAME,
 		oDECODE_ADV_DATA,
-		oDECODE_ADV_ACTIVE,	
+		oDECODE_ADV_ACTIVE,
 		oDECODE_DESTINATION,
 		oDECODE_WRITEBACK,
 		oDECODE_FLAGS_WRITEBACK,
-		oDECODE_DESTINATION_SYSREG,	
-		oDECODE_DEST_RENAME,		
+		oDECODE_DESTINATION_SYSREG,
+		oDECODE_DEST_RENAME,
 		oDECODE_CMD,
-		oDECODE_EX_SYS_REG,	
-		oDECODE_EX_SYS_LDST,	
+		oDECODE_EX_SYS_REG,
+		oDECODE_EX_SYS_LDST,
 		oDECODE_EX_LOGIC,
 		oDECODE_EX_SHIFT,
-		oDECODE_EX_ADDER,		
-		oDECODE_EX_SDIV,		
+		oDECODE_EX_ADDER,
+		oDECODE_EX_SDIV,
 		oDECODE_EX_UDIV,
-		oDECODE_EX_MUL,			
+		oDECODE_EX_MUL,
 		oDECODE_EX_LDST,
 		oDECODE_EX_BRANCH
 	} = f_decode(iINSTLUCTION);
@@ -4250,4 +4250,4 @@ module decode_function(
 
 endmodule
 
-`default_nettype wire 
+`default_nettype wire
